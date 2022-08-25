@@ -1,0 +1,30 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+
+    .logo{
+        background-image: url('../home/logo.png');
+    }
+
+    .home-header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .cont-1-home{
+        margin: 10vh 1vh 0vh 5vh;
+    }
+
+    .cont-1-h1{
+        width: 280px;
+        font-size: 30px;
+        text-align: center;
+    }
+
+
+
+
+}
