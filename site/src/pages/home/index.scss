@@ -45,6 +45,7 @@
 
     .input-1{
         font-family: "Kumbh Sans";
+        font-size: 14px;
         width: 400px;
         border-radius: 7px;
         border: solid 0.5px black;
@@ -52,7 +53,6 @@
     }
 
     .posicionamento{
-        height: 50vw;
         display: flex;
         justify-content: first baseline;
         align-items: flex-start;
@@ -60,6 +60,43 @@
 
     }
 
+    .faixa2{
+        margin-top: 20vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: #263238;
 
+    }
+    
+    .f2-diffcolor{
+       background-color: #37474F; 
+       width: 50vw;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }
 
+    .f2-firsth1{
+        font-family: "Kumbh Sans";
+        font-size: 25px;
+        font-weight: 900;
+        color: white;
+        margin-top: 20px;
+    }
+
+    .f2-button1{
+        text-align: center;
+        width: fit-content;
+        padding: 8px;
+        border: none;
+        background: white;
+        border-radius: 80px;
+        box-shadow: inset 15px 1px 8px rgba(0, 0, 0, 0.10);
+    }
+
+    .f2-button1:hover{
+        cursor: pointer;
+    }
 }

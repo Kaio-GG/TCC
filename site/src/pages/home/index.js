@@ -38,6 +38,22 @@ export default function Index() {
                 </div>
             </section>
 
+            <section className="faixa2">
+                <div className="f2-diffcolor">
+                    <h1 className="f2-firsth1">Empresas</h1>
+                    <img></img>
+                    <button className="f2-button1">Se registre como uma empresa agora!</button>
+                    
+                </div>
+
+                <div>
+                    <h1>Cliente</h1>
+                    <img></img>
+
+                    <button>Se registre como um cliente no site!</button>
+                    </div>
+            </section>
+
 
 
 
