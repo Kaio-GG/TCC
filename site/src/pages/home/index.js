@@ -1,4 +1,7 @@
 import './index.scss'
+import Logo from '../home/assets/logo.png'
+import CofeGlass from '../home/assets/coffe.png'
+import TeamMember from '../home/assets/teamember.png'
 
 
 export default function Index() {
@@ -8,8 +11,8 @@ export default function Index() {
             <section className='home-f1'>
                 <header className='home-header'>
                     <h4 className='h4-home'>Fazer login</h4> 
-
-                    <img src=''></img>
+                    
+                    <img src={Logo}></img>
 
                     <h4 className='h4-home'>Registre-se</h4>
 
@@ -25,12 +28,13 @@ export default function Index() {
 
                         <div>
                             <input className='input-1' placeholder='BUSCAR EMPRESAS'/>
-                            <div className='logo'></div> 
+                            <div className='logo'></div>
+
                         </div>
                     </div>
 
                     <div>
-                        <img></img>
+                        <img className="imgsvg" src={CofeGlass}></img>
 
                     </div>
                 </div>
@@ -41,7 +45,7 @@ export default function Index() {
             <section className="faixa2">
                 <div className="f2-diffcolor">
                     <h1 className="f2-firsth1">Empresas</h1>
-                    <img></img>
+                    <img className="imgsvg2" src={TeamMember}></img>
                     <button className="f2-button1">Se registre como uma empresa agora!</button>
                     
                 </div>

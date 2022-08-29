@@ -1,6 +1,6 @@
 import './index.scss';
 
-export default function(){
+export default function Index(){
   
 return(
 
