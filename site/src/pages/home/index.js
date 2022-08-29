@@ -25,7 +25,7 @@ export default function Index() {
 
                         <div>
                             <input className='input-1' placeholder='BUSCAR EMPRESAS'/>
-                            <span className='logo'></span> 
+                            <div className='logo'></div> 
                         </div>
                     </div>
 
