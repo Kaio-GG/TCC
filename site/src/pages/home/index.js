@@ -2,6 +2,7 @@ import './index.scss'
 import Logo from '../home/assets/logo.png'
 import CofeGlass from '../home/assets/coffe.png'
 import TeamMember from '../home/assets/teamember.png'
+import Facil from '../home/assets/facilmassage.png'
 
 
 export default function Index() {
@@ -10,7 +11,7 @@ export default function Index() {
         <main className='home'>
             <section className='home-f1'>
                 <header className='home-header'>
-                    <h4 className='h4-home'>Fazer login</h4> 
+                    <h4 className='h4-home'>Login</h4> 
                     
                     <img src={Logo}></img>
 
@@ -50,11 +51,11 @@ export default function Index() {
                     
                 </div>
 
-                <div>
-                    <h1>Cliente</h1>
-                    <img></img>
+                <div className="f2-diffcolor1">
+                    <h1 className="f2-firsth1">Cliente</h1>
+                    <img className="imgsvg3" src={Facil}></img>
 
-                    <button>Se registre como um cliente no site!</button>
+                    <button className="f2-button1" >Se registre como um cliente no site!</button>
                     </div>
             </section>
 
