@@ -1,4 +1,5 @@
 import './index.scss';
+import '../../common/common.scss';
 
 export default function Index(){
   
@@ -34,7 +35,13 @@ return(
         </div>
         
         
-        <div className='Div-5'> </div>
+        <div className='Div-5'> 
+            <div className='Div1-Faixa-Branca'>
+                <p> Não Possui conta ?</p>
+                <p>Criar conta  </p>
+            </div>
+        
+        </div>
     </div>
 </main>  
        
