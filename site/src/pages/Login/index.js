@@ -5,7 +5,7 @@ export default function Index(){
   
 return(
 
-<main>
+<main className='Main-Login'>
     <div className="Div-Group">
         <div className="Div-1"> 
             <div className='Div-1-div'>
