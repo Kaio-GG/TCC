@@ -3,6 +3,7 @@ import Logo from '../home/assets/logo.png'
 import CofeGlass from '../home/assets/coffe.png'
 import TeamMember from '../home/assets/teamember.png'
 import Facil from '../home/assets/facilmassage.png'
+import { Link } from 'react-router-dom'
 
 
 export default function Index() {
@@ -11,7 +12,7 @@ export default function Index() {
         <main className='home'>
             <section className='home-f1'>
                 <header className='home-header'>
-                    <h4 className='h4-home'>Login</h4> 
+                    <Link to={'/login'} className='h4-home'>Login</Link> 
                     
                     <img src={Logo}></img>
 
