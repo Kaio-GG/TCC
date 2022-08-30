@@ -1,6 +1,6 @@
 .Main-Login{
-    border: solid 1px red;
-}
+
+
 .Div-1{
     background-color: #263238;
     display: flex;
@@ -84,7 +84,7 @@ justify-content: flex-end;
 
 
 
-/*----------------Faixa Cinza ----------------------------------------- */
+/*---------------------------------Faixa Branca---------------------------------- */
 
 .Div-5{
     display: flex;
@@ -98,6 +98,15 @@ justify-content: flex-end;
     display: flex;
     flex-direction: row;
     font-size: 24px;
-    justify-content: space-evenly
+    justify-content: space-evenly;
+    width:30vw ;
+    height:30vh ;
+    padding-bottom: 15px;
     
+}
+
+*{
+    border: solid 3px red;
+}
+
 }
