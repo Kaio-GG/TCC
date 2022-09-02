@@ -86,7 +86,7 @@ justify-content: flex-end;
 
 /*---------------------------------Faixa Branca---------------------------------- */
 
-.Div-5{
+.Faixa-Branca{
     display: flex;
     flex-direction:column;
     background-color: white;
@@ -98,12 +98,33 @@ justify-content: flex-end;
     display: flex;
     flex-direction: row;
     font-size: 24px;
-    justify-content: space-evenly;
-    width:30vw ;
-    height:30vh ;
-    padding-bottom: 15px;
-    
+    justify-content: space-around;
+    width:35vw ;
+    height:40vh ; 
 }
+
+.Div1-Faixa-Branca p{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: "KumbhSans-Medium";
+    font-size: 30px;
+}
+
+input{
+    width: 594px;
+    height: 20px;
+    color: black;
+}
+
+.div-inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
 
 *{
     border: solid 3px red;

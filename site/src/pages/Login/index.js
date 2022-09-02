@@ -35,10 +35,15 @@ return(
         </div>
         
         
-        <div className='Div-5'> 
+        <div className='Faixa-Branca'> 
             <div className='Div1-Faixa-Branca'>
                 <p> Não Possui conta ?</p>
                 <p>Criar conta  </p>
+            </div>
+
+            <div className='Div-inputs'>
+                <input className='.input-1' />
+                <input className='.input-1' />
             </div>
         
         </div>
