@@ -42,10 +42,33 @@ return(
             </div>
 
             <div className='Div-inputs'>
-                <input className='.input-1' />
-                <input className='.input-1' />
+                <input className='input-1' placeholder='Usuario' />
+                <input className='input-2' placeholder='Senha' type = 'password' />
             </div>
-        
+
+            <div className='div-ChekBox'> 
+                <div className='DivAux'> 
+                     <input type="checkbox" />
+                    <p> Empresa ?</p>
+                </div>
+            </div>
+            
+            <div className='Faixa-Button_LembrarSenha'>
+                <button>
+                        Entrar
+                </button>
+                
+                <div className='CheckBox-LembrarSenha'>
+                    <input type="checkbox" />
+                    <p> Lembrar Senha ?</p>
+                </div>
+            </div>
+
+            <div className='Div-Esqueceu_Senha'> 
+                <a> Esqueceu a senha ?</a>
+            
+            </div>
+
         </div>
     </div>
 </main>  

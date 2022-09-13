@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Roteador from './routes.js'
+import Teste from './components/teste';
 
 
 
