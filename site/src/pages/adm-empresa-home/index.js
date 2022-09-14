@@ -10,8 +10,8 @@ export default function Homeempresa (){
 
     return (
         <div className='page-adm-home'>
-            <Filtroemp/>    
-            <Cardadm/>
+            <Filtroemp nome=' kaio lindo  '/>    
+            <Cardadm />
         </div>
     )
 }
