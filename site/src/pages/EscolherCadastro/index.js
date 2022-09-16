@@ -1,8 +1,20 @@
 import './index.scss'
 
 
-export default function(){
+export default function Index(){
 
-<section> </section>
+    return(
+        <main>
+            <section>
+                <p> feito!</p>
+
+            </section>
+
+        </main>
+
+
+    )
+
+
 
 }

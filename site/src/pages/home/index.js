@@ -16,7 +16,7 @@ export default function Index() {
                     
                     <img src={Logo}></img>
 
-                    <h4 className='h4-home'>Registre-se</h4>
+                    <Link to={'/cadastro'} className='h4-home'>Registre-se</Link>
 
                 </header>
 
