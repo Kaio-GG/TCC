@@ -7,6 +7,18 @@
     height: 100vh;
     font-family: 'KumbhSans-SemiBold';
     h3{
+        margin-top: 5%;
+        margin-left: 5%;
         text-decoration: underline;
+    }
+    input{
+        margin-top: 2%;
+        width: 35%;
+        margin-left: 5%;
+        height: 5%;
+    }
+    .card1{
+        background-color: #fff;
+        border-radius: 10px; 
     }
 }
