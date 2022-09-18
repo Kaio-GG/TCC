@@ -3,7 +3,7 @@ import { login } from "../repository/LoginRepository.js";
 import { Router } from "express";
 const server = Router();
 
-server.post('/empresa/login', (req, resp) => {
+server.post('/empresa/login', async(req, resp) => {
     try{
         const { email, senha } = req.body;
 
@@ -16,3 +16,4 @@ server.post('/empresa/login', (req, resp) => {
         })
     }
 })
+
