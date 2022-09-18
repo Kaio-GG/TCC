@@ -1,9 +1,11 @@
 import './index.scss'
 import Logo from '../home/assets/logo.png'
-import CofeGlass from '../home/assets/coffe.png'
-import TeamMember from '../home/assets/teamember.png'
-import Facil from '../home/assets/facilmassage.png'
 import { Link } from 'react-router-dom'
+import Cafe from '../home/assets/cafe.svg'
+import Time from '../home/assets/time.svg'
+import Massagem from '../home/assets/mass.svg'
+import startup from '../home/assets/startup.svg'
+import Reading from '../home/assets/reading.svg'
 
 
 export default function Index() {
@@ -14,54 +16,95 @@ export default function Index() {
                 <header className='home-header'>
                     <Link to={'/login'} className='h4-home'>Login</Link> 
                     
-                    <img src={Logo}></img>
+                    <img className='logo' src={Logo}></img>
 
                     <Link to={'/cadastro'} className='h4-home'>Registre-se</Link>
 
                 </header>
 
-                <div className='cont-1-home'>
-                    <div className="posicionamento">
-                    <div className='alinhar-texto'>
-                        <h1 className='cont-1-h1'>Faça parte do nosso precioso sonho</h1>
 
-                        <p className='p1-home'>Apresentamos para você um serviço rápido e prático facilitando o seu convívio com consultas e trabalhos.</p>
+            <div className='alinhardiv1'>
+                <div className='div2-f1'>
+                    <h1 className='f1-h1'>Faça parte do nosso precioso sonho</h1>
 
+                    <p className='f1-p1'>Apresentamos para você um serviço rápido e prático facilitando o seu convívio com consultas e trabalhos.</p>
 
-                        <div>
-                            <input className='input-1' placeholder='BUSCAR EMPRESAS'/>
-                            <div className='logo'></div>
-
-                        </div>
-                    </div>
-
-                    <div>
-                        <img className="imgsvg" src={CofeGlass}></img>
-
-                    </div>
+                    <input placeholder='Buscar empresas' className='f1-input1'/>
                 </div>
+
+
+                    <img className='img-coffee' src={Cafe}></img>
+
+            </div>
+            </section>
+
+            <section className='f2'>
+                <div className='f2-left'>
+                    <h1 className='f2-h1'>Empresas</h1>
+
+                    <img className='img-time' src={Time}></img>
+
+                    <button className='f2-button'>Se registre como empresa agora!</button>
+                </div>
+
+                <div className='f2-right'>
+                    <h1 className='f2-h1'>Cliente</h1>
+
+                    <img className='img-mass' src={Massagem}></img>
+
+                    <button className='f2-button'>Se registre como cliente no site!</button>
+
+                </div>
+
+            </section>
+
+            <section className='f3'>
+                <div className='f1-divpart1'>
+                    <h1 className='f3-h1'>Nós disponibilizamos os melhores serviços da região para você.</h1>
+
+                    <p className='f3-p1'>Aqui você é apresentado para as empresas e trabalhadores autonômos com melhor avaliação dentro do nosso site</p>
+
+                    <img src={startup} className="f3-img"></img>
+                </div>
+
+                <div>
+                    <h1 className='f3-h2'>Melhores avaliações</h1>
+
+                    <h1 className='f3-h3'>Empresas</h1>
+
+                    <div className='f3-caixa'></div>
+
+                </div>
+
+            </section>
+
+            <section className='f4'>
+                <div className='f4-left'>
+                    <h1 className='f4-h1'>Nos envie sua avaliação!</h1>
+
+                    <div className='f4-box'>
+                        <h1 className='f4-h2'>Nome:</h1>
+                        <input className='f4-input1'></input>
+
+                        <h1 className='f4-h2'>Avaliação:</h1>
+                        <input className='f4-input2'></input>
+
+                        <button className='f4-button'>Enviar</button>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+                    <h1 className='f4-h3'>A sua avaliação muda nossa visão dentro do possível...</h1>
+
+                    <p className='f4-p'>Quando você manda sua avaliação apresentando os pontos positivos e negativos nós melhoramos o site para você!</p>
+
+                    <img className='f4-img' src={Reading}></img>
 
                 </div>
             </section>
-
-            <section className="faixa2">
-                <div className="f2-diffcolor">
-                    <h1 className="f2-firsth1">Empresas</h1>
-                    <img className="imgsvg2" src={TeamMember}></img>
-                    <button className="f2-button1">Se registre como uma empresa agora!</button>
-                    
-                </div>
-
-                <div className="f2-diffcolor1">
-                    <h1 className="f2-firsth1">Cliente</h1>
-                    <img className="imgsvg3" src={Facil}></img>
-
-                    <button className="f2-button1" >Se registre como um cliente no site!</button>
-                    </div>
-            </section>
-
-
-
 
         </main>
     )

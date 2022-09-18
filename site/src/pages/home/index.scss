@@ -1,13 +1,13 @@
 .home{
     display: flex;
     flex-direction: column;
-    margin: 0px;
-    width: 100%;
-    height: 100%;
+    height: 100vh;
 
     .home-f1{
-        width: 100%;
-        height: 70vh;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+
     }
 
     .home-header{
@@ -17,120 +17,426 @@
         align-items: center;
     }
 
+    .logo{
+        margin-top: 20px;
+    }
+
     .h4-home{
         font-family: "Kumbh Sans";
         font-weight: 700;
     }
-    .p1-home{
-        width: 450px;
-        font-family: "Kumbh Sans";
-        font-weight: 500;
-        margin-left: 50px;
+
+    .alinhardiv1{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: center;
+
     }
 
-    .cont-1-home{
-        margin: 10vh 1vh 0vh 5vh;
-    }
-    .alinhar-texto{
+    .div1-f1{
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .cont-1-h1{
-        font-family: "Kumbh Sans";
-        font-weight: 800;
-        width: 278px;
-        font-size: 30px;
         text-align: center;
-        margin: 0px 0px 0px 0px ;
     }
 
-    .imgsvg{
-        width: 500px;
-        height: 330px;
-        margin-left: 100px;
-        margin-top: 30px;
-    }
-
-    .input-1{
-        font-family: "Kumbh Sans";
-        font-size: 14px;
-        width: 400px;
-        border-radius: 7px;
-        border: solid 0.5px black;
-        padding: 8px;
-    }
-
-    .posicionamento{
+    .div2-f1{
         display: flex;
-        justify-content: first baseline;
-        align-items: flex-start;
-        margin-top: 15vh;
-
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 50px;
+        animation-name: img;
+        animation-duration: 3s;
+    }
+    
+    .f1-h1{
+        width: 510px;
+        margin-left: 45px;
+        font-family: 'Kumbh Sans';
+        font-size: 40px;
+        line-height: 40px;
+        text-align: center;
     }
 
-    .faixa2{
+    .f1-p1{
+        margin: 20px;
+        width: 660px;
+        font-family: 'Kumbh Sans';
+        font-weight: 500;
+        font-size: 25px;
+        line-height: 104.52%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+
+    .f1-input1{
+        width: 510px;
+        font-family: 'Kumbh Sans';
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 12px;
+    }
+
+    .img-coffee{
+        width: 550px;
+        height: 500px;
+    }
+
+    .f2{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        height: 100vh;
+    }
+
+    .img-time{
+        width: 500px;
+        height: 500px;
+    }
+
+    .f2-left{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         background-color: #263238;
-        height: 100%;
-
-    }
-    
-    .f2-diffcolor{
-       background-color: #37474F; 
-       width: 50vw;
-       display: flex;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
+        text-align: center;
+        width: 50vw;
     }
 
-    .f2-diffcolor1{ 
+    .img-mass{
+        width: 380px;
+        height: 500px;
+    }
+
+
+    .f2-right{
+        background-color: #2c383f;
         width: 50vw;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
+
     }
 
-    .imgsvg2{
-        width: 500px;
-        height: 330px;
-        margin-bottom: 100px ;
-        margin-top: 100px ;
-    }
-
-    .imgsvg3{
-        width: 350px;
-        height: 330px;
-        margin-bottom: 100px ;
-        margin-top: 100px ;
-    }
-
-    .f2-firsth1{
-        font-family: "Kumbh Sans";
-        font-size: 25px;
-        font-weight: 900;
-        color: white;
-        margin-top: 25px;
-    }
-
-    .f2-button1{
-        font-family: "Kumbh Sans";
+    .f2-h1{
+        font-family: 'Kumbh Sans';
         font-weight: 700;
-        text-align: center;
-        width: fit-content;
-        padding: 12px;
-        border: none;
-        background: white;
-        border-radius: 80px;
-        box-shadow: inset 15px 1px 8px rgba(0, 0, 0, 0.10);
-        margin: 20px 0px 15px 0px;
+        margin-top: 20px;
+        font-size: 25px;
+        color: white;
+
     }
 
-    .f2-button1:hover{
-        cursor: pointer;
+    .f2-h1:hover{
+        color: rgb(219, 218, 218);
+        cursor: default;
     }
+
+    .f2-button{
+        cursor: pointer;
+        font-family: 'Kumbh Sans';
+        font-weight: 600;
+        background: #FFFFFF;
+        border: 0px;
+        box-shadow: inset 8px 1px 8px rgba(0, 0, 0, 0.05);
+        border-radius: 80px;
+        padding: 8px;
+        margin-bottom: 50px;
+    }
+
+    .f2-button:hover{
+        cursor: pointer;
+        background: #d1cfcf;
+    }
+
+
+    .f3{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 30px;
+
+    }
+
+    .f1-divpart1{
+        margin-top: 29px;
+    }
+
+    .f3-h1{
+        margin-left: 37px;
+        width: 500px;
+        font-family: 'Kumbh Sans';
+        font-weight: 700;
+        font-size: 30px;
+        display: flex;
+        text-align: center;
+        color: #000000;
+    }
+
+    .f3-p1{
+        margin-top: 25px;
+        width: 560px;
+        font-family: 'Kumbh Sans';
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 104.52%;
+        display: flex;
+        text-align: center;
+        color: #000000;
+    }
+
+    .f3-img{
+        width: 600px;
+        height: 400px;
+    }
+
+    .f3-h2{
+        font-family: 'Kumbh Sans';
+        font-weight: 700;
+        font-size: 30px;
+        display: flex;
+        text-align: center;
+        color: #000000;
+    }
+
+    
+    .f3-h3{
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        font-family: 'Kumbh Sans';
+        font-weight: 600;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        color: #FFFFFF;
+        background-color: #263238;
+        padding: 4px;
+        border-radius: 8px;
+    }
+
+    .f3-h3:hover{
+        color: rgb(219, 218, 218);
+    }
+
+    .f3-caixa{
+        margin-top: 29px;
+        width: 281px;
+        height: 350px;
+
+
+        background: #263238;
+        border-radius: 15px;
+    }
+
+    .f4{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .f4-left{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .f4-h1{
+        font-family: 'Kumbh Sans';
+        font-weight: 600;
+        font-size: 30px;
+        display: flex;
+        text-align: center;
+        color: #000000;
+    }
+
+    .f4-box{
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        margin-top: 29px;
+        width: 336px;
+        height: 350px;
+        background: #263238;
+        border-radius: 8px;
+    }
+
+    .f4-h2{
+        margin-top: 8px;
+        font-family: 'Kumbh Sans';
+        font-weight: 500;
+        font-size: 18px;
+        color: #ffffff;
+    }
+
+    .f4-input1{
+        margin-top: 1.5px;
+        border: none;
+        padding: 2.5px;
+        background-color: #37474F;
+        border-radius: 3px;
+        color: #FFFFFF;
+
+    }
+
+    .f4-input2{
+        height: 200px;
+        margin-top: 1.5px;
+        border: none;
+        padding: 2.5px;
+        background-color: #37474F;
+        border-radius: 3px;
+        color: #FFFFFF;
+    }
+
+    .f4-button{
+        display: flex;
+        width: 50px;
+        background-color: #37474F;
+        border: none;
+        margin-top: 6px;
+        color: #FFFFFF;
+        font-family: 'Kumbh Sans';
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    
+    .f4-button:hover{
+        cursor: pointer;
+        background-color: #4d6470;
+    }
+
+    .f4-h3{
+        width: 615px;
+        font-family: 'Kumbh Sans';
+        font-weight: 600;
+        font-size: 35px;
+        text-align: center;
+        color: #000000;
+    }
+
+    .f4-p{
+        width: 532px;
+        font-family: 'Kumbh Sans';
+        font-weight: 400;
+        font-size: 20px;
+        margin-top: 15px;
+        margin-left: 39px;
+        text-align: center;
+
+        color: #000000;
+    }
+
+    .f4-img{
+        width: 400px;
+        height: 350px;
+        margin-left: 80px;
+
+    }
+
+
+
+
+    @keyframes img {
+        from {margin-left: -600px;}
+        to {margin-left: 0px;}
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @media only screen and (min-width: 1920px) {
+        .alinhardiv1{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            text-align: center;
+            align-items: center;
+        }
+        
+        .f1-h1{
+            width: 510px;
+            margin-left: 45px;
+            font-family: 'Kumbh Sans';
+            font-size: 45px;
+            line-height: 40px;
+            text-align: center;
+        }
+    
+        .f1-p1{
+            margin: 20px;
+            width: 660px;
+            font-family: 'Kumbh Sans';
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 104.52%;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+    
+        .f1-input1{
+            width: 510px;
+            font-family: 'Kumbh Sans';
+            padding: 10px;
+            border: 1px solid #000000;
+            border-radius: 12px;
+        }
+    
+        .img-coffee{
+            width: 750px;
+            height: 600px;
+
+        }
+
+        .f2{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: 100vh;
+        }
+    
+      }
+
+
 }
