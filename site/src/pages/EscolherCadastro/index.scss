@@ -1,0 +1,67 @@
+.Main-Escolher-Cadastro{
+    
+    .Faixa-1{
+        height: 7em;
+        width: 100vw;
+        background-color: aqua;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Div-Group{
+        display: flex;
+        flex-direction: column;
+        width: 25em;
+    
+        
+    }
+    
+    .Faixa-1 h1{
+        color: white;
+        font-size: 40px;
+        padding-left: 90px;
+        font-family: 'KumbhSans-Bold';
+    }
+
+    .Faixa-1 p{
+        color: white;
+        font-size: 30px;
+        padding-left: 280px;
+    }
+
+    
+    
+    
+    
+    *{
+       border: solid red;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

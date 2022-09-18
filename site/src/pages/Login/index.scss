@@ -38,7 +38,7 @@ justify-content: flex-end;
     
     color: white;
     font-size: 40px;
-    padding-left: 80px;
+    padding-left: 90px;
 }
 
 .Espaçamento{
@@ -59,7 +59,10 @@ justify-content: flex-end;
 .Div-2 h1{
     color: white;
     font-size: 70px;
-    width: 6em;
+    width: 7em;
+    padding-top:15px ;
+    padding-bottom: 80px;
+
 }
 
 .Div-2 p{
@@ -69,17 +72,6 @@ justify-content: flex-end;
     width: 38vw;
     padding-left: 100px;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -114,7 +106,7 @@ justify-content: flex-end;
 }
 
 .input-1{
-    width: 620px;
+    width: 635px;
     height: 2em;
     color: black;
     font-size: 30px;
@@ -128,7 +120,7 @@ justify-content: flex-end;
 }
 
 .input-2{
-    width: 620px;
+    width: 630px;
     height: 2em;
     padding-left: 1.5em;
     color: black;
@@ -153,8 +145,9 @@ justify-content: flex-end;
 .div-ChekBox{
     display: flex;
     flex-direction: row;
-    height: 3.5em;
-    width: 8em;
+    justify-content: space-around;
+    height: 2em;
+    width: 13em;
     padding-left: 4em;
 
     color: rgba(118, 118, 118, 1);
@@ -169,6 +162,12 @@ justify-content: flex-end;
     justify-content: space-evenly;
 
 }
+
+.DivAux p{
+    width: 6em;
+    
+}
+
 
 .div-ChekBox input{
     width: 3em;
@@ -227,6 +226,8 @@ justify-content: flex-end;
     font-family:'KumbhSans-Bold';
     cursor: pointer;
 }
+
+
 
 
 }
