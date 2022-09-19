@@ -10,9 +10,10 @@ export default function HederEmpresa (props){
 
     return(
         <div className='cabecalho'>
-            <div>
-                
+            <div className='logo'>
+                <h1>My Workship</h1>
             </div>
+            <div className='part-2'>
             <div className='alinhamento'>
                 {props.class === 'home' 
                 ? <div className= 'pagina'>Home</div> 
@@ -41,6 +42,7 @@ export default function HederEmpresa (props){
                 {props.class === 'reviwes' 
                 ? <div className= 'pagina'>Reviwes</div> 
                 : <div> Reviwes</div>}
+            </div>
             </div>
         </div>
     )
