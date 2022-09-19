@@ -1,41 +1,136 @@
 .Main-Escolher-Cadastro{
     
     .Faixa-1{
-        height: 7em;
         width: 100vw;
-        background-color: aqua;
+        background-color:white;
         display: flex;
         flex-direction: column;
     }
 
     .Div-Group{
         display: flex;
-        flex-direction: column;
-        width: 25em;
+        flex-direction: row;
+        width: 100vw;
+        padding-top: 20px;
     
         
     }
     
     .Faixa-1 h1{
-        color: white;
-        font-size: 40px;
+        color: #263238;
+        font-size: 50px;
         padding-left: 90px;
         font-family: 'KumbhSans-Bold';
+        height: 130px;
+        width: 430px;
     }
 
     .Faixa-1 p{
-        color: white;
-        font-size: 30px;
-        padding-left: 280px;
+        color: #263238;
+        font-size: 40px;
+        font-family: 'KumbhSans-Mediunm';
+        padding-top: 25px;
+        padding-left: 0px;
     }
 
     
-    
-    
-    
-    *{
-       border: solid red;
+    .Faixa-Cadastre{
+        height: 15vh;
+        width:100vw ;
+        background-color: white;
+        display: flex;
+        justify-content: center;
     }
+
+    .Faixa-Cadastre h1{
+        width: 6em;
+        color: #263238;
+        font-size: 50px;
+        font-family: 'KumbhSans-Bold';    
+    
+    }
+    
+    .Faixa-Principal{
+        background-color: white;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding-bottom: 15em;
+    }
+    
+    .Faixa-Principal h3{
+        font-size: 60px;
+        font-family: 'KumbhSans-Mediunm';
+        padding-bottom: 1em;
+        color: #263238;
+    }
+    
+    
+    .Div-Principal-1{
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        width: 780px;
+        height: 90vh;
+    }
+
+
+
+    .Image-1{
+        background-image: url('../../../public/assets/images/Data\ report-pana\ 2.svg');
+        height:500px ;
+        width: 780px;
+        background-repeat: no-repeat;
+        padding-bottom: 45em;
+        
+    }
+
+    .Div-Principal-2{
+        flex-direction: column;
+        justify-content: center;
+        width: 780px;
+        text-align: center;
+        height: 90vh;
+
+    }
+
+
+    
+    .Image-2{
+            background-image: url('../../../public/assets/images/Facial\ massage-amico\ 1.svg');
+            height:500px ;
+            width: 780px;
+            background-repeat: no-repeat;
+            padding-bottom: 45em;
+
+        }
+
+        button{
+            height: 70px;
+            width: 680px;
+            background-color: #263238;
+            border-radius: 50px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 50px;
+            
+        }
+    
+        Button p{
+            color:white ;
+            font-family:'KumbhSans-Medium' ;
+            font-size: 36px;
+        }
+
+        *{
+            border: solid red;
+        }
+    
+
 
 
 
