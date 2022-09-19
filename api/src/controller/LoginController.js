@@ -17,3 +17,5 @@ server.post('/empresa/login', async(req, resp) => {
     }
 })
 
+export default server;
+
