@@ -116,13 +116,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding-left: 50px;
             
         }
     
         Button p{
             color:white ;
             font-family:'KumbhSans-Medium' ;
-            font-size: 35px;
+            font-size: 36px;
+        }
+
+        *{
+            border: solid red;
         }
     
 
