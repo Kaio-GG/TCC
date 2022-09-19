@@ -3,7 +3,7 @@ use MyWorkshipDB;
 /*--------------------INFORMAÇÕES_USUARIO_EMPRESA--------------------------*/
 
 insert into TB_USUARIO_EMPRESA (DS_CNPJ,DS_INSCRICAO_ESTADUAL,NM_NOME_DA_EMPRESA,DS_ESTADO,NM_REPRESENTANTE,DS_CPF_REPRESENTANTE,DS_CARGO_REPRESENTANTE,DS_NACIONALIDADE_REPRESENTANTE)
-values("18638446000101", "739733422933", "MyWorkship", "São Paulo", "Akino Rego", "57348472087", "Gerente", "Brasil");
+values("186384460001781", "739733462933", "MyWorkship", "São Paulo", "Akino Rego", "57348472087", "Gerente", "Brasil");
 
 select *
 	from TB_USUARIO_EMPRESA;
@@ -22,7 +22,7 @@ and   DS_SENHA = "12345678";
 /*--------------------INFORMAÇÕES_USUARIO_CLIENTE--------------------------*/
 
 INSERT INTO TB_USUARIO_CLIENTE(nm_usuario, ds_cpf, ds_pais, ds_estado, ds_cidade)
-values('Dav', 53217542803, 'Brsil', 'SP', 'SP');
+values('Davii', 53217542803, 'Brsil', 'SP', 'SP');
 
 Select * from tb_usuario_cliente;
 
@@ -35,12 +35,17 @@ Select * from tb_pagina_empresa;
 
 /*--------------------INFORMAÇÕES_EMPRESA_AVALIACAO--------------------------*/
 
-INSERT INTO TB_EMPRESA_AVALIACAO(id_USUARIO_EMPRESA, id_usuario_cliente , vl_avaliacao, ds_avaliacao, dt_avaliacao)
-values(2, 2, 4 , "mt legal",  '2022-06-03');
+INSERT INTO TB_EMPRESA_AVALIACAO(ID_USUARIO_EMPRESA, id_usuario_cliente , vl_avaliacao, ds_avaliacao, dt_avaliacao)
+values(2, 2, 5 , "Trabalho prestativo",  '2022-06-03');
 
 select * from TB_EMPRESA_AVALIACAO;
 
-SELECT nm_usuario, vl_avaliacao, ds_avaliacao
+SELECT nm_usuario, vl_avaliacao, ds_avaliacao, nm_nome_da_empresa
 FROM tb_empresa_avaliacao
 INNER JOIN TB_USUARIO_CLIENTE on tb_empresa_avaliacao.id_usuario_cliente = TB_USUARIO_CLIENTE.id_usuario_cliente
+INNER JOIN TB_USUARIO_EMPRESA on tb_empresa_avaliacao.id_usuario_empresa = TB_USUARIO_EMPRESA.id_usuario_empresa
 ;
+
+DELETE from tb_empresa_avaliacao where id_empresa_avaliacao = 6;
+
+DROP DATABASE MyWorkshipDB;

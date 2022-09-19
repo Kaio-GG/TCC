@@ -1,7 +1,20 @@
 import './index.scss';
 import '../../common/common.scss';
 
+import { useState, useRef } from 'react';
+
+
+
 export default function Index(){
+
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+
+    function login(email, senha){
+
+
+    }
+
   
 return(
 

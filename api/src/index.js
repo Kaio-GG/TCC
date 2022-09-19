@@ -1,6 +1,7 @@
 import 'dotenv/config'
 
-import ConsultasController from './controller/ConsultasController.js'
+import ConsultasController from './controller/ConsultasController.js';
+import LoginController from './controller/LoginController.js';
 
 import express from 'express'
 import cors from 'cors'
@@ -13,6 +14,7 @@ server.use(express.json());
 //endpoints
 
 server.use(ConsultasController);
+server.use(LoginController);
 
 
 
