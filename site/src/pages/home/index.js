@@ -6,9 +6,25 @@ import Time from '../home/assets/time.svg'
 import Massagem from '../home/assets/mass.svg'
 import startup from '../home/assets/startup.svg'
 import Reading from '../home/assets/reading.svg'
+import Icon from '../home/assets/Vector.png'
+
+import { listarEmpresas } from '../../api/Controller'
+import { useEffect, useState } from 'react'
 
 
 export default function Index() {
+
+    const [avaliacao, setAvaliacao] = useState([]);
+
+    async function listar(){
+        const resposta = await listarEmpresas();
+        setAvaliacao(resposta)
+    }
+
+    useEffect(() => {
+        listar()
+        console.log(avaliacao)
+    }, [])
 
     return(
         <main className='home'>
@@ -72,7 +88,23 @@ export default function Index() {
 
                     <h1 className='f3-h3'>Empresas</h1>
 
-                    <div className='f3-caixa'></div>
+                    <div className='f3-caixa'>
+
+                {avaliacao.map(item =>
+                    <div className='div1-f3'> 
+                        <img className='icon-f3' src={Icon}></img>
+
+                        <div className='alinharCard'>
+                            <p className='f3-p2'>{item.nome} <span className='f3-p5'>{item.empresa}</span></p>   
+                            <p className='f3-p3'>Avaliação:{item.avaliacao}</p> 
+                            <p className='f3-p4'>"{item.descavaliacao}"</p>
+                        </div>   
+                     </div>    
+                        
+                    )}
+
+
+                    </div>
 
                 </div>
 
