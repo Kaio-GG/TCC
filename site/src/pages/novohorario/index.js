@@ -12,10 +12,12 @@ export default function Novohorario (){
                 <h3>Novo Horario</h3>
                 <div className='linha'></div>
             </div>
+            <div className='opts'>
             <input  type="date"/>
             <select >
                 <option>santo amaro</option>
-            </select> 
+            </select>
+            </div> 
 
             <div className='card1'></div>
         </div>

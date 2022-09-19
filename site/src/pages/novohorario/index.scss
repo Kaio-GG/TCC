@@ -6,6 +6,7 @@
     background-color: #F5F5F5;
     height: 100vh;
     font-family: 'KumbhSans-SemiBold';
+    font-size: 25px;
     h3{
         margin-top: 5%;
         margin-left: 5%;
@@ -15,10 +16,22 @@
         margin-top: 2%;
         width: 35%;
         margin-left: 5%;
-        height: 5%;
+        height: 5vh;
+    }
+    select{
+        margin-top: 2%;
+        width: 35%;
+        margin-left: 5%;
+        height: 5vh;
     }
     .card1{
         background-color: #fff;
         border-radius: 10px; 
+    }
+    .opts{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 20vh;
     }
 }
