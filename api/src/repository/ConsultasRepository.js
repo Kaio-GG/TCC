@@ -8,8 +8,7 @@ export async function empresasBemAvaliadas() {
 
     SELECT nm_usuario nome, 
     vl_avaliacao avaliacao, 
-    ds_avaliacao descavaliacao
-
+    ds_avaliacao descavaliaca
 
     FROM tb_empresa_avaliacao
     INNER JOIN 

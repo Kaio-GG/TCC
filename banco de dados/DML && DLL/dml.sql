@@ -18,3 +18,29 @@ select ID_LOGIN_EMPRESA	id
 from TB_LOGIN_EMPRESA
 where DS_EMAIL = "MyWorkship@gmail.com"
 and   DS_SENHA = "12345678";
+
+/*--------------------INFORMAÇÕES_USUARIO_CLIENTE--------------------------*/
+
+INSERT INTO TB_USUARIO_CLIENTE(nm_usuario, ds_cpf, ds_pais, ds_estado, ds_cidade)
+values('Dav', 53217542803, 'Brsil', 'SP', 'SP');
+
+Select * from tb_usuario_cliente;
+
+/*--------------------INFORMAÇÕES_PAGINA_EMPRESA--------------------------*/
+
+INSERT INTO TB_PAGINA_EMPRESA(id_usuario_empresa,nm_empresa, img_logo, ds_descricao)
+values( 1,'titulo', '1', 'oii');
+
+Select * from tb_pagina_empresa;
+
+/*--------------------INFORMAÇÕES_EMPRESA_AVALIACAO--------------------------*/
+
+INSERT INTO TB_EMPRESA_AVALIACAO(id_USUARIO_EMPRESA, id_usuario_cliente , vl_avaliacao, ds_avaliacao, dt_avaliacao)
+values(2, 2, 4 , "mt legal",  '2022-06-03');
+
+select * from TB_EMPRESA_AVALIACAO;
+
+SELECT nm_usuario, vl_avaliacao, ds_avaliacao
+FROM tb_empresa_avaliacao
+INNER JOIN TB_USUARIO_CLIENTE on tb_empresa_avaliacao.id_usuario_cliente = TB_USUARIO_CLIENTE.id_usuario_cliente
+;
