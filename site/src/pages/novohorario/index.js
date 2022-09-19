@@ -1,12 +1,25 @@
 import './index.scss';
 import HederEmpresa from '../../components/header-adm-empresa';
+import { useState } from 'react';
 
 
 export default function Novohorario (){
+    const [cont , setcont] = useState (0)
+    const [render , setrender] = useState(0)
 
-    let dia =  new Date();
-    
-
+        
+    function contador (){
+        setcont(cont+1) 
+    }
+    function removedor (){
+        setcont(cont-1) 
+    }
+    function renderp (){
+        setrender(render+1) 
+    }
+    function renderm (){
+        setrender(render-1) 
+    }
     return(
         <div className='pg-novohorario'>
             <HederEmpresa  class='hora'/>
@@ -21,12 +34,24 @@ export default function Novohorario (){
             </select>
             </div> 
             <div className='horarios'>
-                <div className='card1'>
+
+
+                {render === 0 
+                ?<div className='card1' onMouseOver={renderp}>
                     <p>14:00</p>
                 </div>
+                :<div className='card1' onMouseOut={renderm}>
+                    <p>14:00</p>
+                    <button onClick={contador}> somar </button>
+                    {cont}
+                    <button onClick={removedor}> menos </button>
+                </div>}
+
+
                 <div className='card-novo'>
-                    <p>14:00</p>
-                </div>
+                    {render}
+                 
+                  </div>
             </div>
         </div>
     )
