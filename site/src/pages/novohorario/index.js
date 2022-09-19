@@ -50,7 +50,7 @@ export default function Novohorario (){
 
                 <div className='card-novo'>
                     {render}
-                 
+                 j
                   </div>
             </div>
         </div>
