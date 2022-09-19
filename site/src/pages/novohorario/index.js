@@ -43,11 +43,18 @@ export default function Novohorario (){
             <div>
             {rendmax === 0 
             ?<div className='alinhado1'>
+                <div className='addCaixa'>
+                    <h3 className='text'>Adicionar caixa  </h3>
+                 
+                        <button>mais </button>                 
+                </div>
+                <div>
+                    <div>    
+                        <h3>Nome da caixa </h3>
+                        <button>editar </button>
+                        <button>excluir</button>
+                    </div>
 
-                <div className='addCaixa'>adicionar caixa</div>
-
-                <div>    
-                    <input type='text' />
                 </div> 
 
 

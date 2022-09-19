@@ -17,7 +17,7 @@ export default function Index(){
     const Navigate = useNavigate();
     const ref = useRef();
 
-    function Login() {
+    async function Login() {
         try{
             const r = await login(email, senha);
 
