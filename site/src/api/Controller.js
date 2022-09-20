@@ -8,5 +8,3 @@ export async function listarEmpresas(){
     const resposta = await api.get('/empresasBemAvaliadas')
     return resposta.data;
 }
-
-export 

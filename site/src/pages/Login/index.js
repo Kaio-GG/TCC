@@ -1,11 +1,8 @@
 import './index.scss';
 import '../../common/common.scss';
 
-import { login } from '../../api/loginController';
 import { useState, useRef } from 'react';
 
-import storage from 'local-storage'
-import LoadingBar from 'react-top-loading-bar'
 
 
 export default function Index(){
@@ -14,7 +11,7 @@ export default function Index(){
     const [senha, setSenha] = useState('');
 
     function login(email, senha){
-        
+
 
     }
 
