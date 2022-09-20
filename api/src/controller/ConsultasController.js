@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { empresasBemAvaliadas } from '../repository/ConsultasRepository.js'
+import { avaliacaoSite, empresasBemAvaliadas } from '../repository/ConsultasRepository.js'
 
 const server = Router();
 
@@ -17,6 +17,25 @@ server.get('/empresasBemAvaliadas', async(req, resp) => {
         })
 
     }
+
+})
+
+server.post('/site', async(req, resp) =>{
+    try{
+        const a = req.body
+
+        const resposta = avaliacaoSite(a)
+        resp.send(resposta)
+
+    }catch(err){
+        resp.status(404).send({
+            erro:err.message
+        })
+
+
+    }
+
+
 
 })
 

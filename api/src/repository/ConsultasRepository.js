@@ -24,5 +24,14 @@ export async function empresasBemAvaliadas() {
 
     const [lista] = await con.query(comando);
     return lista;
-
 }
+
+export async function avaliacaoSite(feedback){
+    const comando = `
+    INSERT INTO TB_AVALIACAO_SITE(nm_usuario, ds_avaliacao_site)
+    values(?, ?)  
+    `
+    const [enviar] = await con.query(comando, [feedback.nome, feedback.avaliacao]);
+    return enviar;
+}
+
