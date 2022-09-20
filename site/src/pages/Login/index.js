@@ -1,3 +1,6 @@
+import { login } from '../../api/loginController';
+import { useNavigate } from 'react-router-dom'
+
 import './index.scss';
 import '../../common/common.scss';
 
@@ -9,10 +12,22 @@ export default function Index(){
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [erro, setErro] = useState('');
 
-    function login(email, senha){
+    const Navigate = useNavigate();
+    const ref = useRef();
 
+    function Login() {
+        try{
+            const r = await login(email, senha);
 
+            Navigate('/novohorario');
+
+        } catch (err) {
+            if (err.response.status === 401){
+                setErro(err.response.data.erro);    
+            }
+        }
     }
 
   
@@ -55,8 +70,8 @@ return(
             </div>
 
             <div className='Div-inputs'>
-                <input className='input-1' placeholder='Usuario' />
-                <input className='input-2' placeholder='Senha' type = 'password' />
+                <input className='input-1' placeholder='Usuario' value={email} onChange={e => setEmail(e.target.value) } />
+                <input className='input-2' placeholder='Senha' type = 'password' value={senha} onChange={e => setSenha(e.target.value) } />
             </div>
 
             <div className='div-ChekBox'> 
@@ -67,7 +82,7 @@ return(
             </div>
             
             <div className='Faixa-Button_LembrarSenha'>
-                <button>
+                <button onClick={Login}>
                         Entrar
                 </button>
                 
