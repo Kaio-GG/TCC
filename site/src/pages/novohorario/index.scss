@@ -4,10 +4,11 @@
 
 .pg-novohorario{
     background-color: #F5F5F5;
-    height: 100vh;
+    height: 1000vh;
     font-family: 'KumbhSans-SemiBold';
     flex-direction: column;
     font-size: 25px;
+    width: 100%;
     h2{
         margin-top: 8%;
         margin-left: 5%;
@@ -90,5 +91,10 @@
     }
     .horarios{
         margin-top: 8%;
+    }
+    .alinhado1{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20%;
     }
 }

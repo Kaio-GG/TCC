@@ -6,23 +6,56 @@ import { useState } from 'react';
 export default function Novohorario (){
     const [cont , setcont] = useState (0)
     const [render , setrender] = useState(0)
+    const [rendmax ,setrendermax] = useState(0)
 
-        
+    
+    function aparecerTela2(){
+        setrendermax(rendmax+1)
+    }
+    
+
+
     function contador (){
         setcont(cont+1) 
     }
+
     function removedor (){
         setcont(cont-1) 
     }
+
     function renderp (){
         setrender(render+1) 
     }
+
     function renderm (){
         setrender(render-1) 
     }
+
+
+
+
+
+    
+
     return(
         <div className='pg-novohorario'>
             <HederEmpresa  class='hora'/>
+            <div>
+            {rendmax === 0 
+            ?<div className='alinhado1'>
+
+                <div className='addCaixa'>adicionar caixa</div>
+
+                <div>    
+                    <input type='text' />
+                </div> 
+
+
+               <div onClick={aparecerTela2}> Proximo</div> 
+            </div>
+
+
+            :<div>       
             <div className='alinhado'>
                 <h2>Horarios</h2>
                 <div className='linha'></div>
@@ -42,16 +75,17 @@ export default function Novohorario (){
                 </div>
                 :<div className='card1' onMouseOut={renderm}>
                     <p>14:00</p>
-                    <button onClick={contador}> somar </button>
+                    <button onClick={contador} onMouseOver={renderp}> somar </button>
                     {cont}
-                    <button onClick={removedor}> menos </button>
+                    <button onClick={removedor} onMouseOver={renderp}> menos </button>
                 </div>}
 
 
                 <div className='card-novo'>
-                    {render}
-                 j
+                    {render}                 
                   </div>
+            </div>
+            </div>}
             </div>
         </div>
     )
