@@ -1,0 +1,52 @@
+.Main-Cadastro-Empresa{
+
+    .Faixa-1{
+        width: 100vw;
+        background-color:white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Div-Group{
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        padding-top: 20px;
+    
+        
+    }
+    
+    .Faixa-1 h1{
+        color: #263238;
+        font-size: 50px;
+        padding-left: 90px;
+        font-family: 'KumbhSans-Bold';
+        height: 130px;
+        width: 430px;
+    }
+
+    .Faixa-1 p{
+        color: #263238;
+        font-size: 40px;
+        font-family: 'KumbhSans-Mediunm';
+        padding-top: 25px;
+        padding-left: 0px;
+    }
+
+    .Div-Bolinhas{
+        width: 100vw;
+        height:15vh ;
+        background-color: aqua;
+    }
+
+        .Div-Container-Bolinhas{
+            height: 5vh;
+            width: 100vw; ;
+            display: flex;
+            flex-direction: row;
+        }
+
+
+
+
+}

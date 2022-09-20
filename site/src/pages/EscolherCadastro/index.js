@@ -1,5 +1,5 @@
 import './index.scss'
-
+import {Link} from 'react-router-dom'
 
 export default function Index(){
 
@@ -23,14 +23,14 @@ export default function Index(){
                             <div className='Div-Principal-1'>
                                 <h3> Empresas</h3>
                                 <div className='Image-1'> </div>
-                                <button> <p className='Buttons-P'> Cadastre-se como uma empresa</p> </button>
+                                <Link to='/CadastroEmpresa' className='Button'> <p className='Buttons-P'> Cadastre-se como uma empresa</p> </Link>
                             </div>
 
 
                             <div className='Div-Principal-2'>
                                 <h3> Clientes</h3>
                                 <div className='Image-2'> </div>
-                                <button> <p className='Buttons-P'> Cadastre-se como um Cliente </p> </button>
+                                <button className='Button'> <p className='Buttons-P'> Cadastre-se como um Cliente </p> </button>
                             </div>
 
                         </section>
