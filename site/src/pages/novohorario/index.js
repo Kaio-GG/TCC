@@ -41,7 +41,10 @@ export default function Novohorario (){
         <div className='pg-novohorario'>
             <HederEmpresa  class='hora'/>
             <div>
-            {rendmax === 0 
+
+ 
+            
+            {rendmax === 1 
             ?<div className='alinhado1'>
                 <div className='addCaixa'>
                     <h3 className='text'>Adicionar caixa  </h3>
@@ -49,13 +52,20 @@ export default function Novohorario (){
                         <button>mais </button>                 
                 </div>
                 <div>
-                    <div>    
-                        <h3>Nome da caixa </h3>
-                        <button>editar </button>
-                        <button>excluir</button>
+                    <div className='caixa'>    
+                       
+                        <div className='nomecaixa'> 
+                            <h3>Nome da caixa </h3>
+                            <button>editar </button>
+                            <button>excluir</button>                        
+                        </div>
+                        <div className='textoUsuario'></div>    
                     </div>
 
                 </div> 
+
+
+                //TELA NOVO HORARIO 
 
 
                <div onClick={aparecerTela2}> Proximo</div> 
@@ -82,9 +92,16 @@ export default function Novohorario (){
                 </div>
                 :<div className='card1' onMouseOut={renderm}>
                     <p>14:00</p>
-                    <button onClick={contador} onMouseOver={renderp}> somar </button>
-                    {cont}
-                    <button onClick={removedor} onMouseOver={renderp}> menos </button>
+                    <div className='btneditarcard'>
+
+                        <button onClick={contador} onMouseOver={renderp}> somar </button>
+                        {cont}
+                        <button onClick={removedor} onMouseOver={renderp}> menos </button>
+
+                        <button>excluir</button>
+                        
+                        <button>editar</button>
+                    </div>    
                 </div>}
 
 
