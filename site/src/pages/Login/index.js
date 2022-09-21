@@ -12,6 +12,7 @@ export default function Index(){
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [empresa, setEmpresa] = useState(false)
     const [erro, setErro] = useState('');
 
     const Navigate = useNavigate();
@@ -21,7 +22,13 @@ export default function Index(){
         try{
             const r = await login(email, senha);
 
-            Navigate('/novohorario');
+            if (empresa === false){
+                Navigate('/');
+            } 
+            else{
+                Navigate('/novohorario');  
+            }
+
 
         } catch (err) {
             if (err.response.status === 401){
@@ -76,7 +83,7 @@ return(
 
             <div className='div-ChekBox'> 
                 <div className='DivAux'> 
-                     <input type="checkbox" />
+                     <input type="checkbox" checked={empresa} onChange={e => setEmpresa(!empresa)} />
                     <p> Empresa ?</p>
                 </div>
             </div>
