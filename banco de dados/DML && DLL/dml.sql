@@ -11,12 +11,14 @@ select *
 /*--------------------LOGIN_EMPRESA--------------------------*/
     
 
-insert into TB_LOGIN_EMPRESA(DS_EMAIL,DS_SENHA,DT_ULTLOGIN)
-values("MyWorkship@gmail.com", "12345678", now());
+insert into TB_LOGIN_EMPRESA(ID_USUARIO_EMPRESA,NM_EMAIL,DS_SENHA,DT_ULTLOGIN)
+values(1, "MyWorkship@gmail.com", "12345678", now());
 
-select ID_LOGIN_EMPRESA	id
+select ID_LOGIN_EMPRESA	id,
+		NM_EMAIL  email,
+        DS_SENHA   sehna
 from TB_LOGIN_EMPRESA
-where DS_EMAIL = "MyWorkship@gmail.com"
+where NM_EMAIL = "MyWorkship@gmail.com"
 and   DS_SENHA = "12345678";
 
 /*--------------------INFORMAÇÕES_USUARIO_CLIENTE--------------------------*/

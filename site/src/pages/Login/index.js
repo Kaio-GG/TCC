@@ -21,9 +21,8 @@ export default function Index(){
     async function Login() {
         try{
             const r = await login(email, senha);
-
             if (empresa === false){
-                Navigate('/');
+                Navigate('/home/usuario');
             } 
             else{
                 Navigate('/novohorario');  
@@ -92,6 +91,8 @@ return(
                 <button onClick={Login}>
                         Entrar
                 </button>
+
+                {erro}
                 
                 <div className='CheckBox-LembrarSenha'>
                     <input type="checkbox" />

@@ -6,6 +6,12 @@ const server = Router();
 server.post('/empresa/login', async(req, resp) => {
     try{
         const { email, senha } = req.body;
+        
+        const resposta = await login(email, senha); 
+
+        if(!resposta) {
+            throw new Error ('Credenciais Invalidas')
+        }
 
         if(!email.trim())
             throw new Error ('Email é obrigatório')
@@ -14,13 +20,12 @@ server.post('/empresa/login', async(req, resp) => {
         if(!senha.trim())
             throw new Error ('A senha é obrigatória')
 
-
-        const resposta = await login(email, senha);
         resp.send(resposta)
+        
 
     } catch (err) {
-        resp.status(400).send({
-            erro: 'Credenciais incorretas'
+        resp.status(401).send({
+            erro: err.message
         })
     }
 })
