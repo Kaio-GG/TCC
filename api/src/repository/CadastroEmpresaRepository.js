@@ -9,3 +9,18 @@ export async function cadastroEmpresa(empresa){
     empresa.id = linhas.insertId;
     return empresa;
 };
+
+
+export async function loginEmpresa(lempresa){
+    const comando =
+    `insert into TB_LOGIN_EMPRESA(ID_USUARIO_EMPRESA,NM_EMAIL,DS_SENHA,DT_ULTLOGIN)
+    values(?, ?, ?, ?`;
+
+    const dataAtual = new Date();
+
+    const [linhas] = await con.query(comando, [lempresa.idEmpresa, lempresa.usuario, lempresa.senha, dataAtual]);
+    lempresa.id = linhas.insertId;
+
+    console.log(comando)
+    return lempresa;
+};

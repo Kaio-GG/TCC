@@ -3,6 +3,7 @@ import 'dotenv/config'
 import ConsultasController from './controller/ConsultasController.js';
 import LoginController from './controller/LoginController.js';
 import cadastroEmpresa  from './controller/CadastroEmpresaController.js';
+import LoginEmpresaController from './controller/LoginEmpresaController.js'
 
 import express from 'express'
 import cors from 'cors'
@@ -17,6 +18,7 @@ server.use(express.json());
 server.use(ConsultasController);
 server.use(LoginController);
 server.use(cadastroEmpresa);
+server.use(LoginEmpresaController);
 
 
 
