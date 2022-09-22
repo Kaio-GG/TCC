@@ -1,4 +1,4 @@
-import { cadastroEmpresa } from "../repository/CadastroEmpresaRepository";
+import { cadastroEmpresa } from "../repository/CadastroEmpresaRepository.js";
 
 import { Router } from "express";
 const server = Router();
@@ -6,12 +6,8 @@ const server = Router();
 server.post('/empresa/cadastro', async(req, resp) => {
     try{
         const novaEmpresa = req.body;
-        
-        const empresa = await cadastroEmpresa(novaEmpresa);
-
-        resp.send(empresa)
-        
-
+        const nempresa = await cadastroEmpresa(novaEmpresa);
+        resp.send(nempresa)
     } catch (err) {
         resp.status(401).send({
             erro: err.message

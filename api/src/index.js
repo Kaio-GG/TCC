@@ -2,7 +2,7 @@ import 'dotenv/config'
 
 import ConsultasController from './controller/ConsultasController.js';
 import LoginController from './controller/LoginController.js';
-import { cadastroEmpresa } from './repository/CadastroEmpresaRepository.js';
+import cadastroEmpresa  from './controller/CadastroEmpresaController.js';
 
 import express from 'express'
 import cors from 'cors'
