@@ -5,7 +5,7 @@ export async function login(email, senha){
     ` select ID_LOGIN_EMPRESA	id
     from   TB_LOGIN_EMPRESA
     where  NM_EMAIL = ?
-    and    DS_SENHA = ? AND ID_LOGIN_EMPRESA = ID_USUARIO_EMPRESA ;`
+    and    DS_SENHA = ? ;`
 
     const [linhas] =await con.query(comando, [email, senha])
     return linhas[0];
