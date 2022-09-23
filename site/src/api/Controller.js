@@ -17,3 +17,13 @@ export async function avaliacaoSite(nome, avaliacao){
 
     return resposta.data
 }
+
+export async function cadastrarLoginEmpresa(email, senha){
+    const resposta = await api.post('/empresa/cadastroLogin', {
+        email: email, 
+        senha: senha
+    })
+
+    return resposta.data;
+
+}

@@ -6,13 +6,6 @@ export default function Index(){
     return(
         
         <main className='Main-Escolher-Cadastro'>
-            
-            <section className='Faixa-1'>
-                <div className='Div-Group'>
-                    <h1> My Workship</h1> 
-                    <h2> Linguagem</h2>   
-                 </div>
-            </section>
                      
                      <section className='Faixa-Cadastre'> 
                         <h1> Cadastre-se</h1>
@@ -21,7 +14,7 @@ export default function Index(){
                         <section className='Faixa-Principal'>
                            
                             <div className='Div-Principal-1'>
-                                <h3> Empresas</h3>
+                                <h3 className='f1-h3'> Empresas</h3>
                                 <div className='Image-1'> </div>
                                 <Link to='/CadastroEmpresa' className='Button'> <p className='Buttons-P'> Cadastre-se como uma empresa</p> </Link>
                             </div>

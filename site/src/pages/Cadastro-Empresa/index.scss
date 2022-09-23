@@ -1,50 +1,163 @@
-.Main-Cadastro-Empresa{
+.cadastro-empresa{
+    width: 100vw;
+    height: 100vh;
 
-    .Faixa-1{
-        width: 100vw;
-        background-color:white;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .Div-Group{
+    .cabecalho{
         display: flex;
         flex-direction: row;
-        width: 100vw;
-        padding-top: 20px;
+        align-items: flex-end;
+        padding: 70px 0px 0px 70px;
+
+
+    }
+
+    .f1-h1{
+        font-family: "Kumbh Sans";
+        font-weight: 800;
+        font-size: 30px;
+        color: black;
+    }
+
+    .f1-p1{
+        font-family: "Kumbh Sans";
+        font-weight: 600;
+        color: black;
+        margin-left: 3px;
+        cursor: pointer;
+    }
     
+    .f1-p1:hover{
+        color: rgb(133, 133, 133);
+    }
+    
+    .f1-h2{
+        font-family: "Kumbh Sans";
+        font-weight: 600;
+        color: black;
+        font-size: 20px;
+
+    }
+
+    .alinhardiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 70px;
+        margin-bottom: 20px;
+    }
+
+
+    .input1{
+        width: 600px;
+        margin-top: 10px;
+        margin-bottom: 8px;
+        border-radius: 2px;
+        border: 1px solid black;
+        font-family: "Kumbh Sans";
+        font-weight: 600;
+        font-size: 18px;
         
+
+    }
+
+    .input2{
+        width: 600px;
+        margin-bottom: 8px;
+        border-radius: 2px;
+        border: 1px solid black;
+        font-family: "Kumbh Sans";
+        font-weight: 600;
+        font-size: 18px;
+
+    }
+
+    .input3{
+        width: 600px;
+        margin-bottom: 3px;
+        border-radius: 2px;
+        border: 1px solid black;
+        font-family: "Kumbh Sans";
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .input4{
+        margin-right: 4px;
+        width: 16px;
+    }
+
+    .inputcheck{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 600px;
+        margin-bottom: 30px;
+        margin-top: 2px;
+
+    }
+
+    .inputcheck > p{
+       font-family: "Kumbh Sans";
+       font-size: 15px;
+       font-weight: 500;
+    }
+
+    .f1-button{
+        width: 180px;
+        background: #263238;
+        border-radius: 7px;
+        padding: 10px;
+        color: white;
+        font-family: "Kumbh Sans";
+        font-weight: 700;
+        font-size: 15px;
+        margin-top: 20px;
+    }
+
+    .alinhardiv2{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin-top: 5px;
+    }
+
+    .input5{
+        width: 200px;
+        font-size: 18px;
+        font-family: "Kumbh Sans";
+        font-weight: 600;
+
+    }
+
+    .input6{
+        width: 190px;
+        margin: 0px 5px 0px 5px;
+        font-size: 18px;
+        font-family: "Kumbh Sans";
+        font-weight: 600;
+    }
+
+    .input7{
+        width: 600px;
+        margin-bottom: 3px;
+        border-radius: 2px;
+        border: 1px solid black;
+        font-family: "Kumbh Sans";
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 7px;
+    }
+
+    .alinharbutton{
+        margin-top: 25px;
+        width: 600px;
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 10px 0px 10px;
+
     }
     
-    .Faixa-1 h1{
-        color: #263238;
-        font-size: 50px;
-        padding-left: 90px;
-        font-family: 'KumbhSans-Bold';
-        height: 130px;
-        width: 430px;
-    }
-
-    .Faixa-1 p{
-        color: #263238;
-        font-size: 40px;
-        font-family: 'KumbhSans-Mediunm';
-        padding-top: 25px;
-        padding-left: 0px;
-    }
-
-    .Div-Bolinhas{
-        width: 100vw;
-        height:15vh ;
-        background-color: aqua;
-    }
-
-        .Div-Container-Bolinhas{
-            height: 5vh;
-            width: 100vw; ;
-            display: flex;
-            flex-direction: row;
-        }
 
 
 
