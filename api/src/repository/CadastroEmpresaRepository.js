@@ -19,5 +19,5 @@ export async function loginEmpresa(lempresa){
     const [linhas] = await con.query(comando, [lempresa.idEmpresa, lempresa.usuario, lempresa.senha]);
     lempresa.id = linhas.insertId;
 
-    return linhas[0];
+    return lempresa;
 };
