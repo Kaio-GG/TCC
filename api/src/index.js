@@ -5,6 +5,9 @@ import LoginController from './controller/LoginController.js';
 import cadastroEmpresa  from './controller/CadastroEmpresaController.js';
 import LoginEmpresaController from './controller/LoginEmpresaController.js'
 import NovoHrariocontroller from './controller/NovoHorariocontroller.js'
+import EditarHorarioController from './controller/EditarHorarioController.js'
+
+
 
 import express from 'express'
 import cors from 'cors'
@@ -21,7 +24,7 @@ server.use(LoginController);
 server.use(cadastroEmpresa);
 server.use(LoginEmpresaController);
 server.use(NovoHrariocontroller);
-
+server.use(EditarHorarioController);
 
 
 server.listen(process.env.PORT,
