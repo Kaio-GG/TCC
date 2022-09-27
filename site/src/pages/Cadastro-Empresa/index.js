@@ -61,8 +61,6 @@ return(
         <header className='cabecalho'>
             <Link to="/" className='f1-h1'>MyWorkShip</Link>
             <p className='f1-p1'>Linguagem</p>
-            
-
         </header>
         
         {continuar === 0 &&
