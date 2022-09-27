@@ -4,6 +4,7 @@ import ConsultasController from './controller/ConsultasController.js';
 import LoginController from './controller/LoginController.js';
 import cadastroEmpresa  from './controller/CadastroEmpresaController.js';
 import LoginEmpresaController from './controller/LoginEmpresaController.js'
+import NovoHrariocontroller from './controller/NovoHorariocontroller.js'
 
 import express from 'express'
 import cors from 'cors'
@@ -19,7 +20,7 @@ server.use(ConsultasController);
 server.use(LoginController);
 server.use(cadastroEmpresa);
 server.use(LoginEmpresaController);
-
+server.use(NovoHrariocontroller);
 
 
 
