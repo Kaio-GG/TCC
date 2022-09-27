@@ -65,7 +65,7 @@ export default function Novohorario (){
                 </div> 
 
 
-                //TELA NOVO HORARIO 
+              
 
 
                <div onClick={aparecerTela2}> Proximo</div> 
@@ -106,7 +106,7 @@ export default function Novohorario (){
 
 
                 <div className='card-novo'>
-                    {render}                 
+                    Novo Horario                
                   </div>
             </div>
             </div>}
