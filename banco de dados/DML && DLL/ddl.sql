@@ -19,6 +19,7 @@ create table `TB_LOGIN_CLIENTE`  (
 	DS_EMAIL            VARCHAR(100) not null,
 	DS_SENHA            VARCHAR(100) not null,
     DT_ULTLOGIN			DATETIME not null,
+	BT_LOGINU           BOOLEAN not null,
     FOREIGN KEY (ID_USUARIO_CLIENTE) REFERENCES TB_USUARIO_CLIENTE (ID_USUARIO_CLIENTE)
 );
 
@@ -37,7 +38,11 @@ create table `TB_USUARIO_EMPRESA`  (
 	DS_CNPJ                         VARCHAR(15) not null,
 	DS_INSCRICAO_ESTADUAL           VARCHAR(100) not null,
 	NM_NOME_DA_EMPRESA              VARCHAR(100) not null,
+	DS_TIPO_DA_EMPRESA              VARCHAR(100) not null,
+	DS_PAIS                         VARCHAR(20) not null,  
 	DS_ESTADO                       VARCHAR(100) not null,
+	DS_CIDADE                       VARCHAR(100) not null,
+	DS_ENDERECO                     VARCHAR(100) not null,
 	NM_REPRESENTANTE                VARCHAR(100) not null,
 	DS_CPF_REPRESENTANTE            VARCHAR(12) not null,
 	DS_CARGO_REPRESENTANTE          VARCHAR(100) not null,
@@ -50,6 +55,7 @@ create table `TB_LOGIN_EMPRESA`  (
 	NM_EMAIL            VARCHAR(100) not null,
 	DS_SENHA            VARCHAR(50) not null,
     DT_ULTLOGIN			DATETIME not null,
+	BT_LOGINE           BOOLEAN not null,
     FOREIGN KEY (ID_USUARIO_EMPRESA) REFERENCES TB_USUARIO_EMPRESA (ID_USUARIO_EMPRESA)
 );
 
