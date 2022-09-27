@@ -72,35 +72,52 @@ export default function Novohorario (){
             </div>
 
 
-            :<div>       
+            :<div>   
+
             <div className='alinhado'>
+
                 <h2>Horarios</h2>
+
                 <div className='linha'></div>
+
             </div>
             <div className='opts'>
+
             <input type="date"/>
+
             <select >
+
                 <option>santo amaro</option>
+
             </select>
+
             </div> 
+            
             <div className='horarios'>
 
 
                 {render === 0 
                 ?<div className='card1' onMouseOver={renderp}>
-                    <p>14:00</p>
+
+                    <p onClick={contador}   onMouseOver={renderp} >14:00</p>
+
                 </div>
+
                 :<div className='card1' onMouseOut={renderm}>
-                    <p>14:00</p>
+
+                        <p  onMouseOver={renderp}>14:00</p>
+
                     <div className='btneditarcard'>
 
                         <button onClick={contador} onMouseOver={renderp}> somar </button>
                         {cont}
                         <button onClick={removedor} onMouseOver={renderp}> menos </button>
 
-                        <button>excluir</button>
+                        <button onMouseOver={renderp}  >excluir</button>
                         
-                        <button>editar</button>
+                        <button onMouseOver={renderp}  >editar</button>
+                        
+
                     </div>    
                 </div>}
 
