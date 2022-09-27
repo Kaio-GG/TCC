@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import './index.scss';
 import '../../common/common.scss';
 
+
 import { useState, useRef } from 'react';
 
 
@@ -12,7 +13,7 @@ export default function Index(){
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [empresa, setEmpresa] = useState(false)
+    const [empresa, setEmpresa] = useState(true)
     const [erro, setErro] = useState('');
 
     const Navigate = useNavigate();
@@ -20,8 +21,8 @@ export default function Index(){
 
     async function Login() {
         try{
-            const r = await login(email, senha);
-            if (empresa === false){
+            const r = await login(email, senha, empresa);
+            if (!empresa){
                 Navigate('/home/usuario');
             } 
             else{
@@ -80,19 +81,12 @@ return(
                 <input className='input-2' placeholder='Senha' type = 'password' value={senha} onChange={e => setSenha(e.target.value) } />
             </div>
 
-            <div className='div-ChekBox'> 
-                <div className='DivAux'> 
-                     <input type="checkbox" checked={empresa} onChange={e => setEmpresa(!empresa)} />
-                    <p> Empresa ?</p>
-                </div>
-            </div>
+            {erro}
             
             <div className='Faixa-Button_LembrarSenha'>
                 <button onClick={Login}>
                         Entrar
                 </button>
-
-                {erro}
                 
                 <div className='CheckBox-LembrarSenha'>
                     <input type="checkbox" />

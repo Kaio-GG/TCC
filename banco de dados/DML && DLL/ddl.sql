@@ -19,6 +19,7 @@ create table `TB_LOGIN_CLIENTE`  (
 	DS_EMAIL            VARCHAR(100) not null,
 	DS_SENHA            VARCHAR(100) not null,
     DT_ULTLOGIN			DATETIME not null,
+	BT_LOGINU           BOOLEAN not null,
     FOREIGN KEY (ID_USUARIO_CLIENTE) REFERENCES TB_USUARIO_CLIENTE (ID_USUARIO_CLIENTE)
 );
 
@@ -37,7 +38,11 @@ create table `TB_USUARIO_EMPRESA`  (
 	DS_CNPJ                         VARCHAR(15) not null,
 	DS_INSCRICAO_ESTADUAL           VARCHAR(100) not null,
 	NM_NOME_DA_EMPRESA              VARCHAR(100) not null,
+	DS_TIPO_DA_EMPRESA              VARCHAR(100) not null,
+	DS_PAIS                         VARCHAR(20) not null,  
 	DS_ESTADO                       VARCHAR(100) not null,
+	DS_CIDADE                       VARCHAR(100) not null,
+	DS_ENDERECO                     VARCHAR(100) not null,
 	NM_REPRESENTANTE                VARCHAR(100) not null,
 	DS_CPF_REPRESENTANTE            VARCHAR(12) not null,
 	DS_CARGO_REPRESENTANTE          VARCHAR(100) not null,
@@ -50,6 +55,7 @@ create table `TB_LOGIN_EMPRESA`  (
 	NM_EMAIL            VARCHAR(100) not null,
 	DS_SENHA            VARCHAR(50) not null,
     DT_ULTLOGIN			DATETIME not null,
+	BT_LOGINE           BOOLEAN not null,
     FOREIGN KEY (ID_USUARIO_EMPRESA) REFERENCES TB_USUARIO_EMPRESA (ID_USUARIO_EMPRESA)
 );
 
@@ -120,19 +126,26 @@ create table `TB_CERTIFICACOES`  (
 
 create table `TB_AGENDAMENTO`  (
 	ID_AGENDAMENTO		INT PRIMARY KEY AUTO_INCREMENT not null,
-	ID_USUARIO_EMPRESA  INT not null,
-	ID_USUARIO_CLIENTE  INT not null,
-	NM_PESSOA           VARCHAR(100) not null,
-	DS_EMAIL            VARCHAR(200) not null,
-	DS_CPF              VARCHAR(15) not null,
-	DS_TELEFONE         VARCHAR(10) not null,
-	DS_SEXO             VARCHAR(25) not null,
-	DT_NASCIMENTO       DATETIME not null,
-	DS_DIA              INT not null,
+	ID_USUARIO_CLIENTE  INT,
 	DS_LOCAL            VARCHAR(100) not null,
 	DS_HORA             VARCHAR(100) not null,
     DT_AGENDAMENTO      DATETIME,
-    FOREIGN KEY (ID_USUARIO_EMPRESA) REFERENCES TB_USUARIO_EMPRESA (ID_USUARIO_EMPRESA),
+    FOREIGN KEY (ID_USUARIO_EMPRESA) REFERENCES TB_USUARIO_EMPRESA (ID_USUARIO_EMPRESA)
+);
+
+create table `TB_CLIENTE_AGENDAMENTO`  (
+	ID_CLIENTE_AGENDAMENTO		INT PRIMARY KEY AUTO_INCREMENT not null,
+	ID_AGENDAMENTO      		INT not null,
+	ID_USUARIO_CLIENTE  		INT not null,
+	NM_PESSOA           		VARCHAR(100) not null,
+	DS_EMAIL            		VARCHAR(200) not null,
+	DS_CPF              		VARCHAR(15) not null,
+	DS_TELEFONE         		VARCHAR(10) not null,
+	DS_SEXO             		VARCHAR(25) not null,
+	DT_NASCIMENTO       		DATETIME not null,
+	DS_SITUACAO         		VARCHAR(100),
+
+    FOREIGN KEY (ID_AGENDAMENTO) REFERENCES TB_AGENDAMENTO (ID_AGENDAMENTO),
     FOREIGN KEY (ID_USUARIO_CLIENTE) REFERENCES TB_USUARIO_CLIENTE (ID_USUARIO_CLIENTE)
 );
 
@@ -180,5 +193,4 @@ CREATE TABLE TB_AVALIACAO_SITE(
     NM_USUARIO_AVALIACAO VARCHAR(100),
     DS_AVALIACAO_SITE VARCHAR(500)
 )
-
 
