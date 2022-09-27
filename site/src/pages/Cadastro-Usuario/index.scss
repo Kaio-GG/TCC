@@ -1,0 +1,80 @@
+.Main-Cadastro-Usuario{
+    
+    .cabecalho{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        padding: 70px 0px 0px 70px;
+
+
+    }
+
+    .f1-h1{
+        font-family: "Kumbh Sans";
+        font-weight: 800;
+        font-size: 30px;
+        color: black;
+    }
+
+    .f1-p1{
+        font-family: "Kumbh Sans";
+        font-weight: 600;
+        color: black;
+        margin-left: 3px;
+        cursor: pointer;
+    }
+
+
+    .FaixaBolinhas{
+        background-color: aqua;
+        height:20vh ;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+
+        
+    }
+
+    .Div-mãe-Bolinhas{
+        background-color: red;
+        height: 10vh;
+        width: 45vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .Bolinha-1{
+        border-radius: 360px;
+        background-color: #263238;
+        height: 100px;
+        width: 100px; ;
+    }
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

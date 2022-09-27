@@ -5,6 +5,7 @@ import Teste from './components/teste/index.js'
 import Cadastro from './pages/EscolherCadastro/index.js'
 import Novohorario from './pages/novohorario/index.js'
 import CadastroEmpresa from './pages/Cadastro-Empresa/index.js'
+import CadastroUsuario from './pages/Cadastro-Usuario/index.js'
 import ClienteHome from './pages/UsuarioCliente/UsuarioHome/index.js'
 
 export default function Index(){
@@ -17,6 +18,8 @@ export default function Index(){
 				<Route path='/cadastro' element={<Cadastro/>}/>
 				<Route path='/novohorario' element={<Novohorario/>}/>
 				<Route path='CadastroEmpresa' element={<CadastroEmpresa/>}/>
+				<Route path='CadastroUsuario' element={<CadastroUsuario/>}/>
+
 				<Route path='/home/usuario' element={<ClienteHome/>}/>
 				
 			</Routes>
