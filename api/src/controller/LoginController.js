@@ -5,9 +5,9 @@ const server = Router();
 
 server.post('/empresa/login', async(req, resp) => {
     try{
-        const { email, senha } = req.body;
+        const { email, senha, empresa } = req.body;
         
-        const resposta = await login(email, senha); 
+        const resposta = await login(email, senha, empresa); 
 
         if(!resposta) {
             throw new Error ('Credenciais Invalidas')

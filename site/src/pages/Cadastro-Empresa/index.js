@@ -15,7 +15,7 @@ export default function Index(){
     const [cnpj, setCnpj] = useState('');
     const [inscEstadual, setInscEstadual] = useState('');
     const [nome, setNome] = useState('');
-    const [tipoEmpresa, setTipoEmpresa] = useState('');
+    const [tipo, setTipo] = useState('');
     const [pais, setPais] = useState('');
     const [estado, setEstado] = useState('');
     const [cidade, setCidade] = useState('');
@@ -30,11 +30,12 @@ export default function Index(){
 
     async function cadastrarEmpresa() {
         try{
-            const a = cadastroEmpresa(cnpj, inscEstadual, nome, estado, representante, cpfRepresentante, cargoRepresentante, nacioRepresentante );
+            const a = cadastroEmpresa(cnpj, inscEstadual, nome, tipo, pais, estado, cidade, endereco, representante, cpfRepresentante, cargoRepresentante, nacioRepresentante );
 
-            const idEmpresa = 9;
+            const empresa = true;
+            const idEmpresa = 3;
 
-            const b = cadastroLoginEmpresa(idEmpresa, usuario, senha);
+            const b = cadastroLoginEmpresa(idEmpresa, usuario, senha, empresa);
             
             alert('Empresa cadastrada com sucesso!');
 
@@ -86,18 +87,20 @@ return(
         }
             {continuar === 1 &&
             <section>
+
             <div className='alinhardiv'>
                 <input value={cnpj} onChange={e => setCnpj(e.target.value)} className='input1' type="text" placeholder='CNPJ'/>
                 <input value={inscEstadual} onChange={e => setInscEstadual(e.target.value)} className='input2' type="text" placeholder='Inscrição estadual'/>
                 <input value={nome} onChange={e => setNome(e.target.value)} className='input2' type="text" placeholder='Nome registrado da empresa'/>
-                <input className='input3' type="text" placeholder='Tipo da empresa'/>
+                <input value={tipo} onChange={e => setTipo(e.target.value)} className='input3' type="text" placeholder='Tipo da empresa'/>
+
              <div className='alinhardiv2'>
-                <input className='input5' type="text" placeholder='País'/>
+                <input value={pais} onChange={e => setPais(e.target.value)} className='input5' type="text" placeholder='País'/>
                 <input value={estado} onChange={e => setEstado(e.target.value)} className='input6' type="text" placeholder='Estado'/>
-                <input className='input5' type="text" placeholder='Cidade'/>
+                <input value={cidade} onChange={e => setCidade(e.target.value)} className='input5' type="text" placeholder='Cidade'/>
             </div>
 
-                <input className='input7' type="text" placeholder='Endereço' />
+                <input value={endereco} onChange={e => setEndereco(e.target.value)} className='input7' type="text" placeholder='Endereço' />
 
             <div className='alinharbutton'>
                 <button onClick={voltarPagina} className='f1-button'>Voltar</button>
