@@ -30,10 +30,10 @@ export default function Index(){
 
     async function cadastrarEmpresa() {
         try{
-            const a = cadastroEmpresa(cnpj, inscEstadual, nome, tipo, pais, estado, cidade, endereco, representante, cpfRepresentante, cargoRepresentante, nacioRepresentante );
-
+            const a = await cadastroEmpresa(cnpj, inscEstadual, nome, tipo, pais, estado, cidade, endereco, representante, cpfRepresentante, cargoRepresentante, nacioRepresentante );
+        
             const empresa = true;
-            const idEmpresa = 3;
+            const idEmpresa = a.id;
 
             const b = cadastroLoginEmpresa(idEmpresa, usuario, senha, empresa);
             
