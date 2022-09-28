@@ -290,6 +290,9 @@
     }
 
     .f4-input2{
+        max-width: 100%;
+        max-height: 100%;
+        width: 296px;
         height: 200px;
         margin-top: 1.5px;
         border: none;
@@ -297,6 +300,7 @@
         background-color: #37474F;
         border-radius: 3px;
         color: #FFFFFF;
+        
     }
 
     .f4-button{

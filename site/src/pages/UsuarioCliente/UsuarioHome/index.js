@@ -1,11 +1,15 @@
 import './index.scss'
 
+import HeaderEmpresa from '../../../components/header-adm-empresa'
+
 export default function ClienteHome() {
 
     return(
-
         <main>
-            <h1> cliente Home </h1>
+            <header>
+            <HeaderEmpresa></HeaderEmpresa>
+            </header>
+
         </main>
     )
 }

@@ -119,7 +119,7 @@ export default function Index() {
                         <input className='f4-input1'></input>
 
                         <h1 className='f4-h2'>Avaliação:</h1>
-                        <input className='f4-input2'></input>
+                        <textarea className='f4-input2'></textarea>
 
                         <button className='f4-button'>Enviar</button>
 
