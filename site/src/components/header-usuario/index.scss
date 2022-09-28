@@ -1,4 +1,4 @@
-.cabecalho{
+.cabecalho1{
    
     display: flex;
     flex-direction: column;
@@ -6,14 +6,16 @@
     justify-content: flex-start;
     width: 100%;
     .alinhamento{
+        
         display: flex;
         align-items: center;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
         width: 50%;
-        height: 7vh;
+        height: 5vh;
         font-family:'KumbhSans-Regular';
         padding-left: 1em;
+    }
        
         .pagina{
             display: flex;
@@ -24,17 +26,41 @@
             background-color: #37474F;
             font-family:'KumbhSans-Regular';   
             }
-    }
+    
+
     .logo{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .foto-usuario{
+        border-radius: 360px;
+        background-color: #c0c0c0;
+        width: 35px;
+        height: 35px;
+        margin: 5px 50px 5px 5px;
+    }
+
+    .logo > a{
         background-color: #fff;
         color: #0000;
-        padding: 0 0 0.3em 1em;
-        h1{
-            color: #000;
-        }
+        padding: 5px 0em 0.3em 1.8em;
+        font-size: 25px;
+        color: #000;
+        font-family: "Kumbh Sans";
+        font-weight: 700;
     }
     .part-2{
          background-color: #263238;
     }
+
+    .alinhamento > div{
+        margin-left: 30px;
+
+    }
+
+
+
     
 }
