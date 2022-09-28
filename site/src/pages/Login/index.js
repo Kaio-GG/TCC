@@ -1,5 +1,6 @@
 import { login } from '../../api/loginController';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import storage from 'local-storage';
 
 import './index.scss';
 import '../../common/common.scss';
@@ -13,7 +14,7 @@ export default function Index(){
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [empresa, setEmpresa] = useState(true)
+
     const [erro, setErro] = useState('');
 
     const Navigate = useNavigate();
@@ -21,11 +22,14 @@ export default function Index(){
 
     async function Login() {
         try{
-            const r = await login(email, senha, empresa);
-            if (!empresa){
+            
+            const r = await login(email, senha);
+            if (r.BT_LOGINE !== 1){
+                storage('Cliente-Logado', r);
                 Navigate('/home/usuario');
             } 
             else{
+                storage('Empresa-Logada', r);
                 Navigate('/novohorario');  
             }
 

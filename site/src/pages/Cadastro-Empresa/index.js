@@ -34,8 +34,9 @@ export default function Index(){
         
             const empresa = true;
             const idEmpresa = a.id;
+            const idusuario = null;
 
-            const b = cadastroLoginEmpresa(idEmpresa, usuario, senha, empresa);
+            const b = cadastroLoginEmpresa(idEmpresa, idusuario, usuario, senha, empresa);
             
             alert('Empresa cadastrada com sucesso!');
 
