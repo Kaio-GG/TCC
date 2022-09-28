@@ -1,5 +1,5 @@
 import { login } from '../../api/loginController';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import './index.scss';
 import '../../common/common.scss';
@@ -44,7 +44,7 @@ return(
     <div className="Div-Group">
         <div className="Div-1"> 
             <div className='Div-1-div'>
-                  <h1>My Workship </h1>
+                  <h1 className='mywork'>MyWorkship </h1>
             </div>
             
             <div className='Espac'></div>
@@ -54,16 +54,10 @@ return(
             </div>
                 
                 <div className='Div-2'>
-                    <div> 
-                        <h1>Bem vindo</h1>
+                        <h1>Bem-vindo</h1>
                     
+                        <p> A Networking que você precisa! Intereja diretamente com centenas de serviços de empresas  diferentes quando você quiser.</p>
                         
-                            <p> A Networking que você precisa! Intereja diretamente 
-                                    com centenas de serviços de empresas  diferentes 
-                                        quando você quiser.</p>
-                        
-                </div>
-                    
                     </div>
                     
         
@@ -72,8 +66,8 @@ return(
         
         <div className='Faixa-Branca'> 
             <div className='Div1-Faixa-Branca'>
-                <p> Não Possui conta ?</p>
-                <p>Criar conta  </p>
+                <p>Não possui conta?</p>
+                <Link >Crie agora mesmo! </Link>
             </div>
 
             <div className='Div-inputs'>
@@ -81,7 +75,12 @@ return(
                 <input className='input-2' placeholder='Senha' type = 'password' value={senha} onChange={e => setSenha(e.target.value) } />
             </div>
 
-            {erro}
+            
+            <div className='error'>
+                
+                {erro}
+            
+            </div>
             
             <div className='Faixa-Button_LembrarSenha'>
                 <button onClick={Login}>
@@ -90,14 +89,10 @@ return(
                 
                 <div className='CheckBox-LembrarSenha'>
                     <input type="checkbox" />
-                    <p> Lembrar Senha ?</p>
+                    <p> Lembrar Senha?</p>
                 </div>
             </div>
 
-            <div className='Div-Esqueceu_Senha'> 
-                <a> Esqueceu a senha ?</a>
-            
-            </div>
 
         </div>
     </div>
