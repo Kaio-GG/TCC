@@ -11,12 +11,12 @@ export async function cadastroEmpresa(empresa){
 };
 
 
-export async function loginEmpresa(lempresa){
+export async function login(lempresa){
     const comando =
-    `insert into TB_LOGIN_EMPRESA(ID_USUARIO_EMPRESA,NM_EMAIL,DS_SENHA,BT_LOGINE,DT_ULTLOGIN)
-    values(?, ?, ?, ?, sysdate())`;
+    `insert into TB_LOGIN(ID_USUARIO_EMPRESA, ID_USUARIO_CLIENTE, DS_EMAIL,DS_SENHA, BT_LOGIN, DT_ULTLOGIN)
+    values(?, ?, ?, ?, ?, sysdate())`;
 
-    const [linhas] = await con.query(comando, [lempresa.idEmpresa, lempresa.usuario, lempresa.senha, lempresa.empresa]);
+    const [linhas] = await con.query(comando, [lempresa.idEmpresa, lempresa.idusuario, lempresa.usuario, lempresa.senha, lempresa.empresa]);
     lempresa.id = linhas.insertId;
 
     return lempresa;

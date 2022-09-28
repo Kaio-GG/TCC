@@ -23,9 +23,10 @@ export async function cadastroEmpresa(cnpj, inscEstadual, nome, tipo, pais, esta
     return t.data;
 }
 
-export async function cadastroLoginEmpresa(idEmpresa, usuario, senha, empresa) {
+export async function cadastroLoginEmpresa(idEmpresa, idusuario, usuario, senha, empresa) {
         const t = await api.post('/empresa/cadastroLogin', {
             idEmpresa: idEmpresa, 
+            idusuario: idusuario,
             usuario: usuario,
             senha: senha,
             empresa:empresa
@@ -33,3 +34,4 @@ export async function cadastroLoginEmpresa(idEmpresa, usuario, senha, empresa) {
     
         return t.data;
     }
+
