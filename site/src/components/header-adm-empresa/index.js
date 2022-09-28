@@ -2,11 +2,9 @@ import './index.scss'
 
 
 
-export default function HederEmpresa (props){
+export default function HeaderEmpresa (props){
 
     
-
-
 
     return(
         <div className='cabecalho'>
