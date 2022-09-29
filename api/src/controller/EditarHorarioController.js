@@ -6,7 +6,6 @@ const server = Router();
 server.put ('/empresa/editarhorario' , async (req , resp ) => {
     try {
         const info = req.body
-        console.log(info)
         const eh = await EditarHorario(info)
         resp.send(eh)   
 

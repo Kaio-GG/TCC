@@ -6,7 +6,7 @@ import cadastroEmpresa  from './controller/CadastroEmpresaController.js';
 import LoginEmpresaController from './controller/LoginEmpresaController.js'
 import NovoHrariocontroller from './controller/NovoHorariocontroller.js'
 import EditarHorarioController from './controller/EditarHorarioController.js'
-
+import DeletarHorarioController from './controller/DeletarHorarioController.js'
 
 
 import express from 'express'
@@ -25,6 +25,10 @@ server.use(cadastroEmpresa);
 server.use(LoginEmpresaController);
 server.use(NovoHrariocontroller);
 server.use(EditarHorarioController);
+server.use(DeletarHorarioController);
+
+
+
 
 
 server.listen(process.env.PORT,
