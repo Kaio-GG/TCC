@@ -1,5 +1,8 @@
 import './index.scss'
 
+import Star from './assets/star.svg'
+import Local from './assets/local.svg'
+
 import HeaderUsuario from '../../../components/header-usuario'
 
 export default function ClienteHome() {
@@ -14,38 +17,39 @@ export default function ClienteHome() {
             <div className='f1-body'>
 
                 <div className='box1-left'>
-                    <input placeholder='Buscar em MyWorkShip.com'/>
+                    <input className='input-1' placeholder='Buscar em MyWorkShip.com'/>
 
-                    <div>
-                        <h1>AAAAAAAA</h1>
+                    <button className='lupa'>Buscar</button>
 
-                        <p></p>
+                    
+
+                    <div className='caixa1-esquerda'>
+                        <h1 className='h1-boxleft' >Encontre as melhores empresas perto de você</h1>
+
+                        <p className='p1-boxleft'>Nosso site realiza agendamentos de empresas proximas a região em que você mora, ele também filtra e compara com outras empresas cadastradas que já foram avaliadas por nosso clientes</p>
 
                     </div>
 
                 </div>
 
 
+
                 <div>
-                    <div>
-                        <h1></h1>
+                    <div className='star-box'>
+                        <img className='img-star' src={Star}></img>
+                        <h1 className='h1-starbox'>Bem avaliadas</h1>
                     </div>
 
-                    <div>
-                        <h1></h1>
+                    <div className='local-box'>
+                        <img className='img-local' src={Local}></img>
+                        <h1>Mais Proximas</h1>
                     </div>
 
-                    <div>
-                        <h1></h1>
+                    <div className='tag-box'>
+                        <h1 className=''>TAG's</h1>
                         <hr></hr>
 
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-
-
+                        <p>Todos(0)</p>
                     </div>
 
                 </div>
