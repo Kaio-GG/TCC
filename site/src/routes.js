@@ -7,6 +7,7 @@ import Novohorario from './pages/novohorario/index.js'
 import CadastroEmpresa from './pages/Cadastro-Empresa/index.js'
 import CadastroUsuario from './pages/Cadastro-Usuario/index.js'
 import ClienteHome from './pages/UsuarioCliente/UsuarioHome/index.js'
+import ConsultaEmpresa from './pages/UsuarioCliente/UsuarioEmpresaPagina/index.js'
 
 export default function Index(){
 	return(
@@ -21,6 +22,7 @@ export default function Index(){
 				<Route path='CadastroUsuario' element={<CadastroUsuario/>}/>
 
 				<Route path='/home/usuario' element={<ClienteHome/>}/>
+				<Route path='/home/usuario/empresa/consulta' element={<ConsultaEmpresa/>}/>
 				
 			</Routes>
 		</BrowserRouter>	

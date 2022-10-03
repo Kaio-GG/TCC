@@ -1,0 +1,127 @@
+
+
+.UsuarioEmpresaPagina{
+    *{
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    .UsuarioEmpresaPagina-Centro{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #F6F6F6;
+
+        height: 100vh;
+        width: 100vw;
+
+        font-family: "Kumbh Sans";
+        p{ font-size: 13px;}
+
+        .agrups{
+            display: flex;
+            padding: 5em;
+        }
+        .agrup-esquerda{
+            margin-right: 3%;
+            width: 80%;
+        }
+        .agrup-direita{
+            width: 20%;
+        }
+
+        .estrelas{
+            display: flex;
+        }
+
+        .estrela{
+            background-image: url(../../../../public/assets/images/star.svg);
+            background-size: 15px 15px;
+            height: 15px;
+            width: 15px;
+        }
+
+
+        .card-empresa{
+            display: flex;
+
+            padding: 2em;
+            height: 15em;
+
+            margin-bottom: 2.5%;
+
+            background-color: #fff;
+            box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+
+            h3{
+                margin-bottom: 3px;
+            }
+
+            .a{
+                display: flex;
+            }
+
+
+            .img{
+                height: 100%;
+                width: 20%;
+                min-width: 12.5em;
+                margin-right: 2.5%;
+
+                background-color: #4D6146;
+                box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.25);
+            }
+
+            .nome-desc{
+                height: 1;
+                width: 40%;
+            }
+
+            .ava-locais{
+                height: 30%;
+            }
+        }
+
+        .card-Agendar{
+            display: flex;
+            justify-content: space-between;
+
+            padding: 2em;
+
+            background-color: #fff;
+            box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .verificacao{
+            background-color: #fff;
+            box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+            padding: 1em;
+
+
+            margin-bottom: 10%;
+
+            h3{
+                border-bottom: 2px black solid;
+                margin-bottom: 3px;
+            }
+        }
+
+        .certificacao{
+            background-color: #fff;
+            box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+            padding: 1em;
+
+
+            margin-bottom: 10%;
+
+            h3{
+                border-bottom: 2px black solid;
+                margin-bottom: 3px;
+            }
+        }
+
+        .agendar{
+            background-color: black;
+        }
+    }
+}
