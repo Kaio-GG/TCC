@@ -30,9 +30,8 @@ export default function Index(){
 
     /*async function cadastrarUsuario() {
         const a = await cadastroUser() 
-        */
-
     }
+        */
 
     return(
         <main className='Main-Cadastro-Usuario'>
@@ -55,7 +54,7 @@ export default function Index(){
                     
                     <div className='Div-Button' > <button onClick={passarPagina} className='button'>Próximo</button> </div>
             </section>
-}
+        }
 
         {continuar === 1 &&
             <section className='FaixaPrincipal-2'>
@@ -83,4 +82,6 @@ export default function Index(){
         }
 
         </main>
-    )
+
+    
+    )}
