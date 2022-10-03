@@ -32,13 +32,13 @@ export async function deletarHorario (id) {
 }
 
 export async function carregarHorario (id, local , data ) {
-    const t = await api.get('/empresa/carregarhorario', {
+    const resp = await api.get('/empresa/carregarhorario', {
         idEmpresa: id,
         local: local,
         data: data
     });
 
-    return t.data;
+    return resp.data;
 }
 
 export async function agendarHorario (id_agendamento, id_cliente , nome , email , cpf , telefone , sexo , nascimento , situacao) {
