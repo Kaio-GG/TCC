@@ -5,7 +5,7 @@ const api = axios.create({
 })
 
 
-export async function NovoHorario (id, local , hora ,data , qtd) {
+export async function NovoHorario (id, local , hora , data , qtd) {
     const t = await api.post ('/empresa/novohorario', {
         id_empresa:id, 
         local:local  , 

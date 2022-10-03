@@ -3,19 +3,36 @@ import HederEmpresa from '../../components/header-adm-empresa';
 import { useState } from 'react';
 import { NovoHorario , agendarHorario ,editarHorario , deletarHorario , carregarHorario } from '../../api/agendamentos.js';
 
+
+
 export default function Novohorario (){
     const [cont , setcont] = useState (0)
     const [render , setrender] = useState(0)
-    const [rendmax ,setrendermax] = useState(0)    
+    const [rendernovohorario ,setrendernovohorario] = useState (0)
+    const [id , setid ] =useState(1)
+    const [local , setlocal  ] =useState('')
+    const [hora , sethora] =useState ('00:00')
+    const [data ,setdata] =useState('')
+    const [qtd , setqtd] =useState(0)
+
+    async function criarHorario (){
+        try {
+            await NovoHorario(id ,local , String(hora) , data)
+            console.log('horario cadastrado com sucesso')
+        } catch (err) {
+           console.log(err.message)
+           console.log('nao foi ')
+        }
+    }
+
+
+
+
+
     
-    
-    
-    
-    
-    
-    
-    function aparecerTela2(){
-        setrendermax(rendmax+1)
+
+    function rendernovo (){
+        setrendernovohorario(rendernovohorario+1)
     }
     function contador (){
         setcont(cont+1) 
@@ -29,62 +46,27 @@ export default function Novohorario (){
     function renderm (){
         setrender(render-1) 
     }
+
+
+
     return(
         <div className='pg-novohorario'>
             <HederEmpresa  class='hora'/>
-            <div>
-
- 
-            
-            {rendmax === 1 
-            ?<div className='alinhado1'>
-                <div className='addCaixa'>
-                    <h3 className='text'>Adicionar caixa  </h3>
-                 
-                        <button>mais </button>                 
-                </div>
-                <div>
-                    <div className='caixa'>    
-                       
-                        <div className='nomecaixa'> 
-                            <h3>Nome da caixa </h3>
-                            <button>editar </button>
-                            <button>excluir</button>                        
-                        </div>
-                        <div className='textoUsuario'></div>    
-                    </div>
-
-                </div> 
-
-
-              
-
-
-               <div onClick={aparecerTela2}> Proximo</div> 
-            </div>
-
-
-            :<div>   
+            <div>   
 
             <div className='alinhado'>
-
                 <h2>Horarios</h2>
-
                 <div className='linha'></div>
-
             </div>
+
             <div className='opts'>
-
-            <input type="date"/>
-
-            <select >
-
-                <option>santo amaro</option>
-
+                <input type="date"/>
+            <select  value={local} onChange={e => setlocal(e.target.value)} >
+                <option value='santo amaro'>santo amaro</option>
             </select>
-
             </div> 
             
+
             <div className='horarios'>
 
 
@@ -102,7 +84,9 @@ export default function Novohorario (){
                     <div className='btneditarcard'>
 
                         <button onClick={contador} onMouseOver={renderp}> somar </button>
-                        {cont}
+
+                            <div  onMouseOver={renderp} >{cont}</div>
+                            
                         <button onClick={removedor} onMouseOver={renderp}> menos </button>
 
                         <button onMouseOver={renderp}  >excluir</button>
@@ -110,12 +94,21 @@ export default function Novohorario (){
                         <button onMouseOver={renderp}  >editar</button>                        
                     </div>    
                 </div>}
-                <div className='card-novo'>
+                <div className='card-novo' onClick={rendernovo}>
                     Novo Horario                
-                  </div>
+                </div>
+                {rendernovohorario === 1 &&
+                 <div>
+                  <input type='time' placeholder='digite o horario' value={hora} onChange={e => sethora(e.target.value)} />
+                  <input type='date' value={data} onChange={e => setdata(e.target.value)} />
+                  <input type='number' value={qtd} onChange={e => setqtd(e.target.value)}/>
+                  <button onClick={criarHorario}>pronto</button>
+                </div>        
+                }
+
+
             </div>
-            </div>}
             </div>
-        </div>
+            </div>
     )
 }
