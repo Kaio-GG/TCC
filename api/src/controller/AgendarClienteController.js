@@ -2,7 +2,7 @@ import AgendarHorario from "../repository/AgendarHorarioRepository.js";
 import { Router } from "express";
 const server = Router();
 
-server.post ('/empresa/agendarhorario' , async (req , resp ) => {
+server.post ('/usuario/agendarhorario' , async (req , resp ) => {
     try {
         const info = req.body
         const ah = await AgendarHorario(info)

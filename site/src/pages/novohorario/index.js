@@ -1,42 +1,34 @@
 import './index.scss';
 import HederEmpresa from '../../components/header-adm-empresa';
 import { useState } from 'react';
-
+import { NovoHorario , agendarHorario ,editarHorario , deletarHorario , carregarHorario } from '../../api/agendamentos.js';
 
 export default function Novohorario (){
     const [cont , setcont] = useState (0)
     const [render , setrender] = useState(0)
-    const [rendmax ,setrendermax] = useState(0)
-
+    const [rendmax ,setrendermax] = useState(0)    
+    
+    
+    
+    
+    
+    
     
     function aparecerTela2(){
         setrendermax(rendmax+1)
     }
-    
-
-
     function contador (){
         setcont(cont+1) 
     }
-
     function removedor (){
         setcont(cont-1) 
     }
-
     function renderp (){
         setrender(render+1) 
     }
-
     function renderm (){
         setrender(render-1) 
     }
-
-
-
-
-
-    
-
     return(
         <div className='pg-novohorario'>
             <HederEmpresa  class='hora'/>
@@ -115,13 +107,9 @@ export default function Novohorario (){
 
                         <button onMouseOver={renderp}  >excluir</button>
                         
-                        <button onMouseOver={renderp}  >editar</button>
-                        
-
+                        <button onMouseOver={renderp}  >editar</button>                        
                     </div>    
                 </div>}
-
-
                 <div className='card-novo'>
                     Novo Horario                
                   </div>
