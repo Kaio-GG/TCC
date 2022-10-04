@@ -9,6 +9,7 @@ import EditarHorarioController from './controller/EditarHorarioController.js';
 import DeletarHorarioController from './controller/DeletarHorarioController.js';
 import AgendarHorarioController from './controller/AgendarClienteController.js';
 import CarregarHorarioEmpresaController from './controller/CarregarHorarioEmpresaController.js';
+import usuarioHome from './controller/usuarioHome.js'
 
 
 import express from 'express'
@@ -30,6 +31,7 @@ server.use(EditarHorarioController);
 server.use(DeletarHorarioController);
 server.use(AgendarHorarioController);
 server.use(CarregarHorarioEmpresaController);
+server.use(usuarioHome)
 
 
 
