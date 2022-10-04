@@ -18,14 +18,8 @@ export default function Index(){
 				<Route path='/x' element={<Teste/>}/>
 				<Route path='/cadastro' element={<Cadastro/>}/>
 				<Route path='/novohorario' element={<Novohorario/>}/>
-<<<<<<< HEAD
 				<Route path='CadastroEmpresa' element={<CadastroEmpresa/>}/>
 				<Route path='CadastroUsuario' element={<CadastroUsuario/>}/>
-=======
-				<Route path='/cadastro/Empresa' element={<CadastroEmpresa/>}/>
-				<Route path='/cadastro/Usuario' element={<CadastroUsuario/>}/>
-
->>>>>>> ef9740f36788334c94887f178bec709b786045b9
 				<Route path='/home/usuario' element={<ClienteHome/>}/>
 				<Route path='/home/usuario/empresa/consulta' element={<ConsultaEmpresa/>}/>
 			</Routes>
