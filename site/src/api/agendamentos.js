@@ -31,13 +31,16 @@ export async function deletarHorario (id) {
     return t.data;
 }
 
-export async function carregarHorario (id, local , data ) {
-    const resp = await api.get('/empresa/carregarhorario', {
-        idEmpresa: id,
-        local: local,
-        data: data
+export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
+    const resp = await api.get ('/empresa/carregarhorario', {
+        id: 1,
+        local: 'santo amaro',
+        data: '2022-10-23'
     });
-
+    console.log(resp)
+    console.log(idEmpresa)
+    console.log(localAge)
+    console.log(dataAge)
     return resp.data;
 }
 

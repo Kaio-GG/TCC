@@ -74,7 +74,7 @@ export default function Index(){
                     
                     <div className='Button-Group'>
                         <div className='Div-Button' > <button onClick={voltarPagina} className='button-1'>Voltar</button> </div>
-                        <div className='Div-Button' > <button onClick={cadastrarUsuario} className='button-1'>Finalizar</button> </div>
+                        <div className='Div-Button' > <button  className='button-1'>Finalizar</button> </div>
                     </div>
                     
             </section>

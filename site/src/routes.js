@@ -20,7 +20,6 @@ export default function Index(){
 				<Route path='/novohorario' element={<Novohorario/>}/>
 				<Route path='CadastroEmpresa' element={<CadastroEmpresa/>}/>
 				<Route path='CadastroUsuario' element={<CadastroUsuario/>}/>
-
 				<Route path='/home/usuario' element={<ClienteHome/>}/>
 				<Route path='/home/usuario/empresa/consulta' element={<ConsultaEmpresa/>}/>
 				

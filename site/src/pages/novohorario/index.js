@@ -1,7 +1,8 @@
 import './index.scss';
 import HederEmpresa from '../../components/header-adm-empresa';
 import { useEffect, useState } from 'react';
-import { NovoHorario , agendarHorario ,editarHorario , deletarHorario , carregarHorario } from '../../api/agendamentos.js';
+import { NovoHorario , agendarHorario ,editarHorario , deletarHorario ,CarregarHorarios } from '../../api/agendamentos.js';
+
 
 
 
@@ -10,7 +11,7 @@ export default function Novohorario (){
     const [render , setrender] = useState(0)
     const [rendernovohorario ,setrendernovohorario] = useState (0)
     const [id , setid ] =useState(1)
-    const [local , setlocal  ] =useState('')
+    const [local , setlocal  ] =useState('morumbi')
     const [hora , sethora] =useState ('00:00')
     const [data ,setdata] =useState('')
     const [qtd , setqtd] =useState(0)
@@ -20,7 +21,7 @@ export default function Novohorario (){
 
     async function criarHorario (){
         try {
-            await NovoHorario(id ,local , String(hora) , data)
+            await NovoHorario(id ,local , String(hora) , data ,qtd)
             console.log('horario cadastrado com sucesso')
         } catch (err) {
            console.log(err.message)
@@ -30,7 +31,9 @@ export default function Novohorario (){
 
     async function CarregarHorario (){
         try {
-            const rsp = await carregarHorario(id , local , dataCarregarHorario)
+            const rsp = await CarregarHorarios(id , local , dataCarregarHorario)
+            console.log(local)
+            console.log(dataCarregarHorario)
             console.log(rsp)
             sethorario(rsp)
 
@@ -58,6 +61,9 @@ export default function Novohorario (){
     function renderm (){
         setrender(render-1) 
     }
+    function renderhorario(){
+        setrendernovohorario(rendernovohorario-1)
+    }
 
 
 
@@ -68,7 +74,9 @@ export default function Novohorario (){
 
 
     useEffect( () => {
+
        CarregarHorario()
+
     },[local, dataCarregarHorario])
 
 
@@ -87,14 +95,39 @@ export default function Novohorario (){
 
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
 
-                <select  value={local} onChange={e => setlocal(e.target.value)} >
+                <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >
                     <option value='santo amaro'>santo amaro</option>
+                    <option value='morumbi'>morumbi</option>
                 </select>
             </div> 
              
 
-
             <div className='horarios'>
+            {render === 0 
+                ?<div className='card1' onMouseOver={renderp}>
+
+                    <p onClick={contador}   onMouseOver={renderp} >14:00 
+                    </p>
+
+                </div>
+
+                :<div className='card1' onMouseOut={renderm}>
+
+                        <p  onMouseOver={renderp}>14:00</p>
+
+                    <div className='btneditarcard'>
+                        <button onClick={contador} onMouseOver={renderp}> somar </button>
+
+                        <div  onMouseOver={renderp} >{cont}
+                        </div>
+
+                        <button onClick={removedor} onMouseOver={renderp}> menos </button>
+                        <button onMouseOver={renderp} >excluir</button>                                               
+                    </div>
+                    </div>}
+             
+
+
                 {horario.map (item  => 
                 <div>
                 <div className='card1' onMouseOver={renderp}>
@@ -109,8 +142,10 @@ export default function Novohorario (){
 
                     <div className='btneditarcard'>
                         <button onClick={contador} onMouseOver={renderp}> somar </button>
+
                         <div  onMouseOver={renderp} >{item.qtd}
                         </div>
+
                         <button onClick={removedor} onMouseOver={renderp}> menos </button>
                         <button onMouseOver={renderp} >excluir</button>                                               
                     </div>
@@ -118,17 +153,18 @@ export default function Novohorario (){
 
                 </div>)}
 
-{render}
-
                 <div className='card-novo' onClick={rendernovo}>
-                    Novo Horario                
+                    ADICIONAR HORARIO              
                 </div>
                 {rendernovohorario === 1 &&
-                 <div>
-                  <input type='time' placeholder='digite o horario' value={hora} onChange={e => sethora(e.target.value)} />
-                  <input type='date' value={data} onChange={e => setdata(e.target.value)} />
-                  <input type='number' value={qtd} onChange={e => setqtd(e.target.value)}/>
-                  <button onClick={criarHorario}>pronto</button>
+                 <div className='opts-2'>
+                  <input className='info-novo' type='time' placeholder='digite o horario' value={hora} onChange={e => sethora(e.target.value)} />
+                  <input className='info-novo' type='date' value={data} onChange={e => setdata(e.target.value)} />
+                  <input className='info-novo' type='number' value={qtd} onChange={e => setqtd(e.target.value)}/>
+                  <div>  
+                    <button onClick={criarHorario} >SALVAR</button>
+                    <button onClick={renderhorario} >PRONTO</button>
+                  </div>
                 </div>        
                 }
             </div>
