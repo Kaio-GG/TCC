@@ -10,32 +10,49 @@
     font-size: 25px;
     width: 100%;
     h2{
-        margin-top: 8%;
+        margin-top: 4%;
         margin-left: 5%;
         text-decoration: underline 5px solid ;
         font-family: 'KumbhSans-SemiBold';
     }
     input{
-        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border: 0;
         margin-top: 2%;
         width: 50vw;
         margin-left: 5%;
-        height: 8vh;
-        font-size: 35px;
+        height: 7vh;
+        font-size: 20px;
         font-family: 'KumbhSans-Regular';
     }
     select{
         border: 0;
-        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         margin-top: 2%;
         width: 50vw;
         margin-left: 5%;
-        height: 8vh;
-        border-radius: 5px;
-        font-size: 35px;
+        height: 1vh;
+        font-size: 20px;
         font-family: 'KumbhSans-Regular';
     }
+    .opt{
+        border: 0;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin-top: 2%;
+        width: 50vw;
+        margin-left: 5%;
+        height: 7vh;
+        font-size: 20px;
+        font-family: 'KumbhSans-Regular';
+    }
+    .opts-2{
+        width: 50vw;
+        height: 7vh;
+        margin-left: 2%;
+        font-size: 20px;
+        font-family: 'KumbhSans-Regular';
+    }
+
     .card1{
         display: flex;
         background-color: #fff;
@@ -69,9 +86,9 @@
         margin-left: 5%;
         color: #000;
         align-items: center;
+        justify-content: center;
         font-family: 'KumbhSans-Regular';
-        font-size : 30px;
-        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+        font-size : 20px;
         p{
             padding-left: 20px;
         }
@@ -131,5 +148,10 @@
     }
     button{
         margin: 5px;
+    }
+    .info-novo{
+        height: 5vh ;
+        border-radius: 2px;
+        font-size: 20px;
     }
 }
