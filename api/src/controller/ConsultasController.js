@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { avaliacaoSite, empresasBemAvaliadas } from '../repository/ConsultasRepository.js'
+import { avaliacaoSite, empresasBemAvaliadas } from '../repository/apiLandingPage.js'
 
 const server = Router();
 
