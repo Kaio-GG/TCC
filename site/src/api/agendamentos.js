@@ -5,6 +5,18 @@ const api = axios.create({
 })
 
 
+export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
+    const resp = await api.get (`/empresa/carregarhorario?id=${idEmpresa}&local=${localAge}&data=${dataAge}`);
+    console.log(resp)
+    return resp.data;
+}
+
+
+
+
+
+
+
 export async function NovoHorario (id, local , hora , data , qtd) {
     const t = await api.post ('/empresa/novohorario', {
         id_empresa:id, 
@@ -31,18 +43,7 @@ export async function deletarHorario (id) {
     return t.data;
 }
 
-export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
-    const resp = await api.get ('/empresa/carregarhorario', {
-        id: 1,
-        local: 'santo amaro',
-        data: '2022-10-23'
-    });
-    console.log(resp)
-    console.log(idEmpresa)
-    console.log(localAge)
-    console.log(dataAge)
-    return resp.data;
-}
+
 
 export async function agendarHorario (id_agendamento, id_cliente , nome , email , cpf , telefone , sexo , nascimento , situacao) {
     const t = await api.get ('/usuario/carregarhorario', {

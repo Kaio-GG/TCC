@@ -6,12 +6,13 @@ import { NovoHorario , agendarHorario ,editarHorario , deletarHorario ,CarregarH
 
 
 
+
 export default function Novohorario (){
     const [cont , setcont] = useState (0)
     const [render , setrender] = useState(0)
     const [rendernovohorario ,setrendernovohorario] = useState (0)
-    const [id , setid ] =useState(1)
-    const [local , setlocal  ] =useState('morumbi')
+    const [idemp , setid ] = useState(1)
+    const [local , setlocal  ] = useState('morumbi')
     const [hora , sethora] =useState ('00:00')
     const [data ,setdata] =useState('')
     const [qtd , setqtd] =useState(0)
@@ -21,7 +22,7 @@ export default function Novohorario (){
 
     async function criarHorario (){
         try {
-            await NovoHorario(id ,local , String(hora) , data ,qtd)
+            await NovoHorario(idemp ,local , String(hora) , data ,qtd)
             console.log('horario cadastrado com sucesso')
         } catch (err) {
            console.log(err.message)
@@ -31,15 +32,17 @@ export default function Novohorario (){
 
     async function CarregarHorario (){
         try {
-            const rsp = await CarregarHorarios(id , local , dataCarregarHorario)
-            console.log(local)
-            console.log(dataCarregarHorario)
-            console.log(rsp)
+            const rsp = await CarregarHorarios(idemp , local , dataCarregarHorario)
+
             sethorario(rsp)
 
         } catch (err) {
             console.log(err.message)
         }
+    }
+    async function deletar (id){
+        await deletarHorario (id)
+       CarregarHorario()
     }
 
 
@@ -103,40 +106,22 @@ export default function Novohorario (){
              
 
             <div className='horarios'>
-            {render === 0 
-                ?<div className='card1' onMouseOver={renderp}>
-
-                    <p onClick={contador}   onMouseOver={renderp} >14:00 
-                    </p>
-
-                </div>
-
-                :<div className='card1' onMouseOut={renderm}>
-
-                        <p  onMouseOver={renderp}>14:00</p>
-
-                    <div className='btneditarcard'>
-                        <button onClick={contador} onMouseOver={renderp}> somar </button>
-
-                        <div  onMouseOver={renderp} >{cont}
-                        </div>
-
-                        <button onClick={removedor} onMouseOver={renderp}> menos </button>
-                        <button onMouseOver={renderp} >excluir</button>                                               
-                    </div>
-                    </div>}
              
 
-
-                {horario.map (item  => 
-                <div>
+                {render === 0
+                ?<div>
+                {horario.map (item  =>
                 <div className='card1' onMouseOver={renderp}>
 
                     <p onClick={contador}   onMouseOver={renderp} > {item.hora}
                     </p>
 
+                </div>)}
                 </div>
-                <div className='card1' onMouseOut={renderm}>
+
+                :<div>
+                {horario.map (item  =>
+                <div  className='card1' onMouseOut={renderm}>
 
                         <p  onMouseOver={renderp}>{item.hora}</p>
 
@@ -147,11 +132,10 @@ export default function Novohorario (){
                         </div>
 
                         <button onClick={removedor} onMouseOver={renderp}> menos </button>
-                        <button onMouseOver={renderp} >excluir</button>                                               
+                        <button onMouseOver={renderp}  onClick={deletar(item.id_agendamento)}>excluir</button>                                               
                     </div>
-                    </div>    
-
-                </div>)}
+                    </div>)}
+                    </div>}   
 
                 <div className='card-novo' onClick={rendernovo}>
                     ADICIONAR HORARIO              
