@@ -4,6 +4,7 @@ import { useState} from 'react'
 
 
 
+
 export default function Index(){
 
     const [continuar, setContinuar] = useState(0)
@@ -28,10 +29,10 @@ export default function Index(){
         setContinuar(x)
     }
 
-    /*async function cadastrarUsuario() {
-        const a = await cadastroUser() 
-    }
-        */
+    //async function cadastrarUsuario() {
+      //  const a = await cadastroUser() 
+    //}
+    
 
     return(
         <main className='Main-Cadastro-Usuario'>
@@ -74,7 +75,7 @@ export default function Index(){
                     
                     <div className='Button-Group'>
                         <div className='Div-Button' > <button onClick={voltarPagina} className='button-1'>Voltar</button> </div>
-                        <div className='Div-Button' > <button onClick={cadastrarUsuario} className='button-1'>Finalizar</button> </div>
+                        <div className='Div-Button' > <button className='button-1'>Finalizar</button> </div>
                     </div>
                     
             </section>

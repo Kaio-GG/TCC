@@ -8,7 +8,7 @@ import startup from '../home/assets/startup.svg'
 import Reading from '../home/assets/reading.svg'
 import Icon from '../home/assets/Vector.png'
 
-import { listarEmpresas } from '../../api/Controller'
+import { listarEmpresasAvaliacao } from '../../api/Controller'
 import { useEffect, useState } from 'react'
 
 
@@ -17,7 +17,7 @@ export default function Index() {
     const [avaliacao, setAvaliacao] = useState([]);
 
     async function listar(){
-        const resposta = await listarEmpresas();
+        const resposta = await listarEmpresasAvaliacao();
         setAvaliacao(resposta)
     }
 

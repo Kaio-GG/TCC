@@ -123,6 +123,17 @@
         width: 80px;
         margin: 4px;
         font-weight: 700;
+
+        cursor: pointer;
+    }
+
+    .button-limpar{
+        border: none;
+        background-color: #FFFFFF;
+        text-decoration: underline;
+        cursor: pointer;
+        font-family: "Kumbh Sans";
+        font-size: 12px;
     }
 
     .tag-box{
@@ -149,5 +160,33 @@
     
     .tag-box > p {
         font-weight: 500;
+    }
+
+
+    .box-empresa{
+        width: 65vw;;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    .alinhar-box-empresa{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .box-empresa > h1, p{
+        font-family: "Kumbh Sans";
+        font-size: 16px;
+    }
+
+    .button-box-empresa{
+        padding: 5px;
+        border-radius: 7px;
+        background-color: #263238;
+        font-family: "Kumbh Sans";
+        font-weight: 800;
+        font-size: 18px;
     }
 }
