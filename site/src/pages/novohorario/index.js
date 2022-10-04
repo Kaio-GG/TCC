@@ -1,6 +1,6 @@
 import './index.scss';
 import HederEmpresa from '../../components/header-adm-empresa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NovoHorario , agendarHorario ,editarHorario , deletarHorario , carregarHorario } from '../../api/agendamentos.js';
 
 
@@ -14,6 +14,9 @@ export default function Novohorario (){
     const [hora , sethora] =useState ('00:00')
     const [data ,setdata] =useState('')
     const [qtd , setqtd] =useState(0)
+    const [horario , sethorario] =useState([])
+    const [dataCarregarHorario , setdataCarregarHorario]= useState('2022-10-23')
+
 
     async function criarHorario (){
         try {
@@ -25,7 +28,16 @@ export default function Novohorario (){
         }
     }
 
+    async function CarregarHorario (){
+        try {
+            const rsp = await carregarHorario(id , local , dataCarregarHorario)
+            console.log(rsp)
+            sethorario(rsp)
 
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
 
 
 
@@ -49,6 +61,18 @@ export default function Novohorario (){
 
 
 
+
+
+
+
+
+
+    useEffect( () => {
+       CarregarHorario()
+    },[local, dataCarregarHorario])
+
+
+
     return(
         <div className='pg-novohorario'>
             <HederEmpresa  class='hora'/>
@@ -60,40 +84,42 @@ export default function Novohorario (){
             </div>
 
             <div className='opts'>
-                <input type="date"/>
-            <select  value={local} onChange={e => setlocal(e.target.value)} >
-                <option value='santo amaro'>santo amaro</option>
-            </select>
+
+                <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
+
+                <select  value={local} onChange={e => setlocal(e.target.value)} >
+                    <option value='santo amaro'>santo amaro</option>
+                </select>
             </div> 
-            
+             
+
 
             <div className='horarios'>
+                {horario.map (item  => 
+                <div>
+                <div className='card1' onMouseOver={renderp}>
 
-
-                {render === 0 
-                ?<div className='card1' onMouseOver={renderp}>
-
-                    <p onClick={contador}   onMouseOver={renderp} >14:00</p>
+                    <p onClick={contador}   onMouseOver={renderp} > {item.hora}
+                    </p>
 
                 </div>
+                <div className='card1' onMouseOut={renderm}>
 
-                :<div className='card1' onMouseOut={renderm}>
-
-                        <p  onMouseOver={renderp}>14:00</p>
+                        <p  onMouseOver={renderp}>{item.hora}</p>
 
                     <div className='btneditarcard'>
-
                         <button onClick={contador} onMouseOver={renderp}> somar </button>
-
-                            <div  onMouseOver={renderp} >{cont}</div>
-                            
+                        <div  onMouseOver={renderp} >{item.qtd}
+                        </div>
                         <button onClick={removedor} onMouseOver={renderp}> menos </button>
-
-                        <button onMouseOver={renderp}  >excluir</button>
-                        
-                        <button onMouseOver={renderp}  >editar</button>                        
+                        <button onMouseOver={renderp} >excluir</button>                                               
+                    </div>
                     </div>    
-                </div>}
+
+                </div>)}
+
+{render}
+
                 <div className='card-novo' onClick={rendernovo}>
                     Novo Horario                
                 </div>
@@ -105,8 +131,6 @@ export default function Novohorario (){
                   <button onClick={criarHorario}>pronto</button>
                 </div>        
                 }
-
-
             </div>
             </div>
             </div>

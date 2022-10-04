@@ -4,8 +4,9 @@ import { con } from "./connection.js";
 
 export default async function CarregarHorarioEmpresa (info){
      const comando = `
-     select  ds_hora         ,
-             qtd_agendamento 
+     select 
+             ds_hora          hora ,
+             qtd_agendamento  qtd
        from  tb_agendamento 
       where  ID_USUARIO_EMPRESA = ? && 
              ds_local           = ? && 
