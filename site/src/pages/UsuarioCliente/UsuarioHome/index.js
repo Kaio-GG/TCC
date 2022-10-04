@@ -7,6 +7,7 @@ import Local from './assets/local.svg'
 
 import HeaderUsuario from '../../../components/header-usuario'
 import { useEffect, useState } from 'react'
+import { useFetcher } from 'react-router-dom'
 
 export default function ClienteHome() {
     const [nomeDaEmpresaPesquisa, setNomeDaEmpresaPesquisa] = useState([])
@@ -23,19 +24,24 @@ export default function ClienteHome() {
     async function CarregarEmpresas(){
         const resp2 = await listarEmpresas();
         console.log(resp2)
-        setEmpresa(resp2)
     }
 
 
     async function buscarEmpresas(){
         const resposta = await buscarEmpresass(nomeDaEmpresaPesquisa);
-        setEmpresa(resposta)
+        setNomeDaEmpresaPesquisa(resposta)
         setRender(true)
     }
 
     async function limparPesquisas(){
         setRender(false)
     }
+
+    useEffect(() =>{
+        CarregarEmpresas();
+
+    }, [])
+
 
 
     return(
@@ -67,7 +73,6 @@ export default function ClienteHome() {
                     {empresa.map(item => 
                         <div className='box-empresa'>
                             <div>{item.logo}</div>
-
 
                             <div className='alinhar-box-empresa'>
                             

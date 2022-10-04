@@ -11,8 +11,7 @@ export async function buscar(nome) {
     FULL JOIN TB_EMPRESA_AVALIACAO
     WHERE NM_EMPRESA LIKE ?
     `
-
-    const [busca] = await con.query(comando, [`%${nome}$%`]);
+    const [ busca ]= await con.query(comando, [`%${nome}$%`]);
     return busca;
 }
 

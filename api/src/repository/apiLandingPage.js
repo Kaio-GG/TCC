@@ -18,6 +18,7 @@ export async function empresasBemAvaliadas() {
 
     INNER JOIN TB_USUARIO_EMPRESA on tb_empresa_avaliacao.id_usuario_empresa =
     TB_USUARIO_EMPRESA.id_usuario_empresa
+    
     ORDER BY rand()
     LIMIT 4
     `

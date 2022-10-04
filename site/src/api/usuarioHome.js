@@ -7,6 +7,7 @@ const api = axios.create({
 
 export async function buscarEmpresass(nome) {
     const t = await api.get(`/home/usuario/busca?nome=${nome}`); 
+
     return t.data;
 
 }
