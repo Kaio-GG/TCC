@@ -1,4 +1,4 @@
-import { cadastroEmpresa, cadastroLoginEmpresa } from '../../api/cadastroEmpresa'
+import { cadastroEmpresa, cadastroLogin } from '../../api/cadastroEmpresa'
 
 import { useState } from 'react'
 import './index.scss'
@@ -36,7 +36,7 @@ export default function Index(){
             const idEmpresa = a.id;
             const idusuario = null;
 
-            const b = cadastroLoginEmpresa(idEmpresa, idusuario, usuario, senha, empresa);
+            const b = cadastroLogin(idEmpresa, idusuario, usuario, senha, empresa);
             
             alert('Empresa cadastrada com sucesso!');
 

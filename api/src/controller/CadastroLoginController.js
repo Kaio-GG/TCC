@@ -3,7 +3,7 @@ import { login } from "../repository/CadastroEmpresaRepository.js";
 import { Router } from "express";
 const server = Router();
 
-server.post('/empresa/cadastroLogin', async(req, resp) => {
+server.post('/cadastroLogin', async(req, resp) => {
     try{
         const novoLogin = req.body;
         const nlogin = await login(novoLogin);

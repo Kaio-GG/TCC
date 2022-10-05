@@ -1,4 +1,4 @@
-import { cadastroCliente } from "../repository/CadastroClienteRepository";
+import { cadastroCliente } from "../repository/CadastroClienteRepository.js";
 
 import { Router } from "express";
 const server = Router();
