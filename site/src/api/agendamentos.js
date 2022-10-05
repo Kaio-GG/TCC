@@ -12,11 +12,6 @@ export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
 }
 
 
-
-
-
-
-
 export async function NovoHorario (id, local , hora , data , qtd) {
     const t = await api.post ('/empresa/novohorario', {
         id_empresa:id, 
@@ -29,20 +24,21 @@ export async function NovoHorario (id, local , hora , data , qtd) {
     return t.data;
 }
 
-export async function editarHorario (id, qtd) {
+
+export async function editarHorario (id, qtdage) {
     const t = await api.put ('/empresa/editarhorario', {
-        qtd: qtd,
+        qtd: qtdage,
         id_agendamento:id
     });
 
     return t.data;
 }
 
+
 export async function deletarHorario (id) {
     const t = await api.delete (`/empresa/deletarhorario/${id} `);
     return t.data;
 }
-
 
 
 export async function agendarHorario (id_agendamento, id_cliente , nome , email , cpf , telefone , sexo , nascimento , situacao) {

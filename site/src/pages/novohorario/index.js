@@ -1,7 +1,7 @@
 import './index.scss';
 import HederEmpresa from '../../components/header-adm-empresa';
 import { useEffect, useState } from 'react';
-import { NovoHorario , agendarHorario ,editarHorario , deletarHorario ,CarregarHorarios } from '../../api/agendamentos.js';
+import { NovoHorario  ,editarHorario , deletarHorario ,CarregarHorarios } from '../../api/agendamentos.js';
 
 
 
@@ -29,7 +29,6 @@ export default function Novohorario (){
            console.log('nao foi ')
         }
     }
-
     async function CarregarHorario (){
         try {
             const rsp = await CarregarHorarios(idemp , local , dataCarregarHorario)
@@ -38,9 +37,6 @@ export default function Novohorario (){
             console.log(err.message)
         }
     }
-
-
-
     async function deletar (id){
         try {
             await deletarHorario (id)
@@ -50,10 +46,34 @@ export default function Novohorario (){
         }
         
     }
+    async function aumentarHorarios (id , qtd){
+        try {
+            const a = qtd + 1
+            await editarHorario (id , a)
+            await CarregarHorario()
+            console.log('foi editado')
+        } catch (err) {
+            console.log('nao foi editado', err.message)
+        }
+    }
+
+    async function diminuirHorarios (id , qtd){
+        try {
+            const a = qtd - 1
+            await editarHorario (id , a)
+            await CarregarHorario()
+            console.log('foi editado')
+        } catch (err) {
+            console.log('nao foi editado', err.message)
+        }
+    }
 
 
 
     
+
+
+
 
     function rendernovo (){
     if(rendernovohorario === false){
@@ -138,11 +158,12 @@ export default function Novohorario (){
 
                     <div className='btneditarcard'>
                         
-                        <div className='seta-esquerda' ></div>
+                        <div className='seta-esquerda' onClick={() => diminuirHorarios(item.id_agendamento, item.qtd)} ></div>
+
                         <div  >{item.qtd}
                         </div>
 
-                        <div className='seta-direita' ></div>
+                        <div className='seta-direita' onClick={() => aumentarHorarios(item.id_agendamento, item.qtd)} ></div>
                         <div className='lixeira' onClick={() => deletar(item.id_agendamento)}></div>                                               
                     </div>
                     </div>)}
