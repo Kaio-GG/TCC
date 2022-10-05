@@ -8,6 +8,7 @@ import CadastroEmpresa from './pages/Cadastro-Empresa/index.js'
 import CadastroUsuario from './pages/Cadastro-Usuario/index.js'
 import ClienteHome from './pages/UsuarioCliente/UsuarioHome/index.js'
 import ConsultaEmpresa from './pages/UsuarioCliente/UsuarioEmpresaPagina/index.js'
+import AgendarEmpresa from './pages/UsuarioCliente/UsuarioEmpresaPaginaAgendar/index.js'
 
 export default function Index(){
 	return(
@@ -22,6 +23,7 @@ export default function Index(){
 				<Route path='/cadastro/usuario' element={<CadastroUsuario/>}/>
 				<Route path='/home/usuario' element={<ClienteHome/>}/>
 				<Route path='/home/usuario/empresa/consulta' element={<ConsultaEmpresa/>}/>
+				<Route path='/home/usuario/empresa/consulta/agendar' element={<AgendarEmpresa/>}/>
 			</Routes>
 		</BrowserRouter>	
 )

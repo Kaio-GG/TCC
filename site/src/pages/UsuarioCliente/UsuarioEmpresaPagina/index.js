@@ -1,4 +1,6 @@
 import './index.scss'
+
+import { Link, useNavigate } from 'react-router-dom';
 import HeaderUsuario from "../../../components/header-usuario";
 
 
@@ -14,7 +16,9 @@ export default function UsuarioEmpresaPagina() {
 
                         <div className="card-empresa">
                             <div className='a'>
-                                <div className="img">img</div>
+                                <div className="img">
+                                    <div className='aimg'></div>
+                                </div>
                                 <div className="nome-desc">
                                     <h3 className="nome">NUTRIFIT</h3>
                                     <p className="desc"> é uma empresa de nutricionistas qualificados, que buscam o bem estar de seus clintes. Sempre com qualidade no atendimento e um sorriso no rosto  </p>
@@ -35,7 +39,7 @@ export default function UsuarioEmpresaPagina() {
 
                         <div className="card-Agendar">
                             <p>Faça aqui seu Agendamento de forma gratuita e em casa</p>
-                            <button className='agendar'>Agendar</button>
+                            <button className='agendar'><Link to={'./agendar'}>Agendar</Link></button>
                         </div>
 
                     </div>
