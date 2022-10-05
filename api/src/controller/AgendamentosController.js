@@ -1,4 +1,4 @@
-import { NovoHorario , EditarHorario , ApagarHorario , CarregarHorarioEmpresa } from "../repository/agendamentosRepository.js";
+import { NovoHorario , EditarHorario , ApagarHorario , CarregarHorarioEmpresa ,buscarLocal } from "../repository/agendamentosRepository.js";
 
 import { Router } from "express";
 const server = Router();
@@ -62,6 +62,18 @@ server.get ('/empresa/carregarhorario', async (req ,resp) => {
     }
 }  )
 
+server.get ('/empresa/buscarlocal/:id', async (req ,resp) => {
+    try {
+        const info = req.params
+        console.log(info)
+        const local = await buscarLocal(info)       
+        resp.send(local)
+    } catch (err) {
+        resp.status(404).send({
+            erro:err.message
+        })
+    }
+}  )
 
 
 

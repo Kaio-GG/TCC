@@ -47,3 +47,13 @@ export async function CarregarHorarioEmpresa (info){
     const [lista] = await con.query (comando , [info.id ,info.local , info.data ])
     return lista
 }
+
+export async function buscarLocal (info){
+    const comando = `
+    select DS_ENDERECO 
+      from tb_usuario_empresa
+     where id_USUARIO_EMPRESA = ?
+    `
+    const [lista] = await con.query (comando , [info.id])
+    return lista
+}

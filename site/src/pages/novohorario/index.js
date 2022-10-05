@@ -17,7 +17,7 @@ export default function Novohorario (){
     const [data ,setdata] =useState('')
     const [qtd , setqtd] =useState(0)
     const [horario , sethorario] =useState([])
-    const [dataCarregarHorario , setdataCarregarHorario]= useState('2022-10-23')
+    const [dataCarregarHorario , setdataCarregarHorario]= useState(new Date())
 
 
     async function criarHorario (){
