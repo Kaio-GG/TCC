@@ -9,8 +9,8 @@ import { NovoHorario , agendarHorario ,editarHorario , deletarHorario ,CarregarH
 
 export default function Novohorario (){
     const [cont , setcont] = useState (0)
-    const [render , setrender] = useState(0)
-    const [rendernovohorario ,setrendernovohorario] = useState (0)
+    const [render , setrender] = useState(false)
+    const [rendernovohorario ,setrendernovohorario] = useState (false)
     const [idemp , setid ] = useState(1)
     const [local , setlocal  ] = useState('morumbi')
     const [hora , sethora] =useState ('00:00')
@@ -33,16 +33,22 @@ export default function Novohorario (){
     async function CarregarHorario (){
         try {
             const rsp = await CarregarHorarios(idemp , local , dataCarregarHorario)
-
             sethorario(rsp)
-
         } catch (err) {
             console.log(err.message)
         }
     }
+
+
+
     async function deletar (id){
-        await deletarHorario (id)
-       CarregarHorario()
+        try {
+            await deletarHorario (id)
+            await CarregarHorario()    
+        } catch (err) {
+            console.log('horario nao deletado', err.message)
+        }
+        
     }
 
 
@@ -50,8 +56,13 @@ export default function Novohorario (){
     
 
     function rendernovo (){
-        setrendernovohorario(rendernovohorario+1)
+    if(rendernovohorario === false){
+        setrendernovohorario(true)
+    }else{
+        setrendernovohorario(true)
     }
+    }
+
     function contador (){
         setcont(cont+1) 
     }
@@ -59,7 +70,7 @@ export default function Novohorario (){
         setcont(cont-1) 
     }
     function renderp (){
-        setrender(render+1) 
+        setrender(true) 
     }
     function renderm (){
         setrender(render-1) 
@@ -108,12 +119,12 @@ export default function Novohorario (){
             <div className='horarios'>
              
 
-                {render === 0
+                {render === false
                 ?<div>
                 {horario.map (item  =>
                 <div className='card1' onMouseOver={renderp}>
 
-                    <p onClick={contador}   onMouseOver={renderp} > {item.hora}
+                    <p    > {item.hora}
                     </p>
 
                 </div>)}
@@ -121,18 +132,18 @@ export default function Novohorario (){
 
                 :<div>
                 {horario.map (item  =>
-                <div  className='card1' onMouseOut={renderm}>
+                <div  className='card1' >
 
-                        <p  onMouseOver={renderp}>{item.hora}</p>
+                        <p  >{item.hora}</p>
 
                     <div className='btneditarcard'>
-                        <button onClick={contador} onMouseOver={renderp}> somar </button>
-
-                        <div  onMouseOver={renderp} >{item.qtd}
+                        
+                        <div className='seta-esquerda' ></div>
+                        <div  >{item.qtd}
                         </div>
 
-                        <button onClick={removedor} onMouseOver={renderp}> menos </button>
-                        <button onMouseOver={renderp}  onClick={deletar(item.id_agendamento)}>excluir</button>                                               
+                        <div className='seta-direita' ></div>
+                        <div id='1' className='lixeira' onClick={() => deletar(item.id_agendamento)} value={item.id_agendamento} ></div>                                               
                     </div>
                     </div>)}
                     </div>}   
@@ -140,14 +151,14 @@ export default function Novohorario (){
                 <div className='card-novo' onClick={rendernovo}>
                     ADICIONAR HORARIO              
                 </div>
-                {rendernovohorario === 1 &&
+                {rendernovohorario === true &&
                  <div className='opts-2'>
                   <input className='info-novo' type='time' placeholder='digite o horario' value={hora} onChange={e => sethora(e.target.value)} />
                   <input className='info-novo' type='date' value={data} onChange={e => setdata(e.target.value)} />
                   <input className='info-novo' type='number' value={qtd} onChange={e => setqtd(e.target.value)}/>
-                  <div>  
+                  <div className='btns'>  
                     <button onClick={criarHorario} >SALVAR</button>
-                    <button onClick={renderhorario} >PRONTO</button>
+                    <button className='btn-pronto' onClick={renderhorario} >PRONTO</button>
                   </div>
                 </div>        
                 }
