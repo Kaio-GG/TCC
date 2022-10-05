@@ -1,7 +1,6 @@
 import { Router } from 'express'
 
-import { listarEmpresas, melhoresAvaliacaoEmpresas, pesquisaPorNome } from '../repository/homeUsuario.js';
-
+import { filtrarMaisProximo, listarEmpresas, melhoresAvaliacaoEmpresas, pesquisaPorNome } from '../repository/homeUsuario.js';
 
 const server = Router();
 
@@ -47,6 +46,18 @@ server.get('/home/usuario/listarEmpresas', async(req, resp) =>{
     }
 })
 
+server.get('/home/usuario/maisProximo', async(req, resp) => {
+    try{
+        const a = 
+        resp.send(resposta)
 
+    }catch(err){
+        resp.status(400).send({
+            erro:err.message
+        })
+
+    }
+
+})
 
 export default server;

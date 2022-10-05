@@ -20,3 +20,8 @@ export async function avaliacaoEmpresas(){
     const t = await api.get('/home/usuario/melhores')
     return t.data;
 }
+
+export async function maisProximo() {
+    const t = await api.get('/home/usuario/maisProximo')
+    return t.data;
+}
