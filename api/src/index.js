@@ -5,11 +5,8 @@ import LoginController from './controller/LoginController.js';
 import cadastroEmpresa  from './controller/CadastroEmpresaController.js';
 import cadastroCliente from './controller/CadastroClienteController.js'
 import LoginEmpresaController from './controller/CadastroLoginController.js';
-import NovoHrariocontroller from './controller/novoHorariocontroller.js';
-import EditarHorarioController from './controller/EditarHorarioController.js';
-import DeletarHorarioController from './controller/DeletarHorarioController.js';
 import AgendarHorarioController from './controller/AgendarClienteController.js';
-import CarregarHorarioEmpresaController from './controller/CarregarHorarioEmpresaController.js';
+import AgendamentosController from './controller/AgendamentosController.js'
 import usuarioHome from './controller/usuarioHome.js'
 
 
@@ -28,13 +25,10 @@ server.use(ConsultasController);
 server.use(LoginController);
 server.use(cadastroEmpresa);
 server.use(LoginEmpresaController);
-server.use(NovoHrariocontroller);
-server.use(EditarHorarioController);
-server.use(DeletarHorarioController);
 server.use(AgendarHorarioController);
-server.use(CarregarHorarioEmpresaController);
-server.use(cadastroCliente)
-server.use(usuarioHome)
+server.use(AgendamentosController);
+server.use(cadastroCliente);
+server.use(usuarioHome);
 
 
 server.listen(process.env.PORT,

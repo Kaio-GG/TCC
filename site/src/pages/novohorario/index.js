@@ -143,7 +143,7 @@ export default function Novohorario (){
                         </div>
 
                         <div className='seta-direita' ></div>
-                        <div id='1' className='lixeira' onClick={() => deletar(item.id_agendamento)} value={item.id_agendamento} ></div>                                               
+                        <div className='lixeira' onClick={() => deletar(item.id_agendamento)}></div>                                               
                     </div>
                     </div>)}
                     </div>}   
