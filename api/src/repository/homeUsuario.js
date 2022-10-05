@@ -1,29 +1,30 @@
 import { con } from "./connection.js";
 
-export async function buscar(nome) {
+export async function pesquisaPorNome(nome) {
     const comando = `
-    SELECT VL_AVALIACAO avaliacao,
-     IMG_LOGO logo,
-    DS_DESCRICAO descricao,
-    NM_EMPRESA nome
-
-    FROM TB_PAGINA_EMPRESA
-    FULL JOIN TB_EMPRESA_AVALIACAO
-    WHERE NM_EMPRESA LIKE ?
-    `
-    const [ busca ]= await con.query(comando, [`%${nome}$%`]);
-    return busca;
+    SELECT VL_AVALIACAO avaliacao, 
+	    IMG_LOGO logo,
+	    DS_DESCRICAO descricao, 
+	    NM_EMPRESA nome
+        from tb_pagina_empresa 
+        inner join tb_empresa_avaliacao 
+        on tb_empresa_avaliacao.id_empresa_avaliacao = tb_pagina_empresa.id_pagina_empresa
+        where nm_empresa like ?
+    `;
+    const [linhas]= await con.query(comando, [`%${nome}%`]);
+    return linhas;
 }
 
 
 export async function listarEmpresas() {
     const comando =  `
     SELECT VL_AVALIACAO avaliacao, 
-    IMG_LOGO logo, 
-    DS_DESCRICAO descricao,
-    NM_EMPRESA nome 
-    FROM TB_PAGINA_EMPRESA
-    FULL JOIN TB_EMPRESA_AVALIACAO
+    IMG_LOGO logo,
+    DS_DESCRICAO descricao, 
+    NM_EMPRESA nome
+    from tb_pagina_empresa 
+    inner join tb_empresa_avaliacao 
+    on tb_empresa_avaliacao.id_empresa_avaliacao = tb_pagina_empresa.id_pagina_empresa
     `
 
     const [linhas] = await con.query(comando)
@@ -34,12 +35,13 @@ export async function listarEmpresas() {
 export async function melhoresAvaliacaoEmpresas() {
     const comando =  `
     SELECT VL_AVALIACAO avaliacao, 
-    IMG_LOGO logo, 
-    DS_DESCRICAO descricao,
-    NM_EMPRESA nome 
-    FROM TB_PAGINA_EMPRESA
-    FULL JOIN TB_EMPRESA_AVALIACAO
-    WHERE VL_AVALIACAO > 3;
+    IMG_LOGO logo,
+    DS_DESCRICAO descricao, 
+    NM_EMPRESA nome
+    from tb_pagina_empresa 
+    inner join tb_empresa_avaliacao 
+    on tb_empresa_avaliacao.id_empresa_avaliacao = tb_pagina_empresa.id_pagina_empresa
+    where VL_AVALIACAO > 3
     `
 
     const [linhas] = await con.query(comando)
