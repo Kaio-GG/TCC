@@ -168,7 +168,31 @@
         background-color: #FFFFFF;
         display: flex;
         flex-direction: row;
+        margin-top: 20px;
+        padding: 15px;
+        height: 200px;
+        border-radius: 20px;
+        justify-content: space-between;
+        align-items: flex-end;
         
+    }
+
+    .ali{
+        display: flex;
+        flex-direction: row;
+        margin-left: 5px;
+    }
+
+    .h1-box-empresa{
+        margin-left: 20px;
+
+    }
+
+    .img-logo{
+        width: 150px;
+        height: 150px;
+        background-color: rgb(56, 116, 71);
+        border-radius: 15px;
     }
 
     .alinhar-box-empresa{
@@ -179,6 +203,8 @@
     .box-empresa > h1, p{
         font-family: "Kumbh Sans";
         font-size: 16px;
+        margin-left: 20px;
+        
     }
 
     .button-box-empresa{
@@ -188,5 +214,7 @@
         font-family: "Kumbh Sans";
         font-weight: 800;
         font-size: 18px;
+        color: #FFFFFF;
+        height: 50px;
     }
 }

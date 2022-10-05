@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { buscar, listarEmpresas, melhoresAvaliacaoEmpresas } from '../repository/homeUsuario.js';
+import { listarEmpresas, melhoresAvaliacaoEmpresas, pesquisaPorNome } from '../repository/homeUsuario.js';
 
 
 const server = Router();
@@ -8,7 +8,8 @@ const server = Router();
 server.get('/home/usuario/busca', async(req, resp) => {
     try{
         const  { nome } = req.query; 
-        const resposta = await buscar(nome);
+        // console.log(nome);
+        const resposta = await pesquisaPorNome(nome);
 
         resp.send(resposta);
         

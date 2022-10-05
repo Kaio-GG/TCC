@@ -18,8 +18,8 @@ export default function Index(){
 				<Route path='/x' element={<Teste/>}/>
 				<Route path='/cadastro' element={<Cadastro/>}/>
 				<Route path='/novohorario' element={<Novohorario/>}/>
-				<Route path='CadastroEmpresa' element={<CadastroEmpresa/>}/>
-				<Route path='CadastroUsuario' element={<CadastroUsuario/>}/>
+				<Route path='cadastro/empresa' element={<CadastroEmpresa/>}/>
+				<Route path='cadastro/usuario' element={<CadastroUsuario/>}/>
 				<Route path='/home/usuario' element={<ClienteHome/>}/>
 				<Route path='/home/usuario/empresa/consulta' element={<ConsultaEmpresa/>}/>
 			</Routes>

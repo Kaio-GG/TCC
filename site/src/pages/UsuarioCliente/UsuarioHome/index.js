@@ -1,23 +1,26 @@
 import './index.scss'
 
-import { avaliacaoEmpresas, buscarEmpresass, listarEmpresas } from '../../../api/usuarioHome'
+import { avaliacaoEmpresas, buscaDeEmpresas, listarEmpresas } from '../../../api/usuarioHome'
 
 import Star from './assets/star.svg'
 import Local from './assets/local.svg'
 
 import HeaderUsuario from '../../../components/header-usuario'
 import { useEffect, useState } from 'react'
-import { useFetcher } from 'react-router-dom'
 
 export default function ClienteHome() {
-    const [nomeDaEmpresaPesquisa, setNomeDaEmpresaPesquisa] = useState([])
+    const [filtro, setFiltro] = useState('')
 
     const [empresa, setEmpresa] = useState([]);
+
+
+
 
     const [render, setRender] = useState(false);
 
     async function melhoresEmpresas(){
         const resp1 = await avaliacaoEmpresas();
+        setRender(1)
         setEmpresa(resp1);
     }
 
@@ -28,20 +31,16 @@ export default function ClienteHome() {
 
 
     async function buscarEmpresas(){
-        const resposta = await buscarEmpresass(nomeDaEmpresaPesquisa);
-        setNomeDaEmpresaPesquisa(resposta)
+        const resposta = await buscaDeEmpresas(filtro);
+        setEmpresa(resposta)
         setRender(true)
     }
 
     async function limparPesquisas(){
         setRender(false)
+        setEmpresa([])
+         
     }
-
-    useEffect(() =>{
-        CarregarEmpresas();
-
-    }, [])
-
 
 
     return(
@@ -54,7 +53,7 @@ export default function ClienteHome() {
             <div className='f1-body'>
 
                 <div className='box1-left'>
-                    <input value={nomeDaEmpresaPesquisa} onChange={e => setNomeDaEmpresaPesquisa(e.target.value)} className='input-1' placeholder='Buscar em MyWorkShip.com'/>
+                    <input value={filtro} onChange={e => setFiltro(e.target.value)} className='input-1' placeholder='Buscar em MyWorkShip.com'/>
 
                     <button onClick={buscarEmpresas} className='lupa'>Buscar</button>
 
@@ -67,28 +66,32 @@ export default function ClienteHome() {
 
                     </div>
                     }
+
+                                      
                     
-
-
                     {empresa.map(item => 
                         <div className='box-empresa'>
-                            <div>{item.logo}</div>
+                         <div className='ali'> 
+                            <div className='img-logo'>.{item.logo}</div>
 
                             <div className='alinhar-box-empresa'>
                             
-                            <h1>{item.nome}</h1>
+                            <h1 className='h1-box-empresa'>{item.nome}</h1>
 
                             <p>{item.avaliacao}</p>
 
                             <p>{item.descricao}</p>
 
                             </div>
+                         </div>
 
                             <button className='button-box-empresa'>Mais informações</button>
 
                         </div>   
                         
                     )}
+                    
+                    
 
                 <button className='button-limpar' onClick={limparPesquisas}>Limpar pesquisas</button>
 
