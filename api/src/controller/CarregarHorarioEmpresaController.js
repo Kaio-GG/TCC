@@ -1,12 +1,16 @@
 import CarregarHorarioEmpresa from "../repository/CarregarHorariosEmpresaRepository.js";
 
 import { Router } from "express";
+
+
 const server = Router();
 
 
-server.get ('/empresa/carregarhorario', async(req ,resp) => {
+server.get ('/empresa/carregarhorario', async (req ,resp) => {
     try {
-        const info = req.body
+        const info = req.query
+        console.log(info)
+        
         const horarios = await CarregarHorarioEmpresa(info)
 
          
@@ -18,4 +22,4 @@ server.get ('/empresa/carregarhorario', async(req ,resp) => {
     }
 }  )
 
-export default server ;
+export default server 

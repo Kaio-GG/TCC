@@ -1,6 +1,8 @@
 import './index.scss'
 import {Link} from 'react-router-dom'
 import { useState} from 'react'
+import { cadastroCliente } from '../../api/cadastroCliente'
+import { cadastroLogin } from '../../api/cadastroEmpresa'
 
 
 
@@ -16,7 +18,7 @@ export default function Index(){
     const [pais, setPais] = useState('');
     const [estado, setEstado] = useState('');
     const [cidade, setCidade] = useState('');
-    const [nomeUsuario, setNomeUsuario] = useState('');
+    const [usuario, setUsuario] = useState('');
     const [cpf, setCpf] = useState('');
 
     function passarPagina(){
@@ -29,10 +31,24 @@ export default function Index(){
         setContinuar(x)
     }
 
-    //async function cadastrarUsuario() {
-      //  const a = await cadastroUser() 
-    //}
-    
+    async function cadastrarCliente() {
+        try{
+            const a = await cadastroCliente(usuario, cpf, pais, estado, cidade);
+
+            alert(a)
+            console.log(a)
+
+            const empresa = false;
+            const idEmpresa = null;
+            const idusuario = a.id;
+
+            const b = cadastroLogin(idEmpresa, idusuario, email, senha, empresa)
+
+            alert('cadastrado com sucesso!');
+        } catch(err){
+            alert(err.message)
+        }
+    }
 
     return(
         <main className='Main-Cadastro-Usuario'>
@@ -49,8 +65,8 @@ export default function Index(){
                     <div className='Div-Inputs'>
                         <input value={email} onChange={e => SetEmail(e.target.value)} type='text' placeholder='Email'/>
                         <input value={confirmaremail} onChange={e => SetConfirmarEmail(e.target.value)} type='text' placeholder='Confirmar Email'/>
-                        <input value={senha} onChange={e => SetSenha(e.target.value)} type='text' placeholder='Senha'/>
-                        <input  value={confirmarsenha} onChange={e => SetConfirmarSenha(e.target.value)} type='text' placeholder='Confirmar Senha'/>
+                        <input value={senha} onChange={e => SetSenha(e.target.value)} type='password' placeholder='Senha'/>
+                        <input  value={confirmarsenha} onChange={e => SetConfirmarSenha(e.target.value)} type='password' placeholder='Confirmar Senha'/>
                     </div>
                     
                     <div className='Div-Button' > <button onClick={passarPagina} className='button'>Próximo</button> </div>
@@ -63,7 +79,7 @@ export default function Index(){
                     <h1>Informações do Usuário</h1>
                     
                     <div className='Div-Inputs'> 
-                        <input value={nomeUsuario} onChange={e => setNomeUsuario(e.target.value)} type='text' placeholder='Nome de Usuário'/>
+                        <input value={usuario} onChange={e => setUsuario(e.target.value)} type='text' placeholder='Nome de Usuário'/>
                         <input value={cpf} onChange={e => setCpf(e.target.value)} type='text' placeholder='CPF'/>
                     
                         <div className='Inputs-Group'> 
@@ -76,7 +92,7 @@ export default function Index(){
                     <div className='Button-Group'>
                         <div className='Div-Button' > <button onClick={voltarPagina} className='button-1'>Voltar</button> </div>
 
-                        <div className='Div-Button' > <button className='button-1'>Finalizar</button> </div>
+                        <div className='Div-Button' > <button onClick={cadastrarCliente} className='button-1'>Finalizar</button> </div>
                     </div>
                     
             </section>

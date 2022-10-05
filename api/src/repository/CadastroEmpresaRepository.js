@@ -10,7 +10,6 @@ export async function cadastroEmpresa(empresa){
     return empresa;
 };
 
-
 export async function login(lempresa){
     const comando =
     `insert into TB_LOGIN(ID_USUARIO_EMPRESA, ID_USUARIO_CLIENTE, DS_EMAIL,DS_SENHA, BT_LOGIN, DT_ULTLOGIN)
