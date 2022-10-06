@@ -1,6 +1,6 @@
 import './index.scss'
 
-import { avaliacaoEmpresas, buscaDeEmpresas, listarEmpresas } from '../../../api/usuarioHome'
+import { avaliacaoEmpresas, buscaDeEmpresas, listarEmpresas, maisProximo } from '../../../api/usuarioHome'
 
 import Star from './assets/star.svg'
 import Local from './assets/local.svg'
@@ -14,14 +14,17 @@ export default function ClienteHome() {
     const [empresa, setEmpresa] = useState([]);
 
 
-
-
     const [render, setRender] = useState(false);
 
     async function melhoresEmpresas(){
         const resp1 = await avaliacaoEmpresas();
         setRender(1)
         setEmpresa(resp1);
+    }
+
+    async function maisProximas(){
+        const resp = await maisProximo();
+        setEmpresa(resp)
     }
 
     async function CarregarEmpresas(){
@@ -68,7 +71,6 @@ export default function ClienteHome() {
                     }
 
                                       
-                    
                     {empresa.map(item => 
                         <div className='box-empresa'>
                          <div className='ali'> 
@@ -106,7 +108,7 @@ export default function ClienteHome() {
                         <h1 className='h1-starbox'>Bem avaliadas</h1>
                     </div>
 
-                    <div className='local-box'>
+                    <div onClick={maisProximas} className='local-box'>
                         <img className='img-local' src={Local}></img>
                         <h1>Mais Proximas</h1>
                     </div>

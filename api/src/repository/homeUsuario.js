@@ -47,3 +47,17 @@ export async function melhoresAvaliacaoEmpresas() {
     const [linhas] = await con.query(comando)
     return linhas;
 }
+
+export async function filtrarMaisProximo() {
+    const comando = `
+    SELECT ID_USUARIO_CLIENTE id, 
+    tb_usuario_cliente.ds_cidade cidade,
+    tb_usuario_empresa.ds_cidade
+    
+    FROM tb_usuario_empresa, tb_usuario_cliente
+    where tb_usuario_cliente.ds_cidade = tb_usuario_empresa.ds_cidade
+    `
+
+    const [linhas] = await con.query(comando,  [`%${id}}%`])
+    return linhas;
+}
