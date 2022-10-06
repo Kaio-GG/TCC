@@ -19,21 +19,21 @@ export default function UsuarioEmpresaPaginaAgendar() {
                         </div>
                         <div className='inputs1'>
                             <h3>Agendamento</h3>
-                            <input />
-                            <input />
-                            <input />
+                            <input placeholder='Nome completo'/>
+                            <input placeholder='Email'/>
+                            <input placeholder='CPF'/>
                         </div>
                         <div className='inputs'>
-                            <h3>.</h3>
-                            <input />
-                            <input />
-                            <input />
+                            <div className='e'></div>
+                            <input placeholder='Data de nascimento'/>
+                            <input placeholder='Sexo'/>
+                            <input placeholder='Telefone'/>
                         </div>
                     </div>
 
                     <div className='campotexto'>
                         <h3> Agendamento </h3>
-                        <input />
+                        <textarea />
                     </div>
 
                     <div className='botao'>
@@ -41,6 +41,8 @@ export default function UsuarioEmpresaPaginaAgendar() {
                     </div>
                 </div>
             </div>
+
+            
         </main>
     )
 }
