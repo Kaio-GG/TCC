@@ -17,7 +17,7 @@ export default function Novohorario (){
     const [data ,setdata] =useState('')
     const [qtd , setqtd] =useState(0)
     const [horario , sethorario] =useState([])
-    const [dataCarregarHorario , setdataCarregarHorario]= useState('2022-10-23')
+    const [dataCarregarHorario , setdataCarregarHorario]= useState(new Date())
 
 
     async function criarHorario (){
@@ -60,6 +60,8 @@ export default function Novohorario (){
     async function diminuirHorarios (id , qtd){
         try {
             const a = qtd - 1
+            if(qtd <= 1)
+                throw new Error ('Horario não pode ser menor que 1')
             await editarHorario (id , a)
             await CarregarHorario()
             console.log('foi editado')
@@ -137,12 +139,13 @@ export default function Novohorario (){
              
 
             <div className='horarios'>
-             
+            
+
 
                 {render === false
-                ?<div>
+                ?<div  className='nela' >
                 {horario.map (item  =>
-                <div className='card1' onMouseOver={renderp}>
+                <div className='card1' onMouseOver={() => renderp()}>
 
                     <p    > {item.hora}
                     </p>
@@ -150,7 +153,7 @@ export default function Novohorario (){
                 </div>)}
                 </div>
 
-                :<div>
+                :<div className='nela'>
                 {horario.map (item  =>
                 <div  className='card1' >
 
@@ -168,7 +171,7 @@ export default function Novohorario (){
                     </div>
                     </div>)}
                     </div>}   
-
+                    </div>
                 <div className='card-novo' onClick={rendernovo}>
                     ADICIONAR HORARIO              
                 </div>
@@ -183,7 +186,6 @@ export default function Novohorario (){
                   </div>
                 </div>        
                 }
-            </div>
             </div>
             </div>
     )
