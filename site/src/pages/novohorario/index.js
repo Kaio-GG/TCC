@@ -24,6 +24,7 @@ export default function Novohorario (){
     async function criarHorario (){
         try {
             await NovoHorario(idemp ,local , String(hora) , data ,qtd)
+            CarregarHorario()
             console.log('horario cadastrado com sucesso')
         } catch (err) {
            console.log(err.message)
@@ -92,17 +93,8 @@ export default function Novohorario (){
     }
     }
 
-    function contador (){
-        setcont(cont+1) 
-    }
-    function removedor (){
-        setcont(cont-1) 
-    }
     function renderp (){
         setrender(true) 
-    }
-    function renderm (){
-        setrender(render-1) 
     }
     function renderhorario(){
         setrendernovohorario(rendernovohorario-1)
@@ -114,7 +106,9 @@ export default function Novohorario (){
 
 
 
-
+    useEffect(() => {
+        buscar()
+    },[])
 
     useEffect( () => {
 
@@ -138,10 +132,9 @@ export default function Novohorario (){
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
 
                 <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >
-                    <option selected disabled hidden> SELECIONE O LOCAL</option>
                     
-                    {local.map (item => 
-                      <option value={item.local}>{item.local}</option>)}
+                    <option value='morumbi'>morumbi</option>
+                    <option value='santo amaro'>santo amaro</option>
                 </select>
             </div> 
              

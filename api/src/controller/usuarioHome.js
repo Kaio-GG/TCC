@@ -2,7 +2,7 @@ import { Router } from 'express'
 
 import { filtrarMaisProximo, listarEmpresas, melhoresAvaliacaoEmpresas, pesquisaPorNome } from '../repository/homeUsuario.js';
 
-import localStorage from 'local-storage';
+//import localStorage from 'local-storage';
 
 const server = Router();
 
