@@ -1,14 +1,14 @@
 use MyWorkshipDB;
-
 /*--------------------INFORMAÇÕES_USUARIO_EMPRESA--------------------------*/
 
-insert into TB_USUARIO_EMPRESA (DS_CNPJ , DS_INSCRICAO_ESTADUAL , NM_NOME_DA_EMPRESA ,DS_TIPO_DA_EMPRESA, DS_PAIS , DS_ESTADO , DS_CIDADE , DS_ENDERECO , NM_REPRESENTANTE,DS_CPF_REPRESENTANTE,DS_CARGO_REPRESENTANTE,DS_NACIONALIDADE_REPRESENTANTE)
-values("186384460001781", "739733462933", "MySãoPaulo","DENTISTA","BRSIL","SAO PAULO", "São Paulo",'BDSHVBHSDBH' , "Akino Rego", "57348472087", "Gerente", "Brasil");
+insert into TB_USUARIO_EMPRESA (DS_CNPJ,DS_INSCRICAO_ESTADUAL,NM_NOME_DA_EMPRESA,DS_ESTADO,NM_REPRESENTANTE,DS_CPF_REPRESENTANTE,DS_CARGO_REPRESENTANTE,DS_NACIONALIDADE_REPRESENTANTE)
+values("186384460001781", "739733462933", "MySãoPaulo", "São Paulo", "Akino Rego", "57348472087", "Gerente", "Brasil");
 
 select *
 	from TB_USUARIO_EMPRESA;
 
 /*--------------------LOGIN_EMPRESA--------------------------*/
+
     
 
 insert into TB_LOGIN_EMPRESA(ID_USUARIO_EMPRESA, NM_EMAIL,DS_SENHA,DT_ULTLOGIN)
@@ -41,7 +41,7 @@ Select * from tb_pagina_empresa;
 /*--------------------INFORMAÇÕES_EMPRESA_AVALIACAO--------------------------*/
 
 INSERT INTO TB_EMPRESA_AVALIACAO(ID_USUARIO_EMPRESA, id_usuario_cliente , vl_avaliacao, ds_avaliacao, dt_avaliacao)
-values(7, 7, 5 , "Merdaruimmm",  '2022-06-03');
+values(1, 1, 5 , "Merdaruimmm",  '2022-06-03');
 
 select * from TB_EMPRESA_AVALIACAO;
 
@@ -53,21 +53,36 @@ ORDER BY rand()
 LIMIT 4
 ;
 
-/* novo agendamento  */
+SELECT VL_AVALIACAO avaliacao, 
+    IMG_LOGO logo, 
+    DS_DESCRICAO descricao,
+    NM_EMPRESA nome,
+    DS_CIDADE cidade
+FROM TB_PAGINA_EMPRESA
+INNER JOIN TB_USUARIO_CLIENTE on tb_pagina;
+
+ SELECT tb_usuario_cliente.ID_USUARIO_CLIENTE id, 
+    tb_usuario_cliente.ds_cidade cidade,
+    tb_usuario_empresa.ds_cidade cidade2,
+    vl_avaliacao avaliacao,
+    IMG_LOGO logo, 
+    DS_DESCRICAO descricao,
+    NM_EMPRESA nome
+    FROM tb_usuario_empresa, tb_usuario_cliente
+    inner join tb_empresa_avaliacao 
+    on tb_empresa_avaliacao.id_empresa_avaliacao = tb_usuario_cliente.id_usuario_cliente
+	inner join tb_pagina_empresa
+    on tb_pagina_empresa.id_pagina_empresa = tb_usuario_cliente.id_usuario_cliente
+    where tb_usuario_cliente.ds_cidade = tb_usuario_empresa.ds_cidade AND 
+	tb_usuario_cliente.ID_USUARIO_CLIENTE = 1;
+    
+
+insert into tb_pagina_empresa(id_usuario_empresa, nm_empresa, img_logo, ds_descricao)
+values(1, "Mc'Donalds", 1, "achei legal");
+
+select * from tb_pagina_empresa;
 
 
- INSERT INTO TB_AGENDAMENTO (ID_USUARIO_EMPRESA , DS_LOCAL , DS_HORA , DT_AGENDAMENTO , qtd_agendamento)
-					VALUES ( 1 , "santo amaro" , "14:00" , "2022-10-23"  , 10 );
-
-     select 
-             ds_hora          hora ,
-             qtd_agendamento  qtd
-       from  tb_agendamento 
-      where  ID_USUARIO_EMPRESA = 1 && 
-             ds_local           = 'santo amaro' && 
-             DT_AGENDAMENTO     = '2022-10-23'; 
-
-select * from tb_agendamento;
 
 DELETE from tb_empresa_avaliacao where id_empresa_avaliacao = 13;
 
