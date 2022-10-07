@@ -2,6 +2,8 @@ import { Router } from 'express'
 
 import { filtrarMaisProximo, listarEmpresas, melhoresAvaliacaoEmpresas, pesquisaPorNome } from '../repository/homeUsuario.js';
 
+import localStorage from 'local-storage';
+
 const server = Router();
 
 server.get('/home/usuario/busca', async(req, resp) => {
@@ -48,7 +50,11 @@ server.get('/home/usuario/listarEmpresas', async(req, resp) =>{
 
 server.get('/home/usuario/maisProximo', async(req, resp) => {
     try{
-        const a = 
+
+        let { id } = localStorage.getItem(ID_USUARIO_CLIENTE)
+        
+        const resposta = await filtrarMaisProximo(id);
+
         resp.send(resposta)
 
     }catch(err){

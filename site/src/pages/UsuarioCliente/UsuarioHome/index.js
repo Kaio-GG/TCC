@@ -5,6 +5,8 @@ import { avaliacaoEmpresas, buscaDeEmpresas, listarEmpresas, maisProximo } from 
 import Star from './assets/star.svg'
 import Local from './assets/local.svg'
 
+import storage from 'local-storage';
+
 import HeaderUsuario from '../../../components/header-usuario'
 import { useEffect, useState } from 'react'
 
@@ -13,6 +15,7 @@ export default function ClienteHome() {
 
     const [empresa, setEmpresa] = useState([]);
 
+    const [id, setId] = useState(x)
 
     const [render, setRender] = useState(false);
 
@@ -22,8 +25,10 @@ export default function ClienteHome() {
         setEmpresa(resp1);
     }
 
+    var x = localStorage.getItem(id);
+
     async function maisProximas(){
-        const resp = await maisProximo();
+        const resp = await maisProximo(x);
         setEmpresa(resp)
     }
 

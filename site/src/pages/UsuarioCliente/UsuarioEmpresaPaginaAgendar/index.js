@@ -37,7 +37,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
                     </div>
 
                     <div className='botao'>
-                        <button> Proximo </button>
+                        <button><Link to={'./Horario'}>Proximo </Link></button>
                     </div>
                 </div>
             </div>

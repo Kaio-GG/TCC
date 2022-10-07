@@ -50,14 +50,22 @@ export async function melhoresAvaliacaoEmpresas() {
 
 export async function filtrarMaisProximo() {
     const comando = `
-    SELECT ID_USUARIO_CLIENTE id, 
+    SELECT tb_usuario_cliente.ID_USUARIO_CLIENTE id, 
     tb_usuario_cliente.ds_cidade cidade,
-    tb_usuario_empresa.ds_cidade
-    
+    tb_usuario_empresa.ds_cidade cidade2,
+    vl_avaliacao avaliacao,
+    IMG_LOGO logo, 
+    DS_DESCRICAO descricao,
+    NM_EMPRESA nome
     FROM tb_usuario_empresa, tb_usuario_cliente
-    where tb_usuario_cliente.ds_cidade = tb_usuario_empresa.ds_cidade
+    inner join tb_empresa_avaliacao 
+    on tb_empresa_avaliacao.id_empresa_avaliacao = tb_usuario_cliente.id_usuario_cliente
+	inner join tb_pagina_empresa
+    on tb_pagina_empresa.id_pagina_empresa = tb_usuario_cliente.id_usuario_cliente
+    where tb_usuario_cliente.ds_cidade = tb_usuario_empresa.ds_cidade AND 
+	tb_usuario_cliente.ID_USUARIO_CLIENTE = ?;
     `
 
-    const [linhas] = await con.query(comando,  [`%${id}}%`])
+    const [linhas] = await con.query(comando,  [`${id}}`])
     return linhas;
 }
