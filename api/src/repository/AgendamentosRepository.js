@@ -50,7 +50,7 @@ export async function CarregarHorarioEmpresa (info){
 
 export async function buscarLocal (info){
     const comando = `
-    select DS_ENDERECO 
+    select DS_ENDERECO local
       from tb_usuario_empresa
      where id_USUARIO_EMPRESA = ?
     `

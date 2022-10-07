@@ -1,7 +1,7 @@
 import './index.scss';
 import HederEmpresa from '../../components/header-adm-empresa';
 import { useEffect, useState } from 'react';
-import { NovoHorario  ,editarHorario , deletarHorario ,CarregarHorarios } from '../../api/agendamentos.js';
+import { NovoHorario  ,editarHorario , deletarHorario ,CarregarHorarios ,buscarLocal } from '../../api/agendamentos.js';
 
 
 
@@ -12,12 +12,13 @@ export default function Novohorario (){
     const [render , setrender] = useState(false)
     const [rendernovohorario ,setrendernovohorario] = useState (false)
     const [idemp , setid ] = useState(1)
-    const [local , setlocal  ] = useState('morumbi')
+    const [local , setlocal  ] = useState('')
     const [hora , sethora] =useState ('00:00')
     const [data ,setdata] =useState('')
     const [qtd , setqtd] =useState(0)
     const [horario , sethorario] =useState([])
     const [dataCarregarHorario , setdataCarregarHorario]= useState(new Date())
+
 
 
     async function criarHorario (){
@@ -70,7 +71,13 @@ export default function Novohorario (){
         }
     }
 
-
+    async function buscar (){
+        try {
+          setlocal(await buscarLocal(idemp))
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
 
     
 
@@ -116,7 +123,6 @@ export default function Novohorario (){
     },[local, dataCarregarHorario])
 
 
-
     return(
         <div className='pg-novohorario'>
             <HederEmpresa  class='hora'/>
@@ -132,8 +138,10 @@ export default function Novohorario (){
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
 
                 <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >
-                    <option value='santo amaro'>santo amaro</option>
-                    <option value='morumbi'>morumbi</option>
+                    <option selected disabled hidden> SELECIONE O LOCAL</option>
+                    
+                    {local.map (item => 
+                      <option value={item.local}>{item.local}</option>)}
                 </select>
             </div> 
              

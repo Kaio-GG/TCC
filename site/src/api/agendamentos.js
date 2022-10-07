@@ -12,6 +12,13 @@ export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
 }
 
 
+export async function buscarLocal (id ) {
+    const resp = await api.get (`/empresa/buscarlocal/${id}`);
+    
+    return resp.data;
+}
+
+
 export async function NovoHorario (id, local , hora , data , qtd) {
     const t = await api.post ('/empresa/novohorario', {
         id_empresa:id, 
