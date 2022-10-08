@@ -49,7 +49,6 @@ server.delete ('/empresa/deletarhorario/:id' , async (req , resp ) => {
 server.get ('/empresa/carregarhorario', async (req ,resp) => {
     try {
         const info = req.query
-        console.log(info)
         
         const horarios = await CarregarHorarioEmpresa(info)
 
@@ -65,9 +64,10 @@ server.get ('/empresa/carregarhorario', async (req ,resp) => {
 server.get ('/empresa/buscarlocal/:id', async (req ,resp) => {
     try {
         const info = req.params
-        console.log(info)
+        console.log(info )
         const local = await buscarLocal(info)       
         resp.send(local)
+        console.log(local)
     } catch (err) {
         resp.status(404).send({
             erro:err.message

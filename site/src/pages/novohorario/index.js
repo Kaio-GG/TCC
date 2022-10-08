@@ -2,28 +2,29 @@ import './index.scss';
 import HederEmpresa from '../../components/header-adm-empresa';
 import { useEffect, useState } from 'react';
 import { NovoHorario  ,editarHorario , deletarHorario ,CarregarHorarios ,buscarLocal } from '../../api/agendamentos.js';
-
+import storage from 'local-storage';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 export default function Novohorario (){
-    const [cont , setcont] = useState (0)
     const [render , setrender] = useState(false)
     const [rendernovohorario ,setrendernovohorario] = useState (false)
-    const [idemp , setid ] = useState(1)
-    const [local , setlocal  ] = useState('')
+    const [idemp , setid ] = useState(2)
+    const [local , setlocal  ] = useState([])
     const [hora , sethora] =useState ('00:00')
     const [data ,setdata] =useState('')
     const [qtd , setqtd] =useState(0)
     const [horario , sethorario] =useState([])
-    const [dataCarregarHorario , setdataCarregarHorario]= useState(new Date())
+    const [dataCarregarHorario , setdataCarregarHorario]= useState('2022-10-10')
 
-
+    const Navigate =useNavigate()
+    
 
     async function criarHorario (){
         try {
-            await NovoHorario(idemp ,local , String(hora) , data ,qtd)
+            await NovoHorario(idemp ,local.map(item => item.local) , String(hora) , data ,qtd)
             CarregarHorario()
             console.log('horario cadastrado com sucesso')
         } catch (err) {
@@ -33,7 +34,7 @@ export default function Novohorario (){
     }
     async function CarregarHorario (){
         try {
-            const rsp = await CarregarHorarios(idemp , local , dataCarregarHorario)
+            const rsp = await CarregarHorarios(idemp , local.map(item => item.local) , dataCarregarHorario)
             sethorario(rsp)
         } catch (err) {
             console.log(err.message)
@@ -72,9 +73,10 @@ export default function Novohorario (){
         }
     }
 
-    async function buscar (){
+    async function buscar (id){
         try {
-          setlocal(await buscarLocal(idemp))
+          const a = await buscarLocal(id)  
+          setlocal(a)
         } catch (err) {
             console.log(err.message)
         }
@@ -107,7 +109,12 @@ export default function Novohorario (){
 
 
     useEffect(() => {
-        buscar()
+
+            const empresaLogada = storage('Empresa-Logada')
+            setid(empresaLogada.ID_USUARIO_EMPRESA)
+            buscar(idemp)
+            
+        
     },[])
 
     useEffect( () => {
@@ -121,72 +128,60 @@ export default function Novohorario (){
         <div className='pg-novohorario'>
             <HederEmpresa  class='hora'/>
             <div>   
-
-            <div className='alinhado'>
-                <h2>Horarios</h2>
-                <div className='linha'></div>
-            </div>
-
+                <div className='alinhado'>
+                    <h2>Horarios</h2>
+                    <div className='linha'></div>
+                </div>
             <div className='opts'>
-
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
-
-                <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >
+                <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >               
                     
-                    <option value='morumbi'>morumbi</option>
-                    <option value='santo amaro'>santo amaro</option>
+                        
+                {local.map (item =>
+                    <option value={item.local}>{item.local}</option>
+                    )}
+                    
+                
+                
                 </select>
             </div> 
-             
-
             <div className='horarios'>
-            
-
-
                 {render === false
-                ?<div  className='nela' >
-                {horario.map (item  =>
-                <div className='card1' onMouseOver={() => renderp()}>
-
-                    <p    > {item.hora}
-                    </p>
-
-                </div>)}
-                </div>
-
-                :<div className='nela'>
-                {horario.map (item  =>
-                <div  className='card1' >
-
-                        <p  >{item.hora}</p>
-
-                    <div className='btneditarcard'>
-                        
-                        <div className='seta-esquerda' onClick={() => diminuirHorarios(item.id_agendamento, item.qtd)} ></div>
-
-                        <div  >{item.qtd}
-                        </div>
-
-                        <div className='seta-direita' onClick={() => aumentarHorarios(item.id_agendamento, item.qtd)} ></div>
-                        <div className='lixeira' onClick={() => deletar(item.id_agendamento)}></div>                                               
+                    ?<div  className='nela' >
+                    {horario.map (item  =>
+                        <div className='card1' onMouseOver={() => renderp()}>
+                            <p>{item.hora}</p>
                     </div>
-                    </div>)}
+                )}
+                     </div>
+                    :<div className='nela'>
+                        {horario.map (item  =>
+                            <div  className='card1' >
+                                <p>{item.hora}</p>
+                                <div className='btneditarcard'>
+                                    <img src='/assets/images/seta esquerda.svg' onClick={() => diminuirHorarios(item.id_agendamento, item.qtd)} alt='' />
+                                    <div>{item.qtd}</div>
+                                    <img src='/assets/images/seta direita.svg' onClick={() => aumentarHorarios(item.id_agendamento, item.qtd)} alt='' /> &nbsp;
+                                    <img src='/assets/images/lixeira.svg' onClick={() => deletar(item.id_agendamento)} alt=''/> &nbsp;                                              
+                                </div>
+                            </div>
+                    )}
                     </div>}   
-                    </div>
+            </div>
                 <div className='card-novo' onClick={rendernovo}>
                     ADICIONAR HORARIO              
                 </div>
-                {rendernovohorario === true &&
-                 <div className='opts-2'>
-                  <input className='info-novo' type='time' placeholder='digite o horario' value={hora} onChange={e => sethora(e.target.value)} />
-                  <input className='info-novo' type='date' value={data} onChange={e => setdata(e.target.value)} />
-                  <input className='info-novo' type='number' value={qtd} onChange={e => setqtd(e.target.value)}/>
-                  <div className='btns'>  
-                    <button onClick={criarHorario} >SALVAR</button>
-                    <button className='btn-pronto' onClick={renderhorario} >PRONTO</button>
-                  </div>
-                </div>        
-                }
+                    {rendernovohorario === true &&
+                        <div className='opts-2'>
+                                <input className='info-novo' type='time' placeholder='digite o horario' value={hora} onChange={e => sethora(e.target.value)} />
+                                <input className='info-novo' type='date' value={data} onChange={e => setdata(e.target.value)} />
+                                <input className='info-novo' type='number' min='1' value={qtd} onChange={e => setqtd(e.target.value)}/>
+                            <div className='btns'>  
+                                <button onClick={criarHorario} >SALVAR</button>
+                                <button className='btn-pronto' onClick={renderhorario} >PRONTO</button>
+                            </div>
+                    </div>        
+                    }
             </div>
             </div>
     )

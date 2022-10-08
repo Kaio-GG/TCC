@@ -50,10 +50,11 @@ export async function CarregarHorarioEmpresa (info){
 
 export async function buscarLocal (info){
     const comando = `
-    select DS_ENDERECO local
+    select DS_ENDERECO local,
+           id_USUARIO_EMPRESA id
       from tb_usuario_empresa
      where id_USUARIO_EMPRESA = ?
     `
-    const [lista] = await con.query (comando , [info.id])
-    return lista
+    const lista = await con.query (comando , [info.id])
+    return lista[0]
 }

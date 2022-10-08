@@ -7,14 +7,13 @@ const api = axios.create({
 
 export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
     const resp = await api.get (`/empresa/carregarhorario?id=${idEmpresa}&local=${localAge}&data=${dataAge}`);
-    console.log(resp)
     return resp.data;
 }
 
 
 export async function buscarLocal (id ) {
     const resp = await api.get (`/empresa/buscarlocal/${id}`);
-    
+    console.log(id)
     return resp.data;
 }
 
