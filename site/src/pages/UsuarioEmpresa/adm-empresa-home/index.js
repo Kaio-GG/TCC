@@ -1,6 +1,6 @@
 import './index.scss'
-import Cardadm from '../../components/card-adm-empresa'
-import Filtroemp from '../../components/filtro-adm-empresa'
+import Cardadm from '../../../components/card-adm-empresa'
+import Filtroemp from '../../../components/filtro-adm-empresa'
 
 
 

@@ -1,8 +1,8 @@
 import './index.scss';
-import HederEmpresa from '../../components/header-adm-empresa';
+import HederEmpresa from '../../../components/header-adm-empresa';
 import { useEffect, useState } from 'react';
-import { NovoHorario  ,editarHorario , deletarHorario ,CarregarHorarios ,buscarLocal } from '../../api/agendamentos.js';
-import storage from 'local-storage';
+import { NovoHorario  ,editarHorario , deletarHorario ,CarregarHorarios ,buscarLocal } from '../../../api/agendamentos.js';
+import storage, { get } from 'local-storage';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -17,7 +17,9 @@ export default function Novohorario (){
     const [data ,setdata] =useState('')
     const [qtd , setqtd] =useState(0)
     const [horario , sethorario] =useState([])
-    const [dataCarregarHorario , setdataCarregarHorario]= useState('2022-10-10')
+    const [dataCarregarHorario , setdataCarregarHorario]= useState('')
+
+
 
     const Navigate =useNavigate()
     
@@ -82,7 +84,24 @@ export default function Novohorario (){
         }
     }
 
+
     
+
+
+
+
+    function novahora (){
+        let hr = new Date()
+        let dia = hr.getDay()
+        console.log(dia)
+        let mes = hr.getMonth()
+        let ano = hr.getFullYear()
+        String(dia ,mes ,ano)
+        setdataCarregarHorario(ano +'-0' + mes +'-0' + dia )
+        console.log(hr)
+        console.log(mes)
+    }
+
 
 
 
@@ -113,7 +132,7 @@ export default function Novohorario (){
             const empresaLogada = storage('Empresa-Logada')
             setid(empresaLogada.ID_USUARIO_EMPRESA)
             buscar(idemp)
-            
+            novahora()
         
     },[])
 
@@ -176,6 +195,7 @@ export default function Novohorario (){
                                 <input className='info-novo' type='time' placeholder='digite o horario' value={hora} onChange={e => sethora(e.target.value)} />
                                 <input className='info-novo' type='date' value={data} onChange={e => setdata(e.target.value)} />
                                 <input className='info-novo' type='number' min='1' value={qtd} onChange={e => setqtd(e.target.value)}/>
+                                                                
                             <div className='btns'>  
                                 <button onClick={criarHorario} >SALVAR</button>
                                 <button className='btn-pronto' onClick={renderhorario} >PRONTO</button>
