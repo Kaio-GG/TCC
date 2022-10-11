@@ -11,6 +11,10 @@ import ConsultaEmpresa from './pages/UsuarioCliente/UsuarioEmpresaPagina/index.j
 import AgendarEmpresa from './pages/UsuarioCliente/UsuarioEmpresaPaginaAgendar/index.js'
 import AgendarHorarioEmpresa from './pages/UsuarioCliente/UsuarioEmpresaPaginaAgendarHorario/index.js'
 import AgendarFinalizado from './pages/UsuarioCliente/UsuarioEmpresaFinalizado/index.js'
+import HomeEmpresa from './pages/UsuarioEmpresa/adm-empresa-home/index.js'
+
+
+
 
 export default function Index(){
 	return(
@@ -28,6 +32,7 @@ export default function Index(){
 				<Route path='/home/usuario/empresa/consulta/agendar' element={<AgendarEmpresa/>}/>
 				<Route path='/home/usuario/empresa/consulta/agendar/Horario' element={<AgendarHorarioEmpresa/>}/>
 				<Route path='/home/usuario/empresa/consulta/agendar/Horario/finalizado' element={<AgendarFinalizado/>}/>
+				<Route path='/home/empresa' element={<HomeEmpresa/>}/>
 			</Routes>
 		</BrowserRouter>	
 )

@@ -2,20 +2,28 @@
 
 .filtro-adm-empresa{
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
+    justify-content: center;
     flex-direction: row;
     margin-bottom: 20px;
     width: 40%;
-    
+    margin-top: 5%;
+    height: 2.5%;
+    font-family: 'KumbhSans-Regular';
     .btn{
         display: flex;
         color: #fff;
         background-color: #263238;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         width: 32%;
+        height: 100%;
         font-size: 16px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+
+        
+    }
+    .seta{
+        height: 16px;
     }
 }

@@ -5,16 +5,17 @@
     color: #fff;
     justify-content: flex-start;
     width: 100%;
+    box-sizing: border-box;
+    margin: 0px;
     .alinhamento{
         display: flex;
         align-items: center;
         flex-direction: row;
         justify-content: space-between;
-        width: 70%;
+        width: 50%;
         height: 7vh;
         font-family:'KumbhSans-Regular';
-        padding-left: 1em;
-       
+        font-size: 16px;
         .pagina{
             display: flex;
             align-items: center;

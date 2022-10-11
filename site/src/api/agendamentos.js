@@ -47,7 +47,7 @@ export async function deletarHorario (id) {
 }
 
 
-export async function agendarHorario (id_agendamento, id_cliente , nome , email , cpf , telefone , sexo , nascimento , situacao) {
+export async function agendarHorario (id_agendamento, id_cliente , nome , email , cpf , telefone , sexo , nascimento ) {
     const t = await api.get ('/usuario/carregarhorario', {
         id_agendamento : id_agendamento,
         id_cliente: id_cliente,
@@ -57,7 +57,6 @@ export async function agendarHorario (id_agendamento, id_cliente , nome , email 
         telefone: telefone ,
         sexo: sexo,
         nascimento: nascimento,
-        situacao:situacao
     });
     return t.data;
 }

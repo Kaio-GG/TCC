@@ -14,8 +14,8 @@ export default function HeaderEmpresa (props){
             <div className='part-2'>
             <div className='alinhamento'>
                 {props.class === 'home' 
-                ? <div className= 'pagina'>Home</div> 
-                : <div> Home </div>}
+                ? <div className= 'pagina' >Home</div> 
+                : <div style={{paddingLeft:'3em'}}> Home </div>}
 
                 {props.class === 'confirmadas' 
                 ? <div className= 'pagina'>Confirmada</div> 
