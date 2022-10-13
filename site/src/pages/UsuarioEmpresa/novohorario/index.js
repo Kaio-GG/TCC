@@ -2,8 +2,8 @@ import './index.scss';
 import HederEmpresa from '../../../components/header-adm-empresa';
 import { useEffect, useState } from 'react';
 import { NovoHorario  ,editarHorario , deletarHorario ,CarregarHorarios ,buscarLocal } from '../../../api/agendamentos.js';
-import storage, { get } from 'local-storage';
-import { useNavigate } from 'react-router-dom';
+import storage from 'local-storage';
+
 
 
 
@@ -21,7 +21,6 @@ export default function Novohorario (){
 
 
 
-    const Navigate =useNavigate()
     
 
     async function criarHorario (){
@@ -83,13 +82,6 @@ export default function Novohorario (){
             console.log(err.message)
         }
     }
-
-
-    
-
-
-
-
     function novahora (){
         let hr = new Date()
         let dia = hr.getDay()
@@ -101,11 +93,6 @@ export default function Novohorario (){
         console.log(hr)
         console.log(mes)
     }
-
-
-
-
-
     function rendernovo (){
     if(rendernovohorario === false){
         setrendernovohorario(true)
@@ -120,13 +107,6 @@ export default function Novohorario (){
     function renderhorario(){
         setrendernovohorario(rendernovohorario-1)
     }
-
-
-
-
-
-
-
     useEffect(() => {
 
             const empresaLogada = storage('Empresa-Logada')

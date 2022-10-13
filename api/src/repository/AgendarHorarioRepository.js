@@ -4,7 +4,7 @@ import { con } from "./connection.js";
 
 export default async function AgendarHorario (info){
     const comando = `                     
-    insert INTO TB_CLIENTE_AGENDAMENTO (ID_AGENDAMENTO , ID_USUARIO_CLIENTE , NM_PESSOA , DS_EMAIL , DS_CPF , DS_TELEFONE , DS_SEXO , DT_NASCIMENTO , DS_SITUACAO , DS_DESCRICAO)
+    insert INTO TB_AGENDAMENTO (ID_AGENDAMENTO , ID_USUARIO_CLIENTE , NM_PESSOA , DS_EMAIL , DS_CPF , DS_TELEFONE , DS_SEXO , DT_NASCIMENTO , DS_SITUACAO , DS_DESCRICAO)
 							  VALUE( ? , ? , ? , ? , ? , ? , ? , ? , 'ESPERANDO' , ?)
  
     `

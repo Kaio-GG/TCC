@@ -1,10 +1,20 @@
+import { useNavigate } from 'react-router-dom'
 import './index.scss'
 
 
 
 export default function HeaderEmpresa (props){
 
-    
+const navigate = useNavigate()    
+
+function home (){
+    navigate('/home/empresa')
+}
+function novohorario (){
+    navigate('/novohorario')
+}
+
+
 
     return(
         <div className='cabecalho'>
@@ -14,8 +24,8 @@ export default function HeaderEmpresa (props){
             <div className='part-2'>
             <div className='alinhamento'>
                 {props.class === 'home' 
-                ? <div className= 'pagina' >Home</div> 
-                : <div style={{paddingLeft:'3em'}}> Home </div>}
+                ? <div className= 'pagina'  >Home</div> 
+                : <div style={{paddingLeft:'3em'}} onClick={home}> Home </div>}
 
                 {props.class === 'confirmadas' 
                 ? <div className= 'pagina'>Confirmada</div> 
@@ -27,7 +37,7 @@ export default function HeaderEmpresa (props){
 
                 {props.class === 'hora'   
                 ? <div className= 'pagina'>Novo Horario</div> 
-                : <div> Novo Horario</div>}
+                : <div onClick={novohorario}> Novo Horario</div>}
 
                 {props.class === 'historico' 
                 ? <div className= 'pagina'>Historico</div> 

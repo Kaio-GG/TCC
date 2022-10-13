@@ -3,7 +3,7 @@ import { con } from "./connection.js";
 
 export  async function NovoHorario (info){
     const comando = `
-    INSERT INTO TB_AGENDAMENTO (ID_USUARIO_EMPRESA , DS_LOCAL , DS_HORA , DT_AGENDAMENTO , qtd_agendamento)
+    INSERT INTO TB_HORARIO (ID_USUARIO_EMPRESA , DS_LOCAL , DS_HORA , DT_AGENDAMENTO , qtd_agendamento)
 					VALUES ( ? , ? , ? , ?  , ? )
     `
     const [linhas] = await con.query(comando, [info.id_empresa, info.local  , info.hora , info.data , info.qtd]);
@@ -15,9 +15,9 @@ export  async function NovoHorario (info){
 
 export  async function EditarHorario (info){
     const comando = `                      
-                    update tb_agendamento 
+                    update tb_horario 
                        set QTD_AGENDAMENTO = ?
-                     where ID_AGENDAMENTO  = ?
+                     where ID_horario  = ?
     `
     const linhas = await con.query (comando, [info.qtd , info.id_agendamento ]);
     return info;
@@ -25,7 +25,7 @@ export  async function EditarHorario (info){
 
 export async function ApagarHorario (info){
     const comando = `
-        delete from tb_agendamento where id_agendamento = ?`
+        delete from tb_horario where id_HORARIO = ?`
 
     const [linhas] = await con.query ( comando,  [ info.id ]);
     
@@ -36,10 +36,10 @@ export async function ApagarHorario (info){
 
 export async function CarregarHorarioEmpresa (info){
     const comando = `
-    select  id_agendamento,
+    select  id_horario,
             ds_hora          hora ,
             qtd_agendamento  qtd
-      from  tb_agendamento 
+      from  tb_horario 
      where  ID_USUARIO_EMPRESA = ? && 
             ds_local           = ? && 
             DT_AGENDAMENTO     = ?   
@@ -57,4 +57,44 @@ export async function buscarLocal (info){
     `
     const lista = await con.query (comando , [info.id])
     return lista[0]
+}
+
+
+export async function buscarAgendamentos (info){
+    const comando = `
+    select  TB_AGENDAMENTO.ID_AGENDAMENTO   'id',
+	        TB_AGENDAMENTO.NM_PESSOA        'nome' ,
+	        TB_HORARIO.DS_LOCAL   	        'local',							
+	        TB_HORARIO.DS_HORA    	        'hora' ,
+            TB_HORARIO.DT_AGENDAMENTO       'data' 
+    FROM 
+	        TB_HORARIO
+    INNER JOIN
+	        TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+     WHERE
+            TB_HORARIO.ID_USUARIO_EMPRESA = ?
+    `
+    const [linhas] = await con.query (comando, [info.id])
+    return linhas
+
+}
+
+export async function buscarAgendamentosPorData (info){
+    const comando = `
+    select 	TB_HORARIO.ID_HORARIO        ,
+            TB_AGENDAMENTO.ID_AGENDAMENTO,
+            TB_HORARIO.ID_USUARIO_EMPRESA 'id'   ,	
+            TB_AGENDAMENTO.NM_PESSOA  	 'nome' ,
+            TB_HORARIO.DS_LOCAL   	     'local',							
+            TB_HORARIO.DS_HORA    	     'hora' ,
+            TB_HORARIO.DT_AGENDAMENTO     'data' 
+      FROM 
+            TB_HORARIO
+    INNER JOIN
+            TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+         WHERE
+            TB_HORARIO.ID_USUARIO_EMPRESA = ? AND
+            TB_HORARIO.DT_AGENDAMENTO  =  ? `
+    const [linhas] = await con.query (comando, [info.id , info.data])
+    return linhas        
 }

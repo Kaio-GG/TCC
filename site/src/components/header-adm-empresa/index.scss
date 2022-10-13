@@ -7,6 +7,7 @@
     width: 100%;
     box-sizing: border-box;
     margin: 0px;
+    cursor: pointer;
     .alinhamento{
         display: flex;
         align-items: center;
@@ -16,6 +17,7 @@
         height: 7vh;
         font-family:'KumbhSans-Regular';
         font-size: 16px;
+        cursor: pointer;
         .pagina{
             display: flex;
             align-items: center;

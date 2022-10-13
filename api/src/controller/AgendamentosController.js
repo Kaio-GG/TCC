@@ -1,4 +1,4 @@
-import { NovoHorario , EditarHorario , ApagarHorario , CarregarHorarioEmpresa ,buscarLocal } from "../repository/agendamentosRepository.js";
+import { NovoHorario , EditarHorario , ApagarHorario , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData } from "../repository/agendamentosRepository.js";
 
 import { Router } from "express";
 const server = Router();
@@ -64,10 +64,8 @@ server.get ('/empresa/carregarhorario', async (req ,resp) => {
 server.get ('/empresa/buscarlocal/:id', async (req ,resp) => {
     try {
         const info = req.params
-        console.log(info )
         const local = await buscarLocal(info)       
         resp.send(local)
-        console.log(local)
     } catch (err) {
         resp.status(404).send({
             erro:err.message
@@ -76,6 +74,33 @@ server.get ('/empresa/buscarlocal/:id', async (req ,resp) => {
 }  )
 
 
+server.get ('/empresa/carregarhorario/:id' , async (req , resp) =>{
+try {
+    const info = req.params
+    const agendamentos = await buscarAgendamentos(info)
+    resp.send(agendamentos)
+
+
+} catch (err) {
+    resp.status(401).send({
+        erro:err.message
+    })
+}
+})
+
+server.get ('/empresa/carregarhorariopordata/:id/:data' , async (req , resp) =>{
+    try {
+        const info = req.params
+        const agendamentos = await buscarAgendamentosPorData (info)
+        resp.send(agendamentos)
+    
+    
+    } catch (err) {
+        resp.status(401).send({
+            erro:err.message
+        })
+    }
+    })
 
 
 
