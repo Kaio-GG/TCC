@@ -26,4 +26,17 @@
     .seta{
         height: 16px;
     }
+    input{
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 100%;
+        font-family: 'KumbhSans-Regular';
+    }
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        filter: invert(1) brightness(100%) sepia(10000000%) saturate(100%) hue-rotate(140deg) ;
+      
+}
 }

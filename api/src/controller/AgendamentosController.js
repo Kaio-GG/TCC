@@ -1,4 +1,4 @@
-import { NovoHorario , EditarHorario , ApagarHorario , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData } from "../repository/agendamentosRepository.js";
+import { NovoHorario , EditarHorario , ApagarHorario , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento } from "../repository/agendamentosRepository.js";
 
 import { Router } from "express";
 const server = Router();
@@ -29,6 +29,38 @@ server.put ('/empresa/editarhorario' , async (req , resp ) => {
     }
 })
 
+server.put ('/empresa/confirmar/:id' , async (req , resp ) => {
+    try {
+        const info = req.params
+        const ca = await confirmarAgendamento(info)
+        if(ca != 1)throw new Error('agendamento falhou') 
+        resp.status(204).send('confirmado')   
+
+    } catch (err) {
+        resp.status(401).send({
+           erro : err.message
+        })
+    }
+})
+
+server.put ('/empresa/recusar/:id' , async (req , resp ) => {
+    try {
+        const info = req.params
+        const ca = await recusarAgendamento(info)
+        if(ca != 1)throw new Error('agendamento falhou') 
+        resp.status(204).send('RECUSADO')   
+
+    } catch (err) {
+        resp.status(401).send({
+           erro : err.message
+        })
+    }
+})
+
+
+
+
+
 server.delete ('/empresa/deletarhorario/:id' , async (req , resp ) => {
     try {
         const info = req.params
@@ -36,7 +68,6 @@ server.delete ('/empresa/deletarhorario/:id' , async (req , resp ) => {
         const dh = await ApagarHorario (info)       
         console.log(dh)
         if(dh != 1) throw new Error ('agendamento nao excluido')
-
         resp.status(202).send('agendamento excluido') 
 
     } catch (err) {
@@ -79,8 +110,6 @@ try {
     const info = req.params
     const agendamentos = await buscarAgendamentos(info)
     resp.send(agendamentos)
-
-
 } catch (err) {
     resp.status(401).send({
         erro:err.message

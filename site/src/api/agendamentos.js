@@ -8,7 +8,20 @@ const api = axios.create({
 export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
     const resp = await api.get (`/empresa/carregarhorario?id=${idEmpresa}&local=${localAge}&data=${dataAge}`);
     return resp.data;
+} 
+
+
+export async function confirmar (id){
+    const resp = await api.put (`/empresa/confirmar/${id}`)
+    return resp.data
 }
+
+
+export async function recusar (id){
+    const resp = await api.put   (`/empresa/recusar/${id}`)
+    return resp.data
+}
+
 
 
 export async function buscarLocal (id) {
@@ -27,10 +40,6 @@ export async function agendamentos (id){
     const resp = await api.get (`/empresa/carregarhorario/${id}`)
     return resp.data
 } 
-
-
-
-
 
 
 export async function NovoHorario (id, local , hora , data , qtd) {

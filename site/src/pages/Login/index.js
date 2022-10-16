@@ -25,7 +25,7 @@ export default function Index(){
             
             const r = await login(email, senha);
             console.log(r.BT_LOGIN)
-            if (r.BT_LOGIN == 0){
+            if (r.BT_LOGIN === 0){
                 storage('Cliente-Logado', r);
                 Navigate('/home/usuario');
             } 

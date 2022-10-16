@@ -23,6 +23,32 @@ export  async function EditarHorario (info){
     return info;
 }
 
+export  async function confirmarAgendamento (info){
+    const comando = `   
+    update 		tb_agendamento
+	   set 	    ds_situacao = 'CONFIRMADA'
+	 where 	    ID_agendamento = ? 
+                 
+    `
+    const [linhas] = await con.query (comando, [info.id ]);
+    return linhas.affectedRows
+}
+
+
+export  async function recusarAgendamento (info){
+    const comando = `   
+    update 		tb_agendamento
+	   set 	    ds_situacao = 'RECUSADO'
+	 where 	    ID_agendamento = ? 
+                 
+    `
+    const [linhas] = await con.query (comando, [info.id ]);
+    return linhas.affectedRows;
+}
+
+
+
+
 export async function ApagarHorario (info){
     const comando = `
         delete from tb_horario where id_HORARIO = ?`
@@ -66,13 +92,14 @@ export async function buscarAgendamentos (info){
 	        TB_AGENDAMENTO.NM_PESSOA        'nome' ,
 	        TB_HORARIO.DS_LOCAL   	        'local',							
 	        TB_HORARIO.DS_HORA    	        'hora' ,
-            TB_HORARIO.DT_AGENDAMENTO       'data' 
+            TB_HORARIO.DT_AGENDAMENTO       'data' ,
+            TB_AGENDAMENTO.DS_SITUACAO      'situacao'
     FROM 
 	        TB_HORARIO
     INNER JOIN
 	        TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
      WHERE
-            TB_HORARIO.ID_USUARIO_EMPRESA = ?
+            TB_HORARIO.ID_USUARIO_EMPRESA = ? AND TB_AGENDAMENTO.DS_SITUACAO = 'ESPERANDO'
     `
     const [linhas] = await con.query (comando, [info.id])
     return linhas
