@@ -12,7 +12,7 @@ import AgendarEmpresa from './pages/UsuarioCliente/UsuarioEmpresaPaginaAgendar/i
 import AgendarHorarioEmpresa from './pages/UsuarioCliente/UsuarioEmpresaPaginaAgendarHorario/index.js'
 import AgendarFinalizado from './pages/UsuarioCliente/UsuarioEmpresaFinalizado/index.js'
 import HomeEmpresa from './pages/UsuarioEmpresa/adm-empresa-home/index.js'
-
+import InformacoesHome from './pages/UsuarioEmpresa/informacoesHome/index.js'
 
 
 
@@ -33,6 +33,7 @@ export default function Index(){
 				<Route path='/home/usuario/empresa/consulta/agendar/Horario' element={<AgendarHorarioEmpresa/>}/>
 				<Route path='/home/usuario/empresa/consulta/agendar/Horario/finalizado' element={<AgendarFinalizado/>}/>
 				<Route path='/home/empresa' element={<HomeEmpresa/>}/>
+				<Route path='/empresa/informacoes' element={<InformacoesHome/>}/>
 			</Routes>
 		</BrowserRouter>	
 )

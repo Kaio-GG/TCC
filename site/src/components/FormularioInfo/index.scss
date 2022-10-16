@@ -1,0 +1,24 @@
+
+
+.pg_info{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    .caixa{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #fff;
+        width: 60%;
+    }
+    .informacoes{
+        justify-content: center;
+        display: flex;
+        background-color: #fff;
+        flex-direction: row;
+        .infos{
+            display: flex;
+            flex-direction: column;
+        }    
+    }
+}
