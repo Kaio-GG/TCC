@@ -8,6 +8,7 @@ import LoginEmpresaController from './controller/CadastroLoginController.js';
 import AgendarHorarioController from './controller/AgendarClienteController.js';
 import AgendamentosController from './controller/AgendamentosController.js'
 import usuarioHome from './controller/usuarioHome.js'
+import PaginaEmpresa from './controller/PaginaEmpresaController.js'
 
 
 
@@ -29,6 +30,7 @@ server.use(AgendarHorarioController);
 server.use(AgendamentosController);
 server.use(cadastroCliente);
 server.use(usuarioHome);
+server.use(PaginaEmpresa);
 
 
 server.listen(process.env.PORT,
