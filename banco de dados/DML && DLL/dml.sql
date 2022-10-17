@@ -81,6 +81,96 @@ insert into tb_pagina_empresa(id_usuario_empresa, nm_empresa, img_logo, ds_descr
 values(1, "Mc'Donalds", 1, "achei legal");
 
 select * from tb_pagina_empresa;
+/*----------------------------- NOVO HORARIO ---------------------------------*/
+
+
+ INSERT INTO TB_HORARIO (ID_USUARIO_EMPRESA , DS_LOCAL , DS_HORA , DT_AGENDAMENTO , qtd_agendamento)
+					VALUES ( 3 , "RUA BONIFACIO ASIOLI N 47" , "14:00" , "2022-10-06"  , 10 );
+
+     select 
+             ds_hora          hora ,
+             qtd_agendamento  qtd
+       from  tb_agendamento 
+      where  ID_USUARIO_EMPRESA = 1 && 
+             ds_local           = 'santo amaro' && 
+             DT_AGENDAMENTO     = '2022-10-23'; 
+
+select * from tb_HORARIO;
+
+
+
+/*------------------------- NOVO AGENDAMENTO ------------------------------*/
+
+
+ insert INTO TB_AGENDAMENTO (ID_HORARIO , ID_USUARIO_CLIENTE , NM_PESSOA , DS_EMAIL , DS_CPF , DS_TELEFONE , DS_SEXO , DT_NASCIMENTO , DS_SITUACAO , DS_DESCRICAO)
+							  VALUE( 11 , 1 , 'KAIO GG' , 'KAIOFDSS@GMAIL.COM' , '5404023390', '958431234' , 'MASCULINO' , '2005-12-23' , 'ESPERANDO' , '3VFBVVNOSDRFVIDFRNBIRPDBPIDNVFSJSNVP');
+
+update 		tb_agendamento
+	set 	ds_situacao = 'CONFIRMADA'
+	where 	ID_agendamento = 4 ;
+    
+update 		tb_agendamento
+	set 	ds_situacao = 'RECUSADA'
+	where 	ID_agendamento = 4 ;    
+
+ 
+ 
+ 
+SELECT * FROM TB_AGENDAMENTO;
+
+select TB_HORARIO.ID_HORARIO        ,
+	   TB_HORARIO.ID_USUARIO_EMPRESA 'ID'   ,	
+	   TB_AGENDAMENTO.NM_PESSOA  	 'NOME' ,
+	   TB_HORARIO.DS_LOCAL   	     'LOCAL',							
+	   TB_HORARIO.DS_HORA    	     'HORA' ,
+       TB_HORARIO.DT_AGENDAMENTO     'DATA' 
+  FROM 
+	   TB_HORARIO
+INNER JOIN
+	   TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+     WHERE
+     TB_HORARIO.ID_USUARIO_EMPRESA = 3;
+
+
+
+select  
+		TB_AGENDAMENTO.ID_AGENDAMENTO	'id'	,
+		TB_AGENDAMENTO.NM_PESSOA  'NOME' ,
+		TB_HORARIO.DS_LOCAL   	 'LOCAL',						
+		TB_HORARIO.DS_HORA    	 'HORA' ,
+		TB_HORARIO.DT_AGENDAMENTO 'DATA' ,
+		TB_AGENDAMENTO.DS_DESCRICAO 'DESC',	
+		TB_AGENDAMENTO.DS_EMAIL   'EMAIL',
+		TB_AGENDAMENTO.DS_CPF	 'CPF',
+		TB_AGENDAMENTO.DS_SEXO	'SEXO',
+		TB_AGENDAMENTO.DS_TELEFONE  'TELEFONE',
+		TB_AGENDAMENTO.DT_NASCIMENTO 'NASCIMENTO'
+  FROM 
+		TB_HORARIO
+INNER JOIN
+		TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+     WHERE
+		TB_AGENDAMENTO.ID_AGENDAMENTO = '1';
+
+
+
+
+
+select 	TB_HORARIO.ID_HORARIO        ,
+		TB_AGENDAMENTO.ID_AGENDAMENTO,
+		TB_HORARIO.ID_USUARIO_EMPRESA 'ID'   ,	
+		TB_AGENDAMENTO.NM_PESSOA  	 'NOME' ,
+		TB_HORARIO.DS_LOCAL   	     'LOCAL',							
+		TB_HORARIO.DS_HORA    	     'HORA' ,
+		TB_HORARIO.DT_AGENDAMENTO     'DATA' 
+  FROM 
+		TB_HORARIO
+INNER JOIN
+		TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+     WHERE
+		TB_HORARIO.ID_USUARIO_EMPRESA = 3 AND
+		TB_HORARIO.DT_AGENDAMENTO  =   '2022-10-23';
+
 
 
 
