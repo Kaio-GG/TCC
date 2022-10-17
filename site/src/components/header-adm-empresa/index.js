@@ -13,7 +13,9 @@ function home (){
 function novohorario (){
     navigate('/novohorario')
 }
-
+function paginaempresa (){
+    navigate('/home/empresa/pagina-empresa')
+}
 
 
     return(
@@ -29,7 +31,7 @@ function novohorario (){
 
                 {props.class === 'perfil' 
                 ? <div className= 'pagina'>Perfil</div> 
-                : <div> Perfil </div>}
+                : <div onClick={paginaempresa}> Perfil </div>}
 
                 {props.class === 'hora'   
                 ? <div className= 'pagina'>Novo Horario</div> 
