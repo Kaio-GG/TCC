@@ -125,3 +125,29 @@ export async function buscarAgendamentosPorData (info){
     const [linhas] = await con.query (comando, [info.id , info.data])
     return linhas        
 }
+
+export async function buscarinformacoes (info){
+    const comando =  `
+select TB_AGENDAMENTO.ID_AGENDAMENTO	'id'	,
+	   TB_AGENDAMENTO.NM_PESSOA  'nome' ,
+	   TB_HORARIO.DS_LOCAL   	 'local',						
+	   TB_HORARIO.DS_HORA    	 'hora' ,
+       TB_HORARIO.DT_AGENDAMENTO 'data' ,
+	   TB_AGENDAMENTO.DS_DESCRICAO 'desc',	
+       TB_AGENDAMENTO.DS_EMAIL   'email',
+       TB_AGENDAMENTO.DS_CPF	 'cpf',
+       TB_AGENDAMENTO.DS_SEXO	'sexo',
+       TB_AGENDAMENTO.DS_TELEFONE  'tel',
+       TB_AGENDAMENTO.DT_NASCIMENTO 'nas',
+       TB_AGENDAMENTO.DS_SITUACAO   'situ'
+  FROM 
+	   TB_HORARIO
+INNER JOIN
+	   TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+     WHERE
+		TB_AGENDAMENTO.ID_AGENDAMENTO = ?;
+`
+const [linhas] = await con.query (comando , [info.id])
+console.log(info.id)
+return linhas[0]
+}

@@ -8,13 +8,16 @@
     margin: 0px;
     font-family: 'KumbhSans-SemiBold';
     flex-direction: column;
-    font-size: 25px;
     height:200vh;
-
+    .linha{
+        border: #000 solid 2px;
+        width: 20%;
+        margin-left: 5%;
+        border-radius: 10px;
+    }
     h2{
         margin-top: 4%;
         margin-left: 5%;
-        text-decoration: underline 5px solid ;
         font-family: 'KumbhSans-SemiBold';
     }
     input{
@@ -23,9 +26,10 @@
         margin-top: 2%;
         width: 50vw;
         margin-left: 5%;
-        height: 18%;
+        height: 25%;
         font-size: 20px;
         font-family: 'KumbhSans-Regular';
+        font-weight: 600;
     }
     select{
         border: 0;
@@ -43,9 +47,10 @@
         margin-top: 2%;
         width: 50vw;
         margin-left: 5%;
-        height: 18%;
+        height: 25%;
         font-size: 100%;
         font-family: 'KumbhSans-Regular';
+        font-weight: 600;
     }
     .opts-2{
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -96,6 +101,7 @@
         p{
             padding-left: 20px;
         }
+        font-weight: 600;
     }
     .alinhado1{
         display: flex;

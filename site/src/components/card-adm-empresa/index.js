@@ -1,12 +1,12 @@
 import './index.scss'
-import {  useNavigate } from 'react-router-dom'
+import {  useNavigate , useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { confirmar, recusar } from '../../api/agendamentos.js'
 
 
 
 export default function Cardadm (props){
-
+    const navigate = useNavigate()
     async function aceitarAgendamento (id){
         await confirmar (id)
     }
@@ -14,6 +14,9 @@ export default function Cardadm (props){
         await recusar(id)
     }
 
+    function info (id){
+        navigate(`/empresa/${id}/informacoes`)
+    }
 
     return(
         <div className="card">
@@ -25,7 +28,7 @@ export default function Cardadm (props){
                 <img src='/assets/images/verificar.svg' alt='' onClick={() => aceitarAgendamento(props.item.id)} />
                 <img src='/assets/images/excluir.svg' alt='' onClick={() => agendamentoRecusado(props.item.id)} />
             </div>    
-            <div> INFORMAÇÕES</div>
+            <div onClick={() => info(props.item.id)}> INFORMAÇÕES</div>
         </div>
     )
 }

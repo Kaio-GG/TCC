@@ -10,6 +10,11 @@ export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
     return resp.data;
 } 
 
+export async function CarregarInfo (id) {
+    const resp = await api.get (`/empresa/carregarinfo/${id}`);
+    return resp.data;
+} 
+
 
 export async function confirmar (id){
     const resp = await api.put (`/empresa/confirmar/${id}`)

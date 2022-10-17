@@ -2,4 +2,70 @@
     display: flex;
     background-color: #F5F5F5;
     justify-content: center;
+    align-items: center;
+    height: 150vh;
+    flex-direction: column;    
+    .cards{
+        display: flex;
+        justify-content: space-between;
+        align-items: center ;
+        flex-direction: row;
+        width: 70%;
+        height: 10%;
+        .card{
+            display: flex;
+            background-color: #fff;
+            justify-content: flex-start;
+            height: 50%;
+            width: 40%;
+            font-family: 'KumbhSans-Regular';
+        }
+        p{
+            margin-left: 10%;
+            font-family: 'KumbhSans-Regular';
+            font-weight: 600;
+        }
+
+    }
+    .btns{
+        display: flex;
+        justify-content: space-between;
+        align-items: center ;
+        flex-direction: row;
+        width: 70%;
+        height: 10%;
+        .btn{
+            display: flex;
+            width: 50%;
+            height: 100%;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        button{
+            background-color: #263238;
+            color: #fff;
+            margin-left: 10%;
+            width: 30%;
+            height: 40%;
+            border: none;
+            border-radius: 10px;
+            font-family: 'KumbhSans-Regular';
+            cursor: pointer;
+            :hover{
+                background-color: rebeccapurple;
+            }
+            
+        }
+        
+        button:hover{
+                background-color: rebeccapurple;
+                transition: all 0,7 ease-in;
+                transform: scale(1.1);
+                transition: all 0.5s;
+            }
+        .esc{
+            font-style: normal;
+        }
+    }
+    
 }

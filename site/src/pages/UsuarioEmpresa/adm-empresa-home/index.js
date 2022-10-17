@@ -26,6 +26,7 @@ export default function Homeempresa (){
     async function listar (id){
         const r = await agendamentos(id)
         setagendamento(r)
+        console.log(agendamento)
     }
     useEffect(() => {
         const empresaLogada = Storage('Empresa-Logada')
