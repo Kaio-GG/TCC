@@ -99,7 +99,7 @@ export async function buscarAgendamentos (info){
     INNER JOIN
 	        TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
      WHERE
-            TB_HORARIO.ID_USUARIO_EMPRESA = ? AND TB_AGENDAMENTO.DS_SITUACAO = 'ESPERANDO'
+            TB_HORARIO.ID_USUARIO_EMPRESA = ? 
     `
     const [linhas] = await con.query (comando, [info.id])
     return linhas
@@ -148,6 +148,6 @@ INNER JOIN
 		TB_AGENDAMENTO.ID_AGENDAMENTO = ?;
 `
 const [linhas] = await con.query (comando , [info.id])
-console.log(info.id)
+
 return linhas[0]
 }
