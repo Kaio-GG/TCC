@@ -27,24 +27,24 @@ function paginaempresa (){
             <div className='alinhamento'>
                 {props.class === 'home' 
                 ? <div className= 'pagina'  >Home</div> 
-                : <div style={{paddingLeft:'3em'}} onClick={home}> Home </div>}
+                : <div className='tent'onClick={home}> Home </div>}
 
                 {props.class === 'perfil' 
                 ? <div className= 'pagina'>Perfil</div> 
-                : <div onClick={paginaempresa}> Perfil </div>}
+                : <div className='tent' onClick={paginaempresa}> Perfil </div>}
 
                 {props.class === 'hora'   
                 ? <div className= 'pagina'>Novo Horario</div> 
-                : <div onClick={novohorario}> Novo Horario</div>}
+                : <div className='tent' onClick={novohorario}> Novo Horario</div>}
 
 
                 {props.class === 'info' 
                 ? <div className= 'pagina'>Infomações</div> 
-                : <div> Infomações</div>}
+                : <div className='tent' > Infomações</div>}
 
                 {props.class === 'reviwes' 
                 ? <div className= 'pagina'>Reviwes</div> 
-                : <div> Reviwes</div>}
+                : <div className='tent'> Reviwes</div>}
             </div>
             </div>
         </div>

@@ -180,6 +180,6 @@ export default function Novohorario (){
                     </div>        
                     }
             </div>
-            </div>
+        </div>
     )
 }
