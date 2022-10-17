@@ -2,11 +2,12 @@ import './index.scss';
 import { Link } from 'react-router-dom';
 import HeaderEmpresa from '../../../components/header-adm-empresa';
 
+
 export default function PaginaEmpresa() {
 
     return(
         <main className="PaginaEmpresa">
-            <div className="UsuarioEmpresaPagina-Centro">
+            <div className="PaginaEmpresa-Centro">
                 <HeaderEmpresa />
                 <div className='agrups'>
                     <div className="agrup-esquerda">
@@ -31,28 +32,40 @@ export default function PaginaEmpresa() {
                                 </div>
                                 <p> Brasil, São Paulo, Sp </p>
                                 <p> Rua seila, 32 </p>
+                                <div className='image'>
+                                    <img src='/assets/images/editar.svg' alt='editarperfil'/>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="card-Agendar">
+                        <div className="card-Publicacao">
                             <p>Adicionar Card</p>
-                            <button className='agendar'><Link to={'./agendar'}>Agendar</Link></button>
+                            <img src='/assets/images/add.svg' alt='add'/>
                         </div>
 
                     </div>
                     <div className="agrup-direita">
 
-                        <div className="verificacao">
+                        <div className="CardCanto">
                             <h3> verificaçâo</h3>
                             <p> facebook </p>
                             <p> email </p>
                             <p> Youtube </p>
                         </div>
 
-                        <div className="certificacao">
+                        <div className="CardCanto">
                             <h3> certificação</h3>
                             <p> CNPJ </p>
                             <p> Certificados </p>
+                        </div>
+
+                        <div className="CardCanto">
+                            <h3> Compartilhar</h3>
+                        </div>
+
+                        <div className="CardCanto">
+                            <h3>TAG's</h3>
+                            <img className='mais' src='/assets/images/add.svg' alt='Adicionar Tag' />
                         </div>
                     </div>
                 </div>

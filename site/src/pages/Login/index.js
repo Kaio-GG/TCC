@@ -72,7 +72,7 @@ return(
         <div className='Faixa-Branca'> 
             <div className='Div1-Faixa-Branca'>
                 <p>Não possui conta?</p>
-                <Link >Crie agora mesmo! </Link>
+                <Link to='/cadastro' >Crie agora mesmo! </Link>
             </div>
 
             <div className='Div-inputs'>
