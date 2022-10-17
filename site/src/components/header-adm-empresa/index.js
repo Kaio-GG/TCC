@@ -29,10 +29,6 @@ function paginaempresa (){
                 ? <div className= 'pagina'  >Home</div> 
                 : <div style={{paddingLeft:'3em'}} onClick={home}> Home </div>}
 
-                {props.class === 'confirmadas' 
-                ? <div className= 'pagina'>Confirmada</div> 
-                : <div> Confirmada </div>}
-
                 {props.class === 'perfil' 
                 ? <div className= 'pagina'>Perfil</div> 
                 : <div onClick={paginaempresa}> Perfil </div>}
@@ -41,9 +37,6 @@ function paginaempresa (){
                 ? <div className= 'pagina'>Novo Horario</div> 
                 : <div onClick={novohorario}> Novo Horario</div>}
 
-                {props.class === 'historico' 
-                ? <div className= 'pagina'>Historico</div> 
-                : <div> Historico</div>}
 
                 {props.class === 'info' 
                 ? <div className= 'pagina'>Infomações</div> 
