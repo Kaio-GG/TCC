@@ -31,11 +31,17 @@ export default function Informacoes (){
     async function Recusar (id){
         await recusar(id)
         carregar()
+        tocaraudio2()
     }
 
     function tocaraudio (){
         const audio = new Audio()
-        audio.src = '/assets/audios/audio1.mp3'
+        audio.src = '/assets/audios/uii.mp3'
+        audio.play()
+    }
+    function tocaraudio2 (){
+        const audio = new Audio()
+        audio.src = '/assets/audios/xii.mp3'
         audio.play()
     }
 
@@ -47,7 +53,6 @@ export default function Informacoes (){
     return (
         <main className='pg_informacoes'>
             <HeaderEmpresa />
-            <audio src='/assets/audios/audio1.mp3'/>
             <Formulario  nome={info.nome} cpf={info.cpf} desc={info.desc} email={info.email} nas={String(info.nas).substr(0,10)} tel={info.tel} sexo={info.sexo}/>   
                            
             <div className='cards'>

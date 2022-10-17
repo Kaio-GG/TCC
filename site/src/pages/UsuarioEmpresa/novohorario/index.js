@@ -85,13 +85,10 @@ export default function Novohorario (){
     function novahora (){
         let hr = new Date()
         let dia = hr.getDay()
-        console.log(dia)
         let mes = hr.getMonth()
         let ano = hr.getFullYear()
         String(dia ,mes ,ano)
         setdataCarregarHorario(ano +'-0' + mes +'-0' + dia )
-        console.log(hr)
-        console.log(mes)
     }
     function rendernovo (){
     if(rendernovohorario === false){
@@ -183,6 +180,6 @@ export default function Novohorario (){
                     </div>        
                     }
             </div>
-            </div>
+        </div>
     )
 }

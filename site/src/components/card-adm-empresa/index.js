@@ -27,7 +27,8 @@ export default function Cardadm (props){
             <div className='imagens'>
                 <img src='/assets/images/verificar.svg' alt='' onClick={() => aceitarAgendamento(props.item.id)} />
                 <img src='/assets/images/excluir.svg' alt='' onClick={() => agendamentoRecusado(props.item.id)} />
-            </div>    
+            </div>
+            <div> {props.item.situacao} </div>    
             <div onClick={() => info(props.item.id)}> INFORMAÇÕES</div>
         </div>
     )

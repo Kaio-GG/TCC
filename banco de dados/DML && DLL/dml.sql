@@ -10,20 +10,6 @@ select *
 /*--------------------LOGIN_EMPRESA--------------------------*/
 
     
-
-insert into TB_LOGIN_EMPRESA(ID_USUARIO_EMPRESA, NM_EMAIL,DS_SENHA,DT_ULTLOGIN)
-values(1,"MyWorkship@gmail.com", "12345678", now());
-
-select ID_LOGIN_EMPRESA	id
-from   TB_LOGIN_EMPRESA
-where  NM_EMAIL = "MyWorkship@gmail.com"
-and    DS_SENHA = "12345678" AND ID_LOGIN_EMPRESA = ID_USUARIO_EMPRESA ;
-
-/*select ID_LOGIN_EMPRESA	id
-    from   TB_LOGIN_EMPRESA
-    inner join tb_usuario_empresa on tb_usuario_empresa.id_usuario_empresa = TB_LOGIN_EMPRESA.id_usuario_empresa
-    where  NM_EMAIL = ?
-    and    DS_SENHA = ? */
 /*--------------------INFORMAÇÕES_USUARIO_CLIENTE--------------------------*/
 
 INSERT INTO TB_USUARIO_CLIENTE(nm_usuario, ds_cpf, ds_pais, ds_estado, ds_cidade)
