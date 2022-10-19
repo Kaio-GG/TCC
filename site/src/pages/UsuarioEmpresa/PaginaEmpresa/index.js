@@ -2,8 +2,24 @@ import './index.scss';
 import { Link } from 'react-router-dom';
 import HeaderEmpresa from '../../../components/header-adm-empresa';
 
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+import { CarregarPagina } from '../../../api/paginaEmpresa';
+
 
 export default function PaginaEmpresa() {
+    const [pagina, setPagina] = useState({});
+    const { idparam } = useParams();
+
+    useEffect(() => {
+        PaginaEmpresa();
+    }, [])
+
+    async function PaginaEmpresa(){
+        const resp = await CarregarPagina(idparam)
+        setPagina(resp.data)
+    }
 
     return(
         <main className="PaginaEmpresa">
@@ -18,8 +34,8 @@ export default function PaginaEmpresa() {
                                     <div className='aimg'></div>
                                 </div>
                                 <div className="nome-desc">
-                                    <h3 className="nome">NUTRIFIT</h3>
-                                    <p className="desc"> é uma empresa de nutricionistas qualificados, que buscam o bem estar de seus clintes. Sempre com qualidade no atendimento e um sorriso no rosto  </p>
+                                    <h3 className="nome">{pagina.Nome}</h3>
+                                    <p className="desc">{pagina.descricao}</p>
                                 </div>
                             </div>
                             <div className="ava-locais">

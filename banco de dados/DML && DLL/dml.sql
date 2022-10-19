@@ -7,8 +7,10 @@ values("186384460001781", "739733462933", "MySãoPaulo", "São Paulo", "Akino Re
 select *
 	from TB_USUARIO_EMPRESA;
 
-/*--------------------LOGIN_EMPRESA--------------------------*/
+/*--------------------LOGIN--------------------------*/
 
+select *
+	from TB_LOGIN;
     
 /*--------------------INFORMAÇÕES_USUARIO_CLIENTE--------------------------*/
 
@@ -67,6 +69,8 @@ insert into tb_pagina_empresa(id_usuario_empresa, nm_empresa, img_logo, ds_descr
 values(1, "Mc'Donalds", 1, "achei legal");
 
 select * from tb_pagina_empresa;
+
+
 /*----------------------------- NOVO HORARIO ---------------------------------*/
 
 
@@ -138,10 +142,6 @@ INNER JOIN
      WHERE
 		TB_AGENDAMENTO.ID_AGENDAMENTO = '1';
 
-
-
-
-
 select 	TB_HORARIO.ID_HORARIO        ,
 		TB_AGENDAMENTO.ID_AGENDAMENTO,
 		TB_HORARIO.ID_USUARIO_EMPRESA 'ID'   ,	
@@ -156,9 +156,16 @@ INNER JOIN
      WHERE
 		TB_HORARIO.ID_USUARIO_EMPRESA = 3 AND
 		TB_HORARIO.DT_AGENDAMENTO  =   '2022-10-23';
-
-
-
+        
+/*------------------------- PAGINA EMPRESA  ------------------------------*/
+        
+        select id_pagina_empresa	idPagina,
+			   id_usuario_empresa   idEmpresa,
+               nm_empresa			Nome,
+               img_logo				Logo,
+               ds_Descricao			descricao
+	      from tb_pagina_empresa
+		 where id_usuario_empresa = 5;
 
 DELETE from tb_empresa_avaliacao where id_empresa_avaliacao = 13;
 

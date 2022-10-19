@@ -34,7 +34,7 @@ export default function Index(){
 				<Route path='/home/usuario/empresa/consulta/agendar/Horario' element={<AgendarHorarioEmpresa/>}/>
 				<Route path='/home/usuario/empresa/consulta/agendar/Horario/finalizado' element={<AgendarFinalizado/>}/>
 				<Route path='/home/empresa' element={<HomeEmpresa/>}/>
-				<Route path='/home/empresa/pagina-empresa' element={<PaginaEmpresa/>}/>
+				<Route path='/home/empresa/pagina-empresa/:idparam' element={<PaginaEmpresa/>}/>
 				<Route path='/empresa/:id/informacoes' element={<InformacoesHome/>}/>
 
 			</Routes>
