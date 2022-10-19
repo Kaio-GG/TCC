@@ -23,7 +23,7 @@ export default function Cardadm (props){
             <div className='nome'> {props.item.nome}  </div>
             <div className='nome' > {props.item.hora} </div>
             <div className='nome'> {String(props.item.data).substr(0,10)}  </div>
-            <div className='nome'> {props.item.local} </div>
+            <div className='nome3'> {props.item.local} </div>
             <div className='imagens'>
                 <img src='/assets/images/verificar.svg' alt='' onClick={() => aceitarAgendamento(props.item.id)} />
                 <img src='/assets/images/excluir.svg' alt='' onClick={() => agendamentoRecusado(props.item.id)} />
