@@ -1,6 +1,7 @@
 import './index.scss';
 import { Link } from 'react-router-dom';
 import HeaderEmpresa from '../../../components/header-adm-empresa';
+import Storage from 'local-storage';
 
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -10,14 +11,15 @@ import { CarregarPagina } from '../../../api/paginaEmpresa';
 
 export default function PaginaEmpresa() {
     const [pagina, setPagina] = useState({});
-    const { idparam } = useParams();
+    const paulo = Storage('Empresa-Logada');
+    const id = paulo.ID_USUARIO_EMPRESA
 
     useEffect(() => {
         PaginaEmpresa();
     }, [])
 
     async function PaginaEmpresa(){
-        const resp = await CarregarPagina(idparam)
+        const resp = await CarregarPagina(id)
         setPagina(resp.data)
     }
 
