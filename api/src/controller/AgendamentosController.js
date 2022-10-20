@@ -1,5 +1,5 @@
 import { NovoHorario , EditarHorario , ApagarHorario,buscarAgendamentosPorSituacao , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento, buscarinformacoes } from "../repository/agendamentosRepository.js";
-
+import AgendarHorario from "../repository/AgendarHorarioRepository.js";
 import { Router } from "express";
 const server = Router();
 
@@ -15,6 +15,21 @@ server.post ('/empresa/novohorario' , async (req , resp ) => {
         })
     }
 })
+
+server.post ('/empresa/agendar' , async (req , resp ) => {
+    try {
+        const info = req.body
+        const nh = await AgendarHorario(info)
+        resp.send(nh)   
+
+    } catch (err) {
+        resp.status(401).send({
+           erro : err.message
+        })
+    }
+})
+
+
 
 server.put ('/empresa/editarhorario' , async (req , resp ) => {
     try {

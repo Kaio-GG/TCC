@@ -3,7 +3,7 @@ import HederEmpresa from '../../../components/header-adm-empresa';
 import { useEffect, useState } from 'react';
 import { NovoHorario  ,editarHorario , deletarHorario ,CarregarHorarios ,buscarLocal } from '../../../api/agendamentos.js';
 import storage from 'local-storage';
-
+import Foter from '../../../components/footer/index.js'
 
 
 
@@ -183,6 +183,8 @@ export default function Novohorario (){
                     </div>        
                     }
             </div>
+            <Foter/>
+            
         </div>
     )
 }
