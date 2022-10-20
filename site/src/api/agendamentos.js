@@ -10,7 +10,7 @@ export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
     return resp.data;
 } 
 
-export async function CarregarHorario (idEmpresa , localAge , dataAge ) {
+export async function CarregarHorario (idEmpresa ) {
     const resp = await api.get (`/empresa/carregarhorario/${idEmpresa}`);
     return resp.data;
 } 

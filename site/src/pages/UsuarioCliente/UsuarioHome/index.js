@@ -4,7 +4,7 @@ import { avaliacaoEmpresas, buscaDeEmpresas, listarEmpresas, maisProximo } from 
 
 import Star from './assets/star.svg'
 import Local from './assets/local.svg'
-
+import { useNavigate } from 'react-router-dom'
 
 import HeaderUsuario from '../../../components/header-usuario'
 import { useEffect, useState } from 'react'
@@ -15,6 +15,7 @@ export default function ClienteHome() {
     const [empresa, setEmpresa] = useState([]);
 
     const [render, setRender] = useState(false);
+    const navigate =useNavigate()
 
     async function melhoresEmpresas(){
         const resp1 = await avaliacaoEmpresas();
@@ -23,6 +24,11 @@ export default function ClienteHome() {
     }
 
     console.log(empresa)
+
+    function irParaInfo (id){
+        navigate(`/home/usuario/empresa/consulta/${id}/agendar`)
+
+    }
 
     async function maisProximas(){
         const resp = await maisProximo();
@@ -87,7 +93,7 @@ export default function ClienteHome() {
                             </div>
                          </div>
 
-                            <button className='button-box-empresa'>Mais informações</button>
+                            <button className='button-box-empresa' onClick={() => irParaInfo(item.id)} >Mais informações</button>
 
                         </div>   
                         
@@ -104,12 +110,12 @@ export default function ClienteHome() {
 
                 <div>
                     <div onClick={melhoresEmpresas} className='star-box'>
-                        <img className='img-star' src={Star}></img>
+                        <img className='img-star' src={Star} alt=''></img>
                         <h1 className='h1-starbox'>Bem avaliadas</h1>
                     </div>
 
                     <div onClick={maisProximas} className='local-box'>
-                        <img className='img-local' src={Local}></img>
+                        <img className='img-local' src={Local} alt=''></img>
                         <h1>Mais Proximas</h1>
                     </div>
 

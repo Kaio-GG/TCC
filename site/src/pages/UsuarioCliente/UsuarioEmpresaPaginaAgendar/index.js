@@ -1,8 +1,8 @@
 import './index.scss'
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import HeaderUsuario from "../../../components/header-usuario";
-import { agendarHorario , agendamentos  ,CarregarHorarios ,horarios} from '../../../api/agendamentos.js';
+import { agendarHorario ,horarios} from '../../../api/agendamentos.js';
 import storage from 'local-storage'
 import { useState } from 'react';
 
@@ -18,23 +18,23 @@ export default function UsuarioEmpresaPaginaAgendar() {
     const [horario ,sethorario] =useState([])
     const [idhorario , setidhorario] = useState(0)
 
+    const {id} = useParams();
     const clientelogado = storage('Cliente-Logado')
-    const id = (clientelogado.ID_USUARIO_CLIENTE)
-    
+    const idcliente = (clientelogado.ID_USUARIO_CLIENTE)
+    console.log(idhorario)
 
-
-    async function caregar (){
+    async function caregar (id){
         try {
-            let r = await horarios(3)
+            let r = await horarios(id)
             sethorario(r)
             setrender(false)             
         } catch (err) {
             console.log(err.message)
         }
     }
-    async function agendar (id , idusu ,nome , email ,cpf , tel ,sexo ,nasc ,desc){
+    async function agendar (idhora , idusu ,nome , email ,cpf , tel ,sexo ,nasc ,desc){
         try {
-            await agendarHorario(id ,idusu , nome ,email , cpf ,tel ,sexo ,nasc ,desc)
+            await agendarHorario(idhora ,idusu , nome ,email , cpf ,tel ,sexo ,nasc ,desc)
         } catch (err) {
             console.log(err.message)
         }
@@ -76,7 +76,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
                     </div>
 
                     <div className='botao'>
-                        <button onClick={ caregar} >Proximo</button>
+                        <button onClick={() => caregar(id)} >Proximo</button>
                     </div>
                 </div>
             </div>}
@@ -98,12 +98,12 @@ export default function UsuarioEmpresaPaginaAgendar() {
 
                     <div className='cards'>
                         
-                    {horario.map ( item =>  <div className='a' onClick={() => setidhorario(item.id)} > {item.hora}</div>
+                    {horario.map ( item =>  <div className='a' onClick={() => setidhorario(item.id_horario)} > {item.hora}</div>
                     
                     )}    
                     </div>
                     <div className='botao'>
-                        <button onClick={() => agendar(10 , id ,nome ,email ,cpf ,telefone ,sexo ,dtnasc ,desc)}> solicitar </button>  
+                        <button onClick={() => agendar(idhorario , idcliente ,nome ,email ,cpf ,telefone ,sexo ,dtnasc ,desc)}> solicitar </button>  
                     </div>
                 
                 </div>

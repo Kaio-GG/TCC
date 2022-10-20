@@ -2,7 +2,9 @@ import { con } from "./connection.js";
 
 export async function pesquisaPorNome(nome) {
     const comando = `
-    SELECT IMG_LOGO logo,
+    SELECT
+        id_usuario_empresa  id, 
+        IMG_LOGO logo,
 	     DS_DESCRICAO descricao, 
 	     NM_EMPRESA nome
          from tb_pagina_empresa 
