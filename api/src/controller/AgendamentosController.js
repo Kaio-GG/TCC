@@ -1,4 +1,4 @@
-import { NovoHorario , EditarHorario , ApagarHorario,buscarAgendamentosPorSituacao , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento, buscarinformacoes } from "../repository/agendamentosRepository.js";
+import { NovoHorario , EditarHorario , CarregarHorariosEmpresa , ApagarHorario,buscarAgendamentosPorSituacao , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento, buscarinformacoes } from "../repository/agendamentosRepository.js";
 import AgendarHorario from "../repository/AgendarHorarioRepository.js";
 import { Router } from "express";
 const server = Router();
@@ -96,7 +96,7 @@ server.get ('/empresa/carregarhorario', async (req ,resp) => {
     try {
         const info = req.query
         
-        const horarios = await CarregarHorarioEmpresa(info)
+        const horarios = await CarregarHorariosEmpresa(info)
 
          
         resp.send(horarios)
@@ -107,6 +107,20 @@ server.get ('/empresa/carregarhorario', async (req ,resp) => {
     }
 }  )
 
+
+server.get ('/empresa/carregarhorarios/:id', async (req ,resp) => {
+    try {
+        const info = req.params   
+        const horarios = await CarregarHorarioEmpresa(info)
+
+         
+        resp.send(horarios)
+    } catch (err) {
+        resp.status(404).send({
+            erro:err.message
+        })
+    }
+}  )
 
 server.get ('/empresa/carregarhorario/situacao/:id/:situ', async (req ,resp) => {
     try {

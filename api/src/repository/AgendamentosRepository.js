@@ -60,7 +60,7 @@ export async function ApagarHorario (info){
 }
 
 
-export async function CarregarHorarioEmpresa (info){
+export async function CarregarHorariosEmpresa (info){
     const comando = `
     select  id_horario,
             ds_hora          hora ,
@@ -69,6 +69,19 @@ export async function CarregarHorarioEmpresa (info){
      where  ID_USUARIO_EMPRESA = ? && 
             ds_local           = ? && 
             DT_AGENDAMENTO     = ?   
+    `
+    const [lista] = await con.query (comando , [info.id ,info.local , info.data ])
+    return lista
+}
+
+
+export async function CarregarHorarioEmpresa (info){
+    const comando = `
+    select  id_horario,
+            ds_hora          hora ,
+            qtd_agendamento  qtd
+      from  tb_horario 
+     where  ID_USUARIO_EMPRESA = ? 
     `
     const [lista] = await con.query (comando , [info.id ,info.local , info.data ])
     return lista
@@ -88,7 +101,9 @@ export async function buscarLocal (info){
 
 export async function buscarAgendamentos (info){
     const comando = `
-    select  TB_AGENDAMENTO.ID_AGENDAMENTO   'id',
+    select  
+            TB_AGENDAMENTO.ID_AGENDAMENTO   'id',
+
 	        TB_AGENDAMENTO.NM_PESSOA        'nome' ,
 	        TB_HORARIO.DS_LOCAL   	        'local',							
 	        TB_HORARIO.DS_HORA    	        'hora' ,
@@ -173,3 +188,9 @@ const [linhas] = await con.query (comando , [info.id])
 
 return linhas[0]
 }
+
+
+
+
+
+

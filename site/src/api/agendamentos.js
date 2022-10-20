@@ -10,6 +10,13 @@ export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
     return resp.data;
 } 
 
+export async function CarregarHorario (idEmpresa , localAge , dataAge ) {
+    const resp = await api.get (`/empresa/carregarhorario/${idEmpresa}`);
+    return resp.data;
+} 
+
+
+
 export async function CarregarHorariosPorSituscao (idEmpresa , situ ) {
     console.log(situ)
     const resp = await api.get (`/empresa/carregarhorario/situacao/${idEmpresa}/${situ}`);
@@ -53,6 +60,11 @@ export async function agendamentos (id){
 } 
 
 
+export async function horarios (id){
+    const resp = await api.get (`/empresa/carregarhorarios/${id}`)
+    return resp.data
+} 
+
 export async function NovoHorario (id, local , hora , data , qtd) {
     const t = await api.post ('/empresa/novohorario', {
         id_empresa:id, 
@@ -82,9 +94,9 @@ export async function deletarHorario (id) {
 }
 
 
-export async function agendarHorario (id_agendamento, id_cliente , nome , email , cpf , telefone , sexo , nascimento ) {
-    const t = await api.get ('/usuario/carregarhorario', {
-        id_agendamento : id_agendamento,
+export async function agendarHorario (id_horario, id_cliente , nome , email , cpf , telefone , sexo , nascimento , desc ) {
+    const t = await api.post ('/empresa/agendar', {
+        id_horario : id_horario,
         id_cliente: id_cliente,
         nome: nome,
         email:email,
@@ -92,6 +104,7 @@ export async function agendarHorario (id_agendamento, id_cliente , nome , email 
         telefone: telefone ,
         sexo: sexo,
         nascimento: nascimento,
+        descricao:desc
     });
     return t.data;
 }
