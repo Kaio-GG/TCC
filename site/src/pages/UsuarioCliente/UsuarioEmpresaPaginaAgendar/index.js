@@ -2,7 +2,7 @@ import './index.scss'
 
 import { Link, useNavigate } from 'react-router-dom';
 import HeaderUsuario from "../../../components/header-usuario";
-
+import { agendarHorario } from '../../../api/agendamentos.js';
 
 
 export default function UsuarioEmpresaPaginaAgendar() {

@@ -1,16 +1,18 @@
 import './index.scss'
 import Cardadm from '../../../components/card-adm-empresa'
-import Filtroemp from '../../../components/filtro-adm-empresa'
 import HeaderEmp from '../../../components/header-adm-empresa/index.js'
 import { useEffect, useState  } from 'react'
-import Storage from 'local-storage'
-import { agendamentosData , agendamentos } from '../../../api/agendamentos.js'
+import storage from 'local-storage'
+import { buscarLocal , agendamentosData , agendamentos , CarregarHorariosPorSituscao } from '../../../api/agendamentos.js'
 
 
 export default function Homeempresa (){
-    const [id , setid] = useState(3)
     const [agendamento , setagendamento ] = useState([])
     const [data , setdata] = useState('')
+    const [local, setlocal] =useState([])
+    const [situacao , setsituacao]= useState('')
+    const empresaLogada = storage('Empresa-Logada')
+    const id = (empresaLogada.ID_USUARIO_EMPRESA)
     
  
      function novaData (){
@@ -21,17 +23,46 @@ export default function Homeempresa (){
          setdata(`${d}-${c}-${b}`)
      }
  
- 
+     
+     async function ListarPorData (dt , id){
+        const r = await agendamentosData(dt , id)
+        setagendamento(r)
+     }
+
  
     async function listar (id){
         const r = await agendamentos(id)
         setagendamento(r)
-        console.log(agendamento)
     }
+    async function buscar (id){
+        try {
+          const a = await buscarLocal(id)  
+          setlocal(a)
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+
+    async function porSituacao (id , situ){
+        try {
+            let r = 0
+            if (situ ==='TODOS' ) {
+                r = await agendamentos(id)
+            }else{
+                r = await CarregarHorariosPorSituscao(id , situ)   
+            }
+            setagendamento(r)
+            console.log(agendamento)
+        
+        } catch (err) {
+            console.log(err.message)         
+        }
+    }
+
+
     useEffect(() => {
-        const empresaLogada = Storage('Empresa-Logada')
-        setid(empresaLogada.ID_USUARIO_EMPRESA)
         listar(id)
+        buscar(id)
         novaData()
     },[])       
 
@@ -41,10 +72,34 @@ export default function Homeempresa (){
     return (
         <div className='page-adm-home'>
             <HeaderEmp class='home' />
-            <Filtroemp className='filtro'   data={data}/>    
+            <div className='filtro-adm-empresa'>
+                <div className='btn'>
+                    <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >                        
+                        {local.map (item =>
+                            <option value={item.local}>{item.local}</option>
+                            )}
+                    </select>
+                </div>
 
+                <div className='btn' style={{marginLeft:'5%'}}>
+                        <div></div>
+                        <input placeholder='DATA' type='date' value={data} onChange={e => setdata(e.target.value)} />
+                        <button onClick={ ()=> ListarPorData(id , data) } >Buscar</button>
+                </div>
+
+                <div className='btn2'>
+                        <select className='opt2' value={situacao} onChange={e => setsituacao(e.target.value)} >                        
+                            <option value='CONFIRMADA' >Confirmada</option>
+                            <option value='RECUSADO'>Recusada</option>
+                            <option value='TODOS'>Todos</option>
+                            
+                    </select>
+                    <button onClick={ ()=> porSituacao(id , situacao) }> Buscar </button>
+                </div>
+ 
+            </div>  
             {agendamento.map(item => 
-                <Cardadm item={item} />    
+                <Cardadm item={item} onClick={() => listar(id)} />    
             )}
         </div>
     )

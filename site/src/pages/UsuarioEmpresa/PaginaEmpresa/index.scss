@@ -5,7 +5,7 @@
         color: #fff;
     }
     *{
-        margin: 0px;
+        margin: 0;
         box-sizing: border-box;
         padding: 0;
     }
@@ -19,7 +19,7 @@
         align-items: center;
         background-color: #F6F6F6;
 
-        height: 100vh;
+        min-height: 100vh;
         width: 100vw;
 
         font-family: "Kumbh Sans";
@@ -52,9 +52,10 @@
 
         .card-empresa{
             display: flex;
-            justify-content: space-evenly;
+            justify-content: space-between;
 
             padding: 2em;
+            min-width: 37em;
             height: 15em;
 
             margin-bottom: 2.5%;

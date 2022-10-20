@@ -33,7 +33,7 @@ export default function Formulario (props){
                 <div className='linha'></div>
                 <div className='informacoes'>
                     <div className='infos'>
-                        <input type='text' disabled className='obs' value={props.desc} />
+                        <textarea type='' disabled className='obs' value={props.desc} />
                     </div>    
                 </div>    
            </div>

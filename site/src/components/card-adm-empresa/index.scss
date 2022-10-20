@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: space-around;
     font-size: 16PX;
+    margin-top: 20px;
     .imagens{
         display: flex;
         width: 8%;
@@ -28,5 +29,11 @@
         align-items: center;
         justify-content: center;
         width: 10%;
+    }
+    .nome3{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20%;
     }
 }
