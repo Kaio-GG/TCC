@@ -114,7 +114,8 @@ export async function buscarAgendamentosPorData (info){
             TB_AGENDAMENTO.NM_PESSOA  	 'nome' ,
             TB_HORARIO.DS_LOCAL   	     'local',							
             TB_HORARIO.DS_HORA    	     'hora' ,
-            TB_HORARIO.DT_AGENDAMENTO     'data' 
+            TB_HORARIO.DT_AGENDAMENTO     'data' ,
+            TB_AGENDAMENTO.DS_SITUACAO      'situacao'
       FROM 
             TB_HORARIO
     INNER JOIN
@@ -123,6 +124,27 @@ export async function buscarAgendamentosPorData (info){
             TB_HORARIO.ID_USUARIO_EMPRESA = ? AND
             TB_HORARIO.DT_AGENDAMENTO  =  ? `
     const [linhas] = await con.query (comando, [info.id , info.data])
+    return linhas        
+}
+
+export async function buscarAgendamentosPorSituacao (info){
+    const comando = `
+    select 	TB_HORARIO.ID_HORARIO        ,
+            TB_AGENDAMENTO.ID_AGENDAMENTO,
+            TB_HORARIO.ID_USUARIO_EMPRESA 'id'   ,	
+            TB_AGENDAMENTO.NM_PESSOA  	 'nome' ,
+            TB_HORARIO.DS_LOCAL   	     'local',							
+            TB_HORARIO.DS_HORA    	     'hora' ,
+            TB_HORARIO.DT_AGENDAMENTO     'data' ,
+            TB_AGENDAMENTO.DS_SITUACAO      'situacao'
+      FROM 
+            TB_HORARIO
+    INNER JOIN
+            TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+         WHERE
+            TB_HORARIO.ID_USUARIO_EMPRESA = ? AND
+            TB_AGENDAMENTO.ds_situacao = ? `
+    const [linhas] = await con.query (comando, [info.id , info.situ])
     return linhas        
 }
 

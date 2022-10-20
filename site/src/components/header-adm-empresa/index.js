@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import './index.scss'
-
+import Storage from 'local-storage'
 
 
 export default function HeaderEmpresa (props){
@@ -16,12 +16,17 @@ function novohorario (){
 function paginaempresa (){
     navigate('/home/empresa/pagina-empresa')
 }
+function sair (){
+    const empresaLogada = Storage('Empresa-Logada')
+    Storage.remove('Empresa-Logada')
+    navigate('/')
+    }
 
 
     return(
         <div className='cabecalho'>
             <div className='logo'>
-                <h1>My Workship</h1>
+                <h1 onClick={sair} >My Workship</h1>
             </div>
             <div className='part-2'>
             <div className='alinhamento'>

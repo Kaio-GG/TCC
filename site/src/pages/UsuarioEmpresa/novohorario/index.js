@@ -11,13 +11,14 @@ import storage from 'local-storage';
 export default function Novohorario (){
     const [render , setrender] = useState(false)
     const [rendernovohorario ,setrendernovohorario] = useState (false)
-    const [idemp , setid ] = useState(2)
     const [local , setlocal  ] = useState([])
     const [hora , sethora] =useState ('00:00')
     const [data ,setdata] =useState('')
     const [qtd , setqtd] =useState(0)
     const [horario , sethorario] =useState([])
     const [dataCarregarHorario , setdataCarregarHorario]= useState('')
+    const empresaLogada = storage('Empresa-Logada')
+    const id = (empresaLogada.ID_USUARIO_EMPRESA)
 
 
 
@@ -25,7 +26,7 @@ export default function Novohorario (){
 
     async function criarHorario (){
         try {
-            await NovoHorario(idemp ,local.map(item => item.local) , String(hora) , data ,qtd)
+            await NovoHorario(id ,local.map(item => item.local) , String(hora) , data ,qtd)
             CarregarHorario()
             console.log('horario cadastrado com sucesso')
         } catch (err) {
@@ -35,7 +36,7 @@ export default function Novohorario (){
     }
     async function CarregarHorario (){
         try {
-            const rsp = await CarregarHorarios(idemp , local.map(item => item.local) , dataCarregarHorario)
+            const rsp = await CarregarHorarios(id , local.map(item => item.local) , dataCarregarHorario)
             sethorario(rsp)
         } catch (err) {
             console.log(err.message)
@@ -104,13 +105,15 @@ export default function Novohorario (){
     function renderhorario(){
         setrendernovohorario(rendernovohorario-1)
     }
+    function inicial (){
+    
+    }
+
     useEffect(() => {
 
-            const empresaLogada = storage('Empresa-Logada')
-            setid(empresaLogada.ID_USUARIO_EMPRESA)
-            buscar(idemp)
+            inicial()
             novahora()
-        
+            buscar(id)
     },[])
 
     useEffect( () => {

@@ -10,6 +10,12 @@ export async function CarregarHorarios (idEmpresa , localAge , dataAge ) {
     return resp.data;
 } 
 
+export async function CarregarHorariosPorSituscao (idEmpresa , situ ) {
+    console.log(situ)
+    const resp = await api.get (`/empresa/carregarhorario/situacao/${idEmpresa}/${situ}`);
+    return resp.data;
+} 
+
 export async function CarregarInfo (id) {
     const resp = await api.get (`/empresa/carregarinfo/${id}`);
     return resp.data;
