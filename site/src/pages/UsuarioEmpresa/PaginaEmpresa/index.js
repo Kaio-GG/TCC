@@ -6,10 +6,13 @@ import Storage from 'local-storage';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+import Footer from '../../../components/footer/index.js'
+
 import { CarregarPagina } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
+    const [cont, setCont] = useState(0);
     const [pagina, setPagina] = useState({});
     const paulo = Storage('Empresa-Logada');
     const id = paulo.ID_USUARIO_EMPRESA
@@ -23,6 +26,16 @@ export default function PaginaEmpresa() {
         setPagina(resp.data)
     }
 
+    function Salvar() {
+        const a = 0;
+        setCont(a);
+    }
+
+    function Alterar() {
+        const a = 1;
+        setCont(a);
+    }
+
     return(
         <main className="PaginaEmpresa">
             <div className="PaginaEmpresa-Centro">
@@ -30,31 +43,61 @@ export default function PaginaEmpresa() {
                 <div className='agrups'>
                     <div className="agrup-esquerda">
 
-                        <div className="card-empresa">
-                            <div className='a'>
-                                <div className="img">
-                                    <div className='aimg'></div>
+                        {cont === 0 &&
+                            <div className="card-empresa">
+                                <div className='a'>
+                                    <div className="img">
+                                        <div className='aimg'></div>
+                                    </div>
+                                    <div className="nome-desc">
+                                        <h3 className="nome">{pagina.Nome}</h3>
+                                        <p className="desc">{pagina.descricao}</p>
+                                    </div>
                                 </div>
-                                <div className="nome-desc">
-                                    <h3 className="nome">{pagina.Nome}</h3>
-                                    <p className="desc">{pagina.descricao}</p>
+                                <div className="ava-locais">
+                                    <div className='estrelas'>
+                                        <div className='estrela'></div>
+                                        <div className='estrela'></div>
+                                        <div className='estrela'></div>
+                                        <div className='estrela'></div>
+                                        <div className='estrela'></div>
+                                    </div>
+                                    <p> Brasil, São Paulo, Sp </p>
+                                    <p> Rua seila, 32 </p>
+                                    <div className='image'>
+                                        <img src='/assets/images/editar.svg' alt='editarperfil' onClick={Alterar}/>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="ava-locais">
-                                <div className='estrelas'>
-                                    <div className='estrela'></div>
-                                    <div className='estrela'></div>
-                                    <div className='estrela'></div>
-                                    <div className='estrela'></div>
-                                    <div className='estrela'></div>
+                        }
+
+                        {cont === 1 &&
+                            <div className="card-empresa">
+                                <div className='a'>
+                                    <div className="img">
+                                        <div className='aimg'></div>
+                                    </div>
+                                    <div className="nome-desc">
+                                        <input className="nome" value={pagina.Nome} type='text' />
+                                        <textarea className="desc" value={pagina.descricao} />
+                                    </div>
                                 </div>
-                                <p> Brasil, São Paulo, Sp </p>
-                                <p> Rua seila, 32 </p>
-                                <div className='image'>
-                                    <img src='/assets/images/editar.svg' alt='editarperfil'/>
+                                <div className="ava-locais">
+                                    <div className='estrelas'>
+                                        <div className='estrela'></div>
+                                        <div className='estrela'></div>
+                                        <div className='estrela'></div>
+                                        <div className='estrela'></div>
+                                        <div className='estrela'></div>
+                                    </div>
+                                    <p> Brasil, São Paulo, Sp </p>
+                                    <p> Rua seila, 32 </p>
+                                    <div className='image'>
+                                        <img src='/assets/images/editar.svg' alt='editarperfil' onClick={Salvar}/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
 
                         <div className="card-Publicacao">
                             <p>Adicionar Card</p>
@@ -87,6 +130,7 @@ export default function PaginaEmpresa() {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         </main>
     )
