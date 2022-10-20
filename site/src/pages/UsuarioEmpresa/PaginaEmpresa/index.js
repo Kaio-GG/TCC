@@ -93,7 +93,7 @@ export default function PaginaEmpresa() {
                                     <p> Brasil, São Paulo, Sp </p>
                                     <p> Rua seila, 32 </p>
                                     <div className='image'>
-                                        <img src='/assets/images/editar.svg' alt='editarperfil' onClick={Salvar}/>
+                                        <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={Salvar}/>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +130,6 @@ export default function PaginaEmpresa() {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </div>
         </main>
     )
