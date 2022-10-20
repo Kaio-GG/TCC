@@ -5,17 +5,14 @@ import { avaliacaoEmpresas, buscaDeEmpresas, listarEmpresas, maisProximo } from 
 import Star from './assets/star.svg'
 import Local from './assets/local.svg'
 
-import storage from 'local-storage';
 
 import HeaderUsuario from '../../../components/header-usuario'
 import { useEffect, useState } from 'react'
 
 export default function ClienteHome() {
-    const [filtro, setFiltro] = useState('')
+    const [filtragem, setFiltragem] = useState('')
 
     const [empresa, setEmpresa] = useState([]);
-
-    const [id, setId] = useState(x)
 
     const [render, setRender] = useState(false);
 
@@ -25,10 +22,10 @@ export default function ClienteHome() {
         setEmpresa(resp1);
     }
 
-    var x = localStorage.getItem(id);
+    console.log(empresa)
 
     async function maisProximas(){
-        const resp = await maisProximo(x);
+        const resp = await maisProximo();
         setEmpresa(resp)
     }
 
@@ -39,7 +36,7 @@ export default function ClienteHome() {
 
 
     async function buscarEmpresas(){
-        const resposta = await buscaDeEmpresas(filtro);
+        const resposta = await buscaDeEmpresas(filtragem);
         setEmpresa(resposta)
         setRender(true)
     }
@@ -61,7 +58,7 @@ export default function ClienteHome() {
             <div className='f1-body'>
 
                 <div className='box1-left'>
-                    <input value={filtro} onChange={e => setFiltro(e.target.value)} className='input-1' placeholder='Buscar em MyWorkShip.com'/>
+                    <input value={filtragem} onChange={e => setFiltragem(e.target.value)} className='input-1' placeholder='Buscar em MyWorkShip.com'/>
 
                     <button onClick={buscarEmpresas} className='lupa'>Buscar</button>
 
@@ -84,8 +81,6 @@ export default function ClienteHome() {
                             <div className='alinhar-box-empresa'>
                             
                             <h1 className='h1-box-empresa'>{item.nome}</h1>
-
-                            <p>{item.avaliacao}</p>
 
                             <p>{item.descricao}</p>
 

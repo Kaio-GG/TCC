@@ -21,10 +21,13 @@ export default function Index(){
     const [usuario, setUsuario] = useState('');
     const [cpf, setCpf] = useState('');
 
+    const [erro, setErro] = useState('');
+
     function passarPagina(){
         const c = continuar + 1;
         setContinuar(c)
     }
+
 
     function voltarPagina(){
         const x = continuar - 1;
@@ -46,7 +49,9 @@ export default function Index(){
 
             alert('cadastrado com sucesso!');
         } catch(err){
-            alert(err.message)
+            if (err.response.status === 401){
+                setErro(err.response.data.erro);    
+            }
         }
     }
 
@@ -86,7 +91,9 @@ export default function Index(){
                             <input value={pais} onChange={e => setPais(e.target.value)} type='text' placeholder='País'/>
                             <input value={estado} onChange={e => setEstado(e.target.value)} type='text' placeholder='Estado'/>
                             <input value={cidade} onChange={e => setCidade(e.target.value)} type='text' placeholder='Cidade'/>
+                            
                         </div>
+                        {erro}
                     </div>
                     
                     <div className='Button-Group'>
