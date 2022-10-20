@@ -234,12 +234,16 @@ justify-content: flex-end;
 
 @media only screen and (min-width: 1280px) {
     .Main-Login{
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
+    }
+
+    .Div-1{
+        height: 100%;
     }
 
     .Imagem-calendario{
-        width: 500px;
+        width: 300px;
     }
 
     .bemvindo{
@@ -273,6 +277,10 @@ justify-content: flex-end;
         
     }
 
+    .Div-Group{
+        
+    }
+
     .input-2{
         width: 580px;
         height: 2em;
@@ -294,6 +302,7 @@ justify-content: flex-end;
 
     .Faixa-Button_LembrarSenha button{
         width: 170px;  
+        max-width: 50%;
         height:45px;
         border-radius: 20px;
         background-color: #263238;

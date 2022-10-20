@@ -11,6 +11,10 @@
         height: 100%;
     }
 
+    .box1-left{
+        max-width: 936px;
+    }
+
     .input-1{
         width: 60vw;
         height: 30px;
@@ -133,7 +137,7 @@
 
     .button-limpar{
         border: none;
-        background-color: #FFFFFF;
+        background-color: #F6F6F6;
         text-decoration: underline;
         cursor: pointer;
         font-family: "Kumbh Sans";

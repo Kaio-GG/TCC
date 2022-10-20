@@ -7,6 +7,9 @@ server.post('/cliente/cadastro', async(req, resp) => {
     try{
         const novoCliente = req.body;
 
+        if(!usuario.trim()){
+            throw new Error('Nome de usuario é obrigatorio')}
+
         const ncliente = await cadastroCliente(novoCliente);
 
         resp.send(ncliente)
