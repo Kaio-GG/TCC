@@ -1,8 +1,9 @@
+
 use MyWorkshipDB;
 /*--------------------INFORMAÇÕES_USUARIO_EMPRESA--------------------------*/
 
-insert into TB_USUARIO_EMPRESA (DS_CNPJ,DS_INSCRICAO_ESTADUAL,NM_NOME_DA_EMPRESA,DS_ESTADO,NM_REPRESENTANTE,DS_CPF_REPRESENTANTE,DS_CARGO_REPRESENTANTE,DS_NACIONALIDADE_REPRESENTANTE)
-values("186384460001781", "739733462933", "MySãoPaulo", "São Paulo", "Akino Rego", "57348472087", "Gerente", "Brasil");
+insert into TB_USUARIO_EMPRESA (DS_CNPJ,DS_INSCRICAO_ESTADUAL, NM_NOME_DA_EMPRESA, DS_TIPO_DA_EMPRESA, DS_PAIS, DS_ESTADO, DS_CIDADE, DS_ENDERECO, NM_REPRESENTANTE, DS_CPF_REPRESENTANTE, DS_CARGO_REPRESENTANTE, DS_NACIONALIDADE_REPRESENTANTE)
+                             values (764328763, 316423566, "MySãoPaulo", 'dentista', 'Brasil', 'sao paulo', 'sp'	, 'rua passaro', 'kaio e thomaz', '40028922', 'gerente', 'brazil');
 
 select *
 	from TB_USUARIO_EMPRESA;
@@ -41,13 +42,6 @@ ORDER BY rand()
 LIMIT 4
 ;
 
-SELECT VL_AVALIACAO avaliacao, 
-    IMG_LOGO logo, 
-    DS_DESCRICAO descricao,
-    NM_EMPRESA nome,
-    DS_CIDADE cidade
-FROM TB_PAGINA_EMPRESA
-INNER JOIN TB_USUARIO_CLIENTE on tb_pagina;
 
  SELECT tb_usuario_cliente.ID_USUARIO_CLIENTE id, 
     tb_usuario_cliente.ds_cidade cidade,
@@ -75,17 +69,8 @@ select * from tb_pagina_empresa;
 
 
  INSERT INTO TB_HORARIO (ID_USUARIO_EMPRESA , DS_LOCAL , DS_HORA , DT_AGENDAMENTO , qtd_agendamento)
-					VALUES ( 3 , "RUA BONIFACIO ASIOLI N 47" , "14:00" , "2022-10-06"  , 10 );
+					VALUES ( 1 , "RUA BONIFACIO ASIOLI N 47" , "14:00" , "2022-10-23"  , 10 );
 
-     select 
-             ds_hora          hora ,
-             qtd_agendamento  qtd
-       from  tb_agendamento 
-      where  ID_USUARIO_EMPRESA = 1 && 
-             ds_local           = 'santo amaro' && 
-             DT_AGENDAMENTO     = '2022-10-23'; 
-
-select * from tb_HORARIO;
 
 
 
@@ -93,7 +78,7 @@ select * from tb_HORARIO;
 
 
  insert INTO TB_AGENDAMENTO (ID_HORARIO , ID_USUARIO_CLIENTE , NM_PESSOA , DS_EMAIL , DS_CPF , DS_TELEFONE , DS_SEXO , DT_NASCIMENTO , DS_SITUACAO , DS_DESCRICAO)
-							  VALUE( 11 , 1 , 'KAIO GG' , 'KAIOFDSS@GMAIL.COM' , '5404023390', '958431234' , 'MASCULINO' , '2005-12-23' , 'ESPERANDO' , '3VFBVVNOSDRFVIDFRNBIRPDBPIDNVFSJSNVP');
+							  VALUE( 1 , 1 , 'KAIO GG' , 'KAIOFDSS@GMAIL.COM' , '5404023390', '958431234' , 'MASCULINO' , '2005-12-23' , 'ESPERANDO' , '3VFBVVNOSDRFVIDFRNBIRPDBPIDNVFSJSNVP');
 
 update 		tb_agendamento
 	set 	ds_situacao = 'CONFIRMADA'
@@ -169,8 +154,4 @@ INNER JOIN
 
 DELETE from tb_empresa_avaliacao where id_empresa_avaliacao = 13;
 
-truncate table TB_LOGIN_EMPRESA;
-		
-SELECT * FROM TB_AVALIACAO_SITE;
-    
-DROP DATABASE MyWorkshipDB;
+
