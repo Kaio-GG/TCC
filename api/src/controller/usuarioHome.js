@@ -9,7 +9,7 @@ const server = Router();
 server.get('/home/usuario/busca', async(req, resp) => {
     try{
         const  { nome } = req.query; 
-        // console.log(nome);
+
         const resposta = await pesquisaPorNome(nome);
 
         resp.send(resposta);

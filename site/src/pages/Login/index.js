@@ -31,7 +31,7 @@ export default function Index(){
             } 
             else{
                 storage('Empresa-Logada', r);
-                Navigate('/novohorario');  
+                Navigate('/home/empresa');  
             }
 
 
@@ -44,64 +44,51 @@ export default function Index(){
 
   
 return(
+        <main className='login'>
+            <section className='tela'>
+                <div className='faixa-cinza'>
+                    <h1 className='MW'>MyWorkShip</h1>
 
-<main className='Main-Login'>
-    <div className="Div-Group">
-        <div className="Div-1"> 
-            <div className='Div-1-div'>
-                  <h1 className='mywork'>MyWorkship </h1>
-            </div>
-            
-            <div className='Espac'></div>
-            
-            <div className='Div1-Img'>
-                    <div className= 'Imagem-calendario' />
-            </div>
-                
-                <div className='Div-2'>
-                        <h1>Bem-vindo</h1>
-                    
-                        <p> A Networking que você precisa! Intereja diretamente com centenas de serviços de empresas  diferentes quando você quiser.</p>
-                        
+                    <div className='alinhar-imgs'>
+                        <img className='img1' src='/assets/images/calendario1.svg'></img>
                     </div>
-                    
-        
-        </div>
-        
-        
-        <div className='Faixa-Branca'> 
-            <div className='Div1-Faixa-Branca'>
-                <p>Não possui conta?</p>
-                <Link to='/cadastro' >Crie agora mesmo! </Link>
-            </div>
 
-            <div className='Div-inputs'>
-                <input className='input-1' placeholder='Usuario' value={email} onChange={e => setEmail(e.target.value) } />
-                <input className='input-2' placeholder='Senha' type = 'password' value={senha} onChange={e => setSenha(e.target.value) } />
-            </div>
+                    <div className='bolinhas'>
+                        <div className='bolinha1'></div>
+                        <div className='bolinha2'></div>
+                        <div className='bolinha3'></div>
+                    </div>
 
-            
-            <div className='error'>
-                
-                {erro}
-            
-            </div>
-            
-            <div className='Faixa-Button_LembrarSenha'>
-                <button onClick={Login}>
-                        Entrar
-                </button>
-                
-                <div className='CheckBox-LembrarSenha'>
-                    <input type="checkbox" />
-                    <p> Lembrar Senha?</p>
+                    <h1 className='bv'>Bem-vindo</h1>
+
                 </div>
-            </div>
+
+                <div className='boxright'>
+                    <h1 className='h1-boxright'>Não possui conta? <Link>Crie sua conta agora!</Link></h1>
+
+                    <div className='inputs'>
+                        <input className='input1' placeholder='Usuario' value={email} onChange={e => setEmail(e.target.value) } />
+                        <input className='input2' placeholder='Senha' type = 'password' value={senha} onChange={e => setSenha(e.target.value) } />
+
+                        <p>{erro}</p>
+                        <div>
+                            <button className='buttonLogin' onClick={Login}>Entrar</button>
+                        </div>
+
+                        <div className='lembrar-senha'>
+                            <input type='checkbox'/> 
+
+                            <h2>Lembrar senha</h2></div>
+                    </div>
+
+            
+
+                </div>
+
+            </section>
 
 
-        </div>
-    </div>
-</main>  
+        </main>  
        
 )
 }

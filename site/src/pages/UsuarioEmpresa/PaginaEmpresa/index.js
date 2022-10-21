@@ -8,10 +8,14 @@ import { useEffect, useState } from 'react';
 
 import Footer from '../../../components/footer/index.js'
 
-import { CarregarPagina } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
+    const [nome, setNome] = useState('');
+    const [img, setLogo] = useState('');
+    const [descricao, setDescricao] = useState('');
+
     const [cont, setCont] = useState(0);
     const [pagina, setPagina] = useState({});
     const paulo = Storage('Empresa-Logada');
@@ -24,10 +28,15 @@ export default function PaginaEmpresa() {
     async function PaginaEmpresa(){
         const resp = await CarregarPagina(id)
         setPagina(resp.data)
+
+        setNome(pagina.Nome)
+        setDescricao(pagina.descricao)
+        setLogo(pagina.logo)
     }
 
     function Salvar() {
         const a = 0;
+        AlterarPagina(nome, img, descricao, id)
         setCont(a);
     }
 
@@ -35,6 +44,8 @@ export default function PaginaEmpresa() {
         const a = 1;
         setCont(a);
     }
+
+    
 
     return(
         <main className="PaginaEmpresa">
@@ -75,11 +86,11 @@ export default function PaginaEmpresa() {
                             <div className="card-empresa">
                                 <div className='a'>
                                     <div className="img">
-                                        <div className='aimg'></div>
+                                        <div className='aimg' onChange={e => setLogo(e.target.value)}></div>
                                     </div>
                                     <div className="nome-desc">
-                                        <input className="nome" value={pagina.Nome} type='text' />
-                                        <textarea className="desc" value={pagina.descricao} />
+                                        <input className="nome" value={nome} type='text' onChange={e => setNome(e.target.value)} />
+                                        <textarea className="desc" value={descricao} onChange={e => setDescricao(e.target.value)} />
                                     </div>
                                 </div>
                                 <div className="ava-locais">
