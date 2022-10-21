@@ -43,13 +43,20 @@ export default function ClienteHome() {
 
     async function buscarEmpresas(){
         const resposta = await buscaDeEmpresas(filtragem);
+
+        if(filtragem === '')
+            setEmpresa([]);
+
+        else
         setEmpresa(resposta)
+
         setRender(true)
     }
 
     async function limparPesquisas(){
         setRender(false)
         setEmpresa([])
+        setFiltragem('')
          
     }
 

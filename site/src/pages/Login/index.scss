@@ -1,310 +1,146 @@
-.Main-Login{
-
-
-.Div-1{
-    background-color: #263238;
+.login{
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    min-width: 100vw;
     display: flex;
     flex-direction: column;
-    width:120vh;
-    height: 100vh; 
-}
 
-
-.Div-Group{
-    display: flex;
-    flex-direction: row;
-}
-
-.Espac{
-    height:18px;
-    width: 0;
-}
-.Imagem-calendario{
-    background-image: url('../../../public/assets/images/Calendar-rafiki1.svg');
-    background-repeat: no-repeat;
-    width: 582px;
-    height: 424px;
-    
-}
-
-.Div-1-div{
-display: flex;
-width: 25em;
-justify-content: flex-end;
-}
-
-
-.Div-1 h1{
-    
-    color: white;
-    font-size: 40px;
-    padding-left: 90px;
-    font-family: "Kumbh Sans";
-}
-
-.Espaçamento{
-    width: 360px;
-}
-
-.Div1-Img{
-    display: flex;
-    width: 45vw;
-    justify-content: flex-end;
-}
-
-.Div-2{
-    display: flex;
-    flex-direction: column;
-    
-}
-.Div-2 h1{
-    color: white;
-    font-size: 60px;
-    width: 7em;
-    padding-top:15px ;
-    padding-bottom: 80px;
-
-}
-
-.Div-2 p{
-    display: flex;
-    color: white;
-    font-size: 30px;
-    width: 38vw;
-}
-
-.error{
-    font-family: "Kumbh Sans";
-    font-size: 15px;
-}
-
-
-
-
-/*---------------------------------Faixa Branca---------------------------------- */
-
-.Faixa-Branca{
-    display: flex;
-    flex-direction:column;
-    background-color: white;
-    height: 100vh;
-    width: 80vh;
-}
-
-.Div1-Faixa-Branca{
-    display: flex;
-    flex-direction: row;
-    font-size: 24px;
-    justify-content: space-around;
-    width:35vw ;
-    height:30vh ; 
-    padding-bottom: 90px;
-}
-
-.Div1-Faixa-Branca a, p{
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    font-family: "KumbhSans-Medium";
-    font-size: 30px;
-}
-
-.input-1{
-    width: 635px;
-    height: 2em;
-    color: black;
-    font-size: 30px;
-    background-image: url('../../../public/assets/images/user\ 1.png');
-    background-repeat: no-repeat;
-    background-position: 20em;
-    border:none ;
-    border-bottom: 1px solid black;
-    padding-left: 1.5em;
-
-}
-
-.input-2{
-    width: 630px;
-    height: 2em;
-    padding-left: 1.5em;
-    color: black;
-    font-size: 30px;
-    background-image: url('../../../public/assets/images/website-app-password\ 1.png');
-    background-repeat: no-repeat;
-    background-position: 20em;
-    border:none ;
-    border-bottom: 1px solid black;
-}
-
-
-.Div-inputs{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 13em;
-    padding-left:50px;
-    padding-bottom: 50px;
-}
-
-.div-ChekBox{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    height: 2em;
-    width: 13em;
-    padding-left: 4em;
-
-    color: rgba(118, 118, 118, 1);
-    font-family:'KumbhSans-Bold';
-    font-size: 24px;
-}
-
-.DivAux{
-    display: flex;
-    flex-direction: row;
-    width: 20em;
-    justify-content: space-evenly;
-
-}
-
-.DivAux p{
-    width: 6em;
-    
-}
-
-
-.div-ChekBox input{
-    width: 2em;
-}
-
-.Faixa-Button_LembrarSenha{
-    display: flex;
-    flex-direction: row;
-    width:40em ;
-    height:10em ;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.Faixa-Button_LembrarSenha button{
-    width: 200px;  
-    height:65px;
-    border-radius: 20px;
-    background-color: #263238;
-    font-size: 30px;
-    font-family: 'KumbhSans-Bold';
-    color: white;
-    cursor: pointer; 
-}
-
-
-.CheckBox-LembrarSenha{
-    display: flex;
-    flex-direction: row;
-    width: 15em;
-    justify-content: space-evenly;
-}
-
-
-.CheckBox-LembrarSenha input{
-    width: 2em;
-}
-
-.CheckBox-LembrarSenha p{
-    font-size: 24px;
-    color: rgba(118, 118, 118, 1);
-    font-family:'KumbhSans-Bold';
-    
-}
-
-.Div-Esqueceu_Senha{
+    .tela{
         display: flex;
-        width: 45em;
-        height: 6em;
+        flex-direction: row;
+    }
+
+    .faixa-cinza{
+        width: 65%;
+        height: 100vh;
+        background-color: #263238;
+    }
+
+    .MW{
+        font-family: "Kumbh Sans";
+        font-size: 40px;
+        color: white;
+        padding-top: 30px;
+        padding-left: 20px;
+        margin-bottom: 50px;
+    }
+
+    .img1{
+        width: 500px;
+    }
+    
+    .alinhar-imgs{
+        display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-}
-.Div-Esqueceu_Senha a{
-    font-size: 24px;
-    color: rgba(118, 118, 118, 1);
-    font-family:'KumbhSans-Bold';
-    cursor: pointer;
-}
-
-
-@media only screen and (min-width: 1280px) {
-    .Main-Login{
-        width: 100%;
-        height: 100%;
     }
 
-    .Div-1{
-        height: 100%;
+    .bv{
+        font-family: "Kumbh Sans";
+        font-size: 30px;
+        color: white;
+        padding-top: 30px;
+        padding-left: 20px;
+        margin-bottom: 50px;
     }
 
-    .Imagem-calendario{
-        width: 300px;
-    }
-
-    .bemvindo{
-        font-size: 20px;
-
-    }
-
-    .Div1-Faixa-Branca a, p{
+    .bolinhas{
         display: flex;
-        justify-content: flex-start;
-        font-family: "KumbhSans-Medium";
-        font-size: 20px;
-        margin-left: 50px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding-left: 20px;
     }
 
-    .input-1{
-        width: 580px;
+    .bolinha1{
+        width: 20px;
+        height: 20px;
+        border-radius: 360px;
+        background-color: #D9D9D9;
+    }
 
-           
-        height: 2em;
+    .bolinha2{
+        width: 20px;
+        height: 20px;
+        border-radius: 360px;
+        background-color: #D9D9D9;
+        margin-left: 10px;
+    }
+
+    .bolinha3{
+        width: 20px;
+        height: 20px;
+        border-radius: 360px;
+        background-color: #D9D9D9;
+        margin-left: 10px;
+    }
+
+    .boxright{
+        font-family: "Kumbh Sans";
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        }
+
+    .h1-boxright{
+        padding-top: 20px;
+        font-size: 20px;
+    }
+
+    a{
         color: black;
-        font-size: 20px;
-        background-image: url('../../../public/assets/images/user\ 1.png');
-        background-repeat: no-repeat;
-        background-position: 25em;
-        border:none ;
-        border-bottom: 1px solid black;
-        padding-left: 1.5em;
-        
-        
-        
+        margin-left: 30px;
     }
 
-    .Div-Group{
-        
+    .inputs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: "Kumbh Sans";
     }
 
-    .input-2{
-        width: 580px;
-        height: 2em;
+    .inputs p{
+        font-family: "Kumbh Sans";
+        font-weight: 500;
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+
+    .input2{
+        height: 30px;
         padding-left: 1.5em;
         color: black;
         font-size: 20px;
         background-image: url('../../../public/assets/images/website-app-password\ 1.png');
         background-repeat: no-repeat;
-        background-position: 25em;
+        background-position: 90%;
         border:none ;
         border-bottom: 1px solid black;
+        margin-bottom: 20px;
     }
-
     
-
-    .Div-inputs{
-        padding-left: 20px;
+    .input1{
+        height: 30px;
+        color: black;
+        font-size: 20px;
+        background-image: url('../../../public/assets/images/user\ 1.png');
+        background-repeat: no-repeat;
+        background-position: 90%;
+        border:none;
+        border-bottom: 1px solid black;
+        padding-left: 1.5em;
+        margin-bottom: 20px;
     }
 
-    .Faixa-Button_LembrarSenha button{
-        width: 170px;  
-        max-width: 50%;
-        height:45px;
-        border-radius: 20px;
+    .buttonLogin{
+        width: 130px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
         background-color: #263238;
         font-size: 20px;
         font-family: 'KumbhSans-Bold';
@@ -312,41 +148,13 @@ justify-content: flex-end;
         cursor: pointer; 
     }
 
-    .CheckBox-LembrarSenha input{
-        width: 1.5em;
+    .lembrar-senha{
+        display: flex;
+        flex-direction: row-reverse;
     }
 
-    .CheckBox-LembrarSenha p{
-        font-size: 20px;
-        color: rgba(118, 118, 118, 1);
-        font-family:'KumbhSans-Bold';
-        
-    }
-
-    .Div-1-div h1{
-        font-size: 35px;
-        padding: 0px;
-    }
-
-    .Imagem-calendario{
-        width: 450px;
-    }
-    
-    .Div-2 h1{
-        font-family: 25px
-        ;
-
-    }
-
-    
-    
 
 
-
-  }
 
 
 }
-
-
-

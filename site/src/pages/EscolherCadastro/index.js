@@ -15,7 +15,6 @@ export default function Index() {
 
     function resetLanguage(){
         setLinguagem(false)
-
     }
 
     return(
