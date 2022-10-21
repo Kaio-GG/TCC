@@ -81,7 +81,7 @@ export async function NovoHorario (id, local , hora , data , qtd) {
 export async function editarHorario (id, qtdage) {
     const t = await api.put ('/empresa/editarhorario', {
         qtd: qtdage,
-        id_agendamento:id
+        id_horario:id
     });
 
     return t.data;

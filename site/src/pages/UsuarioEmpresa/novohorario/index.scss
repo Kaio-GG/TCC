@@ -6,7 +6,7 @@
     background-color: #F5F5F5;
     font-family: 'KumbhSans-SemiBold';
     flex-direction: column;
-    height:200vh;
+    height:100vh;
     *{
         margin: 0;
         box-sizing: border-box;
@@ -215,4 +215,8 @@
         padding: 20px;
         max-height: 20em;
     }
+    .foter{
+        margin-top: 100%;
+    }
+        
 }
