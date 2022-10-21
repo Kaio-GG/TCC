@@ -16,11 +16,13 @@ export default function Homeempresa (){
     
  
      function novaData (){
-         const a = new Date()
-         const b = String(a.getDay()).padStart(2,'0')
-         const c = String(a.getMonth()+1).padStart(2,'0')
-         const d = a.getFullYear()
-         setdata(`${d}-${c}-${b}`)
+         const a = new Date ()
+         let b = a.toISOString().substr(0, 10);
+         setdata(b);
+        //  const b = String(a.getDay()).padStart(2,'0')
+        //  const c = String(a.getMonth()+1).padStart(2,'0')
+        //  const d = a.getFullYear()
+         //setdata(`${d}-${c}-${b}`)
      }
  
      
