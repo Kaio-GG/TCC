@@ -1,4 +1,4 @@
-import { PagEmpre, RendPagEmpreId } from "../repository/PaginaEmpresaRepository.js";
+import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId } from "../repository/PaginaEmpresaRepository.js";
 
 import { Router } from "express";
 const server = Router();
@@ -25,6 +25,21 @@ server.get('/empresa/pagina/:id', async(req, resp) => {
         const resposta = await RendPagEmpreId(id);
 
         resp.send(resposta);
+
+    } catch(err){
+        resp.status(401).send({
+            erro: err.message
+        })
+    }
+})
+
+server.put('/empresa/alterarpagina', async(req, resp) => {
+    try{
+        const conteudo = req.body;
+
+        const alterarPagina = await AlterarPagEmpreId(conteudo);
+
+        resp.status(204).send(alterarPagina)
 
     } catch(err){
         resp.status(401).send({
