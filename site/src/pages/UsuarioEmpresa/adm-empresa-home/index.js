@@ -84,7 +84,7 @@ export default function Homeempresa (){
                 <div className='btn' style={{marginLeft:'5%'}}>
                         <div></div>
                         <input placeholder='DATA' type='date' value={data} onChange={e => setdata(e.target.value)} />
-                        <button onClick={ ()=> ListarPorData(id , data) } >Buscar</button>
+                     <img className='lupa' src='/assets/images/lupa-branco.svg' onClick={ ()=> ListarPorData(id , data)}/> 
                 </div>
 
                 <div className='btn2'>
@@ -94,7 +94,7 @@ export default function Homeempresa (){
                             <option value='TODOS'>Todos</option>
                             
                     </select>
-                    <button onClick={ ()=> porSituacao(id , situacao) }> Buscar </button>
+                    <img onClick={ ()=> porSituacao(id , situacao) }  className='lupa' src='/assets/images/lupa-branco.svg' /> 
                 </div>
  
             </div>  

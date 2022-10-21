@@ -19,7 +19,7 @@ export  async function EditarHorario (info){
                        set QTD_AGENDAMENTO = ?
                      where ID_horario  = ?
     `
-    const linhas = await con.query (comando, [info.qtd , info.id_agendamento ]);
+    const linhas = await con.query (comando, [info.qtd , info.id_horario ]);
     return info;
 }
 
