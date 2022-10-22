@@ -64,6 +64,7 @@
     input[type="date"]::-webkit-calendar-picker-indicator {
         cursor: pointer;
         filter: invert(1) brightness(100%) sepia(10000000%) saturate(100%) hue-rotate(140deg) ;
+        
       
 }select{
     border: none;
@@ -78,6 +79,21 @@
     font-family: 'KumbhSans-Regular';
     font-weight: 500;
 }
+
+select option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #263238;
+}
+.opt{
+    display: flex;
+}
+
+.opt option{
+    background-color: #263238;
+}
+
 button{
     background: none;
     border: none;

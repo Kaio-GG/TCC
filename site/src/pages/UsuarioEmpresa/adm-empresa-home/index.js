@@ -4,6 +4,7 @@ import HeaderEmp from '../../../components/header-adm-empresa/index.js'
 import { useEffect, useState  } from 'react'
 import storage from 'local-storage'
 import { buscarLocal , agendamentosData , agendamentos , CarregarHorariosPorSituscao } from '../../../api/agendamentos.js'
+import { toast } from 'react-toastify'
 
 
 export default function Homeempresa (){
@@ -19,10 +20,6 @@ export default function Homeempresa (){
          const a = new Date ()
          let b = a.toISOString().substr(0, 10);
          setdata(b);
-        //  const b = String(a.getDay()).padStart(2,'0')
-        //  const c = String(a.getMonth()+1).padStart(2,'0')
-        //  const d = a.getFullYear()
-         //setdata(`${d}-${c}-${b}`)
      }
  
      
@@ -54,10 +51,8 @@ export default function Homeempresa (){
                 r = await CarregarHorariosPorSituscao(id , situ)   
             }
             setagendamento(r)
-            console.log(agendamento)
-        
         } catch (err) {
-            console.log(err.message)         
+            toast.error(err.message)         
         }
     }
 
@@ -86,17 +81,18 @@ export default function Homeempresa (){
                 <div className='btn' style={{marginLeft:'5%'}}>
                         <div></div>
                         <input placeholder='DATA' type='date' value={data} onChange={e => setdata(e.target.value)} />
-                     <img className='lupa' src='/assets/images/lupa-branco.svg' onClick={ ()=> ListarPorData(id , data)}/> 
+                     <img className='lupa' src='/assets/images/lupa-branco.svg' onClick={ ()=> ListarPorData(id , data)} alt=''/> 
                 </div>
 
                 <div className='btn2'>
                         <select className='opt2' value={situacao} onChange={e => setsituacao(e.target.value)} >                        
-                            <option value='CONFIRMADA' >Confirmada</option>
-                            <option value='RECUSADO'>Recusada</option>
                             <option value='TODOS'>Todos</option>
+                            <option value='RECUSADO'>Recusada</option>
+                            <option value='CONFIRMADA' >Confirmada</option>
+                            
                             
                     </select>
-                    <img onClick={ ()=> porSituacao(id , situacao) }  className='lupa' src='/assets/images/lupa-branco.svg' /> 
+                    <img onClick={ ()=> porSituacao(id , situacao) }  className='lupa' src='/assets/images/lupa-branco.svg' alt='' /> 
                 </div>
  
             </div>  

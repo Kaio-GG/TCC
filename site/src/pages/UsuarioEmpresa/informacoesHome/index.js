@@ -4,7 +4,7 @@ import './index.scss'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { CarregarInfo , confirmar , recusar } from '../../../api/agendamentos.js'
-
+import { toast } from 'react-toastify'
 
 
 
@@ -25,11 +25,13 @@ export default function Informacoes (){
     async function confirmado (id){
         await confirmar(id)
         carregar()
+        toast.dark('🚀 Agendamento confirmado')
     }
     
     async function Recusar (id){
         await recusar(id)
         carregar()
+        toast.dark('🚀 Agendamento recusado')
     }
 
     function tocaraudio (){

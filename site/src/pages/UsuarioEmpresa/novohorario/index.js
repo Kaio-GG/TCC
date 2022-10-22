@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react';
 import { NovoHorario  ,editarHorario , deletarHorario ,CarregarHorarios ,buscarLocal } from '../../../api/agendamentos.js';
 import storage from 'local-storage';
 import Foter from '../../../components/footer/index.js'
-
-
+import { toast } from 'react-toastify'
 
 
 export default function Novohorario (){
@@ -29,6 +28,7 @@ export default function Novohorario (){
             await NovoHorario(id ,local.map(item => item.local) , String(hora) , data ,qtd)
             CarregarHorario()
             console.log('horario cadastrado com sucesso')
+            toast.dark(' 🚀 Horario cadastrado com sucesso')
         } catch (err) {
            console.log(err.message)
            console.log('nao foi ')
@@ -45,7 +45,8 @@ export default function Novohorario (){
     async function deletar (id){
         try {
             await deletarHorario (id)
-            await CarregarHorario()    
+            await CarregarHorario()
+            toast.warn(' 🚀 Horario deletado')    
         } catch (err) {
             console.log('horario nao deletado', err.message)
         }
@@ -56,7 +57,7 @@ export default function Novohorario (){
             const a = qtd + 1
             await editarHorario (id , a)
             await CarregarHorario()
-            console.log('foi editado')
+            toast.dark('🚀 Horario aumentado')
         } catch (err) {
             console.log('nao foi editado', err.message)
         }
@@ -69,9 +70,9 @@ export default function Novohorario (){
                 throw new Error ('Horario não pode ser menor que 1')
             await editarHorario (id , a)
             await CarregarHorario()
-            console.log('foi editado')
+            toast.dark('🚀 Horario diminuido')
         } catch (err) {
-            console.log('nao foi editado', err.message)
+            toast.error( err.message)
         }
     }
 
@@ -85,11 +86,9 @@ export default function Novohorario (){
     }
     function novahora (){
         let hr = new Date()
-        let dia = hr.getDay()
-        let mes = hr.getMonth()
-        let ano = hr.getFullYear()
-        String(dia ,mes ,ano)
-        setdataCarregarHorario(ano +'-0' + mes +'-0' + dia )
+        let a = hr.toISOString().substr(0,10)
+        setdataCarregarHorario(a)
+        setdata(a)
     }
     function rendernovo (){
     if(rendernovohorario === false){
