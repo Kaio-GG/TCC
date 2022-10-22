@@ -19,3 +19,14 @@ export async function CarregarPagina (id) {
     const resposta = await api.get(`/empresa/pagina/${id}`);
     return resposta;
 }
+
+export async function AlterarPagina (nome, img, descricao, idEmpresa) {
+    const resposta = await api.put(`/empresa/alterarpagina`, {
+        idEmpresa:idEmpresa,
+        nome:nome,
+        img:img,
+        descricao:descricao,
+        idEmpresa:idEmpresa
+    });
+    return resposta;
+}

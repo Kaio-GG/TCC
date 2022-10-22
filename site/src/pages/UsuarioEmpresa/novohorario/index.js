@@ -183,7 +183,7 @@ export default function Novohorario (){
                     </div>        
                     }
             </div>
-            <Foter/>
+            <Foter  />
             
         </div>
     )

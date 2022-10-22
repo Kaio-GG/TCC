@@ -16,11 +16,13 @@ export default function Homeempresa (){
     
  
      function novaData (){
-         const a = new Date()
-         const b = String(a.getDay()).padStart(2,'0')
-         const c = String(a.getMonth()+1).padStart(2,'0')
-         const d = a.getFullYear()
-         setdata(`${d}-${c}-${b}`)
+         const a = new Date ()
+         let b = a.toISOString().substr(0, 10);
+         setdata(b);
+        //  const b = String(a.getDay()).padStart(2,'0')
+        //  const c = String(a.getMonth()+1).padStart(2,'0')
+        //  const d = a.getFullYear()
+         //setdata(`${d}-${c}-${b}`)
      }
  
      
@@ -84,7 +86,7 @@ export default function Homeempresa (){
                 <div className='btn' style={{marginLeft:'5%'}}>
                         <div></div>
                         <input placeholder='DATA' type='date' value={data} onChange={e => setdata(e.target.value)} />
-                        <button onClick={ ()=> ListarPorData(id , data) } >Buscar</button>
+                     <img className='lupa' src='/assets/images/lupa-branco.svg' onClick={ ()=> ListarPorData(id , data)}/> 
                 </div>
 
                 <div className='btn2'>
@@ -94,7 +96,7 @@ export default function Homeempresa (){
                             <option value='TODOS'>Todos</option>
                             
                     </select>
-                    <button onClick={ ()=> porSituacao(id , situacao) }> Buscar </button>
+                    <img onClick={ ()=> porSituacao(id , situacao) }  className='lupa' src='/assets/images/lupa-branco.svg' /> 
                 </div>
  
             </div>  
