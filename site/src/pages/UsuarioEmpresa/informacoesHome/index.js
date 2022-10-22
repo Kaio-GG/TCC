@@ -25,13 +25,11 @@ export default function Informacoes (){
     async function confirmado (id){
         await confirmar(id)
         carregar()
-        tocaraudio()
     }
     
     async function Recusar (id){
         await recusar(id)
         carregar()
-        tocaraudio2()
     }
 
     function tocaraudio (){
