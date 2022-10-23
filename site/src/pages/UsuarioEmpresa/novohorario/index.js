@@ -102,7 +102,7 @@ export default function Novohorario (){
         setrender(true) 
     }
     function renderhorario(){
-        setrendernovohorario(rendernovohorario-1)
+        setrendernovohorario(false)
     }
     function inicial (){
     
@@ -125,22 +125,21 @@ export default function Novohorario (){
     return(
         <div className='pg-novohorario'>
             <HederEmpresa  class='hora'/>
-            <div>   
-                <div className='alinhado'>
+            <div>
+
+
+            {rendernovohorario === false &&
+            <div>    
+            <div className='alinhado'>
                     <h2>Horarios</h2>
                     <div className='linha'></div>
                 </div>
             <div className='opts'>
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
-                <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >               
-                    
-                        
+                <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >                 
                 {local.map (item =>
                     <option value={item.local}>{item.local}</option>
                     )}
-                    
-                
-                
                 </select>
             </div> 
             <div className='horarios'>
@@ -169,7 +168,63 @@ export default function Novohorario (){
                 <div className='card-novo' onClick={rendernovo}>
                     ADICIONAR HORARIO              
                 </div>
-                    {rendernovohorario === true &&
+                </div>
+                }
+
+
+
+
+
+            {rendernovohorario === true &&
+               <div className='desfoque' > 
+                <div className='alinhado'>
+                    <h2>Horarios</h2>
+                    <div className='linha'></div>
+                </div>
+            <div className='opts'>
+                <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
+                <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >                 
+                {local.map (item =>
+                    <option value={item.local}>{item.local}</option>
+                    )}
+                </select>
+            </div> 
+            <div className='horarios'>
+                {render === false
+                    ?<div  className='nela' >
+                    {horario.map (item  =>
+                        <div className='card1' onMouseOver={() => renderp()}>
+                            <p>{item.hora}</p>
+                    </div>
+                )}
+                     </div>
+                    :<div className='nela'>
+                        {horario.map (item  =>
+                            <div  className='card1' >
+                                <p>{item.hora}</p>
+                                <div className='btneditarcard'>
+                                    <img src='/assets/images/seta esquerda.svg' onClick={() => diminuirHorarios(item.id_horario, item.qtd)} alt='' />
+                                    <div>{item.qtd}</div>
+                                    <img src='/assets/images/seta direita.svg' onClick={() => aumentarHorarios(item.id_horario, item.qtd)} alt='' /> &nbsp;
+                                    <img src='/assets/images/lixeira.svg' onClick={() => deletar(item.id_horario)} alt=''/> &nbsp;                                              
+                                </div>
+                            </div>
+                    )}
+                    </div>}   
+            </div>
+                <div className='card-novo' onClick={rendernovo}>
+                    ADICIONAR HORARIO              
+                </div>
+            </div>
+            }
+            </div>
+            
+
+
+
+
+            {rendernovohorario === true &&
+                    <div className='centralizar'>
                         <div className='opts-2'>
                                 <input className='info-novo' type='time' placeholder='digite o horario' value={hora} onChange={e => sethora(e.target.value)} />
                                 <input className='info-novo' type='date' value={data} onChange={e => setdata(e.target.value)} />
@@ -179,9 +234,9 @@ export default function Novohorario (){
                                 <button onClick={criarHorario} >SALVAR</button>
                                 <button className='btn-pronto' onClick={renderhorario} >PRONTO</button>
                             </div>
-                    </div>        
-                    }
-            </div>
+                        </div>
+                    </div> 
+            }
             <Foter  />
             
         </div>

@@ -32,7 +32,7 @@ export default function Index() {
                 <header className='home-header'>
                     <Link to={'/login'} className='h4-home'>Login</Link> 
                     
-                    <img className='logo' src={Logo}></img>
+                    <img className='logo' src={Logo} alt=''></img>
 
                     <Link to={'/cadastro'} className='h4-home'>Registre-se</Link>
 
@@ -49,7 +49,7 @@ export default function Index() {
                 </div>
 
 
-                    <img className='img-coffee' src={Cafe}></img>
+                    <img className='img-coffee' src={Cafe} alt=''></img>
 
             </div>
             </section>
@@ -58,7 +58,7 @@ export default function Index() {
                 <div className='f2-left'>
                     <h1 className='f2-h1'>Empresas</h1>
 
-                    <img className='img-time' src={Time}></img>
+                    <img className='img-time' src={Time} alt=''></img>
 
                     <button className='f2-button'>Se registre como empresa agora!</button>
                 </div>
@@ -66,7 +66,7 @@ export default function Index() {
                 <div className='f2-right'>
                     <h1 className='f2-h1'>Cliente</h1>
 
-                    <img className='img-mass' src={Massagem}></img>
+                    <img className='img-mass' src={Massagem} alt='' ></img>
 
                     <button className='f2-button'>Se registre como cliente no site!</button>
 
@@ -80,7 +80,7 @@ export default function Index() {
 
                     <p className='f3-p1'>Aqui você é apresentado para as empresas e trabalhadores autonômos com melhor avaliação dentro do nosso site</p>
 
-                    <img src={startup} className="f3-img"></img>
+                    <img src={startup} className="f3-img" alt=''></img>
                 </div>
 
                 <div>
@@ -92,7 +92,7 @@ export default function Index() {
 
                 {avaliacao.map(item =>
                     <div className='div1-f3'> 
-                        <img className='icon-f3' src={Icon}></img>
+                        <img className='icon-f3' src={Icon} alt=''></img>
 
                         <div className='alinharCard'>
                             <p className='f3-p2'>{item.nome} <span className='f3-p5'>{item.empresa}</span></p>   
@@ -133,7 +133,7 @@ export default function Index() {
 
                     <p className='f4-p'>Quando você manda sua avaliação apresentando os pontos positivos e negativos nós melhoramos o site para você!</p>
 
-                    <img className='f4-img' src={Reading}></img>
+                    <img className='f4-img' src={Reading} alt=''></img>
 
                 </div>
             </section>
