@@ -5,7 +5,27 @@ const server = Router();
 
 server.post ('/empresa/novohorario' , async (req , resp ) => {
     try {
-        const info = req.body
+        const info = req.body;
+        let vf = new Date();
+        let dt = vf.toISOString().substr(0,10);
+        let ano = Number(dt.substr(0,4))
+        let dia = Number(dt.substr(8,10))
+        let a = (dt.substr(5,7))
+        let mes = Number(a.substr(0, 2))
+        
+        let datainfo = String(info.data)
+        let anoinfo = Number(datainfo.substr(0,4))
+        let diainfo = Number(datainfo.substr(8,10))
+        let ainfo = datainfo.substr(5,7)
+        let mesinfo = Number(ainfo.substr(0, 2))
+        
+        if(ano > anoinfo )
+            throw new Error('A data não pode ser antes da atual')
+        if( mes > mesinfo || ano > anoinfo)
+            throw new Error('O mes nao pode ser menor que o atual')
+        if( mes > mesinfo || ano > anoinfo || dia > diainfo)
+            throw new Error('o dia não pode ser antes do atual')    
+
         const nh = await NovoHorario(info)
         resp.send(nh)   
 

@@ -13,7 +13,7 @@ export default function Novohorario (){
     const [local , setlocal  ] = useState([])
     const [hora , sethora] =useState ('00:00')
     const [data ,setdata] =useState('')
-    const [qtd , setqtd] =useState(0)
+    const [qtd , setqtd] =useState(1)
     const [horario , sethorario] =useState([])
     const [dataCarregarHorario , setdataCarregarHorario]= useState('')
     const empresaLogada = storage('Empresa-Logada')
@@ -25,13 +25,17 @@ export default function Novohorario (){
 
     async function criarHorario (){
         try {
+
+
+
+            
             await NovoHorario(id ,local.map(item => item.local) , String(hora) , data ,qtd)
             CarregarHorario()
-            console.log('horario cadastrado com sucesso')
+            
             toast.dark(' 🚀 Horario cadastrado com sucesso')
         } catch (err) {
-           console.log(err.message)
-           console.log('nao foi ')
+           toast.error(err.message)
+           
         }
     }
     async function CarregarHorario (){
@@ -237,7 +241,7 @@ export default function Novohorario (){
                         </div>
                     </div> 
             }
-            <Foter  />
+            
             
         </div>
     )
