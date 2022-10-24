@@ -58,7 +58,7 @@ export default function Index() {
                 </header>
                 
                 <script>
-                {ScrollReveal().reveal('.box-empresa')};
+
                 </script>
                             
 

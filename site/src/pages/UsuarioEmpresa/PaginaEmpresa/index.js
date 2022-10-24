@@ -137,12 +137,24 @@ export default function PaginaEmpresa() {
                         {contpubli === 0 &&<div className="card-Publicacao">
                             <p>Adicionar Card</p>
                             <img src='/assets/images/add.svg' alt='add' onClick={Novapubli}/>
-                        </div> }
+                            </div> }
 
-                        {contpubli === 1 &&<div className="card-Publicacao">
-                            <p>Adicionar Card</p>
-                            <img src='/assets/images/Salvar.svg' alt='add' onClick={ConfirNovapubli}/>
-                        </div> }
+                        {contpubli === 1 &&<div className="card-Publicacao-click">
+                            <div className='agrupamento-inputs'>
+                                <input type='text' />
+                                <input type='text' />  
+                            </div>
+
+                            <div className='agrupamento-img-icon'>
+                                <div>
+                                    <img src='/assets/images/Salvar.svg' alt='add' onClick={ConfirNovapubli}/>
+                                </div>
+                                <div className='addimg'>
+                                    <img src='/assets/images/addimg.png' alt='add'/>
+                                </div>
+                            </div>
+                            </div> 
+                        }
 
                     </div>
                     <div className="agrup-direita">
