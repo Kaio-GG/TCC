@@ -8,10 +8,9 @@ import startup from '../home/assets/startup.svg'
 import Reading from '../home/assets/reading.svg'
 import Icon from '../home/assets/Vector.png'
 
+import Boom from 'react-reveal/Slide'
 
-
-
-import { buscarPorNomeHome, listarEmpresasAvaliacao } from '../../api/homeController'
+import { avaliacaoSite, buscarPorNomeHome, listarEmpresasAvaliacao } from '../../api/homeController'
 import { useEffect, useState } from 'react'
 
 
@@ -20,8 +19,17 @@ import { useEffect, useState } from 'react'
 export default function Index() {
     const [avaliacao, setAvaliacao] = useState([]);
 
+    const [nomeUsuario, setNomeUsuario] = useState('');
+    const [avaliacaoUsuario, setAvaliacaoUsuario] = useState('');
+
     const [filtro, setFiltro] = useState('');
     const [empresa, setEmpresa] = useState([]);
+
+    async function enviarAvaliacao(){
+        const r = await avaliacaoSite(nomeUsuario, avaliacaoUsuario)
+
+        return r;
+    }
 
     async function busca(){
         const r = await buscarPorNomeHome(filtro)
@@ -57,7 +65,7 @@ export default function Index() {
 
                 </header>
                 
-
+        
             <div className='alinhardiv1'>
                 <div className='div2-f1'>
                     <h1 className='f1-h1'>Faça parte do nosso precioso sonho</h1>
@@ -67,7 +75,8 @@ export default function Index() {
                     <input value={filtro} onChange={e => setFiltro(e.target.value)} placeholder='Buscar empresas' className='f1-input1'/>
                     
                     {empresa.map(item => 
-                        <div className='box-empresa'>
+                        <Boom left className='box-empresa'>
+                         <div className='espacamento'>
                          <div className='ali'> 
                             <div className='img-logo'>.{item.logo}</div>
 
@@ -79,12 +88,15 @@ export default function Index() {
 
                             </div>
                          </div>
+                         </div>
 
-                        </div>   
+                        </Boom>   
                         
                     )}
+                    
 
                 </div>
+                
 
 
                     <img className='img-coffee' src={Cafe} alt=''></img>
@@ -154,12 +166,12 @@ export default function Index() {
 
                     <div className='f4-box'>
                         <h1 className='f4-h2'>Nome:</h1>
-                        <input className='f4-input1'></input>
+                        <input value={nomeUsuario} onChange={e => setNomeUsuario(e.target.value)} className='f4-input1'></input>
 
                         <h1 className='f4-h2'>Avaliação:</h1>
-                        <textarea className='f4-input2'></textarea>
+                        <textarea value={avaliacaoUsuario} onChange={e => setAvaliacaoUsuario(e.target.value)} className='f4-input2'></textarea>
 
-                        <button className='f4-button'>Enviar</button>
+                        <button onClick={enviarAvaliacao} className='f4-button'>Enviar</button>
 
                     </div>
 
