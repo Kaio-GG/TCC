@@ -20,13 +20,12 @@ export async function CarregarPagina (id) {
     return resposta;
 }
 
-export async function AlterarPagina (nome, img, descricao, idEmpresa) {
-    const resposta = await api.put(`/empresa/alterarpagina`, {
+export async function AlterarPagina (idEmpresa, nome, logo, descricao) {
+    const resposta = await api.put(`/empresa/alterarpagina/${idEmpresa}`, {
         idEmpresa:idEmpresa,
         nome:nome,
-        img:img,
-        descricao:descricao,
-        idEmpresa:idEmpresa
+        logo:logo,
+        descricao:descricao
     });
-    return resposta;
+    return resposta.data;
 }

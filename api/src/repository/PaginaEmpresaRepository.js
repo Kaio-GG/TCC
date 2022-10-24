@@ -24,16 +24,16 @@ export async function RendPagEmpreId(id) {
        return linhas[0];
 }
 
-export async function AlterarPagEmpreId(pagina) {
+export async function AlterarPagEmpreId(idEmpresa, pagina) {
     const comando = 
     ` update TB_PAGINA_EMPRESA
-         set nm_empresa  = ?,
-             img_logo = ?,
-             ds_descricao = ?
+         set nm_empresa         = ?,
+             img_logo           = ?,
+             ds_descricao       = ?
        where id_usuario_empresa = ? `;
 
-       const [linhas] = await con.query(comando, [pagina.nome, pagina.img, pagina.descricao, pagina.idEmpresa]);
-       return linhas.affectedRows;
+       const [linhas] = await con.query(comando, [pagina.nome, pagina.logo, pagina.descricao, idEmpresa]);
+       return linhas.affectedRows ;
 }
 
 
