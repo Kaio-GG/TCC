@@ -8,35 +8,59 @@ import startup from '../home/assets/startup.svg'
 import Reading from '../home/assets/reading.svg'
 import Icon from '../home/assets/Vector.png'
 
-import { listarEmpresasAvaliacao } from '../../api/Controller'
+
+
+
+import { buscarPorNomeHome, listarEmpresasAvaliacao } from '../../api/homeController'
 import { useEffect, useState } from 'react'
 
 
-export default function Index() {
 
+
+export default function Index() {
     const [avaliacao, setAvaliacao] = useState([]);
+
+    const [filtro, setFiltro] = useState('');
+    const [empresa, setEmpresa] = useState([]);
+
+    async function busca(){
+        const r = await buscarPorNomeHome(filtro)
+
+        if(filtro === '')
+            setEmpresa([]);
+
+        else
+        setEmpresa(r)
+    }
 
     async function listar(){
         const resposta = await listarEmpresasAvaliacao();
         setAvaliacao(resposta)
     }
 
+
+
     useEffect(() => {
         listar()
-        console.log(avaliacao)
-    }, [])
+        busca()
+    }, [filtro])
 
     return(
         <main className='home'>
             <section className='home-f1'>
                 <header className='home-header'>
-                    <Link to={'/login'} className='h4-home'>Login</Link> 
+                    <Link to='/login' className='h4-home'>Login</Link> 
                     
                     <img className='logo' src={Logo} alt=''></img>
 
-                    <Link to={'/cadastro'} className='h4-home'>Registre-se</Link>
+                    <Link to='/cadastro' className='h4-home'>Registre-se</Link>
 
                 </header>
+                
+                <script>
+                {ScrollReveal().reveal('.box-empresa')};
+                </script>
+                            
 
 
             <div className='alinhardiv1'>
@@ -45,7 +69,26 @@ export default function Index() {
 
                     <p className='f1-p1'>Apresentamos para você um serviço rápido e prático facilitando o seu convívio com consultas e trabalhos.</p>
 
-                    <input placeholder='Buscar empresas' className='f1-input1'/>
+                    <input value={filtro} onChange={e => setFiltro(e.target.value)} placeholder='Buscar empresas' className='f1-input1'/>
+                    
+                    {empresa.map(item => 
+                        <div className='box-empresa'>
+                         <div className='ali'> 
+                            <div className='img-logo'>.{item.logo}</div>
+
+                            <div className='alinhar-box-empresa'>
+                            
+                            <h1 className='h1-box-empresa'>{item.nome}</h1>
+
+                            <p>{item.descricao}</p>
+
+                            </div>
+                         </div>
+
+                        </div>   
+                        
+                    )}
+
                 </div>
 
 

@@ -18,6 +18,11 @@ export async function avaliacaoSite(nome, avaliacao){
     return resposta.data
 }
 
+export async function buscarPorNomeHome(nome){
+    const resposta = await api.get(`/home/busca?nome=${nome}`)
+    return resposta.data
+}
+
 export async function cadastrarLoginEmpresa(email, senha){
     const resposta = await api.post('/empresa/cadastroLogin', {
         email: email, 

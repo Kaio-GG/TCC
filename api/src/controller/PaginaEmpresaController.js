@@ -33,13 +33,16 @@ server.get('/empresa/pagina/:id', async(req, resp) => {
     }
 })
 
-server.put('/empresa/alterarpagina', async(req, resp) => {
+server.put('/empresa/alterarpagina/:idEmpresa', async(req, resp) => {
     try{
+        const { idEmpresa } = req.params;
         const conteudo = req.body;
 
-        const alterarPagina = await AlterarPagEmpreId(conteudo);
+        const alterarPagina = await AlterarPagEmpreId(idEmpresa, conteudo);
+        if (alterarPagina != 1)
+            throw new Error('houve uma falha ao realizar alterações.');
 
-        resp.status(204).send(alterarPagina)
+        resp.status(204).send();
 
     } catch(err){
         resp.status(401).send({

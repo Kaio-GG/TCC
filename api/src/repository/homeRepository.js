@@ -27,6 +27,22 @@ export async function empresasBemAvaliadas() {
     return lista;
 }
 
+export async function pesquisaPorNomeHome(nome) {
+    const comando = `
+    SELECT
+        id_usuario_empresa  id, 
+        IMG_LOGO logo,
+	     DS_DESCRICAO descricao, 
+	     NM_EMPRESA nome
+         from tb_pagina_empresa 
+         where nm_empresa like ?
+         LIMIT 2
+
+    `;
+    const [linhas]= await con.query(comando, [`%${nome}%`]);
+    return linhas;
+}
+
 export async function avaliacaoSite(feedback){
     const comando = `
     INSERT INTO TB_AVALIACAO_SITE(nm_usuario, ds_avaliacao_site)

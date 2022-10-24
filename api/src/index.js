@@ -1,6 +1,6 @@
 import 'dotenv/config'
 
-import ConsultasController from './controller/ConsultasController.js';
+import ConsultasController from './controller/homeController.js';
 import LoginController from './controller/LoginController.js';
 import cadastroEmpresa  from './controller/CadastroEmpresaController.js';
 import cadastroCliente from './controller/CadastroClienteController.js'

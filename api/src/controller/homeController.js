@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { avaliacaoSite, empresasBemAvaliadas } from '../repository/apiLandingPage.js'
+import { avaliacaoSite, empresasBemAvaliadas, pesquisaPorNomeHome } from '../repository/homeRepository.js'
 
 const server = Router();
 
@@ -17,7 +17,21 @@ server.get('/empresasBemAvaliadas', async(req, resp) => {
         })
 
     }
+})
 
+server.get('/home/busca', async(req, resp) => {
+    try{
+        const  { nome } = req.query; 
+
+        const resposta = await pesquisaPorNomeHome(nome);
+
+        resp.send(resposta);
+        
+    }catch(err){
+        resp.status(400).send({
+            erro:err.message
+        })
+    }
 })
 
 server.post('/site', async(req, resp) =>{
