@@ -100,7 +100,7 @@ export default function ClienteHome() {
                             </div>
                          </div>
 
-                            <button className='button-box-empresa' onClick={() => irParaInfo(item.id)} >Mais informações</button>
+                            <button className='button-box-empresa' onClick={() => irParaInfo(item.id)} >Agende seu horário</button>
 
                         </div>   
                         
