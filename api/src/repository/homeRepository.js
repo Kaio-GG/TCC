@@ -30,14 +30,13 @@ export async function empresasBemAvaliadas() {
 export async function pesquisaPorNomeHome(nome) {
     const comando = `
     SELECT
-        id_usuario_empresa  id, 
-        IMG_LOGO logo,
-	     DS_DESCRICAO descricao, 
-	     NM_EMPRESA nome
-         from tb_pagina_empresa 
-         where nm_empresa like ?
-         LIMIT 2
-
+    distinct
+    NM_EMPRESA nome,
+    IMG_LOGO logo,
+     DS_DESCRICAO descricao
+     from tb_pagina_empresa 
+     where nm_empresa like ?
+     LIMIT 2;
     `;
     const [linhas]= await con.query(comando, [`%${nome}%`]);
     return linhas;
@@ -45,7 +44,7 @@ export async function pesquisaPorNomeHome(nome) {
 
 export async function avaliacaoSite(feedback){
     const comando = `
-    INSERT INTO TB_AVALIACAO_SITE(nm_usuario, ds_avaliacao_site)
+    INSERT INTO TB_AVALIACAO_SITE(nm_usuario_avaliacao, ds_avaliacao_site)
     values(?, ?)  
     `
     const [enviar] = await con.query(comando, [feedback.nome, feedback.avaliacao]);
