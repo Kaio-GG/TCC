@@ -57,11 +57,6 @@ export default function Index() {
 
                 </header>
                 
-                <script>
-
-                </script>
-                            
-
 
             <div className='alinhardiv1'>
                 <div className='div2-f1'>
