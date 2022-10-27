@@ -8,7 +8,7 @@ import startup from '../home/assets/startup.svg'
 import Reading from '../home/assets/reading.svg'
 import Icon from '../home/assets/Vector.png'
 
-
+import Boom from 'react-reveal/Slide'
 
 import { avaliacaoSite, buscarPorNomeHome, listarEmpresasAvaliacao } from '../../api/homeController'
 import { useEffect, useState } from 'react'
@@ -73,6 +73,26 @@ export default function Index() {
                     <p className='f1-p1'>Apresentamos para você um serviço rápido e prático facilitando o seu convívio com consultas e trabalhos.</p>
 
                     <input value={filtro} onChange={e => setFiltro(e.target.value)} placeholder='Buscar empresas' className='f1-input1'/>
+                    
+                    {empresa.map(item => 
+                        <Boom left className='box-empresa'>
+                         <div className='espacamento'>
+                         <div className='ali'> 
+                            <div className='img-logo'>.{item.logo}</div>
+
+                            <div className='alinhar-box-empresa'>
+                            
+                            <h1 className='h1-box-empresa'>{item.nome}</h1>
+
+                            <p>{item.descricao}</p>
+
+                            </div>
+                         </div>
+                         </div>
+
+                        </Boom>   
+                        
+                    )}
                     
 
                 </div>
