@@ -15,6 +15,8 @@ export async function Pagina (idEmpresa, nome, img, descricao) {
     return t.data;
 }
 
+export async function 
+
 export async function CarregarPagina (id) {
     const resposta = await api.get(`/empresa/pagina/${id}`);
     return resposta;

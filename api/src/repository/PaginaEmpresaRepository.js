@@ -24,6 +24,17 @@ export async function RendPagEmpreId(id) {
        return linhas[0];
 }
 
+export async function ImagemPagina(imagem, idEmpresa) {
+    const comando =
+    `update TB_PAGINA_EMPRESA
+        set img_logo           = ?
+      where id_usuario_empresa = ?`
+
+    const [linhas] = await con.query(comando, [imagem, idEmpresa]);
+    console.log(linhas.affectedRows)
+    return linhas.affectedRows;
+}
+
 export async function AlterarPagEmpreId(idEmpresa, pagina) {
     const comando = 
     ` update TB_PAGINA_EMPRESA
