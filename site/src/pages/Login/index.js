@@ -75,10 +75,6 @@ return(
                             <button className='buttonLogin' onClick={Login}>Entrar</button>
                         </div>
 
-                        <div className='lembrar-senha'>
-                            <input type='checkbox'/> 
-
-                            <h2>Lembrar senha</h2></div>
                     </div>
 
             
