@@ -31,7 +31,6 @@ export async function ImagemPagina(imagem, idEmpresa) {
       where id_usuario_empresa = ?`
 
     const [linhas] = await con.query(comando, [imagem, idEmpresa]);
-    console.log(linhas.affectedRows)
     return linhas.affectedRows;
 }
 

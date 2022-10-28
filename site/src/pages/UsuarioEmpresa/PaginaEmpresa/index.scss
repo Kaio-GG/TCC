@@ -82,7 +82,7 @@
             }
 
             .img{
-                height: 100%;
+                height: 102%;
                 width: 20%;
                 min-width: 12.5em;
                 margin-right: 2.5%;
@@ -90,19 +90,8 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
-                background-color: #4D6146;
-                box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.25);
-
-                .aimg{
-                    background-image: url(../../../../public/assets/images/NUTRIFIT.svg);
-                    background-repeat: no-repeat;
-
-                    background-size: 80%;
-                    background-position: center;
-                    width: 90%;
-                    height: 20%;
-                }
+                
+                border: solid 3px rgb(165, 163, 163);
             }
 
             .nome-desc{
