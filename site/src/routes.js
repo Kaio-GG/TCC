@@ -14,6 +14,7 @@ import AgendarFinalizado from './pages/UsuarioCliente/UsuarioEmpresaFinalizado/i
 import HomeEmpresa from './pages/UsuarioEmpresa/adm-empresa-home/index.js'
 import InformacoesHome from './pages/UsuarioEmpresa/informacoesHome/index.js'
 import PaginaEmpresa from './pages/UsuarioEmpresa/PaginaEmpresa/index.js'
+import Inter from './pages/UsuarioCliente/int/index.js'
 
 
 
@@ -30,6 +31,8 @@ export default function Index(){
 				<Route path='cadastro/usuario' element={<CadastroUsuario/>}/>
 				<Route path='/home/usuario' element={<ClienteHome/>}/>
 				<Route path='/home/usuario/empresa/consulta' element={<ConsultaEmpresa/>}/>
+				<Route path='/home/usuario/int' element={<Inter/>}/>
+				
 
 				<Route path='/home/usuario/empresa/consulta/:id/agendar' element={<AgendarEmpresa/>}/>
 				

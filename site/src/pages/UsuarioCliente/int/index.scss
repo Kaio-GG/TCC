@@ -1,0 +1,226 @@
+.full{
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    min-width: 100vw;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #F6F6F6;
+
+    h1,p,button,input,div{
+        font-family: "Kumbh Sans";
+    }
+
+    .alinhar-row{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    .header{
+        margin-bottom: 30px;
+    }
+
+    .boxleft{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .boxright{        
+        display: flex;
+        flex-direction: column;
+    }
+
+    .b1{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 700px;
+        background: #FFFFFF;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+        padding: 30px;
+        min-width: 100%;
+        
+    }
+
+    .img-empresa{
+        width: 150px;
+        height: 150px;
+        min-width: 150px;
+        min-height: 150px;
+        background-color: rgb(32, 17, 20);
+        margin-right: 10px;
+    }
+
+    .b1-letters{
+        width: 300px;
+    }
+
+    .b1-letters2{
+        width: 150px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .b2{
+        margin-top: 30px;
+        width: 100%;
+        background: #FFFFFF;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+        padding: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .h1-b2{
+        font-size: 20px;
+    }
+
+    .button-b2{ 
+        padding: 7px 20px 7px 20px;
+        background: #263238;
+        border-radius: 10px;
+        font-weight: 800;
+        color: white;
+        cursor: pointer;
+    }
+
+    .imagem{
+        background: white;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+        height: 400px;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-desc{
+        width: 400px;
+        height: 300px;
+        background-color: rgb(34, 37, 37);
+        margin-right: 10px;
+    }
+
+    .b3{
+        padding: 10px;
+        background-color: #FFFFFF;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+        max-height: 100%;
+    }
+    
+    .h1-b3{
+        font-weight: 700;
+    }
+
+    .linha-b3{
+        border: 1px solid black;
+    }
+
+    
+    .img-usuario{
+        width: 40px;
+        height: 40px;
+        border-radius: 360px;
+        background-color: #263238;
+
+    }
+    .juntar{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .box-review{
+        margin-top: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+        position: relative;
+        
+    }
+
+    .p-b3{
+        width: 300px;
+        
+    }
+
+    .p2-b3{
+       display: flex;
+       flex-direction: row;
+       justify-content: flex-end;
+       margin-right: 5px;
+       margin-top: 7px;
+        
+    }
+
+    .b3-letters{
+        margin-left: 20px;
+    }
+
+    .b4-right{
+        padding: 15px;
+        width: 300px;
+        height: 180px;
+        background-color: #FFFFFF;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .b4-right p{
+        margin-top: 10px;
+    }
+
+    .b5-right{
+        padding: 15px;
+        width: 300px;
+        height: 180px;
+        background-color: #FFFFFF;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+        margin-top: 30px;
+    }
+
+    .b1-ava{
+        font-weight: 900;
+    }
+
+    .comentario{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .comentar{
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.15);
+        margin-top: 10px;
+        width: 680px;
+        height: 150px;
+        border: 0.5px solid ;
+        background-color: #fffff0;
+        border-radius: 5px;
+        text-align: start;
+        min-width: 680px;
+        min-height: 150px;
+        max-width: 680px;
+        max-height: 150px;
+        font-family: "Kumbh Sans";
+        padding: 10px;
+    }
+
+    .button-enviar{
+        padding: 7px 20px 7px 20px;
+        background: #263238;
+        border-radius: 10px;
+        font-weight: 800;
+        color: white;
+        cursor: pointer;
+        margin-top: 5px;        
+    }
+
+
+}

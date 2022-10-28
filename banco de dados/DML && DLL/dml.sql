@@ -46,6 +46,11 @@ Select * from tb_usuario_cliente;
 INSERT INTO TB_PAGINA_EMPRESA(id_usuario_empresa,nm_empresa, img_logo, ds_descricao)
 values( 1 ,'titulo', '1', 'oii');
 
+update TB_PAGINA_EMPRESA
+   set img_logo = '/storage/empresa/aquivo.jp'
+ where id_usuario_empresa = 1;
+
+
 Select * from tb_pagina_empresa;
 
 /*--------------------ALTERAÇÃO_PAGINA_EMPRESA--------------------------*/

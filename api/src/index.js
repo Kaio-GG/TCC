@@ -19,9 +19,11 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
+//Liberar imagens
+server.use('/storage/capaEmpresa', express.static('storage/capaEmpresa'));
+
 
 //endpoints
-
 server.use(ConsultasController);
 server.use(LoginController);
 server.use(cadastroEmpresa);
