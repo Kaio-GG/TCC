@@ -16,6 +16,12 @@ function novohorario (){
 function paginaempresa (){
     navigate('/home/empresa/pagina-empresa')
 }
+function editarInfoEmpresa (){
+    navigate('/empresa/:id/editar')
+}
+
+
+
 function sair (){
     const empresaLogada = Storage('Empresa-Logada')
     Storage.remove('Empresa-Logada')

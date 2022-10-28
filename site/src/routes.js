@@ -15,7 +15,7 @@ import HomeEmpresa from './pages/UsuarioEmpresa/adm-empresa-home/index.js'
 import InformacoesHome from './pages/UsuarioEmpresa/informacoesHome/index.js'
 import PaginaEmpresa from './pages/UsuarioEmpresa/PaginaEmpresa/index.js'
 import Inter from './pages/UsuarioCliente/int/index.js'
-
+import EditarInfoEmpresa from './pages/UsuarioEmpresa/editarPerfil/index.js'
 
 
 export default function Index(){
@@ -32,15 +32,13 @@ export default function Index(){
 				<Route path='/home/usuario' element={<ClienteHome/>}/>
 				<Route path='/home/usuario/empresa/consulta' element={<ConsultaEmpresa/>}/>
 				<Route path='/home/usuario/int' element={<Inter/>}/>
-				
-
 				<Route path='/home/usuario/empresa/consulta/:id/agendar' element={<AgendarEmpresa/>}/>
-				
 				<Route path='/home/usuario/empresa/consulta/agendar/Horario' element={<AgendarHorarioEmpresa/>}/>
 				<Route path='/home/usuario/empresa/consulta/agendar/Horario/finalizado' element={<AgendarFinalizado/>}/>
 				<Route path='/home/empresa' element={<HomeEmpresa/>}/>
 				<Route path='/home/empresa/pagina-empresa' element={<PaginaEmpresa/>}/>
 				<Route path='/empresa/:id/informacoes' element={<InformacoesHome/>}/>
+				<Route path='/empresa/:id/editar' element={<EditarInfoEmpresa/>}/>
 
 			</Routes>
 		</BrowserRouter>	
