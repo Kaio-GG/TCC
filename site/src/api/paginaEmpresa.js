@@ -15,6 +15,17 @@ export async function Pagina (idEmpresa, nome, img, descricao) {
     return t.data;
 }
 
+export async function CarregarImagem (idEmpresa, imagem) {
+    const formData = new FormData();
+    const resposta = await api.put(`/empresa/alterarpagina/${idEmpresa}`, formData, {
+        headers: {
+            "content-type": "multipart/form-data"
+        },
+    });
+
+    return resposta.status;
+}
+
 export async function CarregarPagina (id) {
     const resposta = await api.get(`/empresa/pagina/${id}`);
     return resposta;

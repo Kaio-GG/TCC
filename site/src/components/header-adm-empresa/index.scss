@@ -28,9 +28,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 20%;
-            height: 7vh;
-            background-color: #37474F;
+            height: 100%;
+            width: 25%;
+            border-bottom: #fff solid 3px;
             font-family:'KumbhSans-Regular';   
             }
     }
@@ -42,10 +42,7 @@
         width: 25%;
     }
     .tent:hover{
-        background-color: #37474F;
-        transition: all 5,7 ease-in ;
-        transition-delay: 140ms;
-        animation: normal ;
+        border-bottom: #fff solid 3px;
     }
 
 

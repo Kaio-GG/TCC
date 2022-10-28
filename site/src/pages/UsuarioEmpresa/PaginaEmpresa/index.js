@@ -16,6 +16,10 @@ import { CarregarPagina, AlterarPagina } from '../../../api/paginaEmpresa';
 export default function PaginaEmpresa() {
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
+    const [logo, setLogo] = useState('/assets/images/addimg.png')
+
+    const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo')
+    const [corpoPublicacao, setCorpoPublicacao] = useState('Digite algo')
 
     const [cont, setCont] = useState(0);
     const [contpubli, setContpubli] = useState(0);
@@ -39,7 +43,6 @@ export default function PaginaEmpresa() {
 
 
     async function Alterarinf(){
-        const logo = 'Logo Alterado';
 
         await AlterarPagina(idEmpresa, nome, logo, descricao);
         PaginaEmpresa();
@@ -74,7 +77,7 @@ export default function PaginaEmpresa() {
     return(
         <main className="PaginaEmpresa">
             <div className="PaginaEmpresa-Centro">
-                <HeaderEmpresa />
+                <HeaderEmpresa class="pagina"/>
                 <div className='agrups'>
                     <div className="agrup-esquerda">
 
@@ -82,7 +85,7 @@ export default function PaginaEmpresa() {
                             <div className="card-empresa">
                                 <div className='a'>
                                     <div className="img">
-                                        <div className='aimg'></div>
+                                        <img src={logo} alt='Sem imagem' />
                                     </div>
                                     <div className="nome-desc">
                                         <h3 className="nome">{pagina.Nome}</h3>
@@ -110,7 +113,7 @@ export default function PaginaEmpresa() {
                             <div className="card-empresa">
                                 <div className='a'>
                                     <div className="img">
-                                        <div className='aimg'></div>
+                                        <img src={logo} alt='Sem imagem' />
                                     </div>
                                     <div className="nome-desc">
                                         <input className="nome" value={nome} type='text' onChange={e => setNome(e.target.value)} />
@@ -141,8 +144,8 @@ export default function PaginaEmpresa() {
 
                         {contpubli === 1 &&<div className="card-Publicacao-click">
                             <div className='agrupamento-inputs'>
-                                <input type='text' />
-                                <input type='text' />  
+                                <input type='text' value={tituloPublicacao} onChange={e => setTitutloPublicacao(e.target.value)}/>
+                                <input type='text' value={corpoPublicacao} onChange={e => setCorpoPublicacao(e.target.value)}/>
                             </div>
 
                             <div className='agrupamento-img-icon'>
