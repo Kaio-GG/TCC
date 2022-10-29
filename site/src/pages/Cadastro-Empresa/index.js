@@ -1,5 +1,5 @@
 import { cadastroEmpresa, cadastroLogin } from '../../api/cadastroEmpresa';
-import { Pagina } from '../../api/paginaEmpresa';
+import { CarregarImagem, Pagina } from '../../api/paginaEmpresa';
 
 import { useState } from 'react'
 import './index.scss'
@@ -36,14 +36,17 @@ export default function Index(){
             const empresa = true;
             const idEmpresa = a.id;
             const idusuario = null;
-            const img = 'Alterar Imagem';
-            const descricao = 'Adicionar descrição'
+            const logo = '/assets/images/addimg.png';
+            const descricao = 'Adicionar descrição';
 
             const b = cadastroLogin(idEmpresa, idusuario, usuario, senha, empresa);
 
-            const c = Pagina(idEmpresa, nome, img, descricao);
+            const c = Pagina(idEmpresa, nome, descricao);
+
+            const d = CarregarImagem(idEmpresa, logo);
             
             alert('Empresa cadastrada com sucesso!');
+            navigate('/login')
 
         } catch (err){
             alert(err.message)

@@ -1,4 +1,4 @@
-import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina } from "../repository/PaginaEmpresaRepository.js";
+import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao } from "../repository/PaginaEmpresaRepository.js";
 
 import multer from 'multer';
 import { Router } from "express";
@@ -63,6 +63,51 @@ server.put('/empresa/alterarpagina/:idEmpresa', async(req, resp) => {
             throw new Error('houve uma falha ao realizar alterações.');
 
         resp.status(204).send();
+
+    } catch(err){
+        resp.status(401).send({
+            erro: err.message
+        })
+    }
+})
+
+server.post('/empresa/publicacao', async(req, resp) => {
+    try{
+        const conteudo = req.body;
+
+        const Publicar = await Publicacao(conteudo);
+
+        resp.status(204).send(Publicar)
+
+    } catch(err){
+        resp.status(401).send({
+            erro: err.message
+        })
+    }
+})
+
+server.put('/empresa/publicacao', async(req, resp) => {
+    try{
+        const conteudo = req.body;
+
+        const alterarPublicacao = await AlterarPublicacao(conteudo);
+
+        resp.status(204).send(alterarPublicacao)
+
+    } catch(err){
+        resp.status(401).send({
+            erro: err.message
+        })
+    }
+})
+
+server.delete('/empresa/publicacao', async(req, resp) => {
+    try{
+        const conteudo = req.body;
+
+        const deletarPublicacao = await DeletarPublicacao(conteudo);
+
+        resp.status(204).send(deletarPublicacao)
 
     } catch(err){
         resp.status(401).send({
