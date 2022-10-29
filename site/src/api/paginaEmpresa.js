@@ -16,7 +16,7 @@ export async function Pagina (idEmpresa, nome, descricao) {
 
 export async function CarregarPagina (id) {
     const resposta = await api.get(`/empresa/pagina/${id}`);
-    return resposta;
+    return resposta.data;
 }
 
 export async function AlterarPagina (idEmpresa, nome, descricao) {
@@ -39,6 +39,10 @@ export async function CarregarImagem (idEmpresa, imagem) {
     });
 
     return resposta.status;
+}
+
+export function buscarImagem(imagem) {
+    return `${api.getUri()}/${imagem}`
 }
 
 export async function AdicionarPublicacao (idEmpresa, nome, conteudo){

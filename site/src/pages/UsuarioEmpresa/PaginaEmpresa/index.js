@@ -1,21 +1,16 @@
 import './index.scss';
-import { Link } from 'react-router-dom';
 import HeaderEmpresa from '../../../components/header-adm-empresa';
 import Storage from 'local-storage';
 
-import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 
-
-import Footer from '../../../components/footer/index.js'
-
-import { CarregarPagina, AlterarPagina, CarregarImagem } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
-    const [nome, setNome] = useState('teste');
-    const [descricao, setDescricao] = useState('teste');
+    const [nome, setNome] = useState('');
+    const [descricao, setDescricao] = useState('');
     const [logo, setLogo] = useState()
 
     const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo')
@@ -30,34 +25,46 @@ export default function PaginaEmpresa() {
     const idEmpresa = paulo.ID_USUARIO_EMPRESA
 
     useEffect(() => {
-        PaginaEmpresa();
+        if (id){
+            PaginaEmpresa();
+        }
     }, [])
 
     async function PaginaEmpresa(){
         try{
             const resp = await CarregarPagina(id)
-            setNome(pagina.Nome)
-            setDescricao(pagina.descricao)
-            setPagina(resp.data)
+            setNome(resp.Nome)
+            setDescricao(resp.descricao)
+            setLogo(resp.Logo)
+            setPagina(resp)
         } catch (err) {
-            alert(err.message);
+            alert(err.message)
         }
+        
     }
 
 
     async function Alterarinf(){
-        try {
+        try{
             await AlterarPagina(idEmpresa, nome, descricao);
-            await CarregarImagem(idEmpresa, logo)
-            const resp = await CarregarPagina(id)
-            setPagina(resp.data)
 
-            alert('Pagina Alterada')
-        } catch (err) {
-            alert(err.message);
+            if (typeof(logo) == 'object')
+                await CarregarImagem(idEmpresa, logo)
+
+            PaginaEmpresa();
+
+            if(logo === pagina.Logo && nome === pagina.Nome && descricao === pagina.descricao){
+
+            }
+            else{
+               alert('Pagina Alterada') 
+            }
+            
+        } catch(err) {
+             alert(err.message)
         }
+        
     }
-
 
     function Salvar() {
         Alterarinf();
@@ -67,6 +74,8 @@ export default function PaginaEmpresa() {
     }
 
     function Alterar() {
+        setNome(pagina.Nome)
+        setDescricao(pagina.descricao)
 
         const a = 1;
         setCont(a);
@@ -87,7 +96,13 @@ export default function PaginaEmpresa() {
     }
 
     function mostrarImagem() {
-        return URL.createObjectURL(logo)
+        if (typeof(logo) == 'object'){
+            return URL.createObjectURL(logo)
+        }
+        else {
+            return buscarImagem(logo)
+        }
+        
     }
 
 

@@ -38,6 +38,9 @@ server.get('/empresa/pagina/:id', async(req, resp) => {
 
 server.put('/empresa/pagina/:idEmpresa/imagem' ,upload.single('capa'), async(req, resp) => {
     try{
+        if(!req.file)
+            throw new Error('A imagem não pode ser salva.');
+
         const { idEmpresa } = req.params;
         const imagem = req.file.path;
 
