@@ -10,13 +10,13 @@ import { useEffect, useState } from 'react';
 
 import Footer from '../../../components/footer/index.js'
 
-import { CarregarPagina, AlterarPagina } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
-    const [logo, setLogo] = useState('/assets/images/addimg.png')
+    const [logo, setLogo] = useState()
 
     const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo')
     const [corpoPublicacao, setCorpoPublicacao] = useState('Digite algo')
@@ -37,14 +37,14 @@ export default function PaginaEmpresa() {
         const resp = await CarregarPagina(id)
         setNome(pagina.Nome)
         setDescricao(pagina.descricao)
-        
         setPagina(resp.data)
     }
 
 
     async function Alterarinf(){
 
-        await AlterarPagina(idEmpresa, nome, logo, descricao);
+        await AlterarPagina(idEmpresa, nome, descricao);
+        await CarregarImagem(idEmpresa, logo)
         PaginaEmpresa();
     }
 
@@ -73,6 +73,14 @@ export default function PaginaEmpresa() {
         setContpubli(a);
     }
 
+    function receberImagem() {
+        document.getElementById('imagem').click();
+    }
+
+    function mostrarImagem() {
+        return URL.createObjectURL(logo)
+    }
+
 
     return(
         <main className="PaginaEmpresa">
@@ -85,7 +93,12 @@ export default function PaginaEmpresa() {
                             <div className="card-empresa">
                                 <div className='a'>
                                     <div className="img">
-                                        <img src={logo} alt='Sem imagem' />
+                                        {!logo &&
+                                            <img src='/assets/images/addimg.png' alt='Sem imagem' />
+                                        }
+                                        {logo &&
+                                            <img src={mostrarImagem()} alt='' className='logo' />
+                                        }
                                     </div>
                                     <div className="nome-desc">
                                         <h3 className="nome">{pagina.Nome}</h3>
@@ -112,8 +125,15 @@ export default function PaginaEmpresa() {
                         {cont === 1 &&
                             <div className="card-empresa">
                                 <div className='a'>
-                                    <div className="img">
-                                        <img src={logo} alt='Sem imagem' />
+                                    <div className="img" onClick={receberImagem}>
+
+                                        {!logo &&
+                                            <img src='/assets/images/addimg.png' alt='Sem imagem' />
+                                        }
+                                        {logo &&
+                                            <img src={mostrarImagem()} alt='' className='logo' />
+                                        }
+                                         <input type="file" id="imagem" onChange={e => setLogo(e.target.files[0])} />
                                     </div>
                                     <div className="nome-desc">
                                         <input className="nome" value={nome} type='text' onChange={e => setNome(e.target.value)} />

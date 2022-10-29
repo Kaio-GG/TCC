@@ -126,6 +126,17 @@
                 width: 30%;
                 margin-left: 20px;
             }
+
+            #imagem{
+                visibility: hidden;
+                position: absolute;
+            }
+
+            .logo{
+                height: 102%;
+                width: 20%;
+                min-width: 12.5em;
+            }
         }
 
         .card-Publicacao{

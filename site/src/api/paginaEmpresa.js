@@ -4,11 +4,10 @@ const api = axios.create({
     baseURL: 'http://localhost:5000' 
 })
 
-export async function Pagina (idEmpresa, nome, img, descricao) {
+export async function Pagina (idEmpresa, nome, descricao) {
     const t = await api.post('/empresa/adicionarpagina', {
         idEmpresa:idEmpresa,
         nome:nome,
-        img:img,
         descricao:descricao
     });
 
@@ -31,12 +30,38 @@ export async function CarregarPagina (id) {
     return resposta;
 }
 
-export async function AlterarPagina (idEmpresa, nome, logo, descricao) {
+export async function AlterarPagina (idEmpresa, nome, descricao) {
     const resposta = await api.put(`/empresa/alterarpagina/${idEmpresa}`, {
         idEmpresa:idEmpresa,
         nome:nome,
-        logo:logo,
         descricao:descricao
+    });
+    return resposta.data;
+}
+
+export async function AdicionarPublicacao (idEmpresa, nome, conteudo){
+    const resposta = await api.post('/empresa/publicacao', {
+        idEmpresa:idEmpresa, 
+        nome:nome, 
+        conteudo:conteudo
+    });
+    return resposta.data;
+}
+
+export async function AlterarPublicacao (nome, conteudo, idEmpresa, idPublicacao){
+    const resposta = await api.put('/empresa/publicacao', {
+        nome:nome, 
+        conteudo:conteudo, 
+        idEmpresa:idEmpresa, 
+        idPublicacao:idPublicacao
+    });
+    return resposta.data;
+}
+
+export async function DeletarPublicacao (idEmpresa, idPublicacao){
+    const resposta = await api.delete('/empresa/publicacao', {    
+        idEmpresa:idEmpresa, 
+        idPublicacao:idPublicacao
     });
     return resposta.data;
 }

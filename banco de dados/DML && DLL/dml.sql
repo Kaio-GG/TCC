@@ -60,7 +60,48 @@ update TB_PAGINA_EMPRESA
 	   img_logo = 'Arado',
        ds_descricao = 'descrição alterada'
  where id_usuario_empresa = 1;
-	  
+ 
+ 
+/*--------------------PUBLICAÇÃO_PAGINA_EMPRESA--------------------------*/
+
+insert into TB_PAGINA_EMPRESA_PUBLICACAO(ID_PAGINA_EMPRESA,NM_TITULO,DS_CAIXA_TEXTO)
+	 values (1,'Minha Empresa','Conteudo Da publicação Minha Empresa');
+     
+insert into TB_PAGINA_EMPRESA_PUBLICACAO_IMG(ID_PAGINA_EMPRESA_PUBLICACAO,IMG_IMAGEM_PUBLICACAO)
+     values (1,'linkdaimg.com');
+     
+select * 
+  from TB_PAGINA_EMPRESA_PUBLICACAO;
+  
+select * 
+  from TB_PAGINA_EMPRESA_PUBLICACAO_IMG;
+  
+  
+/*--------------------ALTERAÇÃO_PUBLICAÇÃO_PAGINA_EMPRESA--------------------------*/
+
+update TB_PAGINA_EMPRESA_PUBLICACAO
+   set NM_TITULO      = 'Tesssssssssste',
+	   DS_CAIXA_TEXTO = 'Teste'
+ where ID_PAGINA_EMPRESA            = 1 
+   and ID_PAGINA_EMPRESA_PUBLICACAO = 1;
+ 
+delete from TB_PAGINA_EMPRESA_PUBLICACAO
+	  where ID_PAGINA_EMPRESA            = 1 
+        and ID_PAGINA_EMPRESA_PUBLICACAO = 1;  
+  
+/*--------------------TAG_PAGINA_EMPRESA--------------------------*/
+
+insert into TB_TAG(NM_TAG)
+	 values ('MAGICO');
+     
+select * 
+  from TB_TAG;
+  
+insert into TB_TAG_EMPRESA(ID_TAG,ID_PAGINA_EMPRESA)
+     values (1,1);
+     
+select * 
+  from TB_TAG_EMPRESA;
 
 /*--------------------INFORMAÇÕES_EMPRESA_AVALIACAO--------------------------*/
 
