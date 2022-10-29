@@ -36,14 +36,11 @@ export default function Index(){
             const empresa = true;
             const idEmpresa = a.id;
             const idusuario = null;
-            const logo = '/assets/images/addimg.png';
             const descricao = 'Adicionar descrição';
 
             const b = cadastroLogin(idEmpresa, idusuario, usuario, senha, empresa);
 
             const c = Pagina(idEmpresa, nome, descricao);
-
-            const d = CarregarImagem(idEmpresa, logo);
             
             alert('Empresa cadastrada com sucesso!');
             navigate('/login')

@@ -14,8 +14,8 @@ import { CarregarPagina, AlterarPagina, CarregarImagem } from '../../../api/pagi
 
 
 export default function PaginaEmpresa() {
-    const [nome, setNome] = useState('');
-    const [descricao, setDescricao] = useState('');
+    const [nome, setNome] = useState('teste');
+    const [descricao, setDescricao] = useState('teste');
     const [logo, setLogo] = useState()
 
     const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo')
@@ -34,19 +34,30 @@ export default function PaginaEmpresa() {
     }, [])
 
     async function PaginaEmpresa(){
-        const resp = await CarregarPagina(id)
-        setNome(pagina.Nome)
-        setDescricao(pagina.descricao)
-        setPagina(resp.data)
+        try{
+            const resp = await CarregarPagina(id)
+            setNome(pagina.Nome)
+            setDescricao(pagina.descricao)
+            setPagina(resp.data)
+        } catch (err) {
+            alert(err.message);
+        }
     }
 
 
     async function Alterarinf(){
+        try {
+            await AlterarPagina(idEmpresa, nome, descricao);
+            await CarregarImagem(idEmpresa, logo)
+            const resp = await CarregarPagina(id)
+            setPagina(resp.data)
 
-        await AlterarPagina(idEmpresa, nome, descricao);
-        await CarregarImagem(idEmpresa, logo)
-        PaginaEmpresa();
+            alert('Pagina Alterada')
+        } catch (err) {
+            alert(err.message);
+        }
     }
+
 
     function Salvar() {
         Alterarinf();
@@ -56,8 +67,6 @@ export default function PaginaEmpresa() {
     }
 
     function Alterar() {
-        setNome(pagina.Nome)
-        setDescricao(pagina.descricao)
 
         const a = 1;
         setCont(a);

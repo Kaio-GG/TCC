@@ -59,7 +59,7 @@ server.put('/empresa/alterarpagina/:idEmpresa', async(req, resp) => {
         const conteudo = req.body;
 
         const alterarPagina = await AlterarPagEmpreId(idEmpresa, conteudo);
-        if (alterarPagina != 1)
+        if (alterarPagina === 0)
             throw new Error('houve uma falha ao realizar alterações.');
 
         resp.status(204).send();

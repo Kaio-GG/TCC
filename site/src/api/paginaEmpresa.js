@@ -14,17 +14,6 @@ export async function Pagina (idEmpresa, nome, descricao) {
     return t.data;
 }
 
-export async function CarregarImagem (idEmpresa, imagem) {
-    const formData = new FormData();
-    const resposta = await api.put(`/empresa/alterarpagina/${idEmpresa}`, formData, {
-        headers: {
-            "content-type": "multipart/form-data"
-        },
-    });
-
-    return resposta.status;
-}
-
 export async function CarregarPagina (id) {
     const resposta = await api.get(`/empresa/pagina/${id}`);
     return resposta;
@@ -37,6 +26,19 @@ export async function AlterarPagina (idEmpresa, nome, descricao) {
         descricao:descricao
     });
     return resposta.data;
+}
+
+export async function CarregarImagem (idEmpresa, imagem) {
+    const formData = new FormData();
+    formData.append("capa", imagem);
+
+    const resposta = await api.put(`/empresa/pagina/${idEmpresa}/imagem`, formData, {
+        headers: {
+            "content-type": "multipart/form-data"
+        },
+    });
+
+    return resposta.status;
 }
 
 export async function AdicionarPublicacao (idEmpresa, nome, conteudo){
