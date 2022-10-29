@@ -51,7 +51,7 @@ function sair (){
 
                 {props.class === 'info' 
                 ? <div className= 'pagina'>Infomações</div> 
-                : <div className='tent' > Infomações</div>}
+                : <div className='tent' onClick={editarInfoEmpresa}> Infomações</div>}
 
                 {props.class === 'reviwes' 
                 ? <div className= 'pagina'>Reviwes</div> 

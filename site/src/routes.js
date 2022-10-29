@@ -38,7 +38,7 @@ export default function Index(){
 				<Route path='/home/empresa' element={<HomeEmpresa/>}/>
 				<Route path='/home/empresa/pagina-empresa' element={<PaginaEmpresa/>}/>
 				<Route path='/empresa/:id/informacoes' element={<InformacoesHome/>}/>
-				<Route path='/empresa/:id/editar' element={<EditarInfoEmpresa/>}/>
+				<Route path='/empresa/editar' element={<EditarInfoEmpresa/>}/>
 
 			</Routes>
 		</BrowserRouter>	
