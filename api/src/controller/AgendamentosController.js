@@ -3,6 +3,8 @@ import AgendarHorario from "../repository/AgendarHorarioRepository.js";
 import { Router } from "express";
 const server = Router();
 
+
+
 server.post ('/empresa/novohorario' , async (req , resp ) => {
     try {
         const info = req.body;
@@ -206,6 +208,8 @@ server.get ('/empresa/carregarinfo/:id' ,async (req ,resp) =>{
         })
     }
 })
+
+
 
 
 

@@ -6,10 +6,10 @@ import cadastroEmpresa  from './controller/CadastroEmpresaController.js';
 import cadastroCliente from './controller/CadastroClienteController.js'
 import LoginEmpresaController from './controller/CadastroLoginController.js';
 import AgendarHorarioController from './controller/AgendarClienteController.js';
-import AgendamentosController from './controller/AgendamentosController.js'
-import usuarioHome from './controller/usuarioHome.js'
-import PaginaEmpresa from './controller/PaginaEmpresaController.js'
-
+import AgendamentosController from './controller/AgendamentosController.js';
+import usuarioHome from './controller/usuarioHome.js';
+import PaginaEmpresa from './controller/PaginaEmpresaController.js';
+import EmpresaController from './controller/empresaController.js';
 
 
 import express from 'express'
@@ -33,7 +33,7 @@ server.use(AgendamentosController);
 server.use(cadastroCliente);
 server.use(usuarioHome);
 server.use(PaginaEmpresa);
-
+server.use(EmpresaController);
 
 server.listen(process.env.PORT,
                 () => console.log(`API online na porta ${process.env.PORT}`));

@@ -25,10 +25,6 @@ export default function Novohorario (){
 
     async function criarHorario (){
         try {
-
-
-
-            
             await NovoHorario(id ,local.map(item => item.local) , String(hora) , data ,qtd)
             CarregarHorario()
             

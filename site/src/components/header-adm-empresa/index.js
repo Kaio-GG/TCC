@@ -5,7 +5,11 @@ import Storage from 'local-storage'
 
 export default function HeaderEmpresa (props){
 
-const navigate = useNavigate()    
+const navigate = useNavigate()
+
+const empresaLogada = Storage('Empresa-Logada')
+const id = (empresaLogada.ID_USUARIO_EMPRESA)
+
 
 function home (){
     navigate('/home/empresa')
@@ -17,7 +21,7 @@ function paginaempresa (){
     navigate('/home/empresa/pagina-empresa')
 }
 function editarInfoEmpresa (){
-    navigate('/empresa/:id/editar')
+    navigate(`/empresa/${id}/editar`)
 }
 
 

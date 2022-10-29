@@ -18,7 +18,6 @@ export async function CarregarHorario (idEmpresa ) {
 
 
 export async function CarregarHorariosPorSituscao (idEmpresa , situ ) {
-    console.log(situ)
     const resp = await api.get (`/empresa/carregarhorario/situacao/${idEmpresa}/${situ}`);
     return resp.data;
 } 
