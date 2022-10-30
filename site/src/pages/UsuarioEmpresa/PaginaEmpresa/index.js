@@ -5,7 +5,7 @@ import Storage from 'local-storage';
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
@@ -13,6 +13,7 @@ export default function PaginaEmpresa() {
     const [descricao, setDescricao] = useState('');
     const [logo, setLogo] = useState()
 
+    const [publicacao, setPublicacao] = useState([])
     const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo')
     const [corpoPublicacao, setCorpoPublicacao] = useState('Digite algo')
 
@@ -27,6 +28,7 @@ export default function PaginaEmpresa() {
     useEffect(() => {
         if (id){
             PaginaEmpresa();
+            carregarPublicaoes();
         }
     }, [])
 
@@ -81,12 +83,39 @@ export default function PaginaEmpresa() {
         setCont(a);
     }
 
+
+    async function novaPublicacao() {
+        try{
+            AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao)
+
+            alert('Publicado')
+        } catch(err) {
+            alert('Não foi possivel Adicionar Uma publicação')
+        }
+    }
+
+    async function carregarPublicaoes() {
+        try{
+            const resp = await listarPublicacao(id)
+
+            setPublicacao(resp)
+            console.log(resp)
+            console.log(publicacao)
+        } catch (err) {
+            alert('erro em listar as publicações')
+            alert(err.message)
+        }
+    }
+
+
     function Novapubli() {
         const a = 1;
         setContpubli(a);
     }
     
     function ConfirNovapubli() {
+        novaPublicacao()
+
         const a = 0;
         setContpubli(a);
     }
@@ -146,6 +175,8 @@ export default function PaginaEmpresa() {
                             </div>
                         }
 
+
+
                         {cont === 1 &&
                             <div className="card-empresa">
                                 <div className='a'>
@@ -181,10 +212,30 @@ export default function PaginaEmpresa() {
                             </div>
                         }
 
+
+                        {publicacao.map(item => {
+                            <div className="">
+                                <div className='agrupamento-inputs'>
+                                    <h1>{item.Titulo}</h1>
+                                    <p>{item.Descricao}</p>
+                                </div>
+                                <img src='/assets/images/editar.svg' alt='editarperfil'/>
+                            </div>
+                        })}
+
+                        {contpubli === 1 &&<div className="">
+                            <p>Adicionar Card</p>
+                            <img src='/assets/images/Salvar.svg' alt='add' onClick={Novapubli}/>
+                            </div> }
+                        
+
+
                         {contpubli === 0 &&<div className="card-Publicacao">
                             <p>Adicionar Card</p>
                             <img src='/assets/images/add.svg' alt='add' onClick={Novapubli}/>
                             </div> }
+
+
 
                         {contpubli === 1 &&<div className="card-Publicacao-click">
                             <div className='agrupamento-inputs'>
@@ -202,6 +253,8 @@ export default function PaginaEmpresa() {
                             </div>
                             </div> 
                         }
+
+
 
                     </div>
                     <div className="agrup-direita">

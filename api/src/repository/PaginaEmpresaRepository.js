@@ -31,7 +31,8 @@ export async function ImagemPagina(imagem, idEmpresa) {
       where id_usuario_empresa = ?`
 
     const [linhas] = await con.query(comando, [imagem, idEmpresa]);
-    console.log(linhas.affectedRows)
+
+
     return linhas.affectedRows;
 }
 
@@ -79,5 +80,15 @@ export async function DeletarPublicacao(bd) {
        return linhas.affectedRows;
 }
 
+export async function ListarPublicacao(id) {
+    const comando = 
+        `SELECT	NM_TITULO 	 			Titulo, 
+                DS_CAIXA_TEXTO    		CaixaTexto
+          from TB_PAGINA_EMPRESA_PUBLICACAO 
+         where ID_PAGINA_EMPRESA = ?`;
+    
+    const [linhas] = await con.query(comando, [id]);
+    return linhas;
+}
 
 

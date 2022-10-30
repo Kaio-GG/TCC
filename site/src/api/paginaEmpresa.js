@@ -71,3 +71,8 @@ export async function DeletarPublicacao (idEmpresa, idPublicacao){
     });
     return resposta.data;
 }
+
+export async function listarPublicacao(id) {
+    const resposta = await api.get(`/empresa/publicacao/${id}`);
+    return resposta.data;
+}
