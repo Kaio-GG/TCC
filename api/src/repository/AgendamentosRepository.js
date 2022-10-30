@@ -98,6 +98,17 @@ export async function buscarLocal (info){
     return lista[0]
 }
 
+export async function buscarFilial (info){
+    const comando = `
+    select DS_ENDERECO local,
+           id_USUARIO_EMPRESA id
+      from tb_usuario_empresa
+     where id_USUARIO_EMPRESA = ?
+    `
+    const [lista] = await con.query (comando , [info.id])
+    return lista
+}
+
 
 export async function buscarAgendamentos (info){
     const comando = `

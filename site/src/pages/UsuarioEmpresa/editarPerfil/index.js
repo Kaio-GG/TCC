@@ -1,6 +1,6 @@
 import './index.scss'
 import HederEmpresa from '../../../components/header-adm-empresa';
-import { editarEmail ,editarNomeRepresentante ,editarNome , editarSed, editarTipo , CarregarInfoEmpresa, novaFilial } from '../../../api/empresa.js';
+import { editarEmail ,editarNomeRepresentante ,editarNome , editarSed, editarTipo , CarregarInfoEmpresa, novaFilial ,buscarFilial } from '../../../api/empresa.js';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ export default function EdiatrPerfilEmpresa (){
     const [cidade , setcidade] = useState('')
     const [cep , setcep] = useState('')
     const [endereco , setendereco] = useState('')
-
+    const [locais , setlocais] =useState([])
 
 
 
@@ -28,7 +28,6 @@ export default function EdiatrPerfilEmpresa (){
             let info = await CarregarInfoEmpresa(id)
             setnome(info.nome)
             setemail(info.email)
-            console.log(email +' kaka')
             settipo(info.tipo)
             setrepresentante(info.representante)
             setsed(info.endereco)
@@ -40,11 +39,23 @@ export default function EdiatrPerfilEmpresa (){
 
     async function alterar (){
         try {
-            await editarEmail(id , email)
-            await editarNome(id, nome)
-            await editarNomeRepresentante(id ,representante)
-            await editarSed(id , sed)
-            await editarTipo(id, tipo)
+            if (email !== '') {
+                await editarEmail(id , email)   
+            }
+            if (nome !== '') {
+                await editarNome(id, nome)   
+            }
+
+            if (representante !== '') {
+                await editarNomeRepresentante(id ,representante)   
+            }
+            if (sed !== '') {
+                await editarSed(id , sed)   
+            }
+            if (tipo !== '') {
+                await editarTipo(id, tipo)   
+            }
+        
         } catch (err) {
             
         }
@@ -53,6 +64,7 @@ export default function EdiatrPerfilEmpresa (){
     async function filiais (){
         try {
             await novaFilial(id, pais ,estado , cidade ,endereco ,cep)
+            carregarFilial()
         } catch (err) {
             
         }
@@ -65,8 +77,15 @@ export default function EdiatrPerfilEmpresa (){
         setrender(false)
     }
 
+
+    async function carregarFilial (){
+        let a = await buscarFilial(id)
+        setlocais(a)
+    }
+
     useEffect(() => {
         carregar()
+        carregarFilial()
     }, [])
     
     useEffect(() => {
@@ -127,12 +146,8 @@ export default function EdiatrPerfilEmpresa (){
                                 </div>
 
                                 <div className='filiais'>
-
-                                        <div className='filial'>
-
-
-                                            </div>
-                    
+                                    
+                        
                                         </div>
                                     </div>
                             </div>
@@ -183,11 +198,12 @@ export default function EdiatrPerfilEmpresa (){
 
                                     <div className='filiais'>
 
-                                            <div className='filial'>
+                                            {locais.map  (item =>
 
-
-                                            </div>
-                
+                                                    <div className='filial'>
+                                                        {item.DS_ENDERECO}
+                                                    </div>
+                                            )}
                                     </div>
                                 </div>
                         </div>

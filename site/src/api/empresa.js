@@ -8,6 +8,7 @@ const api = axios.create({
 
 export async function CarregarInfoEmpresa (id) {
     const resp = await api.get (`/empresa/carregarinfoempresa/${id}`);
+    console.log(resp.email)
     return resp.data;
 } 
  

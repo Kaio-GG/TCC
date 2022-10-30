@@ -170,7 +170,6 @@ server.get ('/empresa/buscarlocal/:id', async (req ,resp) => {
     }
 }  )
 
-
 server.get ('/empresa/carregarhorario/:id' , async (req , resp) =>{
 try {
     const info = req.params

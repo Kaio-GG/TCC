@@ -8,9 +8,7 @@ server.get ('/empresa/carregarinfoempresa/:id', async (req ,resp) => {
     try {
         const info = req.params   
         const informacoes = await buscarInfoEmpresa(info)
-        console.log(informacoes.email)
         resp.send(informacoes)
-
 
     } catch (err) {
         resp.status(401).send({
