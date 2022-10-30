@@ -13,7 +13,7 @@ export default function PaginaEmpresa() {
     const [descricao, setDescricao] = useState('');
     const [logo, setLogo] = useState()
 
-    const [publicacao, setPublicacao] = useState([])
+    const [publicacao, setPublicacao] = useState([]);
     const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo')
     const [corpoPublicacao, setCorpoPublicacao] = useState('Digite algo')
 
@@ -85,7 +85,8 @@ export default function PaginaEmpresa() {
 
     async function novaPublicacao() {
         try{
-            AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao)
+            AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
+            carregarPublicaoes();
 
             alert('Publicado')
         } catch(err) {
@@ -212,15 +213,15 @@ export default function PaginaEmpresa() {
                         }
 
 
-                        {publicacao.map(item => {
+                        {publicacao.map(item => 
                             <div className="">
                                 <div className='agrupamento-inputs'>
                                     <h1>{item.Titulo}</h1>
-                                    <p>{item.Descricao}</p>
+                                    <p>{item.CaixaTexto}</p>
                                 </div>
                                 <img src='/assets/images/editar.svg' alt='editarperfil'/>
                             </div>
-                        })}
+                        )}
 
                         {contpubli === 1 &&<div className="">
                             <p>Adicionar Card</p>
