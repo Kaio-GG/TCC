@@ -32,7 +32,7 @@ export default function Index(){
 				<Route path='cadastro/usuario' element={<CadastroUsuario/>}/>
 				<Route path='/home/usuario' element={<ClienteHome/>}/>
 				<Route path='/home/usuario/empresa/consulta' element={<ConsultaEmpresa/>}/>
-				<Route path='/home/usuario/int' element={<Inter/>}/>
+				<Route path='/home/usuario/int/:id' element={<Inter/>}/>
 				<Route path='/home/usuario/empresa/consulta/:id/agendar' element={<AgendarEmpresa/>}/>
 				<Route path='/home/usuario/empresa/consulta/agendar/Horario' element={<AgendarHorarioEmpresa/>}/>
 				<Route path='/home/usuario/empresa/consulta/agendar/Horario/finalizado' element={<AgendarFinalizado/>}/>

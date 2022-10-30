@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { carregarPaginaZ, enviarComentario } from "../repository/intermediarioUser.js";
+
+import { carregarPaginaZ, enviarComentario, selecionarComentarios } from "../repository/intermediarioUser.js";
 
 const server = Router();
 
@@ -27,6 +28,22 @@ server.post('/home/usuario/comentario', async(req, resp) => {
 
         resp.send(r)
 
+    }catch(err){
+        resp.status(400).send({
+            erro:err.message
+        })
+    }
+})
+
+server.get('/home/usuario/coments', async(req, resp) => {
+    try{
+        const {id} = req.query;
+
+        const r = await selecionarComentarios(id);
+
+        console.log(r)
+
+        resp.send(r)
     }catch(err){
         resp.status(400).send({
             erro:err.message

@@ -1,11 +1,11 @@
 import './index.scss'
-import Storage from 'local-storage'
+import Storage, { set } from 'local-storage'
 
 import HeaderUsuario from '../../../components/header-usuario'
 import { useEffect, useState } from 'react'
 
 import Pular from 'react-reveal/Fade'
-import { loadPage, sendReview } from '../../../api/Intermediario'
+import { listarComentarios, loadPage, sendReview } from '../../../api/Intermediario'
 import { buscarImagem } from '../../../api/paginaEmpresa'
 
 export default function Index(){
@@ -19,9 +19,12 @@ export default function Index(){
     const [cidade, setCidade] = useState('')
     const [endereco, setEndereco] = useState('')
 
+    const [ui, setUi] = useState('');
+
     const [erro, setErro] = useState('')
 
     const [comentarios, setComentarios] = useState([]);
+
     const [review, setReview] = useState('');
     const [avaliacaoReview, setAvaliacaoReview] = useState(0);
 
@@ -36,16 +39,19 @@ export default function Index(){
     useEffect(() => {
         if(id){
             loadPageZ();
+            listarComents();
+            
+
         }
     },[])
 
     async function enviarComentario(){
         try{
-            const r = await sendReview(id, idusuario, review, avaliacaoReview)
-            
-            alert('Comentario enviado')
-            
-            return r;
+           const r = await sendReview(id, idusuario, review, avaliacaoReview);
+            setUi(r.ava)
+            setComentarios(r)
+
+
         }catch (err) {
             if (err.response.status === 400){
                 setErro(err.response.data.erro);    
@@ -68,6 +74,19 @@ export default function Index(){
         }catch(err){
             alert(err.message)
 
+        }
+    }
+
+    async function listarComents(){
+        try{
+            const r = await listarComentarios(id);
+            console.log(r)
+            setComentarios(r)
+        
+        }catch (err) {
+            if (err.response.status === 400){
+                setErro(err.response.data.erro);    
+            }
         }
     }
 
@@ -110,6 +129,8 @@ export default function Index(){
                             </div>
                         </div>
 
+                    
+
 
                         <div className='b2'>
                             <h1 className='h1-b2'>Faça aqui seu agendamento de forma gratuita e em casa.</h1>
@@ -124,41 +145,21 @@ export default function Index(){
                             <h1 className='h1-b3'>Reviews</h1>
                             <hr className='linha-b3'></hr>
 
+                            
+                        {comentarios.map(item =>
                             <div className='box-review'>
                                 <div className='juntar'>
                                     <img className='img-usuario'></img>
                                     <div className='b3-letters'>
-                                        <h1>Numero da avaliação</h1>
-                                        <p className='p-b3'>Eu gostei muito dessa empresa parea</p>
+                                        <h1>{item.ava}</h1>
+                                        <p className='p-b3'>{item.avads}</p>
                                     </div>
                                 </div>
 
-                                <p>25/10/12</p>
+                                <p>{item.avads}</p>
                             </div>
+                        )}
 
-                            <div className='box-review'>
-                                <div className='juntar'>
-                                    <img className='img-usuario'></img>
-                                    <div className='b3-letters'>
-                                        <h1>Numero da avaliação</h1>
-                                        <p className='p-b3'>Eu gostei muito dessa empresa parea</p>
-                                    </div>
-                                </div>
-
-                                <p>25/10/12</p>
-                            </div>
-
-                            <div className='box-review'>
-                                <div className='juntar'>
-                                    <img className='img-usuario'></img>
-                                    <div className='b3-letters'>
-                                        <h1>Numero da avaliação</h1>
-                                        <p className='p-b3'>Eu gostei muito dessa empresa parea</p>
-                                    </div>
-                                </div>
-
-                                <p>25/10/12</p>
-                            </div>
 
                             {erro}
 

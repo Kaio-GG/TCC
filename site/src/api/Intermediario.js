@@ -20,3 +20,8 @@ export async function sendReview(idempresa, idusuario, avaliacao, descricao){
 
     return r.data
 }
+
+export async function listarComentarios(id){
+    const t = await api.get(`/home/usuario/coments?id=${id}`)
+    return t.data;
+}

@@ -31,3 +31,18 @@ export async function enviarComentario(comentario){
     comentario.id = linhas.insertId;
     return comentario;
 }
+
+export async function selecionarComentarios(id){
+    const comando = `
+    select  ID_USUARIO_EMPRESA id,
+            id_usuario_cliente idu,
+            vl_avaliacao ava,
+            ds_avaliacao avads,
+            dt_avaliacao dia
+    from   tb_empresa_avaliacao
+    WHERE ID_USUARIO_EMPRESA = ?
+    ORDER BY rand()
+    LIMIT 5 `
+    const [linhas] = await con.query(comando, [id])
+    return linhas;
+}
