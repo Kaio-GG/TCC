@@ -1,4 +1,4 @@
-import { buscarInfoEmpresa , alterarEmailEmpresa , alterarEndereco , alterarNome , alterarNomeRepresentante , alterarTipoEmpresa, buscarFilial, novaFilial } from "../repository/empresaRepository.js";
+import { apagarFilial ,buscarInfoEmpresa , alterarEmailEmpresa , alterarEndereco , alterarNome , alterarNomeRepresentante , alterarTipoEmpresa, buscarFilial, novaFilial } from "../repository/empresaRepository.js";
 import { Router } from "express";
 const server = Router();
 
@@ -117,6 +117,24 @@ server.post ('/empresa/novafilial' , async (req , resp ) => {
         const info = req.body
         const ca = await novaFilial(info)
         resp.send(ca)   
+
+    } catch (err) {
+        resp.status(401).send({
+           erro : err.message
+        })
+    }
+})
+
+
+
+server.delete ('/empresa/deletarfilial/:id' , async (req , resp ) => {
+    try {
+        const info = req.params
+        
+        const dh = await apagarFilial (info)       
+        console.log(dh)
+        if(dh != 1) throw new Error (' nao excluido')
+        resp.status(202).send(' excluido') 
 
     } catch (err) {
         resp.status(401).send({

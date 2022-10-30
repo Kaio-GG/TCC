@@ -70,7 +70,7 @@ export async function CarregarHorariosEmpresa (info){
             ds_local           = ? && 
             DT_AGENDAMENTO     = ?   
     `
-    const [lista] = await con.query (comando , [info.id ,info.local , info.data ])
+    const [lista] = await con.query (comando , [info.id , info.local , info.data ])
     return lista
 }
 

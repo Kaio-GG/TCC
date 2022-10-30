@@ -75,3 +75,9 @@ export async function buscarFilial (id) {
     const resp = await api.get (`/empresa/buscarfilial/${id}`);    
     return resp.data;
 }
+
+
+export async function deletarFilial (id) {
+    const t = await api.delete (`/empresa/deletarfilial/${id} `);
+    return t.status;
+}

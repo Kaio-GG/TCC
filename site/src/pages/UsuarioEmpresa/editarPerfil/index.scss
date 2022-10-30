@@ -110,7 +110,14 @@
         width: 100%;
         align-items: center;
         margin-top: 2%;
+        justify-content: space-between;
+        padding-right: 5%;
 
+    }
+
+    .x{
+        cursor: pointer;
+        font-size: 30px;
     }
     .filiais{
         padding-top: 5%;

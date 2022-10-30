@@ -1,6 +1,6 @@
 import './index.scss'
 import HederEmpresa from '../../../components/header-adm-empresa';
-import { editarEmail ,editarNomeRepresentante ,editarNome , editarSed, editarTipo , CarregarInfoEmpresa, novaFilial ,buscarFilial } from '../../../api/empresa.js';
+import {  deletarFilial ,editarEmail ,editarNomeRepresentante ,editarNome , editarSed, editarTipo , CarregarInfoEmpresa, novaFilial ,buscarFilial } from '../../../api/empresa.js';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -68,6 +68,11 @@ export default function EdiatrPerfilEmpresa (){
         } catch (err) {
             
         }
+    }
+
+    async function deletarfilial(id){
+        await deletarFilial(id)
+        carregarFilial()
     }
 
     function trocarender (){
@@ -201,7 +206,12 @@ export default function EdiatrPerfilEmpresa (){
                                             {locais.map  (item =>
 
                                                     <div className='filial'>
-                                                        {item.DS_ENDERECO}
+                                                        <div>
+                                                            {item.DS_ENDERECO}
+                                                        </div>
+                                                        <div className='x' onClick={() => deletarfilial(item.id)}>
+                                                            x 
+                                                        </div>
                                                     </div>
                                             )}
                                     </div>
