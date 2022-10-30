@@ -45,7 +45,6 @@ export default function PaginaEmpresa() {
         
     }
 
-
     async function Alterarinf(){
         try{
             await AlterarPagina(idEmpresa, nome, descricao);

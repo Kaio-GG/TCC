@@ -10,6 +10,7 @@ import AgendamentosController from './controller/AgendamentosController.js';
 import usuarioHome from './controller/usuarioHome.js';
 import PaginaEmpresa from './controller/PaginaEmpresaController.js';
 import EmpresaController from './controller/empresaController.js';
+import Intermediario from './controller/intermediarioUser.js'
 
 
 import express from 'express'
@@ -34,6 +35,7 @@ server.use(cadastroCliente);
 server.use(usuarioHome);
 server.use(PaginaEmpresa);
 server.use(EmpresaController);
+server.use(Intermediario);
 
 server.listen(process.env.PORT,
                 () => console.log(`API online na porta ${process.env.PORT}`));
