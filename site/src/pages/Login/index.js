@@ -7,6 +7,7 @@ import '../../common/common.scss';
 
 
 import { useState, useRef } from 'react';
+import Des from 'react-reveal/Fade'
 
 
 
@@ -14,6 +15,20 @@ export default function Index(){
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+
+    const bolinha = document.querySelector('bolinha1')
+
+    const img = () => {
+        bolinha.classList.add('animationBolinha1')
+
+        setTimeout(() => {
+            bolinha.classList.remove('animationBolinha1')
+            
+        }, 500);
+
+    }
+
+    document.addEventListener('keydown', img)
 
     const [erro, setErro] = useState('');
 
@@ -50,7 +65,9 @@ return(
                     <h1 className='MW'>MyWorkShip</h1>
 
                     <div className='alinhar-imgs'>
-                        <img className='img1' src='/assets/images/calendario1.svg'></img>
+                        <Des>
+                            <img className='img1' src='/assets/images/calendario1.svg'></img>
+                        </Des>
                     </div>
 
                     <div className='bolinhas'>
@@ -59,7 +76,8 @@ return(
                         <div className='bolinha3'></div>
                     </div>
 
-                    <h1 className='bv'>Bem-vindo</h1>
+                    <h1 className='bv'>Seja bem-vindo</h1>
+
 
                 </div>
 

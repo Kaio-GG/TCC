@@ -1,6 +1,6 @@
 import './index.scss'
 import Logo from '../home/assets/logo.png'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import Cafe from '../home/assets/cafe.svg'
 import Time from '../home/assets/time.svg'
 import Massagem from '../home/assets/mass.svg'
@@ -24,6 +24,11 @@ export default function Index() {
 
     const [filtro, setFiltro] = useState('');
     const [empresa, setEmpresa] = useState([]);
+
+    function registroEmpresa(){
+        Navigate('/cadastro')
+
+    }
 
     async function enviarAvaliacao(){
         const r = await avaliacaoSite(nomeUsuario, avaliacaoUsuario)
@@ -118,7 +123,7 @@ export default function Index() {
 
                     <img className='img-mass' src={Massagem} alt='' ></img>
 
-                    <button className='f2-button'>Se registre como cliente no site!</button>
+                    <button onClick={registroEmpresa} className='f2-button'>Se registre como cliente no site!</button>
 
                 </div>
 

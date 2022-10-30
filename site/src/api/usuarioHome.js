@@ -1,7 +1,5 @@
 import axios from "axios";
 
-import localStorage from "local-storage";
-
 const api = axios.create({
     baseURL: 'http://localhost:5000'
 })

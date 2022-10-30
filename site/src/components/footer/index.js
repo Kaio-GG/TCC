@@ -1,9 +1,9 @@
 import './index.scss';
-import'./'
+
 
 
 export default function Index(){
-
+    
     return(
         <main className='Main-Footer'>
             <section className='Section-Esquerda'>

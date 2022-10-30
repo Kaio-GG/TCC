@@ -7,7 +7,7 @@ import { buscarLocal , agendamentosData , agendamentos , CarregarHorariosPorSitu
 import { toast } from 'react-toastify'
 
 
-export default function Homeempresa (){
+export default function Homeempresa() {
     const [agendamento , setagendamento ] = useState([])
     const [data , setdata] = useState('')
     const [local, setlocal] =useState([])
