@@ -1,0 +1,73 @@
+.Main-Clientes-Favoritos{
+
+    .Faixa-1{
+        margin-top: 25px;
+        height: 60vh;
+        width:100vw ;
+        background-color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    
+    .Div-1{
+        height: 350px;
+        width: 450px;
+        background-color: white;
+        opacity: 1;
+        border: 1px solid #000000;
+        box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.5);
+    }
+
+     h1{
+        font-family: 'KumbhSans-Medium';
+        font-size: 25px;
+        color: #000000;
+        margin-left: 15px;
+    }
+
+     hr{
+        border: solid #263238;
+        margin-top: 5px;
+    }
+
+    .Caixa-de-Botoes{
+        margin-top: 5px;
+        display: flex;
+        flex-direction: column;
+
+    }
+    
+    .Buttons{
+        height: 50px;
+        width: 430px;
+        text-align: start;
+        font-family: 'KumbhSans-Medium';
+        font-size: 25px;
+        margin-top: 10px;
+        background-color: white;
+        border: none;
+        margin-left: 15px;
+        
+    }
+
+    .Buttons:hover{
+        background-color: #263238;
+        color: white;
+        cursor:pointer;
+    }
+
+    .Div-2{
+        height: 500px;
+        width: 700px;
+        background-color: white;
+        opacity: 1;
+        border: 1px solid #000000;
+        box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.5);
+    }
+
+
+
+
+
+}

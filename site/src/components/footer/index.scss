@@ -1,6 +1,5 @@
-.Main-Footer{
-margin-top: 10%;    
-height: 30vh;
+.Main-Footer{    
+height: 28.1vh;
 width: 100vw;
 background-color: #263238;
 display: flex;
@@ -11,16 +10,15 @@ justify-content: space-around;
     .Section-Esquerda{
         display: flex;
         flex-direction: column;
-        height: 30vh;
+        height: 25vh;
         width:18vw ;
-        justify-content: space-between;
+        justify-content: space-evenly;
     }
 
     .IMG-MW{
         display: flex;
         background-image: url('../../../public/assets/images/MW-Footer.svg');
         
-        margin-top: 10px;
         height: 70px;
         width:165px ;
         background-repeat: no-repeat;
@@ -68,16 +66,13 @@ justify-content: space-around;
 
     .Section-Meio{
         display: flex;
-        height: 30vh;
-        width: 700px;
+        height: 25vh;
+        width: 500px;
         flex-direction: column;
         justify-content: flex-end;
     }
 
-    .P-Meio{
-    width: auto; ;        
-    
-    }
+
 
     .Section-Meio p{
         color: white;
@@ -86,7 +81,7 @@ justify-content: space-around;
     }
 
     .Section-Direita{
-        height: 30vh;
+        height: 20vh;
         width: 15em;
     }
 
@@ -94,7 +89,7 @@ justify-content: space-around;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        height: 29vh;
+        height: 25vh;
     }
 
     .Group-Images{
@@ -109,15 +104,13 @@ justify-content: space-around;
         background-repeat: no-repeat;
         height:40px ;
         width: 45.21px;
-        margin-right: 5px;
     }
 
     .IMG-Facebook{
         background-image: url('../../../public/assets/images/facebook\ 1.svg');
         background-repeat: no-repeat;
         width: 40px;
-        height: 45.21;
-        margin-right: 5px;
+        height: 45.21px;
     }
 
     .IMG-Discord{
@@ -125,7 +118,6 @@ justify-content: space-around;
         background-repeat: no-repeat;
         width: 40px;
         height: 45.21;
-        margin-right: 5px;
     }
 
     .IMG-Twitter{

@@ -16,6 +16,7 @@ import InformacoesHome from './pages/UsuarioEmpresa/informacoesHome/index.js'
 import PaginaEmpresa from './pages/UsuarioEmpresa/PaginaEmpresa/index.js'
 import Inter from './pages/UsuarioCliente/int/index.js'
 import EditarInfoEmpresa from './pages/UsuarioEmpresa/editarPerfil/index.js'
+import ClientesFavoritos from './pages/Clientes-Favoritos/index.js'
 
 
 export default function Index(){
@@ -39,6 +40,8 @@ export default function Index(){
 				<Route path='/home/empresa/pagina-empresa' element={<PaginaEmpresa/>}/>
 				<Route path='/empresa/:id/informacoes' element={<InformacoesHome/>}/>
 				<Route path='/empresa/:id/editar' element={<EditarInfoEmpresa/>}/>
+				<Route path='/favoritos' element={<ClientesFavoritos/>}/>
+
 
 			</Routes>
 		</BrowserRouter>	
