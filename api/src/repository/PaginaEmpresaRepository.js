@@ -70,20 +70,23 @@ export async function AlterarPublicacao(bd) {
        return linhas.affectedRows;
 }
 
-export async function DeletarPublicacao(bd) {
+export async function DeletarPublicacao(idEmpresa, idPublicacao) {
     const comando = 
     `delete from TB_PAGINA_EMPRESA_PUBLICACAO
            where ID_PAGINA_EMPRESA            = ?
-             and ID_PAGINA_EMPRESA_PUBLICACAO = ?; `;
+             and ID_PAGINA_EMPRESA_PUBLICACAO = ? `;
 
-       const [linhas] = await con.query(comando, [bd.idEmpresa, bd.idPublicacao]);
+       const [linhas] = await con.query(comando, [idEmpresa, idPublicacao]);
+       console.log(idPublicacao)
        return linhas.affectedRows;
 }
 
 export async function ListarPublicacao(id) {
     const comando = 
-        `SELECT	NM_TITULO 	 			Titulo, 
-                DS_CAIXA_TEXTO    		CaixaTexto
+        `SELECT	NM_TITULO 	 			        Titulo, 
+                DS_CAIXA_TEXTO    		        CaixaTexto,
+                ID_PAGINA_EMPRESA               Empresa,
+                ID_PAGINA_EMPRESA_PUBLICACAO    Publicacao
           from TB_PAGINA_EMPRESA_PUBLICACAO 
          where ID_PAGINA_EMPRESA = ?`;
     

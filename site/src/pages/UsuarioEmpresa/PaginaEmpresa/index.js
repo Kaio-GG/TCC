@@ -5,7 +5,7 @@ import Storage from 'local-storage';
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
@@ -106,6 +106,13 @@ export default function PaginaEmpresa() {
             alert('erro em listar as publicações')
             alert(err.message)
         }
+    }
+
+    async function removerPublicacao(Empresa, Publicacao){
+        alert(Publicacao)
+        const resposta = await DeletarPublicacao(Empresa, Publicacao);
+        alert( "Publicação removida com sucesso!")
+    
     }
 
 
@@ -215,12 +222,16 @@ export default function PaginaEmpresa() {
 
 
                         {publicacao.map(item => 
-                            <div className="">
+                            <div className="card-Publicacao">
                                 <div className='agrupamento-inputs'>
                                     <h1>{item.Titulo}</h1>
                                     <p>{item.CaixaTexto}</p>
                                 </div>
-                                <img src='/assets/images/editar.svg' alt='editarperfil'/>
+                                <div>
+                                    <img src='/assets/images/editar.svg' alt='editarperfil'/>
+                                    <img src='/assets/images/editar.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
+                                </div>
+                                
                             </div>
                         )}
 

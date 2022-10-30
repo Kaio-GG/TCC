@@ -106,11 +106,17 @@ server.put('/empresa/publicacao', async(req, resp) => {
     }
 })
 
-server.delete('/empresa/publicacao', async(req, resp) => {
+server.delete('/empresa/publicacao/:idEmpresa/:idPublicacao', async(req, resp) => {
     try{
-        const conteudo = req.body;
+        const idEmpresa =  Number(req.params.idEmpresa);
+        const idPublicacao =  Number(req.params.idEmpresa);
 
-        const deletarPublicacao = await DeletarPublicacao(conteudo);
+        const deletarPublicacao = await DeletarPublicacao(idEmpresa, idPublicacao);
+
+        console.log(idPublicacao) 
+
+        if (deletarPublicacao === 0)
+            throw new Error('Não foi possivel deletar');
 
         resp.status(204).send(deletarPublicacao)
 
