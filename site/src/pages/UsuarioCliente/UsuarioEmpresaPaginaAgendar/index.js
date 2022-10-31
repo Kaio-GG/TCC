@@ -47,7 +47,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
 
 
     return(
-        <div>
+        <div className='pg-toda'>
           <main className="UsuarioEmpresaAgendar">
             {render === true &&
             <div className='centro'>
@@ -105,12 +105,19 @@ export default function UsuarioEmpresaPaginaAgendar() {
                         {horario.map ( item =>  
 
                         <div className='a' onClick={() => setidhorario(item.id_horario)} > 
-                            <div>
-                                {item.hora}
+                            <div className='filha-2'>
+                                <p>AGENDAMENTO</p>
                             </div>
-                            <div>
-                                {item.local}
+                            
+                            <div className='filha'>
+                                <p>Horario:</p>&nbsp;&nbsp;{item.hora}
                             </div>
+
+
+                            <div className='filha'>
+                                <p>Local:</p> &nbsp;&nbsp; {item.local}
+                            </div>
+
 
                         </div>
                         )}    
