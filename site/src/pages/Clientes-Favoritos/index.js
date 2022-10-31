@@ -13,21 +13,20 @@ export default function Index(){
    const[ buttons, setButton] = useState(0)
 
     function Buttons1(){
-     const c = buttons + 1
-       setButton(c)
-   }
+       setButton(1)
+    }
+    
    function Buttons2(){
-    const c = (buttons - 1) + 2
-       setButton(c)
-   }
-       function Buttons3(){
-        const c = (buttons - 2) + 3
-        setButton(c)
-}
+       setButton(2)
+    }
+
+    function Buttons3(){
+         setButton(3)
+    }
+    
     function Buttons4(){
-        const c = (buttons - 3) + 4
-        setButton(c)
-}
+        setButton(4)
+    }
 
 
 
@@ -86,8 +85,6 @@ export default function Index(){
                     }   
 
             </section>
-                    
-                  <Footer></Footer>
 
         </main>   
     )
