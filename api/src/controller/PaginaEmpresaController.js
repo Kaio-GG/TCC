@@ -64,11 +64,11 @@ server.put('/empresa/alterarpagina/:idEmpresa', async(req, resp) => {
         const conteudo = req.body;
 
         const alterarPagina = await AlterarPagEmpreId(idEmpresa, conteudo);
-        if (alterarPagina === 0)
+        if (alterarPagina != 1){
             throw new Error('houve uma falha ao realizar alterações.');
-
-        resp.status(204).send();
-
+        } else {
+            resp.status(204).send();
+        }
     } catch(err){
         resp.status(401).send({
             erro: err.message
@@ -91,11 +91,13 @@ server.post('/empresa/publicacao', async(req, resp) => {
     }
 })
 
-server.put('/empresa/publicacao', async(req, resp) => {
+server.put('/empresa/publicacao/:idEmpresa/:idPublicacao', async(req, resp) => {
     try{
+        const idEmpresa =  Number(req.params.idEmpresa);
+        const idPublicacao =  Number(req.params.idPublicacao);
         const conteudo = req.body;
 
-        const alterarPublicacao = await AlterarPublicacao(conteudo);
+        const alterarPublicacao = await AlterarPublicacao(conteudo, idEmpresa, idPublicacao);
 
         resp.status(204).send(alterarPublicacao)
 
@@ -109,19 +111,20 @@ server.put('/empresa/publicacao', async(req, resp) => {
 server.delete('/empresa/publicacao/:idEmpresa/:idPublicacao', async(req, resp) => {
     try{
         const idEmpresa =  Number(req.params.idEmpresa);
-        const idPublicacao =  Number(req.params.idEmpresa);
+        const idPublicacao =  Number(req.params.idPublicacao);
 
         const deletarPublicacao = await DeletarPublicacao(idEmpresa, idPublicacao);
 
-        console.log(idPublicacao) 
-
-        if (deletarPublicacao === 0)
+        if (deletarPublicacao != 1){
             throw new Error('Não foi possivel deletar');
+        }
+        else {
+            resp.status(204).send()
+        }
 
-        resp.status(204).send(deletarPublicacao)
-
+        
     } catch(err){
-        resp.status(401).send({
+        resp.status(400).send({
             erro: err.message
         })
     }
