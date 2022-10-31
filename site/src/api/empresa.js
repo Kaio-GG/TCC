@@ -8,6 +8,7 @@ const api = axios.create({
 
 export async function CarregarInfoEmpresa (id) {
     const resp = await api.get (`/empresa/carregarinfoempresa/${id}`);
+    console.log(resp.email)
     return resp.data;
 } 
  
@@ -73,4 +74,10 @@ export async function novaFilial (id, pais ,estado ,cidade ,endereco , cep) {
 export async function buscarFilial (id) {
     const resp = await api.get (`/empresa/buscarfilial/${id}`);    
     return resp.data;
+}
+
+
+export async function deletarFilial (id) {
+    const t = await api.delete (`/empresa/deletarfilial/${id} `);
+    return t.status;
 }

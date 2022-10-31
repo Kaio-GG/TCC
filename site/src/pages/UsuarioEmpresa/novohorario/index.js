@@ -2,6 +2,7 @@ import './index.scss';
 import HederEmpresa from '../../../components/header-adm-empresa';
 import { useEffect, useState } from 'react';
 import { NovoHorario  ,editarHorario , deletarHorario ,CarregarHorarios ,buscarLocal } from '../../../api/agendamentos.js';
+import { buscarFilial } from '../../../api/empresa.js';
 import storage from 'local-storage';
 import Foter from '../../../components/footer/index.js'
 import { toast } from 'react-toastify'
@@ -16,6 +17,9 @@ export default function Novohorario (){
     const [qtd , setqtd] =useState(1)
     const [horario , sethorario] =useState([])
     const [dataCarregarHorario , setdataCarregarHorario]= useState('')
+    const [filial , setfilial ]= useState([])
+    const [ localCarregar , setlocalCarregar] = useState ('')
+
     const empresaLogada = storage('Empresa-Logada')
     const id = (empresaLogada.ID_USUARIO_EMPRESA)
 
@@ -25,7 +29,7 @@ export default function Novohorario (){
 
     async function criarHorario (){
         try {
-            await NovoHorario(id ,local.map(item => item.local) , String(hora) , data ,qtd)
+            await NovoHorario(id , localCarregar , String(hora) , data ,qtd)
             CarregarHorario()
             
             toast.dark(' 🚀 Horario cadastrado com sucesso')
@@ -36,7 +40,9 @@ export default function Novohorario (){
     }
     async function CarregarHorario (){
         try {
-            const rsp = await CarregarHorarios(id , local.map(item => item.local) , dataCarregarHorario)
+
+            const rsp = await CarregarHorarios(id , localCarregar , dataCarregarHorario)
+            
             sethorario(rsp)
         } catch (err) {
             console.log(err.message)
@@ -78,8 +84,10 @@ export default function Novohorario (){
 
     async function buscar (id){
         try {
-          const a = await buscarLocal(id)  
+          const a = await buscarLocal(id)
+          const b = await buscarFilial(id)   
           setlocal(a)
+          setfilial(b)
         } catch (err) {
             console.log(err.message)
         }
@@ -117,7 +125,7 @@ export default function Novohorario (){
 
     useEffect( () => {
 
-       CarregarHorario()
+       CarregarHorario(localCarregar)
 
     },[local, dataCarregarHorario])
 
@@ -136,10 +144,16 @@ export default function Novohorario (){
                 </div>
             <div className='opts'>
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
-                <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >                 
-                {local.map (item =>
-                    <option value={item.local}>{item.local}</option>
-                    )}
+                <select className='opt' value={localCarregar} onChange={e => setlocalCarregar(e.target.value)} >    
+
+
+                        {local.map (item =>
+                            <option value={item.local}>{item.local}</option>
+                        )}
+                        {filial.map (item =>
+                            <option value={item.DS_ENDERECO}>{item.DS_ENDERECO}</option>
+                        )}
+                    
                 </select>
             </div> 
             <div className='horarios'>

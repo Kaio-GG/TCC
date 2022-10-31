@@ -95,7 +95,7 @@ export async function novaFilial (info){
 
 export async function buscarFilial (info){
     const comando = `
-    SELECT ID_USUARIO_EMPRESA	,
+    SELECT ID_FILIAL id	,
             DS_PAIS ,
             DS_ESTADO , 
             DS_CIDADE , 
@@ -109,6 +109,14 @@ export async function buscarFilial (info){
     `
     const [linhas] = await con.query (comando, [info.id ])
     return linhas    
+}
+
+export async function apagarFilial (info){
+    const comando = `
+    delete from tb_filial where id_filial = ?
+    `
+    const [linhas] = await con.query (comando, [info.id ])
+    return linhas.affectedRows    
 }
 
 

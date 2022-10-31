@@ -33,6 +33,7 @@ export default function Homeempresa() {
         const r = await agendamentos(id)
         setagendamento(r)
     }
+
     async function buscar (id){
         try {
           const a = await buscarLocal(id)  
@@ -81,7 +82,7 @@ export default function Homeempresa() {
                 <div className='btn' style={{marginLeft:'5%'}}>
                         <div></div>
                         <input placeholder='DATA' type='date' value={data} onChange={e => setdata(e.target.value)} />
-                     <img className='lupa' src='/assets/images/lupa-branco.svg' onClick={ ()=> ListarPorData(id , data)} alt=''/> 
+                        <img className='lupa' src='/assets/images/lupa-branco.svg' onClick={ ()=> ListarPorData(id , data)} alt=''/> 
                 </div>
 
                 <div className='btn2'>
@@ -91,8 +92,8 @@ export default function Homeempresa() {
                             <option value='CONFIRMADA' >Confirmada</option>
                             
                             
-                    </select>
-                    <img onClick={ ()=> porSituacao(id , situacao) }  className='lupa' src='/assets/images/lupa-branco.svg' alt='' /> 
+                       </select>
+                            <img onClick={ ()=> porSituacao(id , situacao) }  className='lupa' src='/assets/images/lupa-branco.svg' alt='' /> 
                 </div>
  
             </div>  

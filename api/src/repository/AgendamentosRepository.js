@@ -70,7 +70,7 @@ export async function CarregarHorariosEmpresa (info){
             ds_local           = ? && 
             DT_AGENDAMENTO     = ?   
     `
-    const [lista] = await con.query (comando , [info.id ,info.local , info.data ])
+    const [lista] = await con.query (comando , [info.id , info.local , info.data ])
     return lista
 }
 
@@ -96,6 +96,17 @@ export async function buscarLocal (info){
     `
     const lista = await con.query (comando , [info.id])
     return lista[0]
+}
+
+export async function buscarFilial (info){
+    const comando = `
+    select DS_ENDERECO local,
+           id_USUARIO_EMPRESA id
+      from tb_usuario_empresa
+     where id_USUARIO_EMPRESA = ?
+    `
+    const [lista] = await con.query (comando , [info.id])
+    return lista
 }
 
 
