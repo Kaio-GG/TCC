@@ -5,6 +5,9 @@ import HeaderUsuario from "../../../components/header-usuario";
 import { agendarHorario ,horarios} from '../../../api/agendamentos.js';
 import storage from 'local-storage'
 import { useState } from 'react';
+import { toast } from 'react-toastify'
+
+
 
 export default function UsuarioEmpresaPaginaAgendar() {
     const [nome , setnome ] =useState('')
@@ -35,6 +38,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
     async function agendar (idhora , idusu ,nome , email ,cpf , tel ,sexo ,nasc ,desc){
         try {
             await agendarHorario(idhora ,idusu , nome ,email , cpf ,tel ,sexo ,nasc ,desc)
+            toast.dark('🚀 Consulta Solicitada')
         } catch (err) {
             console.log(err.message)
         }
@@ -98,9 +102,18 @@ export default function UsuarioEmpresaPaginaAgendar() {
 
                     <div className='cards'>
                         
-                    {horario.map ( item =>  <div className='a' onClick={() => setidhorario(item.id_horario)} > {item.hora}</div>
-                    
-                    )}    
+                        {horario.map ( item =>  
+
+                        <div className='a' onClick={() => setidhorario(item.id_horario)} > 
+                            <div>
+                                {item.hora}
+                            </div>
+                            <div>
+                                {item.local}
+                            </div>
+
+                        </div>
+                        )}    
                     </div>
                     <div className='botao'>
                         <button onClick={() => agendar(idhorario , idcliente ,nome ,email ,cpf ,telefone ,sexo ,dtnasc ,desc)}> solicitar </button>  

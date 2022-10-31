@@ -78,7 +78,11 @@
                 font-size: 1em;
 
                 a{
-                    color: #fff;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-direction: row;
+                    color: black;
                 }
             }
         }
