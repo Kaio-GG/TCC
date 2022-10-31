@@ -8,6 +8,7 @@ import Pular from 'react-reveal/Fade'
 
 import { listarComentarios, loadPage, sendReview } from '../../../api/Intermediario'
 import { buscarImagem } from '../../../api/paginaEmpresa'
+import { useParams, useNavigate  } from 'react-router-dom'
 
 export default function Index(){
     const [input, setInput] = useState(false);
@@ -19,6 +20,7 @@ export default function Index(){
     const [pais, setPais] = useState('')
     const [cidade, setCidade] = useState('')
     const [endereco, setEndereco] = useState('')
+    const [pagina, setPagina] = useState({})
 
     const [erro, setErro] = useState('')
 
@@ -29,24 +31,13 @@ export default function Index(){
     const [review, setReview] = useState('');
     const [avaliacaoReview, setAvaliacaoReview] = useState(0);
 
-    const [pagina, setPagina] = useState({})
+    const { id } = useParams();
 
+    const navigate = useNavigate();
 
     const b = Storage('Cliente-Logado')
     const idusuario = b.ID_USUARIO_CLIENTE
 
-    const a = Storage('Empresa-Logada');
-    const id = a.ID_USUARIO_EMPRESA;
-
-    useEffect(() => {
-        if(id){
-            loadPageZ();
-            listarComents();
-            console.log(loadPageZ)
-            
-
-        }
-    },[])
 
     async function enviarComentario(){
         try{
@@ -65,13 +56,7 @@ export default function Index(){
     async function loadPageZ(){
         try{
             const resp = await loadPage(id)
-            setNome(resp.nome)
             setLogo(resp.logo)
-            setDescricao(resp.descricao)
-            setAvaliacao(resp.avaliacao)
-            setPais(resp.pais)
-            setCidade(resp.cidade)
-            setEndereco(resp.endereco)
             setPagina(resp)
         }catch(err){
             alert(err.message)
@@ -79,12 +64,20 @@ export default function Index(){
         }
     }
 
+    useEffect(() => {
+        if(id){
+            listarComents();
+            loadPageZ(id);
+        }
+        console.log(id)
+
+    },[])
+
+
     async function listarComents(){
         try{
             const r = await listarComentarios(id);
-            console.log(r)
             setComentarios(r)
-        
         }catch (err) {
             if (err.response.status === 400){
                 setErro(err.response.data.erro);    
@@ -92,6 +85,10 @@ export default function Index(){
         }
     }
 
+    function irParaInfo (id){
+        navigate(`/home/usuario/empresa/consulta/${id}/agendar`)
+
+    }
     function showInput(){
         setInput(true)
     }
@@ -117,7 +114,6 @@ export default function Index(){
                     <div className='boxleft'>
                         <div className='b1'>
                         <img src={mostrarImagem()} alt='' className='img-empresa' />
-
                             <div className='b1-letters'>
                                 <h1>{pagina.nome}</h1>
                                 <p>{pagina.descricao}</p>
@@ -136,7 +132,7 @@ export default function Index(){
 
                         <div className='b2'>
                             <h1 className='h1-b2'>Faça aqui seu agendamento de forma gratuita e em casa.</h1>
-                            <button className='button-b2'>Agendar</button>
+                            <button className='button-b2' onClick={() => irParaInfo(id)} >Agendar</button>
                         </div>
 
                         <div className='imagem'>

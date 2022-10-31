@@ -2,22 +2,20 @@ import { con } from "./connection.js"
 
 export async function carregarPaginaZ(id){
     const comando = `
-    select 	tb_empresa_avaliacao.id_usuario_empresa,
+    select 	tb_usuario_empresa.id_usuario_empresa id,
 		nm_empresa				nome,
 		img_logo				logo,
 		ds_descricao 			descricao,
-		vl_avaliacao			avaliacao,
         ds_pais					pais,
 		ds_cidade				cidade,
-		ds_endereco				endereco
+		ds_endereco				endereco,
+        vl_avaliacao			avaliacao
     from tb_pagina_empresa
     inner join tb_empresa_avaliacao on tb_empresa_avaliacao.id_usuario_empresa = tb_pagina_empresa.id_usuario_empresa
     inner join tb_usuario_empresa on tb_usuario_empresa.id_usuario_empresa = tb_pagina_empresa.id_pagina_empresa
-    where tb_empresa_avaliacao.id_usuario_empresa = ?
-    
+    where tb_usuario_empresa.id_usuario_empresa = ?
     `;
     const [linhas] = await con.query(comando, [id])
-
     return linhas[0]; 
 }
 
@@ -28,7 +26,6 @@ export async function enviarComentario(comentario){
     `
     const [linhas] = await con.query (comando, [comentario.idempresa, comentario.idusuario, comentario.avaliacao, comentario.descricao])
     linhas.id = linhas.insertId;
-    console.log(comentario)
     return comentario;
 }
 
