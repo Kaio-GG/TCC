@@ -7,6 +7,7 @@
         height: 100vh;
         display: flex;
         flex-direction: column;
+        min-height: 110vh;
 
     }
 
@@ -428,6 +429,7 @@
         display: flex;
         flex-direction: row;
         margin-left: 5px;
+        margin-bottom: 10px;
     }
 
     .h1-box-empresa{
@@ -438,7 +440,7 @@
     .img-logo{
         width: 150px;
         height: 150px;
-        background-color: rgb(56, 116, 71);
+        border: 1px solid black;
         border-radius: 15px;
     }
 

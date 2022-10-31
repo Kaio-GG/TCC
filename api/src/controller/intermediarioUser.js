@@ -41,8 +41,6 @@ server.get('/home/usuario/coments', async(req, resp) => {
 
         const r = await selecionarComentarios(id);
 
-        console.log(r)
-
         resp.send(r)
     }catch(err){
         resp.status(400).send({
