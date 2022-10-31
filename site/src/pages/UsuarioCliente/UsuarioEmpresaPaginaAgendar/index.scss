@@ -138,11 +138,15 @@
                 font-family: "Kumbh Sans";
                 font-size: 1em;
 
-                a{
-                    color: #fff;
-                }
             }
         }
     }
-
+    a{
+                    
+        display: flex;
+        color: rgb(0, 0, 0);
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
