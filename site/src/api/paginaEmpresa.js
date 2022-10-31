@@ -65,10 +65,7 @@ export async function AlterarPublicacao (nome, conteudo, idEmpresa, idPublicacao
 }
 
 export async function DeletarPublicacao (idEmpresa, idPublicacao){
-    const resposta = await api.delete('/empresa/publicacao', {    
-        idEmpresa:idEmpresa, 
-        idPublicacao:idPublicacao
-    });
+    const resposta = await api.delete(`/empresa/publicacao/${idEmpresa}/${idPublicacao}`);
     return resposta.data;
 }
 
