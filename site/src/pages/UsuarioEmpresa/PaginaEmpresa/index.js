@@ -1,12 +1,12 @@
 import './index.scss';
 import HeaderEmpresa from '../../../components/header-adm-empresa';
-import Storage from 'local-storage';
+import Storage, { set } from 'local-storage';
 import { confirmAlert } from 'react-confirm-alert'; 
 
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
@@ -22,6 +22,9 @@ export default function PaginaEmpresa() {
 
     const [cont, setCont] = useState(0);
     const [contpubli, setContpubli] = useState(0);
+
+    const [altTituloPublicacao, setAltTitutoPublicao] = useState('')
+    const [altcorpoPublicacao, setAltCorpoPublicacao] = useState('')
 
     const [pagina, setPagina] = useState({});
     const paulo = Storage('Empresa-Logada');
@@ -89,6 +92,8 @@ export default function PaginaEmpresa() {
     async function novaPublicacao() {
         try{
             await AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
+            setAltTitutoPublicao(tituloPublicacao)
+            setAltCorpoPublicacao(corpoPublicacao)
             carregarPublicaoes();
 
             alert('Publicado')
@@ -102,8 +107,6 @@ export default function PaginaEmpresa() {
             const resp = await listarPublicacao(id)
 
             setPublicacao(resp)
-            console.log(resp)
-            console.log(publicacao)
         } catch (err) {
             alert('erro em listar as publicações')
             alert(err.message)
@@ -148,13 +151,16 @@ export default function PaginaEmpresa() {
     }
 
     function AlterarPublic(index) {
+        let b = publicacao[index].Titulo;
+        setAltTitutoPublicao(b)
+        let c = publicacao[index].CaixaTexto;
+        setAltCorpoPublicacao(c)
 
         const a = index;
         setVlPublic(a);
     }
 
     function SalvarAlterarPublic() {
-
         const a = 100;
         setVlPublic(a);
     }
@@ -255,8 +261,8 @@ export default function PaginaEmpresa() {
                         {publicacao.map((item, index) => 
                             <div className="card-Publicacao">
                                 {vlpublic===index && <div className='agrupamento-inputs'>
-                                    <input value={item.CaixaTexto} type='text' />
-                                    <input value={item.Titulo} type='text' />
+                                    <input value={altTituloPublicacao} type='text' onChange={e => setAltTitutoPublicao(e.target.value, index)}/>
+                                    <input value={altcorpoPublicacao} type='text' onChange={e => setAltCorpoPublicacao(e.target.value, index)}/>
                                     <div>
                                     <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
                                     <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={SalvarAlterarPublic}/>

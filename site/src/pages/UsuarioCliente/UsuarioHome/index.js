@@ -1,6 +1,7 @@
 import './index.scss'
 
 import { avaliacaoEmpresas, buscaDeEmpresas, listarEmpresas, maisProximo } from '../../../api/usuarioHome'
+import { buscarImagem } from '../../../api/paginaEmpresa'
 
 import Star from './assets/star.svg'
 import Local from './assets/local.svg'
@@ -89,7 +90,7 @@ export default function ClienteHome() {
                     {empresa.map(item => 
                         <div className='box-empresa'>
                          <div className='ali'> 
-                            <div className='img-logo'>.{item.logo}</div>
+                            <img className='img-logo' src={buscarImagem(item.logo)} />
 
                             <div className='alinhar-box-empresa'>
                             

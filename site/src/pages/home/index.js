@@ -11,6 +11,7 @@ import Icon from '../home/assets/Vector.png'
 import Boom from 'react-reveal/Slide'
 
 import { avaliacaoSite, buscarPorNomeHome, listarEmpresasAvaliacao } from '../../api/homeController'
+import { buscarImagem } from '../../api/paginaEmpresa'
 import { useEffect, useState } from 'react'
 
 
@@ -95,7 +96,7 @@ export default function Index() {
                         <Boom left className='box-empresa'>
                          <div className='espacamento'>
                          <div className='ali'> 
-                            <img className='img-logo' ></img>
+                            <img className='img-logo' src={buscarImagem(item.logo)} />
 
                             <div className='alinhar-box-empresa'>
                             
