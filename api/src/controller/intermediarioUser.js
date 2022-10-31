@@ -6,7 +6,7 @@ const server = Router();
 
 server.get('/home/usuario/int/:id', async(req, resp) => {
     try{
-        const id = Number(req.params.id);
+        const  id = Number(req.params.id);
 
         const resposta = await carregarPaginaZ(id);
 

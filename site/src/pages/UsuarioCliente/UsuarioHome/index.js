@@ -16,7 +16,7 @@ export default function ClienteHome() {
     const [empresa, setEmpresa] = useState([]);
 
     const [render, setRender] = useState(false);
-    const navigate =useNavigate()
+    const navigate = useNavigate()
 
     async function melhoresEmpresas(){
         const resp1 = await avaliacaoEmpresas();
@@ -24,10 +24,9 @@ export default function ClienteHome() {
         setEmpresa(resp1);
     }
 
-    console.log(empresa)
 
-    function irParaInfo (id){
-        navigate(`/home/usuario/empresa/consulta/${id}/agendar`)
+    function irParaInfoEmpresa(id){
+        navigate(`/home/usuario/int/${id}`)
 
     }
 
@@ -87,7 +86,7 @@ export default function ClienteHome() {
                     }
 
                                       
-                    {empresa.map(item => 
+                    {empresa.map((item, pos) =>
                         <div className='box-empresa'>
                          <div className='ali'> 
                             <img className='img-logo' src={buscarImagem(item.logo)} />
@@ -101,7 +100,7 @@ export default function ClienteHome() {
                             </div>
                          </div>
 
-                            <button className='button-box-empresa' onClick={() => irParaInfo(item.id)} >Agende seu horário</button>
+                            <button className='button-box-empresa' onClick={() => irParaInfoEmpresa(pos + 1)} >Agende seu horário</button>
 
                         </div>   
                         

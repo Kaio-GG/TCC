@@ -6,14 +6,13 @@ const api = axios.create({
 
 export async function loadPage(id){
     const resposta = await api.get(`/home/usuario/int/${id}`);
-
     return resposta.data
 }
 
 export async function sendReview(id, idu, avaliacao, descricao, dia){
-    const r = await api.post('/home/usuario/comentario' ,{
+    const r = await api.post('/home/usuario/comentario',{
         id:id,
-        idu:idu,
+        idusuario:idu,
         avaliacao:avaliacao,
         descricao:descricao,
         dia: dia
