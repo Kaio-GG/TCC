@@ -11,6 +11,7 @@ import Icon from '../home/assets/Vector.png'
 import Boom from 'react-reveal/Slide'
 
 import { avaliacaoSite, buscarPorNomeHome, listarEmpresasAvaliacao } from '../../api/homeController'
+import { buscarImagem } from '../../api/paginaEmpresa'
 import { useEffect, useState } from 'react'
 
 
@@ -30,6 +31,7 @@ export default function Index() {
 
     }
 
+
     async function enviarAvaliacao(){
         const r = await avaliacaoSite(nomeUsuario, avaliacaoUsuario)
 
@@ -38,6 +40,7 @@ export default function Index() {
 
     async function busca(){
         const r = await buscarPorNomeHome(filtro)
+        console.log(r)
 
         if(filtro === '')
             setEmpresa([]);
@@ -46,16 +49,26 @@ export default function Index() {
         setEmpresa(r)
     }
 
+
     async function listar(){
         const resposta = await listarEmpresasAvaliacao();
         setAvaliacao(resposta)
     }
 
+    function mostrarImagem(imagem){
+        if(imagem == undefined){
+            return ""
+        }
+        else{
+            return URL.createObjectURL(imagem)
+        }
+    }
 
 
     useEffect(() => {
         listar()
         busca()
+        
     }, [filtro])
 
     return(
@@ -83,7 +96,7 @@ export default function Index() {
                         <Boom left className='box-empresa'>
                          <div className='espacamento'>
                          <div className='ali'> 
-                            <div className='img-logo'>.{item.logo}</div>
+                            <img className='img-logo' src={buscarImagem(item.logo)} />
 
                             <div className='alinhar-box-empresa'>
                             

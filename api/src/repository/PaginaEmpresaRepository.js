@@ -58,7 +58,7 @@ export async function Publicacao(bd) {
     return bd;
 }
 
-export async function AlterarPublicacao(bd) {
+export async function AlterarPublicacao(bd, idEmpresa, idPublicacao) {
     const comando = 
     ` update TB_PAGINA_EMPRESA_PUBLICACAO
          set NM_TITULO                    = ?,
@@ -66,24 +66,26 @@ export async function AlterarPublicacao(bd) {
        where ID_PAGINA_EMPRESA            = ?
          and ID_PAGINA_EMPRESA_PUBLICACAO = ?`;
 
-       const [linhas] = await con.query(comando, [bd.nome, bd.conteudo, bd.idEmpresa, bd.idPublicacao]);
+       const [linhas] = await con.query(comando, [bd.nome, bd.conteudo, idEmpresa, idPublicacao]);
        return linhas.affectedRows;
 }
 
-export async function DeletarPublicacao(bd) {
+export async function DeletarPublicacao(idEmpresa, idPublicacao) {
     const comando = 
     `delete from TB_PAGINA_EMPRESA_PUBLICACAO
            where ID_PAGINA_EMPRESA            = ?
-             and ID_PAGINA_EMPRESA_PUBLICACAO = ?; `;
+             and ID_PAGINA_EMPRESA_PUBLICACAO = ? `;
 
-       const [linhas] = await con.query(comando, [bd.idEmpresa, bd.idPublicacao]);
+       const [linhas] = await con.query(comando, [idEmpresa, idPublicacao]);
        return linhas.affectedRows;
 }
 
 export async function ListarPublicacao(id) {
     const comando = 
-        `SELECT	NM_TITULO 	 			Titulo, 
-                DS_CAIXA_TEXTO    		CaixaTexto
+        `SELECT	NM_TITULO 	 			        Titulo, 
+                DS_CAIXA_TEXTO    		        CaixaTexto,
+                ID_PAGINA_EMPRESA               Empresa,
+                ID_PAGINA_EMPRESA_PUBLICACAO    Publicacao
           from TB_PAGINA_EMPRESA_PUBLICACAO 
          where ID_PAGINA_EMPRESA = ?`;
     

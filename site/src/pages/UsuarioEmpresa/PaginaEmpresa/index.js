@@ -1,11 +1,12 @@
 import './index.scss';
 import HeaderEmpresa from '../../../components/header-adm-empresa';
-import Storage from 'local-storage';
+import Storage, { set } from 'local-storage';
+import { confirmAlert } from 'react-confirm-alert'; 
 
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
@@ -17,8 +18,13 @@ export default function PaginaEmpresa() {
     const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo')
     const [corpoPublicacao, setCorpoPublicacao] = useState('Digite algo')
 
+    const [vlpublic, setVlPublic] = useState(100)
+
     const [cont, setCont] = useState(0);
     const [contpubli, setContpubli] = useState(0);
+
+    const [altTituloPublicacao, setAltTitutoPublicao] = useState('')
+    const [altcorpoPublicacao, setAltCorpoPublicacao] = useState('')
 
     const [pagina, setPagina] = useState({});
     const paulo = Storage('Empresa-Logada');
@@ -85,7 +91,9 @@ export default function PaginaEmpresa() {
 
     async function novaPublicacao() {
         try{
-            AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
+            await AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
+            setAltTitutoPublicao(tituloPublicacao)
+            setAltCorpoPublicacao(corpoPublicacao)
             carregarPublicaoes();
 
             alert('Publicado')
@@ -99,12 +107,34 @@ export default function PaginaEmpresa() {
             const resp = await listarPublicacao(id)
 
             setPublicacao(resp)
-            console.log(resp)
-            console.log(publicacao)
         } catch (err) {
             alert('erro em listar as publicações')
             alert(err.message)
         }
+    }
+
+    async function removerPublicacao(Empresa, Publicacao){
+
+        confirmAlert({
+            title: 'Deletar Publicação',
+            message: 'Deseja deletar essa Publcação',
+            buttons: [
+              {
+                label: 'Sim',
+                onClick: async() => {
+                    const resp = await DeletarPublicacao(Empresa, Publicacao);
+                    carregarPublicaoes();
+                    alert( "Publicação removida com sucesso!")
+                }
+              },
+              {
+                label: 'Não',
+                onClick: () => alert('Publicação não removida')
+              }
+            ]
+          });
+
+         
     }
 
 
@@ -118,6 +148,21 @@ export default function PaginaEmpresa() {
 
         const a = 0;
         setContpubli(a);
+    }
+
+    function AlterarPublic(index) {
+        let b = publicacao[index].Titulo;
+        setAltTitutoPublicao(b)
+        let c = publicacao[index].CaixaTexto;
+        setAltCorpoPublicacao(c)
+
+        const a = index;
+        setVlPublic(a);
+    }
+
+    function SalvarAlterarPublic() {
+        const a = 100;
+        setVlPublic(a);
     }
 
     function receberImagem() {
@@ -213,22 +258,39 @@ export default function PaginaEmpresa() {
                         }
 
 
-                        {publicacao.map(item => 
-                            <div className="">
-                                <div className='agrupamento-inputs'>
+                        {publicacao.map((item, index) => 
+                            <div className="card-Publicacao">
+                                {vlpublic===index && <div className='agrupamento-inputs'>
+                                    <input value={altTituloPublicacao} type='text' onChange={e => setAltTitutoPublicao(e.target.value, index)}/>
+                                    <input value={altcorpoPublicacao} type='text' onChange={e => setAltCorpoPublicacao(e.target.value, index)}/>
+                                    <div>
+                                    <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
+                                    <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={SalvarAlterarPublic}/>
+                                    </div>
+
+                                </div>}
+
+                                {vlpublic!=index && vlpublic!=100  && <div className='agrupamento-inputs'>
+                                <h1>{item.Titulo}</h1>
+                                    <p>{item.CaixaTexto}</p>
+                                    <div>
+                                    <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
+                                    <img src='/assets/images/editar.svg' alt='editarperfil' onClick={() => AlterarPublic(index)}/>
+                                    </div>
+                                </div>}
+
+                                {vlpublic===100 && <div className='agrupamento-inputs'>
                                     <h1>{item.Titulo}</h1>
                                     <p>{item.CaixaTexto}</p>
-                                </div>
-                                <img src='/assets/images/editar.svg' alt='editarperfil'/>
+                                    <div>
+                                    <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
+                                    <img src='/assets/images/editar.svg' alt='editarperfil' onClick={() => AlterarPublic(index)}/>
+                                    </div>
+                                </div>}
+                                
                             </div>
                         )}
-
-                        {contpubli === 1 &&<div className="">
-                            <p>Adicionar Card</p>
-                            <img src='/assets/images/Salvar.svg' alt='add' onClick={Novapubli}/>
-                            </div> }
                         
-
 
                         {contpubli === 0 &&<div className="card-Publicacao">
                             <p>Adicionar Card</p>

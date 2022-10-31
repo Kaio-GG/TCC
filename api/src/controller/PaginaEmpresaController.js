@@ -47,7 +47,7 @@ server.put('/empresa/pagina/:idEmpresa/imagem' ,upload.single('capa'), async(req
         const imagem = req.file.path;
 
         const resposta = await ImagemPagina(imagem, idEmpresa);
-        if(resposta != 1)
+        if(resposta === 0)
             throw new Error('A imagem não pode ser salva.');
 
         resp.status(204).send();
@@ -64,11 +64,11 @@ server.put('/empresa/alterarpagina/:idEmpresa', async(req, resp) => {
         const conteudo = req.body;
 
         const alterarPagina = await AlterarPagEmpreId(idEmpresa, conteudo);
-        if (alterarPagina === 0)
+        if (alterarPagina === 0){
             throw new Error('houve uma falha ao realizar alterações.');
-
-        resp.status(204).send();
-
+        } else {
+            resp.status(204).send();
+        }
     } catch(err){
         resp.status(401).send({
             erro: err.message
@@ -91,13 +91,17 @@ server.post('/empresa/publicacao', async(req, resp) => {
     }
 })
 
-server.put('/empresa/publicacao', async(req, resp) => {
+server.put('/empresa/publicacao/:idEmpresa/:idPublicacao', async(req, resp) => {
     try{
+        const idEmpresa =  Number(req.params.idEmpresa);
+        const idPublicacao =  Number(req.params.idPublicacao);
         const conteudo = req.body;
 
-        const alterarPublicacao = await AlterarPublicacao(conteudo);
+        const alterarPublicacao = await AlterarPublicacao(conteudo, idEmpresa, idPublicacao);
 
-        resp.status(204).send(alterarPublicacao)
+        if(alterarPublicacao != 1)
+            throw new Error('Não foi possivel alterar')
+        resp.status(204).send()
 
     } catch(err){
         resp.status(401).send({
@@ -106,16 +110,23 @@ server.put('/empresa/publicacao', async(req, resp) => {
     }
 })
 
-server.delete('/empresa/publicacao', async(req, resp) => {
+server.delete('/empresa/publicacao/:idEmpresa/:idPublicacao', async(req, resp) => {
     try{
-        const conteudo = req.body;
+        const idEmpresa =  Number(req.params.idEmpresa);
+        const idPublicacao =  Number(req.params.idPublicacao);
 
-        const deletarPublicacao = await DeletarPublicacao(conteudo);
+        const deletarPublicacao = await DeletarPublicacao(idEmpresa, idPublicacao);
 
-        resp.status(204).send(deletarPublicacao)
+        if (deletarPublicacao != 1){
+            throw new Error('Não foi possivel deletar');
+        }
+        else {
+            resp.status(204).send()
+        }
 
+        
     } catch(err){
-        resp.status(401).send({
+        resp.status(400).send({
             erro: err.message
         })
     }

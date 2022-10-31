@@ -5,6 +5,7 @@ import HeaderUsuario from '../../../components/header-usuario'
 import { useEffect, useState } from 'react'
 
 import Pular from 'react-reveal/Fade'
+
 import { listarComentarios, loadPage, sendReview } from '../../../api/Intermediario'
 import { buscarImagem } from '../../../api/paginaEmpresa'
 
@@ -19,9 +20,9 @@ export default function Index(){
     const [cidade, setCidade] = useState('')
     const [endereco, setEndereco] = useState('')
 
-    const [ui, setUi] = useState('');
-
     const [erro, setErro] = useState('')
+
+    const data = new Date().toJSON().slice(0, 19).replace('T', ' ')
 
     const [comentarios, setComentarios] = useState([]);
 
@@ -30,16 +31,18 @@ export default function Index(){
 
     const [pagina, setPagina] = useState({})
 
-    const a = Storage('Cliente-Logado')
-    const idusuario = a.ID_USUARIO_CLIENTE
 
-    const n = Storage('Empresa-Logada');
-    const id = n.ID_USUARIO_EMPRESA;
+    const b = Storage('Cliente-Logado')
+    const idusuario = b.ID_USUARIO_CLIENTE
+
+    const a = Storage('Empresa-Logada');
+    const id = a.ID_USUARIO_EMPRESA;
 
     useEffect(() => {
         if(id){
             loadPageZ();
             listarComents();
+            console.log(loadPageZ)
             
 
         }
@@ -47,14 +50,13 @@ export default function Index(){
 
     async function enviarComentario(){
         try{
-           const r = await sendReview(id, idusuario, review, avaliacaoReview);
-            setUi(r.ava)
-            setComentarios(r)
+            await sendReview(id, idusuario, avaliacaoReview, review, data)
 
-
+            alert("Comentário enviado com sucesso❗❗🎇")
         }catch (err) {
             if (err.response.status === 400){
-                setErro(err.response.data.erro);    
+                alert(err.response.data.erro);  
+                  
             }
         }
 
@@ -151,12 +153,15 @@ export default function Index(){
                                 <div className='juntar'>
                                     <img className='img-usuario'></img>
                                     <div className='b3-letters'>
-                                        <h1>{item.ava}</h1>
+                                        <h1>{item.nome}</h1>
+                                        <h4>{item.ava}</h4>
                                         <p className='p-b3'>{item.avads}</p>
                                     </div>
                                 </div>
 
-                                <p>{item.avads}</p>
+                                <p>{item.dia.substr(7,3).replace("-","")}/{item.dia.substring(4,7).replace("-","")}/{item.dia.substring(0,5).replace("-","")}<br/>
+                                ás {item.dia.substring(11,16)}
+                                </p>
                             </div>
                         )}
 

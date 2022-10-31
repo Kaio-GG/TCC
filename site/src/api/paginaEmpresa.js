@@ -21,7 +21,6 @@ export async function CarregarPagina (id) {
 
 export async function AlterarPagina (idEmpresa, nome, descricao) {
     const resposta = await api.put(`/empresa/alterarpagina/${idEmpresa}`, {
-        idEmpresa:idEmpresa,
         nome:nome,
         descricao:descricao
     });
@@ -55,20 +54,15 @@ export async function AdicionarPublicacao (idEmpresa, nome, conteudo){
 }
 
 export async function AlterarPublicacao (nome, conteudo, idEmpresa, idPublicacao){
-    const resposta = await api.put('/empresa/publicacao', {
+    const resposta = await api.put(`/empresa/publicacao/${idEmpresa}/${idPublicacao}`, {
         nome:nome, 
         conteudo:conteudo, 
-        idEmpresa:idEmpresa, 
-        idPublicacao:idPublicacao
     });
     return resposta.data;
 }
 
 export async function DeletarPublicacao (idEmpresa, idPublicacao){
-    const resposta = await api.delete('/empresa/publicacao', {    
-        idEmpresa:idEmpresa, 
-        idPublicacao:idPublicacao
-    });
+    const resposta = await api.delete(`/empresa/publicacao/${idEmpresa}/${idPublicacao}`);
     return resposta.data;
 }
 

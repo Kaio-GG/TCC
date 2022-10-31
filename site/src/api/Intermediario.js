@@ -10,14 +10,14 @@ export async function loadPage(id){
     return resposta.data
 }
 
-export async function sendReview(idempresa, idusuario, avaliacao, descricao){
+export async function sendReview(id, idu, avaliacao, descricao, dia){
     const r = await api.post('/home/usuario/comentario' ,{
-        ide:idempresa,
-        idu:idusuario,
+        id:id,
+        idu:idu,
         avaliacao:avaliacao,
-        descricao:descricao
-    })
-
+        descricao:descricao,
+        dia: dia
+    });
     return r.data
 }
 
