@@ -30,7 +30,8 @@ export async function enviarComentario(comentario){
 
 export async function selecionarComentarios(id){
     const comando = `
-    select  ID_USUARIO_EMPRESA id,
+    select  id_empresa_avaliacao id1,
+			ID_USUARIO_EMPRESA id,
             tb_usuario_cliente.id_usuario_cliente idu,
             nm_usuario nome,
             vl_avaliacao ava,
@@ -38,9 +39,8 @@ export async function selecionarComentarios(id){
             dt_avaliacao dia
     from   tb_empresa_avaliacao
     inner join tb_usuario_cliente on tb_usuario_cliente.id_usuario_cliente = tb_empresa_avaliacao.id_usuario_cliente
-    WHERE id_usuario_empresa = ?
-    ORDER BY rand()
-    LIMIT 5 `
+    WHERE id_usuario_empresa = 1
+    ORDER BY id1 desc`
     const [linhas] = await con.query(comando, [id])
     return linhas;
 }
@@ -54,8 +54,20 @@ export async function puxarPubs(id){
             img_imagem_publicacao imagem
     from 	tb_pagina_empresa_publicacao
     inner join tb_pagina_empresa_publicacao_img on tb_pagina_empresa_publicacao_img.id_pagina_empresa_publicacao_img = tb_pagina_empresa_publicacao.id_pagina_empresa
-    where id_pagina_empresa = ?
+    where id_pagina_empresa = ? order by id1 desc
     `
     const [linhas] = await con.query(comando, [id])
     return linhas;
+}
+
+export async function avaliacoes(id){
+    const comando = `
+    select  (count(vl_avaliacao) * vl_avaliacao)
+		/ count(vl_avaliacao) avaliacao,
+        count(vl_avaliacao) avaliacoes
+    from tb_empresa_avaliacao 
+    where id_usuario_empresa = ?
+    `
+    const [linhas] = await con.query(comando, [id])
+    return linhas
 }

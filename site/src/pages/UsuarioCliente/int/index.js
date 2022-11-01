@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import Pular from 'react-reveal/Fade'
 import { toast } from 'react-toastify'
 
-import { laodPubs, listarComentarios, loadPage, sendReview } from '../../../api/Intermediario'
+import { carregarAvaliacao, laodPubs, listarComentarios, loadPage, sendReview } from '../../../api/Intermediario'
 import { buscarImagem } from '../../../api/paginaEmpresa'
 import { useParams, useNavigate  } from 'react-router-dom'
 
@@ -22,7 +22,7 @@ export default function Index(){
     const [cidade, setCidade] = useState('')
     const [endereco, setEndereco] = useState('')
     const [pagina, setPagina] = useState({})
-
+    const [nota, setNota] = useState([]);
     const [erro, setErro] = useState('')
 
     const data = new Date().toJSON().slice(0, 19).replace('T', ' ')
@@ -45,10 +45,11 @@ export default function Index(){
         try{
             await sendReview(id, idusuario, avaliacaoReview, review, data)
 
+            setInput(false)
             toast.dark("Comentário enviado com sucesso❗❗🎇")
         }catch (err) {
             if (err.response.status === 400){
-                toast.error(err.response.data.erro);  
+                toast.error("Erro ao enviar comentário!💀💀👹");  
                   
             }
         }
@@ -69,6 +70,7 @@ export default function Index(){
             listarComents(id);
             loadPageZ(id);
             carregarPubs(id)
+            carregarNota(id)
             console.log(id)
 
     },[])
@@ -85,12 +87,22 @@ export default function Index(){
         }
     }
 
+    async function carregarNota(){
+        try{
+            const r = await carregarAvaliacao(id);
+            setNota(r)
+        }catch(err){
+            toast.error(err.message)
+
+        }
+    }
+
     async function carregarPubs(){
         try{
             const r = await laodPubs(id)
             setPublicacao(r)
         }catch(err){
-            toast.error('Erro em carregar as publicações👹💀')
+            toast.error(err.message)
 
         }
     }
@@ -100,7 +112,7 @@ export default function Index(){
 
     }
     function showInput(){
-        setInput(true)
+        setInput(!input)
     }
 
     function mostrarImagemA() {
@@ -137,11 +149,17 @@ export default function Index(){
                             </div>
 
                             <div className='b1-letters2'>
-                                <p className='b1-ava'>{pagina.avaliacao} ESTRELAS</p>
+                                {nota.map(item =>
+                                <p className='b1-ava'>{item.avaliacao.substr(0,3)} ESTRELAS</p>
+                                )}
                                 <p>{pagina.pais}, {pagina.cidade}</p>
                                 <p>{pagina.endereco}</p>
-                                <p>? Avaliações</p>
+                                {nota.map(item =>
+                                <p>{item.avaliacoes} Avaliações</p>
+                                )}
+                                
                             </div>
+                            
                         </div>
 
                     
@@ -164,6 +182,33 @@ export default function Index(){
                         <div className='b3'>
                             <h1 className='h1-b3'>Reviews</h1>
                             <hr className='linha-b3'></hr>
+                            {input === true &&
+                            <span className='X' onClick={showInput}>X</span>
+                            
+                            
+                            }
+                            {input === true &&
+                                <Pular> 
+                                    <div className='comentario'>
+                                        <textarea value={review} onChange={e => setReview(e.target.value)} className='comentar'/>
+                                        <div className='alinhar-coment'>
+                                            <p>Insira o número de sua avaliação</p>
+                                            <input value={avaliacaoReview} onChange={e => setAvaliacaoReview(e.target.value)} type="number" maxLength="1"/>
+                                        </div>
+                                        <button onClick={enviarComentario} className='button-enviar'>Enviar</button>
+                                        
+                                    </div>
+
+                                </Pular>
+
+                            }
+
+                            {input === false &&
+
+                                <p className='p2-b3' onClick={showInput}>Adicionar comentário</p>
+
+                            }
+
 
                             
                         {comentarios.map(item =>
@@ -183,34 +228,10 @@ export default function Index(){
                             </div>
                         )}
 
-
-                            {erro}
-
-                            {input === true &&
-                                <Pular> 
-                                    <div className='comentario'>
-                                        <textarea value={review} onChange={e => setReview(e.target.value)} className='comentar'/>
-                                        <div className='alinhar-coment'>
-                                            <p>Insira o número de sua avaliação</p>
-                                            <input value={avaliacaoReview} onChange={e => setAvaliacaoReview(e.target.value)} type="number" maxLength="1"/>
-                                        </div>
-                                        <button onClick={enviarComentario} className='button-enviar'>Enviar</button>
-                                    </div>
-
-                                </Pular>
-
-                            }
-
-                            {input === false &&
-
-                                <p className='p2-b3' onClick={showInput}>Adicionar comentário</p>
-
-                            }
-
-                            
-
-                           
+                                       
                         </div>
+
+                       
 
                     </div>
 

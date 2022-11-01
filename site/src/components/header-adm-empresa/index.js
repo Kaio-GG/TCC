@@ -23,6 +23,9 @@ function paginaempresa (){
 function editarInfoEmpresa (){
     navigate(`/empresa/${id}/editar`)
 }
+function Review(){
+    navigate(`/home/empresa/reviews`)
+}
 
 
 
@@ -59,7 +62,7 @@ function sair (){
 
                 {props.class === 'reviwes' 
                 ? <div className= 'pagina'>Reviwes</div> 
-                : <div className='tent'> Reviwes</div>}
+                : <div className='tent' onClick={Review}> Reviwes</div>}
             </div>
             </div>
         </div>

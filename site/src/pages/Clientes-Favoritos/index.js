@@ -23,9 +23,12 @@ export default function Index(){
     function Buttons3(){
          setButton(3)
     }
-    
+
     function Buttons4(){
         setButton(4)
+        setTimeout(() => {
+            setButton(1)
+        }, 500);
     }
 
 

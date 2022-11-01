@@ -24,8 +24,6 @@ server.get('/home/busca', async(req, resp) => {
         const  { nome } = req.query; 
 
         const resposta = await pesquisaPorNomeHome(nome);
-        
-        console.log(resposta)
 
         resp.send(resposta);
         

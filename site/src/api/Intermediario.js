@@ -29,3 +29,8 @@ export async function laodPubs(id){
     const t = await api.get(`/home/usuario/pubs?id=${id}`)
     return t.data;
 }
+
+export async function carregarAvaliacao(id){
+    const t = await api.get(`/home/usuario/avaliacoes?id=${id}`)
+    return t.data;
+}

@@ -121,6 +121,9 @@
     }
 
     .b3{
+        overflow: auto;
+        scroll-behavior: auto;
+        height: 300px;
         padding: 10px;
         background-color: #FFFFFF;
         margin-top: 20px;
@@ -257,5 +260,12 @@
         border-radius: 5px;
         text-align: start;
         width: 150px;
+    }
+
+    .X{
+        display: flex;
+        justify-content: flex-end;
+        cursor: pointer;
+        font-weight: 900;
     }
 }
