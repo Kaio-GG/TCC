@@ -183,7 +183,7 @@ export default function PaginaEmpresa() {
     return(
         <main className="PaginaEmpresa">
             <div className="PaginaEmpresa-Centro">
-                <HeaderEmpresa class="pagina"/>
+                <HeaderEmpresa class="perfil"/>
                 <div className='agrups'>
                     <div className="agrup-esquerda">
 
