@@ -1,13 +1,10 @@
 import './index.scss'
-
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import HeaderUsuario from "../../../components/header-usuario";
 import { agendarHorario ,horarios} from '../../../api/agendamentos.js';
 import storage from 'local-storage'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify'
-
-
 
 export default function UsuarioEmpresaPaginaAgendar() {
     const [nome , setnome ] =useState('')
@@ -20,7 +17,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
     const [render , setrender] =useState(true)
     const [horario ,sethorario] =useState([])
     const [idhorario , setidhorario] = useState(0)
-
+    const [data ,setdata] = useState('')
     const {id} = useParams();
     const clientelogado = storage('Cliente-Logado')
     const idcliente = (clientelogado.ID_USUARIO_CLIENTE)
@@ -43,8 +40,15 @@ export default function UsuarioEmpresaPaginaAgendar() {
             console.log(err.message)
         }
     }
+    function novahora (){
+        let hr = new Date()
+        let a = hr.toISOString().substr(0,10)
+        setdata(a)
+    }
 
-
+    useEffect(() => {
+        novahora()
+    },[])
 
     return(
         <div className='pg-toda'>
@@ -96,8 +100,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
                     <h3> Horarios </h3>
 
                     <div className='selects'>
-                        <select className='um'></select>
-                        <select className='um'></select>
+                           <input className='um'  type='date' value={data} onChange={e => setdata(e.target.value)} /> 
                     </div>
 
                     <div className='cards'>
@@ -115,7 +118,11 @@ export default function UsuarioEmpresaPaginaAgendar() {
 
 
                             <div className='filha'>
-                                <p>Local:</p> &nbsp;&nbsp; {item.local}
+                                <p>Local:</p> &nbsp;&nbsp; {String(item.local).toLowerCase()}
+                            </div>
+
+                            <div className='filha'>
+                                <p>Data:</p> &nbsp;&nbsp; {String(item.data).substr(0,10).replace('-','/').replace('-','/') } 
                             </div>
 
 

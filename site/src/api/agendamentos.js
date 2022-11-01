@@ -61,7 +61,9 @@ export async function agendamentos (id){
 
 export async function horarios (id){
     const resp = await api.get (`/empresa/carregarhorarios/${id}`)
+    console.log(resp)
     return resp.data
+    
 } 
 
 export async function NovoHorario (id, local , hora , data , qtd) {

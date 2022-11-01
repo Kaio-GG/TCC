@@ -182,6 +182,7 @@
             display: flex;
             flex-direction: column;
             padding: 2em;
+            padding-left: 5%;
         }
 
         .selects{
@@ -190,12 +191,16 @@
             margin-bottom: 3em;
 
             .um{
-                width: 50%;
-                height: 2.2em;
+                width: 30%;
+                height: 3em;
                 margin-bottom: 1em;
-
                 box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
                 border: none;
+                font-family: "Kumbh Sans";
+                font-weight: 700;
+                padding-left: 2%;
+                padding-right: 2%;
+                font-size: 16px;
             }
         }
 
@@ -204,16 +209,15 @@
             flex-direction: column;
             align-items: flex-start;
             width: 100%;
-            height: 10%;
+            height: 40em;
             flex-wrap: wrap;
-            padding-left: 5%;
             margin-bottom: 3em;
 
             
             .a{
                 flex-direction: column;
                 font-family: 'Kumbh Sans';
-                font-weight: 600;
+                font-weight: 700;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -250,6 +254,29 @@
                 width: 100%;
                 color: #fff;
             }
+        }
+        .filha-3{
+            width: 100%;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 5%;
+            background-color: #000000;
+            p{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #263238;
+                width: 100%;
+                color: #fff;
+            }
+        }
+
+
+        .bagunca{
+            width: 100%;
         }
 
         .botao{

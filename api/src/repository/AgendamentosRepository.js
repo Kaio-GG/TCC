@@ -78,9 +78,25 @@ export async function CarregarHorariosEmpresa (info){
 export async function CarregarHorarioEmpresa (info){
     const comando = `
     select  id_horario,
-            ds_hora          hora ,
-            qtd_agendamento  qtd,
-            ds_local    local
+            ds_hora             hora ,
+            qtd_agendamento     qtd,
+            ds_local            local,
+            DT_AGENDAMENTO      data
+      from  tb_horario 
+     where  ID_USUARIO_EMPRESA = ? 
+    `
+    const [lista] = await con.query (comando , [info.id ])
+    return lista
+}
+
+
+export async function CarregarHorarioEmpresaPorData (info){
+    const comando = `
+    select  id_horario,
+            ds_hora             hora ,
+            qtd_agendamento     qtd,
+            ds_local            local,
+            DT_AGENDAMENTO      data
       from  tb_horario 
      where  ID_USUARIO_EMPRESA = ? 
     `
