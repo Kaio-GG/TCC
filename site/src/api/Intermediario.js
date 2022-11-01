@@ -11,7 +11,7 @@ export async function loadPage(id){
 
 export async function sendReview(id, idu, avaliacao, descricao, dia){
     const r = await api.post('/home/usuario/comentario',{
-        id:id,
+        idempresa:id,
         idusuario:idu,
         avaliacao:avaliacao,
         descricao:descricao,
@@ -22,5 +22,10 @@ export async function sendReview(id, idu, avaliacao, descricao, dia){
 
 export async function listarComentarios(id){
     const t = await api.get(`/home/usuario/coments?id=${id}`)
+    return t.data;
+}
+
+export async function laodPubs(id){
+    const t = await api.get(`/home/usuario/pubs?id=${id}`)
     return t.data;
 }
