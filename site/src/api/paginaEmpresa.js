@@ -4,6 +4,8 @@ const api = axios.create({
     baseURL: 'http://localhost:5000' 
 })
 
+//PAGINA EMPRESA============================================================================
+
 export async function Pagina (idEmpresa, nome, descricao) {
     const t = await api.post('/empresa/adicionarpagina', {
         idEmpresa:idEmpresa,
@@ -27,6 +29,8 @@ export async function AlterarPagina (idEmpresa, nome, descricao) {
     return resposta.data;
 }
 
+//IMAGEM ==========================================================================================
+
 export async function CarregarImagem (idEmpresa, imagem) {
     const formData = new FormData();
     formData.append("capa", imagem);
@@ -43,6 +47,9 @@ export async function CarregarImagem (idEmpresa, imagem) {
 export function buscarImagem(imagem) {
     return `${api.getUri()}/${imagem}`
 }
+
+
+//PUBLICAÇÃO EMPRESA ==============================================================================
 
 export async function AdicionarPublicacao (idEmpresa, nome, conteudo){
     const resposta = await api.post('/empresa/publicacao', {
@@ -68,5 +75,12 @@ export async function DeletarPublicacao (idEmpresa, idPublicacao){
 
 export async function listarPublicacao(id) {
     const resposta = await api.get(`/empresa/publicacao/${id}`);
+    return resposta.data;
+}
+
+//TAGS ============================================================================================
+
+export async function ListarTags () {
+    const resposta = await api.get('/tag');
     return resposta.data;
 }

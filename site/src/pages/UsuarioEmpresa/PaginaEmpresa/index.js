@@ -6,25 +6,29 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
-    const [logo, setLogo] = useState()
+    const [logo, setLogo] = useState();
 
     const [publicacao, setPublicacao] = useState([]);
-    const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo')
-    const [corpoPublicacao, setCorpoPublicacao] = useState('Digite algo')
+    const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo');
+    const [corpoPublicacao, setCorpoPublicacao] = useState('Digite algo');
 
-    const [vlpublic, setVlPublic] = useState(100)
+    const [vlpublic, setVlPublic] = useState(100);
 
     const [cont, setCont] = useState(0);
     const [contpubli, setContpubli] = useState(0);
 
-    const [altTituloPublicacao, setAltTitutoPublicao] = useState('')
-    const [altcorpoPublicacao, setAltCorpoPublicacao] = useState('')
+    const [altTituloPublicacao, setAltTitutoPublicao] = useState('');
+    const [altcorpoPublicacao, setAltCorpoPublicacao] = useState('');
+
+    const [idTag, setIdTag] = useState();
+    const [Tags, setTags] = useState([]);
+    const [tagsSelecionas, setTagsSelecionadas] = useState([]);
 
     const [pagina, setPagina] = useState({});
     const paulo = Storage('Empresa-Logada');
@@ -35,6 +39,7 @@ export default function PaginaEmpresa() {
         if (id){
             PaginaEmpresa();
             carregarPublicaoes();
+            listarTags();
         }
     }, [])
 
@@ -122,7 +127,7 @@ export default function PaginaEmpresa() {
               {
                 label: 'Sim',
                 onClick: async() => {
-                    const resp = await DeletarPublicacao(Empresa, Publicacao);
+                    await DeletarPublicacao(Empresa, Publicacao);
                     carregarPublicaoes();
                     alert( "Publicação removida com sucesso!")
                 }
@@ -163,6 +168,21 @@ export default function PaginaEmpresa() {
     function SalvarAlterarPublic() {
         const a = 100;
         setVlPublic(a);
+    }
+
+
+    async function listarTags(){
+        const a = await ListarTags();
+        setTags(a)
+    }
+
+    function adicionarTag() {
+        if (!idTag) return;
+
+        if(!tagsSelecionas.find(item => item === idTag)) {
+            const tagg = [...tagsSelecionas, idTag];
+            setTagsSelecionadas(tagg);
+        }
     }
 
     function receberImagem() {
@@ -270,7 +290,7 @@ export default function PaginaEmpresa() {
 
                                 </div>}
 
-                                {vlpublic!=index && vlpublic!=100  && <div className='agrupamento-inputs'>
+                                {vlpublic!==index && vlpublic!==100  && <div className='agrupamento-inputs'>
                                 <h1>{item.Titulo}</h1>
                                     <p>{item.CaixaTexto}</p>
                                     <div>
@@ -283,7 +303,7 @@ export default function PaginaEmpresa() {
                                     <h1>{item.Titulo}</h1>
                                     <p>{item.CaixaTexto}</p>
                                     <div>
-                                    <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
+                                    <img src='/assets/images/lixeira.sv g' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
                                     <img src='/assets/images/editar.svg' alt='editarperfil' onClick={() => AlterarPublic(index)}/>
                                     </div>
                                 </div>}
@@ -339,8 +359,25 @@ export default function PaginaEmpresa() {
                         </div>
 
                         <div className="CardCanto">
-                            <h3>TAG's</h3>
-                            <img className='mais' src='/assets/images/add.svg' alt='Adicionar Tag' />
+                            <div>
+                                <h3>TAG's</h3>
+                                <select value={idTag} onChange={e => setIdTag(e.target.value)}>
+                                    <option selected disabled hidden> Selecione uma Tag</option>
+                                {Tags.map((item, index) =>
+                                        <option value={item.idTag} onClick={adicionarTag}> 
+                                            {item.tag}
+                                        </option> 
+                                    )}
+                                </select>
+                            </div>
+                            <div>
+                                {tagsSelecionas.map(item =>
+                                        <div>
+
+                                        </div>
+                                    )}
+                            </div>
+                            <img className='mais' src='/assets/images/add.svg' alt='Adicionar Tag' onClick={adicionarTag}/>  
                         </div>
                     </div>
                 </div>

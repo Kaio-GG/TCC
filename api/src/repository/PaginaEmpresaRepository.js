@@ -93,4 +93,28 @@ export async function ListarPublicacao(id) {
     return linhas;
 }
 
+export async function ListarTags() {
+    const comando = 
+    `select id_tag	idTag,
+            nm_tag  tag
+       from TB_TAG
+      order
+         by nm_tag`;
+
+    const [linhas] = await con.query(comando);
+    return linhas; 
+}
+
+export async function buscarTagPorId(idTag){
+    const comando = 
+    `select  id_tag	  idTag,
+             nm_tag   tag
+       from  TB_TAG
+      where  id_tag = ?`;
+
+    const  [linhas] = await con.query(comando, idTag);
+    return linhas[0];
+}
+
+
 
