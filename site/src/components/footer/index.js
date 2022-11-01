@@ -7,7 +7,8 @@ export default function Index(){
     return(
         <main className='Main-Footer'>
             <section className='Section-Esquerda'>
-                <div className='IMG-MW'></div>
+                
+                 <div className='IMG-MW'></div>  
 
                 <div className='Info-Group'>
                     
