@@ -3,8 +3,9 @@ import Cardadm from '../../../components/card-adm-empresa'
 import HeaderEmp from '../../../components/header-adm-empresa/index.js'
 import { useEffect, useState  } from 'react'
 import storage from 'local-storage'
-import { buscarLocal , agendamentosData , agendamentos , CarregarHorariosPorSituscao } from '../../../api/agendamentos.js'
+import {   buscarLocal , agendamentosData , agendamentos , CarregarHorariosPorSituscao } from '../../../api/agendamentos.js'
 import { toast } from 'react-toastify'
+import { buscarFilial } from '../../../api/empresa.js'
 
 
 export default function Homeempresa() {
@@ -12,6 +13,8 @@ export default function Homeempresa() {
     const [data , setdata] = useState('')
     const [local, setlocal] =useState([])
     const [situacao , setsituacao]= useState('')
+    const [filial , setfilial] = useState([])
+    const [localcarregar , setlocalcarregar] = useState('')
     const empresaLogada = storage('Empresa-Logada')
     const id = (empresaLogada.ID_USUARIO_EMPRESA)
     
@@ -36,8 +39,10 @@ export default function Homeempresa() {
 
     async function buscar (id){
         try {
-          const a = await buscarLocal(id)  
+          const a = await buscarLocal(id)
+          let b =  await buscarFilial(id)  
           setlocal(a)
+          setfilial(b)
         } catch (err) {
             console.log(err.message)
         }
@@ -72,10 +77,13 @@ export default function Homeempresa() {
             <HeaderEmp class='home' />
             <div className='filtro-adm-empresa'>
                 <div className='btn'>
-                    <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >                        
+                    <select className='opt' value={localcarregar} onChange={e => setlocalcarregar(e.target.value)} >                        
                         {local.map (item =>
                             <option value={item.local}>{item.local}</option>
-                            )}
+                        )}
+                            {filial.map (item =>
+                            <option value={item.DS_ENDERECO}>{item.DS_ENDERECO}</option>
+                        )}
                     </select>
                 </div>
 

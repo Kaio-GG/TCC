@@ -57,7 +57,7 @@ export default function Informacoes (){
                            
             <div className='cards'>
                 <div className='card'><p>{info.local}</p></div>
-                <div className='card'><p>{info.hora}</p></div>
+                <div className='card'><p>{String(info.hora).replace('-','/')}</p></div>
             </div>
 
             <div className='cards'>       
