@@ -98,9 +98,10 @@ export async function CarregarHorarioEmpresaPorData (info){
             ds_local            local,
             DT_AGENDAMENTO      data
       from  tb_horario 
-     where  ID_USUARIO_EMPRESA = ? 
+     where  ID_USUARIO_EMPRESA = ? && 
+            DT_AGENDAMENTO     = ?    
     `
-    const [lista] = await con.query (comando , [info.id ,info.local , info.data ])
+    const [lista] = await con.query (comando , [info.id , info.data ])
     return lista
 }
 

@@ -59,14 +59,19 @@
         color: #fff;
         font-size: 100%;
         font-family: 'KumbhSans-Regular';
+
     }
     input[type="date"]::-webkit-inner-spin-button,
     input[type="date"]::-webkit-calendar-picker-indicator {
         cursor: pointer;
         filter: invert(1) brightness(100%) sepia(10000000%) saturate(100%) hue-rotate(140deg) ;
-        
-      
-}select{
+    }
+    textarea:focus, input:focus, select:focus {
+        box-shadow: 0 0 0 0;
+        border: 0 none;
+        outline: 0;
+    } 
+    select{
     border: none;
     height: 100%;
     color: #fff;

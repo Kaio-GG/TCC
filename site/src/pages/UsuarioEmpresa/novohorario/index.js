@@ -112,13 +112,9 @@ export default function Novohorario (){
     function renderhorario(){
         setrendernovohorario(false)
     }
-    function inicial (){
-    
-    }
+   
 
     useEffect(() => {
-
-            inicial()
             novahora()
             buscar(id)
     },[])
@@ -127,7 +123,7 @@ export default function Novohorario (){
 
        CarregarHorario(localCarregar)
 
-    },[local, dataCarregarHorario])
+    },[localCarregar , dataCarregarHorario])
 
 
     return(

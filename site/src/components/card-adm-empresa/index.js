@@ -12,6 +12,10 @@ export default function Cardadm (props){
     }
     async function agendamentoRecusado (id){
         await recusar(id)
+
+
+
+
     }
 
     function info (id){
@@ -22,7 +26,10 @@ export default function Cardadm (props){
         <div className="card">
             <div className='nome'> {props.item.nome}  </div>
             <div className='nome' > {props.item.hora} </div>
-            <div className='nome'> {String(props.item.data).substr(0,10)}  </div>
+
+
+            <div className='nome'>    <p>{props.item.data.substr(7,3).replace("-","")}/{props.item.data.substring(4,7).replace("-","")}/{props.item.data.substring(0,5).replace("-","")}<br/>
+                                </p> </div>
             <div className='nome3'> {props.item.local} </div>
             <div className='imagens'>
                 <img src='/assets/images/verificar.svg' alt='' onClick={() => aceitarAgendamento(props.item.id)} />
