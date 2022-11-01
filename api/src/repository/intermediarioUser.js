@@ -8,10 +8,8 @@ export async function carregarPaginaZ(id){
 		ds_descricao 			descricao,
         ds_pais					pais,
 		ds_cidade				cidade,
-		ds_endereco				endereco,
-        vl_avaliacao			avaliacao
+		ds_endereco				endereco
     from tb_pagina_empresa
-    inner join tb_empresa_avaliacao on tb_empresa_avaliacao.id_usuario_empresa = tb_pagina_empresa.id_usuario_empresa
     inner join tb_usuario_empresa on tb_usuario_empresa.id_usuario_empresa = tb_pagina_empresa.id_pagina_empresa
     where tb_usuario_empresa.id_usuario_empresa = ?
     `;
@@ -43,6 +41,21 @@ export async function selecionarComentarios(id){
     WHERE id_usuario_empresa = ?
     ORDER BY rand()
     LIMIT 5 `
+    const [linhas] = await con.query(comando, [id])
+    return linhas;
+}
+
+export async function puxarPubs(id){
+    const comando = `
+    select  tb_pagina_empresa_publicacao.id_pagina_empresa_publicacao id1,
+            id_pagina_empresa ID, 
+            nm_titulo		  titulo,
+            ds_caixa_texto	  texto,
+            img_imagem_publicacao imagem
+    from 	tb_pagina_empresa_publicacao
+    inner join tb_pagina_empresa_publicacao_img on tb_pagina_empresa_publicacao_img.id_pagina_empresa_publicacao_img = tb_pagina_empresa_publicacao.id_pagina_empresa
+    where id_pagina_empresa = ?
+    `
     const [linhas] = await con.query(comando, [id])
     return linhas;
 }

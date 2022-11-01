@@ -1,4 +1,4 @@
-import { NovoHorario , EditarHorario , CarregarHorariosEmpresa , ApagarHorario,buscarAgendamentosPorSituacao , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento, buscarinformacoes } from "../repository/agendamentosRepository.js";
+import { CarregarHorarioEmpresaPorData ,NovoHorario , EditarHorario , CarregarHorariosEmpresa , ApagarHorario,buscarAgendamentosPorSituacao , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento, buscarinformacoes } from "../repository/agendamentosRepository.js";
 import AgendarHorario from "../repository/AgendarHorarioRepository.js";
 import { Router } from "express";
 const server = Router();
@@ -119,6 +119,22 @@ server.get ('/empresa/carregarhorario', async (req ,resp) => {
         const info = req.query
         
         const horarios = await CarregarHorariosEmpresa(info)
+
+         
+        resp.send(horarios)
+    } catch (err) {
+        resp.status(404).send({
+            erro:err.message
+        })
+    }
+}  )
+
+
+server.get ('/empresa/carregarhorario/:id/:data', async (req ,resp) => {
+    try {
+        const info = req.params
+        
+        const horarios = await CarregarHorarioEmpresaPorData(info)
 
          
         resp.send(horarios)

@@ -1,0 +1,86 @@
+.Main-Favoritos-Painel{
+    height: 100vh;
+    width: 100vw;
+    .Sec-1{
+        display: flex;
+        height: 61vh;
+        width: 100vw;
+        background-color: white;
+        justify-content: center;
+    }
+    
+    .Card{
+        margin-top: 20px;
+        height:50vh;
+        width: 90vw;
+        background-color: white;
+        display: flex;
+        justify-content: space-evenly;
+
+        opacity: 1;
+        box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+    }
+
+    .Div-1{
+        background-color: white;
+        height: 50vh;
+        width: 60vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Div-1 h1{
+        margin-top: 10px;
+        font-size: 20px;
+        font-family: 'KumbhSans-SemiBold';
+
+    }
+
+    hr{
+        border: solid #263238;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    .Div-1 input{
+        font-family: 'KumbhSans-SemiBold';
+        font-size: 22px;
+        margin-top: 10px;
+        border: solid 2px;
+        width:450px;
+    }
+    
+    
+    
+    
+    .Div-2{
+        margin-right: 40px;
+        background-color: white;
+        justify-content: center;
+        height: 43.5vh;
+        width: 30vw;
+        display: flex;
+        flex-direction: column;
+        border-right: 10px;
+    }
+
+    .Div-2 input{
+        font-family: 'KumbhSans-SemiBold';
+        font-size: 22px;
+        margin-top: 10px;
+        border: solid 2px;
+        width:250px;
+    }
+    
+    
+    .Align{
+        height: 6vh;
+    }
+
+  
+*{
+    //border: solid 1px red;
+}
+
+}

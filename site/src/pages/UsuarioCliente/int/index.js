@@ -5,8 +5,9 @@ import HeaderUsuario from '../../../components/header-usuario'
 import { useEffect, useState } from 'react'
 
 import Pular from 'react-reveal/Fade'
+import { toast } from 'react-toastify'
 
-import { listarComentarios, loadPage, sendReview } from '../../../api/Intermediario'
+import { laodPubs, listarComentarios, loadPage, sendReview } from '../../../api/Intermediario'
 import { buscarImagem } from '../../../api/paginaEmpresa'
 import { useParams, useNavigate  } from 'react-router-dom'
 
@@ -27,6 +28,7 @@ export default function Index(){
     const data = new Date().toJSON().slice(0, 19).replace('T', ' ')
 
     const [comentarios, setComentarios] = useState([]);
+    const [publicacao, setPublicacao] = useState([]);
 
     const [review, setReview] = useState('');
     const [avaliacaoReview, setAvaliacaoReview] = useState(0);
@@ -43,14 +45,13 @@ export default function Index(){
         try{
             await sendReview(id, idusuario, avaliacaoReview, review, data)
 
-            alert("Comentário enviado com sucesso❗❗🎇")
+            toast.dark("Comentário enviado com sucesso❗❗🎇")
         }catch (err) {
             if (err.response.status === 400){
-                alert(err.response.data.erro);  
+                toast.error(err.response.data.erro);  
                   
             }
         }
-
     }
 
     async function loadPageZ(){
@@ -65,11 +66,10 @@ export default function Index(){
     }
 
     useEffect(() => {
-        if(id){
-            listarComents();
+            listarComents(id);
             loadPageZ(id);
-        }
-        console.log(id)
+            carregarPubs(id)
+            console.log(id)
 
     },[])
 
@@ -85,6 +85,16 @@ export default function Index(){
         }
     }
 
+    async function carregarPubs(){
+        try{
+            const r = await laodPubs(id)
+            setPublicacao(r)
+        }catch(err){
+            toast.error('Erro em carregar as publicações👹💀')
+
+        }
+    }
+
     function irParaInfo (id){
         navigate(`/home/usuario/empresa/consulta/${id}/agendar`)
 
@@ -93,14 +103,21 @@ export default function Index(){
         setInput(true)
     }
 
-    function mostrarImagem() {
+    function mostrarImagemA() {
         if (typeof(logo) == 'object'){
             return URL.createObjectURL(logo)
         }
         else {
             return buscarImagem(logo)
         }
-        
+    }
+    function mostrarImagem(imagem){
+        if(imagem == undefined){
+            return ""
+        }
+        else{
+            return URL.createObjectURL(imagem)
+        }
     }
 
     return(
@@ -113,7 +130,7 @@ export default function Index(){
                 <div className='alinhar-row'>
                     <div className='boxleft'>
                         <div className='b1'>
-                        <img src={mostrarImagem()} alt='' className='img-empresa' />
+                        <img src={mostrarImagemA()} alt='' className='img-empresa' />
                             <div className='b1-letters'>
                                 <h1>{pagina.nome}</h1>
                                 <p>{pagina.descricao}</p>
@@ -128,16 +145,21 @@ export default function Index(){
                         </div>
 
                     
-
-
                         <div className='b2'>
                             <h1 className='h1-b2'>Faça aqui seu agendamento de forma gratuita e em casa.</h1>
                             <button className='button-b2' onClick={() => irParaInfo(id)} >Agendar</button>
                         </div>
 
                         <div className='imagem'>
-                            <img className='img-desc'></img>
+                            {publicacao.map(item =>
+                            <div className='pub'>
+                                <h2>{item.titulo}</h2>
+                                <img className='img-desc' src={buscarImagem(item.imagem)}></img>
+                                <p>{item.texto}</p>
+                            </div>
+                            )}
                         </div>
+                                        
 
                         <div className='b3'>
                             <h1 className='h1-b3'>Reviews</h1>

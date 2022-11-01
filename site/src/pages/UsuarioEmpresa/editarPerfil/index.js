@@ -185,7 +185,7 @@ export default function EdiatrPerfilEmpresa (){
                                     </div>
 
                                     <div className='infos'>
-                                        <h4>NOME DO REPRESENTANTE:</h4>
+                                        <h4>REPRESENTANTE:</h4>
                                         <input value={representante} onChange={e => setrepresentante(e.target.value)}/>
                                     </div>
                                 </div>
