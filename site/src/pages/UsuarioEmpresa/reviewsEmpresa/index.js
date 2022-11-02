@@ -2,6 +2,8 @@ import './index.scss'
 import HeaderEmpresa from '../../../components/header-adm-empresa'
 
 export default function Index(){
+    
+
 
     return(
         <main className='pg'>
