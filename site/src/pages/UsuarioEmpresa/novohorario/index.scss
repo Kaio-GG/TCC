@@ -63,7 +63,7 @@
         font-weight: 600;
     }
     .opts-2{
-        animation-name: aparecer;
+        animation-name: aparecer4;
         animation-duration: 1s;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         width: 50vw;
@@ -84,7 +84,7 @@
         z-index: 9999;
         position: absolute;
     }
-    @keyframes aparecer {
+    @keyframes aparecer4 {
         from { width: 0%;}
         to {width: 126%;}
     }

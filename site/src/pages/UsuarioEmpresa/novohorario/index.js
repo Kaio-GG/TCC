@@ -117,12 +117,13 @@ export default function Novohorario (){
     useEffect(() => {
             novahora()
             buscar(id)
+            setlocalCarregar(local.local)
     },[])
 
     useEffect( () => {
 
        CarregarHorario(localCarregar)
-
+       console.log(localCarregar )
     },[localCarregar , dataCarregarHorario])
 
 
@@ -140,8 +141,9 @@ export default function Novohorario (){
                 </div>
             <div className='opts'>
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
+                
                 <select className='opt' value={localCarregar} onChange={e => setlocalCarregar(e.target.value)} >    
-
+                        <option disabled hidden selected>Selecione o Local</option>
 
                         {local.map (item =>
                             <option value={item.local}>{item.local}</option>
@@ -151,6 +153,7 @@ export default function Novohorario (){
                         )}
                     
                 </select>
+
             </div> 
             <div className='horarios'>
                 {render === false

@@ -18,7 +18,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
     const [horario ,sethorario] =useState([])
     const [idhorario , setidhorario] = useState(0)
     const [data ,setdata] = useState('')
-    
+    const [marcado , setmarcado] =useState([false , 0])
     
     
     const {id} = useParams();
@@ -52,6 +52,10 @@ export default function UsuarioEmpresaPaginaAgendar() {
         let hr = new Date()
         let a = hr.toISOString().substr(0,10)
         setdata(a)
+    }
+    function marcarRender (mar , pos ,id){
+        setmarcado([mar , pos])
+        setidhorario(id)
     }
 
     useEffect(() => {
@@ -126,26 +130,44 @@ export default function UsuarioEmpresaPaginaAgendar() {
                         
                         {horario.map ( (item, pos) =>  
 
-                                <div className='a' onClick={() => setidhorario(item.id_horario)} > 
+                        <div className='cardmarcado'>
+
+                            {(marcado[0] === false || pos !== marcado[1]) &&                              
+                                <div className='a' onClick={() => marcarRender(true , pos , item.id_horario)} > 
                                     <div className='filha-2'>
-                                        <p>AGENDAMENTO</p>
+                                            <p>AGENDAMENTO</p>
                                     </div>
+                                    <div className='filha'>
+                                            <p>Horario:</p>&nbsp;&nbsp;{item.hora}
+                                    </div>
+                                    <div className='filha'>
+                                            <p>Local:</p> &nbsp;&nbsp; {String(item.local).toLowerCase()}
+                                    </div>
+                                    <div className='filha'>
+                                            <p>Data:</p> &nbsp;&nbsp;  <p>{item.data.substr(7,3).replace("-","")}/{item.data.substring(4,7).replace("-","")}/{item.data.substring(0,5).replace("-","")}<br/>
+                                    </p>  
+                                    </div>
+                                </div>
+                            }
                             
-                                <div className='filha'>
-                                    <p>Horario:</p>&nbsp;&nbsp;{item.hora}
+                            {marcado[0] === true  && pos === marcado[1] &&
+                                <div className='b' onClick={() => marcarRender(true , pos)} > 
+                                    <div className='filha-2'>
+                                            <p>AGENDAMENTO</p>
+                                    </div>
+                                    <div className='filha'>
+                                            <p>Horario:</p>&nbsp;&nbsp;{item.hora}
+                                    </div>
+                                    <div className='filha'>
+                                            <p>Local:</p> &nbsp;&nbsp; {String(item.local).toLowerCase()}
+                                    </div>
+                                    <div className='filha'>
+                                            <p>Data:</p> &nbsp;&nbsp;  <p>{item.data.substr(7,3).replace("-","")}/{item.data.substring(4,7).replace("-","")}/{item.data.substring(0,5).replace("-","")}<br/>
+                                            </p>  
+                                    </div>
                                 </div>
-
-
-                                <div className='filha'>
-                                    <p>Local:</p> &nbsp;&nbsp; {String(item.local).toLowerCase()}
-                                </div>
-
-                                <div className='filha'>
-                                    <p>Data:</p> &nbsp;&nbsp; {String(item.data).substr(0,10).replace('-','/').replace('-','/') } 
-                                </div>
-
-
-                                </div>
+                            }
+                            </div>
                         )}    
                     </div>
                     <div className='botao'>
