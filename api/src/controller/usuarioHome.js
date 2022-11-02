@@ -49,7 +49,7 @@ server.get('/home/usuario/listarEmpresas', async(req, resp) =>{
 server.get('/home/usuario/maisProximo', async(req, resp) => {
     try{
 
-        let { id } = localStorage.getItem(ID_USUARIO_CLIENTE)
+        let { id } = req.query;
         
         const resposta = await filtrarMaisProximo(id);
 

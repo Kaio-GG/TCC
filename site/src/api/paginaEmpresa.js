@@ -84,3 +84,12 @@ export async function ListarTags () {
     const resposta = await api.get('/tag');
     return resposta.data;
 }
+
+
+//Review ============================================================================================
+
+export async function listarReview(id){
+    const r = await api.get(`/empresa/review/${id}`)
+    return r.data
+}
+

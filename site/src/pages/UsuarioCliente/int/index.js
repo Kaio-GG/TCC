@@ -123,14 +123,7 @@ export default function Index(){
             return buscarImagem(logo)
         }
     }
-    function mostrarImagem(imagem){
-        if(imagem == undefined){
-            return ""
-        }
-        else{
-            return URL.createObjectURL(imagem)
-        }
-    }
+
 
     return(
         <main className='full'>

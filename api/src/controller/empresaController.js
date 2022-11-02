@@ -19,7 +19,7 @@ server.get ('/empresa/carregarinfoempresa/:id', async (req ,resp) => {
 
 server.get('/empresa/review/:id', async(req,resp) => {
     try{
-        const r = req.params
+        const r = req.params.id
         
         const a = await carregarReviews(r)
 
