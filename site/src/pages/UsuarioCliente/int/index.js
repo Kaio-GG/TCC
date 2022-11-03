@@ -123,14 +123,7 @@ export default function Index(){
             return buscarImagem(logo)
         }
     }
-    function mostrarImagem(imagem){
-        if(imagem == undefined){
-            return ""
-        }
-        else{
-            return URL.createObjectURL(imagem)
-        }
-    }
+
 
     return(
         <main className='full'>
@@ -178,10 +171,10 @@ export default function Index(){
                             )}
                         </div>
                                         
-
-                        <div className='b3'>
-                            <h1 className='h1-b3'>Reviews</h1>
+                        <h1 className='h1-b3'>Reviews</h1>
                             <hr className='linha-b3'></hr>
+                            
+                        <div className='b3'>
                             {input === true &&
                             <span className='X' onClick={showInput}>X</span>
                             

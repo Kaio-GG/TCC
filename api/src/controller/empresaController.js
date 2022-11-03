@@ -1,4 +1,4 @@
-import { apagarFilial ,buscarInfoEmpresa , alterarEmailEmpresa , alterarEndereco , alterarNome , alterarNomeRepresentante , alterarTipoEmpresa, buscarFilial, novaFilial } from "../repository/empresaRepository.js";
+import { apagarFilial ,buscarInfoEmpresa , alterarEmailEmpresa , alterarEndereco , alterarNome , alterarNomeRepresentante , alterarTipoEmpresa, buscarFilial, novaFilial, carregarReviews } from "../repository/empresaRepository.js";
 import { Router } from "express";
 const server = Router();
 
@@ -16,6 +16,22 @@ server.get ('/empresa/carregarinfoempresa/:id', async (req ,resp) => {
         })
     }
 }  )
+
+server.get('/empresa/review/:id', async(req,resp) => {
+    try{
+        const r = req.params.id
+        
+        const a = await carregarReviews(r)
+
+        resp.send(a)
+
+    }catch (err){
+        resp.status(401).send({
+            erro:err.message
+        })
+
+    }
+})
 
 
 

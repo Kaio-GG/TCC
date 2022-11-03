@@ -4,8 +4,8 @@ import { useState} from 'react'
 import { cadastroCliente } from '../../api/cadastroCliente'
 import { cadastroLogin } from '../../api/cadastroEmpresa'
 
-
-
+import Chave from './assets/key.svg'
+import User from './assets/user.svg'
 
 export default function Index(){
 
@@ -64,9 +64,19 @@ export default function Index(){
         </header>
 
         {continuar === 0 &&
+
+        
             
             <section className='FaixaPrincipal'>
-                    <h1> Criar conta </h1>
+                   <div className='bolinhas'>
+
+                        <img className='bolinha1' src={Chave}></img>
+                        <hr className='linha1'></hr>
+                        <img className='bolinha3' src={User}></img>
+
+                    </div>
+
+                    <h1> Criando conta como usuário: </h1>
                     <div className='Div-Inputs'>
                         <input value={email} onChange={e => SetEmail(e.target.value)} type='text' placeholder='Email'/>
                         <input value={confirmaremail} onChange={e => SetConfirmarEmail(e.target.value)} type='text' placeholder='Confirmar Email'/>
@@ -79,11 +89,18 @@ export default function Index(){
         }
 
         {continuar === 1 &&
-            <section className='FaixaPrincipal-2'>
+            <section className='FaixaPrincipal'>
+                    <div className='bolinhas'>
 
-                    <h1>Informações do Usuário</h1>
+                        <img className='bolinha1-leave' src={Chave}></img>
+                        <hr className='linha1-t'></hr>
+                        <img className='bolinha3-animation' src={User}></img>
+
+                    </div>
+
+                    <h1>Informações do usuário:</h1>
                     
-                    <div className='Div-Inputs'> 
+                    <div className='Div-Inputs2'> 
                         <input value={usuario} onChange={e => setUsuario(e.target.value)} type='text' placeholder='Nome de Usuário'/>
                         <input value={cpf} onChange={e => setCpf(e.target.value)} type='text' placeholder='CPF'/>
                     

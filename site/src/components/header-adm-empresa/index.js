@@ -24,7 +24,7 @@ function editarInfoEmpresa (){
     navigate(`/empresa/${id}/editar`)
 }
 function Review(){
-    navigate(`/home/empresa/reviews`)
+    navigate(`/home/empresa/reviews/${id}`)
 }
 
 

@@ -134,6 +134,9 @@ export async function carregarReviews(id){
     ORDER BY id1 desc
     `
     const [linhas] = await con.query(comando, [id])
+
+    console.log(linhas)
+
     return linhas;
 }
 
