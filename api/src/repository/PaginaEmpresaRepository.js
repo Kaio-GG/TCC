@@ -116,5 +116,12 @@ export async function buscarTagPorId(idTag){
     return linhas[0];
 }
 
+export async function CarregarImagensPublic(idpublicacao, imagemPath) {
+    const comando = 
+    `insert into TB_PAGINA_EMPRESA_PUBLICACAO_IMG(ID_PAGINA_EMPRESA_PUBLICACAO,IMG_IMAGEM_PUBLICACAO,)
+    values (?,?)`;
+
+    const [linhas] = await con.query(comando, [idpublicacao, imagemPath])
+}
 
 

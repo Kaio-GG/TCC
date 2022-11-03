@@ -26,6 +26,11 @@ export default function PaginaEmpresa() {
     const [altTituloPublicacao, setAltTitutoPublicao] = useState('');
     const [altcorpoPublicacao, setAltCorpoPublicacao] = useState('');
 
+    const [publicimg1,setPublicimg1] = useState('')
+    const [publicimg2,setPublicimg2] = useState('')
+    const [publicimg3,setPublicimg3] = useState('')
+    const [publicimg4,setPublicimg4] = useState('')
+
     const [idTag, setIdTag] = useState();
     const [Tags, setTags] = useState([]);
     const [tagsSelecionas, setTagsSelecionadas] = useState([]);
@@ -42,6 +47,8 @@ export default function PaginaEmpresa() {
             listarTags();
         }
     }, [])
+
+    //Infomações principais da empresa =============================================
 
     async function PaginaEmpresa(){
         try{
@@ -72,8 +79,8 @@ export default function PaginaEmpresa() {
                alert('Pagina Alterada') 
             }
             
-        } catch(err) {
-             alert(err.message)
+        } catch(err){
+             alert(err.message)             
         }
         
     }
@@ -93,6 +100,7 @@ export default function PaginaEmpresa() {
         setCont(a);
     }
 
+    //Publições ==================================================================
 
     async function novaPublicacao() {
         try{
@@ -165,11 +173,41 @@ export default function PaginaEmpresa() {
         setVlPublic(a);
     }
 
-    function SalvarAlterarPublic() {
-        const a = 100;
-        setVlPublic(a);
+    function SalvarAlterarPublic(idEmpresa, idPublicacao, index) {
+        if(altTituloPublicacao === publicacao[index].Titulo && altcorpoPublicacao === publicacao[index].CaixaTexto){
+            const a = 100;
+            setVlPublic(a);
+        }
+        else{
+            confirmAlert({
+                title: 'Alterar Publicação ?',
+                message: 'Deseja Alterar essa Publcação',
+                buttons: [
+                    {
+                    label: 'Sim',
+                    onClick: async() => {
+                        MudarPublic(altTituloPublicacao, altcorpoPublicacao, idEmpresa, idPublicacao);
+                        carregarPublicaoes();
+                        alert( "Publicação Alterada com sucesso!")
+                    }
+                    },
+                    {
+                    label: 'Não',
+                    onClick: () => alert('Publicação não Alterada')
+                    }
+                ]
+                });
+    
+            const a = 100;
+            setVlPublic(a);
+        }
     }
 
+    async function MudarPublic(nome, conteudo, idEmpresa, idPublicacao) {
+        await AlterarPublicacao(nome, conteudo, idEmpresa, idPublicacao)
+    }
+
+    //TAG'S =====================================================================
 
     async function listarTags(){
         const a = await ListarTags();
@@ -185,6 +223,9 @@ export default function PaginaEmpresa() {
         }
     }
 
+    //Imagens da empresa  =====================================================
+
+
     function receberImagem() {
         document.getElementById('imagem').click();
     }
@@ -197,6 +238,19 @@ export default function PaginaEmpresa() {
             return buscarImagem(logo)
         }
         
+    }
+
+    function escolherImagem(idImagem) {
+        document.getElementById(idImagem).click();
+    }
+
+    function exibirImagem(imagem) {
+        if(imagem === undefined || typeof (imagem) !== 'string') {
+            return '/assets/images/addimg.png';
+        }
+        else {
+            return URL.createObjectURL(imagem);
+        }
     }
 
 
@@ -285,7 +339,7 @@ export default function PaginaEmpresa() {
                                     <input value={altcorpoPublicacao} type='text' onChange={e => setAltCorpoPublicacao(e.target.value, index)}/>
                                     <div>
                                     <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
-                                    <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={SalvarAlterarPublic}/>
+                                    <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={() =>SalvarAlterarPublic(item.Empresa, item.Publicacao, index)}/>
                                     </div>
 
                                 </div>}
@@ -322,7 +376,6 @@ export default function PaginaEmpresa() {
                         {contpubli === 1 &&<div className="card-Publicacao-click">
                             <div className='agrupamento-inputs'>
                                 <input type='text' value={tituloPublicacao} onChange={e => setTitutloPublicacao(e.target.value)}/>
-                                <input type='text' value={corpoPublicacao} onChange={e => setCorpoPublicacao(e.target.value)}/>
                             </div>
 
                             <div className='agrupamento-img-icon'>
@@ -330,11 +383,21 @@ export default function PaginaEmpresa() {
                                     <img src='/assets/images/Salvar.svg' alt='add' onClick={ConfirNovapubli}/>
                                 </div>
                                 <div className='addimg'>
-                                    <img src='/assets/images/addimg.png' alt='add'/>
+                                    <img src={exibirImagem(imagem1)} alt='add' onClick={() => escolherImagem(imagem1)}/>
+                                    <img src={exibirImagem(imagem2)} alt='add' onClick={() => escolherImagem(imagem2)}/>
+                                    <img src={exibirImagem(imagem3)} alt='add' onClick={() => escolherImagem(imagem3)}/>
+                                    <img src={exibirImagem(imagem4)} alt='add' onClick={() => escolherImagem(imagem4)}/>
+
+                                    <input type="file" id="imagem1" onChange={e => setPublicimg1(e.target.files[0])} />
+                                    <input type="file" id="imagem2" onChange={e => setPublicimg2(e.target.files[0])} />
+                                    <input type="file" id="imagem3" onChange={e => setPublicimg3(e.target.files[0])} />
+                                    <input type="file" id="imagem4" onChange={e => setPublicimg4(e.target.files[0])} />
                                 </div>
                             </div>
-                            </div> 
-                        }
+                            <div className='agrupamento-inputs'>
+                                <input type='text' value={corpoPublicacao} onChange={e => setCorpoPublicacao(e.target.value)}/>
+                            </div>
+                        </div>}
 
 
 

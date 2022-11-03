@@ -1,10 +1,11 @@
-import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId } from "../repository/PaginaEmpresaRepository.js";
+import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, CarregarImagensPublic } from "../repository/PaginaEmpresaRepository.js";
 
 import multer from 'multer';
 import { Router } from "express";
 
 const server = Router();
 const upload = multer({dest: 'storage/capaEmpresa'});
+const uploadpubli = multer({dest: 'storage/imagemPublicacao'});
 
 
 server.post('/empresa/adicionarpagina', async(req, resp) => {
@@ -140,6 +141,25 @@ server.get('/empresa/publicacao/:id', async(req, resp) => {
 
         resp.send(Publicacoes)
 
+    } catch(err){
+        resp.status(401).send({
+            erro: err.message
+        })
+    }
+})
+
+server.put('/empresa/publicacao/:id/imagem', uploadpubli.array('imagens'), async(req, resp) => {
+    try{
+        const id = req.params.id;
+        const imagens = req.files;
+
+        for (const imagem of imagens){
+            await CarregarImagensPublic(id, imagem.Path)
+        }
+
+        resp.send({
+            id : idPublicacao
+        })
     } catch(err){
         resp.status(401).send({
             erro: err.message
