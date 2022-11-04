@@ -78,6 +78,21 @@ export async function listarPublicacao(id) {
     return resposta.data;
 }
 
+export async function salvarImagemPublic(id, imagem1, imagem2, imagem3, imagem4){
+    let form = FormData();
+    form.append('imagem', imagem1);
+    form.append('imagem', imagem2);
+    form.append('imagem', imagem3);
+    form.append('imagem', imagem4);
+
+    const resposta = await api.put('/empresa/publicacao/imagem' + id, form, {
+        headers: {
+            'content-Type': 'multipart/form-data'
+        }
+    } );
+    return resposta.data
+}
+
 //TAGS ============================================================================================
 
 export async function ListarTags () {
