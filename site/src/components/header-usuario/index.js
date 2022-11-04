@@ -21,7 +21,7 @@ export default function HeaderUsuario (props){
             <div className='alinhamento'>
                 {props.class === 'home' 
                 ? <div className='pagina'> </div> 
-                : <div> <Link className='Link' to='/favoritos/painel'> Painel </Link> </div>}
+                :   <div> <Link className='Link' to='/favoritos/painel'> Painel </Link> </div>}
 
                 {props.class === 'confirmadas' 
                 ? <div className='pagina'>  </div> 
