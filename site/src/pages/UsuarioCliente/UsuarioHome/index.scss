@@ -157,9 +157,10 @@
     }
 
     .scroll{
-        width: fit-content;
+        width: min-content;
         overflow: auto;
-        height: 450px;
+        height: 600px;
+
        
     }
 
@@ -182,7 +183,7 @@
 
 
     .box-empresa{
-        width: 65vw;;
+        width: 62vw;
         background-color: #FFFFFF;
         display: flex;
         flex-direction: row;

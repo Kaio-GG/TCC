@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Chave from './assets/key.svg'
 import Mala from './assets/mala.svg'
 import User from './assets/user.svg'
+import { toast } from 'react-toastify';
 
 export default function Index(){
     const [continuar, setContinuar] = useState(0)
@@ -47,11 +48,12 @@ export default function Index(){
             const c = Pagina(idEmpresa, nome, descricao);
 
             
-            alert('Empresa cadastrada com sucesso!');
+            toast.dark('Empresa cadastrada com sucesso!🤩😎');
+
             navigate('/login')
 
         } catch (err){
-            alert(err.message)
+            toast.error(err.message)
         }
     }
 

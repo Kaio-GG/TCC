@@ -6,6 +6,7 @@ import { cadastroLogin } from '../../api/cadastroEmpresa'
 
 import Chave from './assets/key.svg'
 import User from './assets/user.svg'
+import { toast } from 'react-toastify'
 
 export default function Index(){
 
@@ -47,10 +48,10 @@ export default function Index(){
 
             const b = cadastroLogin(idEmpresa, idusuario, email, senha, empresa)
 
-            alert('cadastrado com sucesso!');
+            toast.dark('cadastrado com sucesso!😍😎');
         } catch(err){
             if (err.response.status === 401){
-                setErro(err.response.data.erro);    
+                toast.error(err.response.data.erro);    
             }
         }
     }
