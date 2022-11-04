@@ -42,8 +42,8 @@
 
 }
 
-a:active,a:link{
-    text-decoration: none;
-}
+.Link:hover, .Link:visited, .Link:focus, .Link:active
+{ text-decoration: none;
+     color: inherit; } 
 
 
