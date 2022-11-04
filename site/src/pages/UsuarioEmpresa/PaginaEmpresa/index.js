@@ -245,11 +245,11 @@ export default function PaginaEmpresa() {
     }
 
     function exibirImagem(imagem) {
-        if(imagem === undefined || typeof (imagem) !== 'string') {
-            return '/assets/images/addimg.png';
+        if (typeof(imagem) == 'object'){
+            return URL.createObjectURL(imagem)
         }
         else {
-            return URL.createObjectURL(imagem);
+            return buscarImagem(imagem)
         }
     }
 
@@ -357,7 +357,7 @@ export default function PaginaEmpresa() {
                                     <h1>{item.Titulo}</h1>
                                     <p>{item.CaixaTexto}</p>
                                     <div>
-                                    <img src='/assets/images/lixeira.sv g' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
+                                    <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
                                     <img src='/assets/images/editar.svg' alt='editarperfil' onClick={() => AlterarPublic(index)}/>
                                     </div>
                                 </div>}
@@ -383,10 +383,10 @@ export default function PaginaEmpresa() {
                                     <img src='/assets/images/Salvar.svg' alt='add' onClick={ConfirNovapubli}/>
                                 </div>
                                 <div className='addimg'>
-                                    <img src={exibirImagem(imagem1)} alt='add' onClick={() => escolherImagem(imagem1)}/>
-                                    <img src={exibirImagem(imagem2)} alt='add' onClick={() => escolherImagem(imagem2)}/>
-                                    <img src={exibirImagem(imagem3)} alt='add' onClick={() => escolherImagem(imagem3)}/>
-                                    <img src={exibirImagem(imagem4)} alt='add' onClick={() => escolherImagem(imagem4)}/>
+                                    <img src={exibirImagem(publicimg1)} alt='add' onClick={() => escolherImagem('imagem1')}/>
+                                    <img src={exibirImagem(publicimg2)} alt='add' onClick={() => escolherImagem('imagem2')}/>
+                                    <img src={exibirImagem(publicimg3)} alt='add' onClick={() => escolherImagem('imagem3')}/>
+                                    <img src={exibirImagem(publicimg4)} alt='add' onClick={() => escolherImagem('imagem4')}/>
 
                                     <input type="file" id="imagem1" onChange={e => setPublicimg1(e.target.files[0])} />
                                     <input type="file" id="imagem2" onChange={e => setPublicimg2(e.target.files[0])} />
