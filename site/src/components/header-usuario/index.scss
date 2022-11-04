@@ -61,5 +61,8 @@
     }
 
 
+    .Link:hover, .Link:visited, .Link:focus, .Link:active
+    { text-decoration: none;
+         color: inherit; } 
     
 }

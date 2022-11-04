@@ -20,12 +20,12 @@ export default function HeaderUsuario (props){
             <div className='part-2'>
             <div className='alinhamento'>
                 {props.class === 'home' 
-                ? <div className='pagina'>Painel</div> 
-                : <div> Painel </div>}
+                ? <div className='pagina'> </div> 
+                :   <div> <Link className='Link' to='/favoritos/painel'> Painel </Link> </div>}
 
                 {props.class === 'confirmadas' 
-                ? <div className='pagina'>Listas</div> 
-                : <div> Listas </div>}
+                ? <div className='pagina'>  </div> 
+                : <div> <Link className='Link' to='/favoritos'>Listas</Link> </div>}
 
             </div>
             </div>

@@ -148,18 +148,19 @@ server.get('/empresa/publicacao/:id', async(req, resp) => {
     }
 })
 
-server.put('/empresa/publicacao/:id/imagem', uploadpubli.array('imagens'), async(req, resp) => {
+server.put('/empresa/publicacao/imagem/:id', uploadpubli.array('imagens'), async(req, resp) => {
     try{
         const id = req.params.id;
         const imagens = req.files;
 
         for (const imagem of imagens){
-            await CarregarImagensPublic(id, imagem.Path)
+            await CarregarImagensPublic(id, imagem.path);
         }
 
         resp.send({
             id : idPublicacao
         })
+
     } catch(err){
         resp.status(401).send({
             erro: err.message

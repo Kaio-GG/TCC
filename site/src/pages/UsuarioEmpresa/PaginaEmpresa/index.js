@@ -6,7 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
@@ -104,9 +104,10 @@ export default function PaginaEmpresa() {
 
     async function novaPublicacao() {
         try{
-            await AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
-            setAltTitutoPublicao(tituloPublicacao)
-            setAltCorpoPublicacao(corpoPublicacao)
+            const r = await AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
+            await salvarImagemPublic(r.idPublicacao, publicimg1, publicimg2, publicimg3, publicimg4);
+            setAltTitutoPublicao(tituloPublicacao);
+            setAltCorpoPublicacao(corpoPublicacao);
             carregarPublicaoes();
 
             alert('Publicado')
