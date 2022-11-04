@@ -164,7 +164,7 @@ export default function Index() {
 
                         <div className='alinharCard'>
                             <p className='f3-p2'>{item.nome} <span className='f3-p5'>{item.empresa}</span></p>   
-                            <p className='f3-p3'>Avaliação:{item.avaliacao}</p> 
+                            <p className='f3-p3'>{item.avaliacao} Pontos</p> 
                             <p className='f3-p4'>"{item.descavaliacao}"</p>
                         </div>   
                      </div>    
@@ -199,7 +199,7 @@ export default function Index() {
                 <div>
                     <h1 className='f4-h3'>A sua avaliação muda nossa visão dentro do possível...</h1>
 
-                    <p className='f4-p'>Quando você manda sua avaliação apresentando os pontos positivos e negativos nós melhoramos o site para você!</p>
+                    <p className='f4-p'>Quando você manda sua avaliação apresentando os pontos positivos e negativos, nós melhoramos o site para você!</p>
 
                     <img className='f4-img' src={Reading} alt=''></img>
 

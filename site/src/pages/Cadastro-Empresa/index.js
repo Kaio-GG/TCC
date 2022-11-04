@@ -5,6 +5,10 @@ import { useState } from 'react'
 import './index.scss'
 import { Link, useNavigate } from 'react-router-dom'
 
+import Chave from './assets/key.svg'
+import Mala from './assets/mala.svg'
+import User from './assets/user.svg'
+
 export default function Index(){
     const [continuar, setContinuar] = useState(0)
 
@@ -41,6 +45,7 @@ export default function Index(){
             const b = cadastroLogin(idEmpresa, idusuario, usuario, senha, empresa);
 
             const c = Pagina(idEmpresa, nome, descricao);
+
             
             alert('Empresa cadastrada com sucesso!');
             navigate('/login')
@@ -73,16 +78,26 @@ return(
         {continuar === 0 &&
 
             <section>
+                
+                <div className='bolinhas'>
 
-            <div className='alinhardiv'>
-                <h1 className='f1-h2'>Criar conta</h1>
+                    <img className='bolinha1' src={Chave}></img>
+                    <hr className='linha1'></hr>
+                    <img className='bolinha2' src={Mala}></img>
+                    <hr className='linha1'></hr>
+                    <img className='bolinha3' src={User}></img>
+
+                </div>
+
+             <div className='alinhardiv'>
+
+                <h1 className='f1-h2'>Criando conta como empresa:</h1>
                 <input value={usuario} onChange={e => setUsuario(e.target.value)} className='input1' type="text" placeholder='Email'/>
                 <input value={confirmarusuario} onChange={e => setConfirmarUsuario(e.target.value)}  className='input2' type="text" placeholder='Confirmar email'/>
                 <input value={senha} onChange={e => setSenha(e.target.value)} className='input2' type="password" placeholder='Senha'/>
                 <input value={confirmarSenha} onChange={e => setConfirmarSenha(e.target.value)} className='input3' type="password" placeholder='Confirmar senha'/>
-
-                <button onClick={passarPagina} className='f1-button'>Próximo</button>
-
+                 <button onClick={passarPagina} className='f1-button'>Próximo</button>
+                    
             </div>
 
 
@@ -91,6 +106,16 @@ return(
         }
             {continuar === 1 &&
             <section>
+
+                <div className='bolinhas'>
+
+                    <img className='bolinha1-leave' src={Chave}></img>
+                    <hr className='linha1-t'></hr>
+                    <img className='bolinha2-animation' src={Mala}></img>
+                    <hr className='linha1'></hr>
+                    <img className='bolinha3' src={User}></img>
+
+                </div>
 
             <div className='alinhardiv'>
                 <input value={cnpj} onChange={e => setCnpj(e.target.value)} className='input1' type="text" placeholder='CNPJ'/>
@@ -117,25 +142,34 @@ return(
             }
 
             {continuar === 2 &&
-            <section>
+                <section>
 
-            <div className='alinhardiv'>
-                <h1 className='f1-h2'>Informações pessoais do representante</h1>
-                <input value={cpfRepresentante} onChange={e => setCpfRepresentante(e.target.value)} className='input1' type="text" placeholder='CPF'/>
-                <input value={representante} onChange={e => setRepresentante(e.target.value)} className='input2' type="text" placeholder='Nome representante legal'/>
-                <input value={cargoRepresentante} onChange={e => setCargoRepresentante(e.target.value)} className='input2' type="text" placeholder='Cargo'/>
-                <input value={nacioRepresentante} onChange={e => setNacioRepresentante(e.target.value)} className='input3' type="text" placeholder='Nacionalidade'/>
+                    <div className='bolinhas'>
+
+                    <img className='bolinha1-none' src={Chave}></img>
+                    <hr className='linha1-s'></hr>
+                    <img className='bolinha2-leave' src={Mala}></img>
+                    <hr className='linha1-t'></hr>
+                    <img className='bolinha3-animation' src={User}></img>
+                    </div>
+                    
+                <div className='alinhardiv'>
+                    <h1 className='f1-h2'>Informações pessoais do representante:</h1>
+                    <input value={cpfRepresentante} onChange={e => setCpfRepresentante(e.target.value)} className='input1' type="text" placeholder='CPF'/>
+                    <input value={representante} onChange={e => setRepresentante(e.target.value)} className='input2' type="text" placeholder='Nome representante legal'/>
+                    <input value={cargoRepresentante} onChange={e => setCargoRepresentante(e.target.value)} className='input2' type="text" placeholder='Cargo'/>
+                    <input value={nacioRepresentante} onChange={e => setNacioRepresentante(e.target.value)} className='input3' type="text" placeholder='Nacionalidade'/>
 
 
-             <div className='alinharbutton'>
-                <button onClick={voltarPagina} className='f1-button'>Voltar</button>
-                <button onClick={cadastrarEmpresa} className='f1-button'>Finalizar</button>
-             </div>
-            
+                <div className='alinharbutton'>
+                    <button onClick={voltarPagina} className='f1-button'>Voltar</button>
+                    <button onClick={cadastrarEmpresa} className='f1-button'>Finalizar</button>
+                </div>
+                
 
-            </div>
+                </div>
 
-            </section>
+                </section>
             
             }
         

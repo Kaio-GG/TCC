@@ -1,4 +1,10 @@
 .Main-Cadastro-Usuario{
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-image: url('../Cadastro-Empresa/assets/Bg-Sites-BC.jpg');
+    background-size: 100%;
     
     .cabecalho{
         display: flex;
@@ -6,8 +12,12 @@
         align-items: flex-end;
         padding: 70px 0px 0px 70px;
         padding-bottom: 5em;
+    }
 
-
+    input{
+        font-family: "Kumbh Sans";
+        padding: 1px;
+        border: none;
     }
 
     .f1-h1{
@@ -45,17 +55,32 @@
             flex-direction: column;
             align-items: center;
         }
+        .Div-Inputs2{
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
    
         .Div-Inputs input{
                 width: 600px;
                 margin-bottom: 3px;
                 border-radius: 2px;
-                border: 1px solid black;
                 font-family: "Kumbh Sans";
                 font-weight: 600;
                 font-size: 18px;
                 margin-bottom: 8px;
         }
+
+        .Div-Inputs2 input{
+            width: 600px;
+            margin-bottom: 3px;
+            border-radius: 2px;
+            font-family: "Kumbh Sans";
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 8px;
+    }
 
         .button{
             width: 180px;
@@ -99,7 +124,6 @@
         .Inputs-Group input{
             width: 195px;
             border-radius: 2px;
-            border: 1px solid black;
             font-family: "Kumbh Sans";
             font-weight: 600;
             font-size: 18px;
@@ -124,6 +148,120 @@
             margin-top: 20px;
             margin-left: 10px;
         }
+
+
+
+        .bolinhas{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            font-family: "Kumbh Sans";
+            font-weight: 800;
+        }
+    
+        .linha1{
+            width: 500px;
+            height: 1px;
+            background-color: black;
+            border: none;
+            height: 3px;
+        }
+    
+        .linha1-s{
+            width: 500px;
+            height: 1px;
+            height: 5px;
+            background-color: greenyellow;
+            border: none;
+        }
+    
+        .linha1-t{
+            width: 500px;
+            height: 1px;
+            background-color: black;
+            height: 3px;
+            border: none;
+            animation: linha-animation 1s forwards;
+        }
+    
+        @keyframes linha-animation {
+            from{
+                height: 3px;
+                background-color: black;
+            }
+            to{
+                height: 5px;
+                background-color: greenyellow;
+            }
+        }
+    
+        .bolinha1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 360px;
+            animation: ball1 1s forwards;
+            animation-delay: 0.4s;
+        }
+    
+        .bolinha1-leave{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90px;
+            height: 90px;
+            border-radius: 360px;
+            animation: ball1-leave 1s forwards;
+            animation-delay: 0.4s;
+        }
+    
+        @keyframes ball1 {
+            from{
+                width: 70px;
+                height: 70px;
+            }
+    
+            to{
+                width: 90px;
+                height: 90px;
+            }
+        }
+    
+        @keyframes ball1-leave {
+            from{
+                width: 90px;
+                height: 90px;
+            }
+    
+            to{
+                width: 70px;
+                height: 70px;
+            }
+        }
+    
+    
+    
+        .bolinha3{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+        }
+    
+        .bolinha3-animation{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+            animation: ball1 1s forwards;
+            animation-delay: 0.4s;
+        }
+        
 
 
 

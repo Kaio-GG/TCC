@@ -42,12 +42,7 @@ export default function Index(){
 				<Route path='/empresa/:id/editar' element={<EditarInfoEmpresa/>}/>
 				<Route path='/favoritos' element={<ClientesFavoritos/>}/>
 				<Route path='/favoritos/painel' element={<FavoritosPainel/>}/>
-				<Route path='/home/empresa/reviews' element={<Reviews/>}/>
-
-
-				
-
-
+				<Route path='/home/empresa/reviews/:id' element={<Reviews/>}/>
 			</Routes>
 		</BrowserRouter>	
 )

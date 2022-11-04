@@ -5,7 +5,10 @@ import { buscarImagem } from '../../../api/paginaEmpresa'
 
 import Star from './assets/star.svg'
 import Local from './assets/local.svg'
+import Storage from 'local-storage'
 import { useNavigate } from 'react-router-dom'
+
+import Slide from 'react-reveal/Fade'
 
 import HeaderUsuario from '../../../components/header-usuario'
 import { useEffect, useState } from 'react'
@@ -17,6 +20,9 @@ export default function ClienteHome() {
 
     const [render, setRender] = useState(false);
     const navigate = useNavigate()
+
+    const storage = Storage('Cliente-Logado')
+    const id = storage.ID_USUARIO_CLIENTE
 
     async function melhoresEmpresas(){
         const resp1 = await avaliacaoEmpresas();
@@ -31,7 +37,8 @@ export default function ClienteHome() {
     }
 
     async function maisProximas(){
-        const resp = await maisProximo();
+        const resp = await maisProximo(id);
+        setRender(true)
         setEmpresa(resp)
     }
 
@@ -69,11 +76,12 @@ export default function ClienteHome() {
             </header>
 
             <div className='f1-body'>
+                
 
                 <div className='box1-left'>
                     <input value={filtragem} onChange={e => setFiltragem(e.target.value)} className='input-1' placeholder='Buscar em MyWorkShip.com'/>
-
                     <button onClick={buscarEmpresas} className='lupa'>Buscar</button>
+                    <button className='button-limpar' onClick={limparPesquisas}>Limpar pesquisas</button>
 
                     
                     {render === false &&
@@ -85,8 +93,9 @@ export default function ClienteHome() {
                     </div>
                     }
 
-                                      
+                    <div className='scroll'>  
                     {empresa.map((item, pos) =>
+                     <Slide>  
                         <div className='box-empresa'>
                          <div className='ali'> 
                             <img className='img-logo' src={buscarImagem(item.logo)} />
@@ -103,12 +112,10 @@ export default function ClienteHome() {
                             <button className='button-box-empresa' onClick={() => irParaInfoEmpresa(item.id)} >Agende seu horário</button>
 
                         </div>   
-                        
+                        </Slide>
                     )}
-                    
-                    
-
-                <button className='button-limpar' onClick={limparPesquisas}>Limpar pesquisas</button>
+                    </div>
+                   
 
 
                 </div>

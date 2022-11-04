@@ -39,7 +39,7 @@ export async function selecionarComentarios(id){
             dt_avaliacao dia
     from   tb_empresa_avaliacao
     inner join tb_usuario_cliente on tb_usuario_cliente.id_usuario_cliente = tb_empresa_avaliacao.id_usuario_cliente
-    WHERE id_usuario_empresa = 1
+    WHERE id_usuario_empresa = ?
     ORDER BY id1 desc`
     const [linhas] = await con.query(comando, [id])
     return linhas;

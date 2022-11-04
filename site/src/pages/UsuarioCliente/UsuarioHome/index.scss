@@ -1,3 +1,6 @@
+
+@use "sass:math";
+
 .homeUsuario{
     height: 100%;
     background-color: #F6F6F6;
@@ -13,6 +16,7 @@
 
     .box1-left{
         max-width: 936px;
+        overflow: auto;
     }
 
     .input-1{
@@ -150,6 +154,12 @@
         height: 200px;
         margin-top: 40px;
         border-radius: 5px;
+       
+    }
+
+    .scroll{
+        overflow: auto;
+        height: 400px;
        
     }
 
