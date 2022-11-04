@@ -64,7 +64,9 @@ export async function CarregarHorariosEmpresa (info){
     const comando = `
     select  id_horario,
             ds_hora          hora ,
-            qtd_agendamento  qtd
+            qtd_agendamento  qtd,
+            ds_local            local,
+            DT_AGENDAMENTO      data
       from  tb_horario 
      where  ID_USUARIO_EMPRESA = ? && 
             ds_local           = ? && 

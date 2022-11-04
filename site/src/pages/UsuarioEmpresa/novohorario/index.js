@@ -9,26 +9,40 @@ import { toast } from 'react-toastify'
 
 
 export default function Novohorario (){
-    const [render , setrender] = useState(false)
-    const [rendernovohorario ,setrendernovohorario] = useState (false)
-    const [local , setlocal  ] = useState([])
-    const [hora , sethora] =useState ('00:00')
-    const [data ,setdata] =useState('')
-    const [qtd , setqtd] =useState(1)
-    const [horario , sethorario] =useState([])
-    const [dataCarregarHorario , setdataCarregarHorario]= useState('')
-    const [filial , setfilial ]= useState([])
-    const [ localCarregar , setlocalCarregar] = useState ('')
-
-    const empresaLogada = storage('Empresa-Logada')
-    const id = (empresaLogada.ID_USUARIO_EMPRESA)
+    const [render , setrender] = useState(false);
+    const [rendernovohorario ,setrendernovohorario] = useState (false);
+    const [local , setlocal  ] = useState([]);
+    const [hora , sethora] =useState ('00:00');
+    const [data ,setdata] =useState('');
+    const [qtd , setqtd] =useState(1);
+    const [horario , sethorario] =useState([]);
+    const [dataCarregarHorario , setdataCarregarHorario]= useState('');
+    const [filial , setfilial ]= useState([]);
+    const [ localCarregar , setlocalCarregar] = useState ('');
+    const empresaLogada = storage('Empresa-Logada');
+    const id = (empresaLogada.ID_USUARIO_EMPRESA);
 
 
 
     
 
-    async function criarHorario (){
+    async function criarHorario (hora , data , qtd ,localCarregar){
         try {
+
+            let a = horario.map(item => {    
+              let msg = 0
+                if (item.hora === hora){
+                        msg = 1
+                } 
+                return msg                 
+            })
+            console.log(a)
+
+            for (let i = 0; i < a.length; i++) {
+                if (a[i] === 1) 
+                    throw new Error ('Esse horario ja existe')
+            }
+
             await NovoHorario(id , localCarregar , String(hora) , data ,qtd)
             CarregarHorario()
             
@@ -38,6 +52,9 @@ export default function Novohorario (){
            
         }
     }
+
+
+
     async function CarregarHorario (){
         try {
 
@@ -48,6 +65,8 @@ export default function Novohorario (){
             console.log(err.message)
         }
     }
+
+
     async function deletar (id){
         try {
             await deletarHorario (id)
@@ -244,7 +263,7 @@ export default function Novohorario (){
                                 <input className='info-novo' type='number' min='1' value={qtd} onChange={e => setqtd(e.target.value)}/>
                                                                 
                             <div className='btns'>  
-                                <button onClick={criarHorario} >SALVAR</button>
+                                <button onClick={() => criarHorario(hora , data , qtd ,localCarregar)} >SALVAR</button>
                                 <button className='btn-pronto' onClick={renderhorario} >PRONTO</button>
                             </div>
                         </div>
