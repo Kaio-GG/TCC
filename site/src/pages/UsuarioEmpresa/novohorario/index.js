@@ -29,6 +29,8 @@ export default function Novohorario (){
     async function criarHorario (hora , data , qtd ,localCarregar){
         try {
 
+            if(!localCarregar)
+                throw new Error('Selecione um local')            
             let a = horario.map(item => {    
               let msg = 0
                 if (item.hora === hora){
@@ -36,8 +38,6 @@ export default function Novohorario (){
                 } 
                 return msg                 
             })
-            console.log(a)
-
             for (let i = 0; i < a.length; i++) {
                 if (a[i] === 1) 
                     throw new Error ('Esse horario ja existe')

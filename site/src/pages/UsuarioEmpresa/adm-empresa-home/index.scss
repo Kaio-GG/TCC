@@ -10,7 +10,7 @@
     margin: 0px;
     font-family: 'KumbhSans-SemiBold';
     flex-direction: column;
-    height:200vh;
+    max-height: 100vh;
     .filtro{
         margin-top: 100em;
     }
@@ -24,7 +24,7 @@
     margin-bottom: 20px;
     width: 60%;
     margin-top: 5%;
-    height: 2.5%;
+    height: 2.5em;
     font-family: 'KumbhSans-Regular';
     .btn{
         display: flex;

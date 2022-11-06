@@ -24,17 +24,14 @@ export default function Cardadm (props){
 
     return(
         <div className="card">
-            <div className='nome'> {props.item.nome}  </div>
+            <div className='nome-nome'> {props.item.nome}  </div>
             <div className='nome' > {props.item.hora} </div>
 
 
             <div className='nome'>    <p>{props.item.data.substr(7,3).replace("-","")}/{props.item.data.substring(4,7).replace("-","")}/{props.item.data.substring(0,5).replace("-","")}<br/>
                                 </p> </div>
             <div className='nome3'> {props.item.local} </div>
-            <div className='imagens'>
-                <img src='/assets/images/verificar.svg' alt='' onClick={() => aceitarAgendamento(props.item.id)} />
-                <img src='/assets/images/excluir.svg' alt='' onClick={() => agendamentoRecusado(props.item.id)} />
-            </div>
+           
             <div className='nome1'> {props.item.situacao} </div>    
             <div className='nome' onClick={() => info(props.item.id)}> INFORMAÇÕES</div>
         </div>

@@ -3,15 +3,15 @@ import HeaderEmpresa from '../../../components/header-adm-empresa'
 import './index.scss'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { CarregarInfo , confirmar , recusar } from '../../../api/agendamentos.js'
+import { CarregarInfo , confirmar , recusar , editarHorario } from '../../../api/agendamentos.js'
 import { toast } from 'react-toastify'
-
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Informacoes (){
-    const [info ,  setinfo] = useState({nome:[],cpf: [],data:[] , desc:[], email:[], hora:[], id:[], local:[], nas:[], sexo:[], tel:[] , situ: []})
+    const [info ,  setinfo] = useState({nome:[],cpf: [],data:[] , desc:[], email:[], hora:[], id:[], idhorario:[] , qtd:[], local:[], nas:[], sexo:[], tel:[] , situ: []})
     const {id} = useParams();
-
+    const navigate = useNavigate()
 
     async function carregar (){
         try {
@@ -23,14 +23,26 @@ export default function Informacoes (){
     }
 
     async function confirmado (id){
-        await confirmar(id)
-        carregar()
-        toast.dark('🚀 Agendamento confirmado')
+        try {
+            if(info.situ === 'CONFIRMADA')
+                throw new Error('Agendamento ja confirmado')
+            await confirmar(id)
+            carregar()
+            diminuirHorario()
+            navigate('/home/empresa')
+            toast.dark('🚀 Agendamento confirmado')   
+        } catch (err) {
+            toast.error(err.message)
+        }
     }
     
     async function Recusar (id){
         await recusar(id)
         carregar()
+        if(info.situ === 'CONFIRMADA'){
+            await aumentarHorario()
+        }
+        navigate('/home/empresa')
         toast.dark('🚀 Agendamento recusado')
     }
 
@@ -43,6 +55,26 @@ export default function Informacoes (){
         const audio = new Audio()
         audio.src = '/assets/audios/xii.mp3'
         audio.play()
+    }
+
+    async function diminuirHorario (){
+        try {
+            let a =info.qtd-1 
+            await editarHorario(info.idhorario, a)   
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+
+    
+    async function aumentarHorario (){
+        try {
+
+            let a =info.qtd+1 
+            await editarHorario(info.idhorario, a)   
+        } catch (err) {
+            console.log(err.message)
+        }
     }
 
 
@@ -62,7 +94,7 @@ export default function Informacoes (){
 
             <div className='cards'>       
                 <div className='card'>
-                    <p> {String(info.data).substr(0,10)}</p>
+                    <p> {String(info.data).substr(0,10).replace('-','/').replace('-','/')}</p>
                 </div>
                 <div className='card'>
                     <p> {info.situ}</p>

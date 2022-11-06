@@ -67,8 +67,8 @@ export default function Homeempresa() {
         listar(id)
         buscar(id)
         novaData()
-    },[])       
-
+    },[]) 
+    
 
 
     
@@ -104,10 +104,10 @@ export default function Homeempresa() {
                             <img onClick={ ()=> porSituacao(id , situacao) }  className='lupa' src='/assets/images/lupa-branco.svg' alt='' /> 
                 </div>
  
-            </div>  
-            {agendamento.map(item => 
-                <Cardadm item={item} onClick={() => listar(id)} />    
-            )}
+            </div>              
+                {agendamento.map(item => 
+                    <Cardadm item={item} onClick={() => listar(id)} />    
+                )}
         </div>
     )
 }
