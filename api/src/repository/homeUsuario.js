@@ -33,16 +33,24 @@ export async function listarEmpresas() {
 
 export async function melhoresAvaliacaoEmpresas() {
     const comando =  `
-    SELECT VL_AVALIACAO avaliacao, 
-    IMG_LOGO logo,
-    DS_DESCRICAO descricao, 
-    NM_EMPRESA nome
-    from tb_pagina_empresa 
+    select  tb_pagina_empresa.id_usuario_empresa id,
+        avaliacao,
+		avaliacoes,
+		vl_avaliacao,
+		IMG_LOGO logo,
+		DS_DESCRICAO descricao, 
+		NM_EMPRESA nome 
+    from (select   sum(vl_avaliacao) / count(vl_avaliacao) avaliacao,
+    count(vl_avaliacao) avaliacoes
+    from tb_empresa_avaliacao 
+    where id_usuario_empresa = 1) grupo,
+    
+    tb_pagina_empresa
+
     inner join tb_empresa_avaliacao 
     on tb_empresa_avaliacao.id_empresa_avaliacao = tb_pagina_empresa.id_pagina_empresa
-    where VL_AVALIACAO > 3
+    where avaliacao > 3
     `
-
     const [linhas] = await con.query(comando)
     return linhas;
 }

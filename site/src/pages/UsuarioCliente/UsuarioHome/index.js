@@ -80,7 +80,7 @@ export default function ClienteHome() {
 
                 <div className='box1-left'>
                     <input value={filtragem} onChange={e => setFiltragem(e.target.value)} className='input-1' placeholder='Buscar em MyWorkShip.com'/>
-                    <button onClick={buscarEmpresas} className='lupa'>Buscar</button>
+                    <button onClick={buscarEmpresas} className='lupa'>Buscar</button><br></br>
                     <button className='button-limpar' onClick={limparPesquisas}>Limpar pesquisas</button>
 
                     
@@ -93,7 +93,6 @@ export default function ClienteHome() {
                     </div>
                     }
 
-                    <div className='scroll'>  
                     {empresa.map((item, pos) =>
                      <Slide>  
                         <div className='box-empresa'>
@@ -114,7 +113,6 @@ export default function ClienteHome() {
                         </div>   
                         </Slide>
                     )}
-                    </div>
                    
 
 

@@ -21,7 +21,7 @@ export default function Index(){
     const [pais, setPais] = useState('')
     const [cidade, setCidade] = useState('')
     const [endereco, setEndereco] = useState('')
-    const [pagina, setPagina] = useState({})
+    const [pagina, setPagina] = useState([])
     const [nota, setNota] = useState([]);
     const [erro, setErro] = useState('')
 
@@ -58,7 +58,6 @@ export default function Index(){
     async function loadPageZ(){
         try{
             const resp = await loadPage(id)
-            setLogo(resp.logo)
             setPagina(resp)
         }catch(err){
             alert(err.message)
@@ -115,12 +114,12 @@ export default function Index(){
         setInput(!input)
     }
 
-    function mostrarImagemA() {
-        if (typeof(logo) == 'object'){
-            return URL.createObjectURL(logo)
+    function mostrarImagem(imagem){
+        if(imagem == undefined){
+            return ""
         }
-        else {
-            return buscarImagem(logo)
+        else{
+            return URL.createObjectURL(imagem)
         }
     }
 
@@ -135,25 +134,33 @@ export default function Index(){
                 <div className='alinhar-row'>
                     <div className='boxleft'>
                         <div className='b1'>
-                        <img src={mostrarImagemA()} alt='' className='img-empresa' />
+                        {pagina.map(item =>   
+                        <div className='box-align'>
+                            <img src={buscarImagem(item.logo)} alt='' className='img-empresa' />
                             <div className='b1-letters'>
-                                <h1>{pagina.nome}</h1>
-                                <p>{pagina.descricao}</p>
+                                <h1>{item.nome}</h1>
+                                <p>{item.descricao}</p>
                             </div>
+                        </div>
+                        )}
 
                             <div className='b1-letters2'>
                                 {nota.map(item =>
                                 <p className='b1-ava'>{item.avaliacao.substr(0,3)} ESTRELAS</p>
                                 )}
-                                <p>{pagina.pais}, {pagina.cidade}</p>
-                                <p>{pagina.endereco}</p>
+                                {pagina.map(item =>
+                                <div>
+                                    <p>{item.pais}, {item.cidade}</p>
+                                    <p>{item.endereco}</p>
+                                </div>
+                                )}
                                 {nota.map(item =>
                                 <p>{item.avaliacoes} Avaliações</p>
                                 )}
                                 
                             </div>
                             
-                        </div>
+                    </div>
 
                     
                         <div className='b2'>

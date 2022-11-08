@@ -13,6 +13,11 @@
         font-family: "Kumbh Sans";
     }
 
+    .box-align{
+        display: flex;
+        flex-direction: row;
+    }
+
     .alinhar-row{
         display: flex;
         flex-direction: row;
