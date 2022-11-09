@@ -65,6 +65,7 @@ export default function EdiatrPerfilEmpresa (){
         try {
             await novaFilial(id, pais ,estado , cidade ,endereco ,cep)
             carregarFilial()
+            rendervolta()
         } catch (err) {
             
         }
@@ -230,8 +231,7 @@ export default function EdiatrPerfilEmpresa (){
                                     <input placeholder='CEP' className='inputnormalbaixo' value={cep} onChange={e => setcep(e.target.value)}/>
                                     <input placeholder='endereco' className='inputnormalbaixo' value={endereco} onChange={e => setendereco(e.target.value)}/>
                                 <div className='btns'>
-                                    <button onClick={filiais}>SALVAR</button>
-                                    <button onClick={rendervolta} >PRONTO</button>
+                                    <button onClick={filiais} >PRONTO</button>
                                 </div>
                             </div>
 

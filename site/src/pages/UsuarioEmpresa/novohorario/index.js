@@ -9,7 +9,7 @@ import { toast } from 'react-toastify'
 
 
 export default function Novohorario (){
-    const [render , setrender] = useState(false);
+    const [render , setrender] = useState(true);
     const [rendernovohorario ,setrendernovohorario] = useState (false);
     const [local , setlocal  ] = useState([]);
     const [hora , sethora] =useState ('00:00');
@@ -43,7 +43,7 @@ export default function Novohorario (){
                     throw new Error ('Esse horario ja existe')
             }
 
-            await NovoHorario(id , localCarregar , String(hora) , data ,qtd)
+            await NovoHorario(id , localCarregar , String(hora) , data ,qtd ,)
             CarregarHorario()
             
             toast.dark(' 🚀 Horario cadastrado com sucesso')
@@ -153,12 +153,15 @@ export default function Novohorario (){
 
 
             {rendernovohorario === false &&
-            <div>    
+            <div >    
             <div className='alinhado'>
                     <h2>Horarios</h2>
                     <div className='linha'></div>
                 </div>
+            <div className='certo'>    
             <div className='opts'>
+
+                <div className='esq'>
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
                 
                 <select className='opt' value={localCarregar} onChange={e => setlocalCarregar(e.target.value)} >    
@@ -172,7 +175,13 @@ export default function Novohorario (){
                         )}
                     
                 </select>
-
+                </div>
+                <div className='org-direita'>
+                    <div className='card-novo' onClick={rendernovo}>
+                        Adicionar Horário              
+                    </div>
+                </div>    
+            </div>
             </div> 
             <div className='horarios'>
                 {render === false
@@ -197,9 +206,7 @@ export default function Novohorario (){
                     )}
                     </div>}   
             </div>
-                <div className='card-novo' onClick={rendernovo}>
-                    ADICIONAR HORARIO              
-                </div>
+
                 </div>
                 }
 
@@ -209,17 +216,34 @@ export default function Novohorario (){
 
             {rendernovohorario === true &&
                <div className='desfoque' > 
-                <div className='alinhado'>
+               <div className='alinhado'>
                     <h2>Horarios</h2>
                     <div className='linha'></div>
                 </div>
+            <div className='certo'>    
             <div className='opts'>
+
+                <div className='esq'>
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
-                <select className='opt' value={local} onChange={e => setlocal(e.target.value)} >                 
-                {local.map (item =>
-                    <option value={item.local}>{item.local}</option>
-                    )}
+                
+                <select className='opt' value={localCarregar} onChange={e => setlocalCarregar(e.target.value)} >    
+                        <option disabled hidden selected>Selecione o Local</option>
+
+                        {local.map (item =>
+                            <option value={item.local}>{item.local}</option>
+                        )}
+                        {filial.map (item =>
+                            <option value={item.DS_ENDERECO}>{item.DS_ENDERECO}</option>
+                        )}
+                    
                 </select>
+                </div>
+                <div className='org-direita'>
+                    <div className='card-novo' onClick={rendernovo}>
+                        ADICIONAR HORARIO              
+                    </div>
+                </div>    
+            </div>
             </div> 
             <div className='horarios'>
                 {render === false
@@ -235,20 +259,19 @@ export default function Novohorario (){
                             <div  className='card1' >
                                 <p>{item.hora}</p>
                                 <div className='btneditarcard'>
-                                    <img src='/assets/images/seta esquerda.svg' onClick={() => diminuirHorarios(item.id_horario, item.qtd)} alt='' />
+                                    <img src='/assets/images/seta esquerda-branco.svg' onClick={() => diminuirHorarios(item.id_horario, item.qtd)} alt='' />
                                     <div>{item.qtd}</div>
-                                    <img src='/assets/images/seta direita.svg' onClick={() => aumentarHorarios(item.id_horario, item.qtd)} alt='' /> &nbsp;
-                                    <img src='/assets/images/lixeira.svg' onClick={() => deletar(item.id_horario)} alt=''/> &nbsp;                                              
+                                    <img src='/assets/images/seta direita-branco.svg' onClick={() => aumentarHorarios(item.id_horario, item.qtd)} alt='' /> &nbsp;
+                                    <img src='/assets/images/lixeira-branco.svg' onClick={() => deletar(item.id_horario)} alt=''/> &nbsp;                                              
                                 </div>
                             </div>
                     )}
                     </div>}   
             </div>
-                <div className='card-novo' onClick={rendernovo}>
-                    ADICIONAR HORARIO              
+
                 </div>
-            </div>
-            }
+                }
+
             </div>
             
 
