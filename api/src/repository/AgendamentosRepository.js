@@ -156,11 +156,11 @@ export async function buscarAgendamentosPorData (info){
     const comando = `
     select 	TB_HORARIO.ID_HORARIO        ,
             TB_AGENDAMENTO.ID_AGENDAMENTO,
-            TB_HORARIO.ID_USUARIO_EMPRESA 'id'   ,	
-            TB_AGENDAMENTO.NM_PESSOA  	 'nome' ,
-            TB_HORARIO.DS_LOCAL   	     'local',							
-            TB_HORARIO.DS_HORA    	     'hora' ,
-            TB_HORARIO.DT_AGENDAMENTO     'data' ,
+            TB_HORARIO.ID_USUARIO_EMPRESA   'id'   ,	
+            TB_AGENDAMENTO.NM_PESSOA  	     'nome' ,
+            TB_HORARIO.DS_LOCAL   	         'local',							
+            TB_HORARIO.DS_HORA    	        'hora' ,
+            TB_HORARIO.DT_AGENDAMENTO       'data' ,
             TB_AGENDAMENTO.DS_SITUACAO      'situacao'
       FROM 
             TB_HORARIO

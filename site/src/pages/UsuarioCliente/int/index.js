@@ -124,15 +124,6 @@ export default function Index(){
         setInput(!input)
     }
 
-    function buscarImagem(imagem){
-        if(imagem == undefined){
-            return ""
-        }
-        else{
-            return URL.createObjectURL(imagem)
-        }
-    }
-
 
     return(
         <main className='full'>
@@ -157,7 +148,7 @@ export default function Index(){
                             <div className='b1-letters2'>
                                 {nota.map(item =>
                                 
-                                <p className='b1-ava'>{item.avaliacao} ESTRELAS</p>
+                                <p className='b1-ava'><span className='limit'>{(item.avaliacao)}</span>ESTRELAS</p>
                                 )}
                                 
                                 {pagina.map(item =>
