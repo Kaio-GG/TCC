@@ -3,18 +3,18 @@ import { con } from "./connection.js"
 export async function carregarPaginaZ(id){
     const comando = `
     select 	tb_usuario_empresa.id_usuario_empresa id,
-		nm_empresa				nome,
-		img_logo				logo,
-		ds_descricao 			descricao,
-        ds_pais					pais,
-		ds_cidade				cidade,
-		ds_endereco				endereco
+		    nm_empresa				nome,
+	    	img_logo				logo,
+		    ds_descricao 			descricao,
+            ds_pais					pais,
+		    ds_cidade				cidade,
+		    ds_endereco				endereco
     from tb_pagina_empresa
     inner join tb_usuario_empresa on tb_usuario_empresa.id_usuario_empresa = tb_pagina_empresa.id_pagina_empresa
     where tb_usuario_empresa.id_usuario_empresa = ?
     `;
     const [linhas] = await con.query(comando, [id])
-    return linhas[0]; 
+    return linhas; 
 }
 
 export async function enviarComentario(comentario){
@@ -62,8 +62,7 @@ export async function puxarPubs(id){
 
 export async function avaliacoes(id){
     const comando = `
-    select  (count(vl_avaliacao) * vl_avaliacao)
-		/ count(vl_avaliacao) avaliacao,
+    select round(sum(vl_avaliacao) / count(vl_avaliacao), 1) as avaliacao,
         count(vl_avaliacao) avaliacoes
     from tb_empresa_avaliacao 
     where id_usuario_empresa = ?

@@ -148,7 +148,7 @@ server.get('/empresa/publicacao/:id', async(req, resp) => {
     }
 })
 
-server.put('/empresa/publicacao/imagem/:id', uploadpubli.array('imagens'), async(req, resp) => {
+server.put('publicacao/imagem/:id', uploadpubli.array('imagens'), async(req, resp) => {
     try{
         const id = req.params.id;
         const imagens = req.files;
@@ -158,12 +158,32 @@ server.put('/empresa/publicacao/imagem/:id', uploadpubli.array('imagens'), async
         }
 
         resp.send({
-            id : idPublicacao
+            id : Publicacao
         })
 
     } catch(err){
         resp.status(401).send({
             erro: err.message
+        })
+    }
+})
+
+server.put('/empresa/publicacao/imagem/:id' ,uploadpubli.single('imagem'), async(req, resp) => {
+    try{
+        if(!req.file)
+            throw new Error('A imagem não pode ser salva.');
+
+        const { id } = req.params;
+        const imagem = req.file.path;
+
+        const resposta = await ImagemPagina(imagem, id);
+        if(resposta === 0)
+            throw new Error('A imagem não pode ser salva.');
+
+        resp.status(204).send();
+    }  catch (err) {
+        resp.status(400).send({
+            erro:err.message
         })
     }
 })

@@ -1,5 +1,5 @@
 import { CarregarHorarioEmpresaPorData ,NovoHorario , EditarHorario , CarregarHorariosEmpresa , ApagarHorario,buscarAgendamentosPorSituacao , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento, buscarinformacoes } from "../repository/agendamentosRepository.js";
-import AgendarHorario from "../repository/AgendarHorarioRepository.js";
+import { AgendarHorario } from "../repository/AgendarHorarioRepository.js";
 import { Router } from "express";
 const server = Router();
 
