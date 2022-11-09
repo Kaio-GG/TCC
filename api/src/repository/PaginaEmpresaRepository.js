@@ -124,4 +124,16 @@ export async function CarregarImagensPublic(idpublicacao, imagemPath) {
     const [linhas] = await con.query(comando, [idpublicacao, imagemPath])
 }
 
+export async function ImagemPublicacao(imagem, idEmpresa) {
+    const comando =
+    `update TB_PAGINA_EMPRESA_PUBLICACAO
+        set IMG_PUBLICACAO               = ?
+      where ID_PAGINA_EMPRESA_PUBLICACAO = ?`
+
+    const [linhas] = await con.query(comando, [imagem, idEmpresa]);
+
+
+    return linhas.affectedRows;
+}
+
 

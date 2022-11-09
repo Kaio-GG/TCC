@@ -6,7 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
@@ -17,6 +17,7 @@ export default function PaginaEmpresa() {
     const [publicacao, setPublicacao] = useState([]);
     const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo');
     const [corpoPublicacao, setCorpoPublicacao] = useState('Digite algo');
+    const [imgpublic, setImgPublic] = useState('')
 
     const [vlpublic, setVlPublic] = useState(100);
 
@@ -102,12 +103,17 @@ export default function PaginaEmpresa() {
 
     //Publições ==================================================================
 
+    function gerarIdEmpresa(){
+        
+    }
+
     async function novaPublicacao() {
         try{
             const r = await AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
-            await salvarImagemPublic(r.idPublicacao, publicimg1, publicimg2, publicimg3, publicimg4);
+            console.log(r)
             setAltTitutoPublicao(tituloPublicacao);
             setAltCorpoPublicacao(corpoPublicacao);
+
             carregarPublicaoes();
 
             alert('Publicado')
@@ -245,12 +251,12 @@ export default function PaginaEmpresa() {
         document.getElementById(idImagem).click();
     }
 
-    function exibirImagem(imagem) {
-        if (typeof(imagem) == 'object'){
-            return URL.createObjectURL(imagem)
+    function exibirImagem(imgpublic) {
+        if (typeof(imgpublic) == 'object'){
+            return URL.createObjectURL(imgpublic)
         }
         else {
-            return buscarImagem(imagem)
+            return buscarImagem(imgpublic)
         }
     }
 
@@ -384,15 +390,9 @@ export default function PaginaEmpresa() {
                                     <img src='/assets/images/Salvar.svg' alt='add' onClick={ConfirNovapubli}/>
                                 </div>
                                 <div className='addimg'>
-                                    <img src={exibirImagem(publicimg1)} alt='add' onClick={() => escolherImagem('imagem1')}/>
-                                    <img src={exibirImagem(publicimg2)} alt='add' onClick={() => escolherImagem('imagem2')}/>
-                                    <img src={exibirImagem(publicimg3)} alt='add' onClick={() => escolherImagem('imagem3')}/>
-                                    <img src={exibirImagem(publicimg4)} alt='add' onClick={() => escolherImagem('imagem4')}/>
+                                    <img src={exibirImagem(imgpublic)} alt='add' onClick={() => escolherImagem('imagem1')}/>
 
                                     <input type="file" id="imagem1" onChange={e => setPublicimg1(e.target.files[0])} />
-                                    <input type="file" id="imagem2" onChange={e => setPublicimg2(e.target.files[0])} />
-                                    <input type="file" id="imagem3" onChange={e => setPublicimg3(e.target.files[0])} />
-                                    <input type="file" id="imagem4" onChange={e => setPublicimg4(e.target.files[0])} />
                                 </div>
                             </div>
                             <div className='agrupamento-inputs'>
