@@ -42,6 +42,11 @@ export async function selecionarComentarios(id){
     WHERE id_usuario_empresa = ?
     ORDER BY id1 desc`
     const [linhas] = await con.query(comando, [id])
+
+    if(linhas === []){
+        linhas[0]
+    }
+    else
     return linhas;
 }
 

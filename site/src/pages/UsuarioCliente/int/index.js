@@ -24,6 +24,7 @@ export default function Index(){
     const [pagina, setPagina] = useState([])
     const [nota, setNota] = useState([]);
     const [erro, setErro] = useState('')
+    const [mostrar, setMostrar] = useState(false);
 
     const data = new Date().toJSON().slice(0, 19).replace('T', ' ')
 
@@ -66,8 +67,10 @@ export default function Index(){
     }
 
     useEffect(() => {
+        if(id)
+        loadPageZ(id);
+
             listarComents(id);
-            loadPageZ(id);
             carregarPubs(id)
             carregarNota(id)
             console.log(id)
@@ -89,7 +92,14 @@ export default function Index(){
     async function carregarNota(){
         try{
             const r = await carregarAvaliacao(id);
-            setNota(r)
+
+            if(r  === []){
+                r = ""
+            }
+            else{
+                setMostrar(true)
+                setNota(r)
+            }
         }catch(err){
             toast.error(err.message)
 
@@ -114,7 +124,7 @@ export default function Index(){
         setInput(!input)
     }
 
-    function mostrarImagem(imagem){
+    function buscarImagem(imagem){
         if(imagem == undefined){
             return ""
         }
@@ -146,8 +156,10 @@ export default function Index(){
 
                             <div className='b1-letters2'>
                                 {nota.map(item =>
-                                <p className='b1-ava'>{item.avaliacao.substr(0,3)} ESTRELAS</p>
+                                
+                                <p className='b1-ava'>{item.avaliacao} ESTRELAS</p>
                                 )}
+                                
                                 {pagina.map(item =>
                                 <div>
                                     <p>{item.pais}, {item.cidade}</p>
@@ -221,10 +233,10 @@ export default function Index(){
                                         <p className='p-b3'>{item.avads}</p>
                                     </div>
                                 </div>
-
                                 <p>{item.dia.substr(7,3).replace("-","")}/{item.dia.substring(4,7).replace("-","")}/{item.dia.substring(0,5).replace("-","")}<br/>
                                 ás {item.dia.substring(11,16)}
                                 </p>
+                                
                             </div>
                         )}
 
