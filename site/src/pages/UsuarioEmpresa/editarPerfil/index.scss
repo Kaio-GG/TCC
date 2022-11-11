@@ -15,9 +15,12 @@
         
     }
     input{
-        border: 1px solid black;
-        height: 90%;
+        border-radius: 5px;
+        border: none;
+        height: 70%;
+        padding-left: 10px;
         width: 100%;
+        margin-top: 10px;
     }
     h2{
         font-family: 'KumbhSans-ExtraBold';
@@ -33,6 +36,8 @@
         height: 80vh;
         width: 70%;
         margin-bottom: 10%;
+        background-color: #263238;
+        color: #fff;
     }
     .endireitar{
         width: 100%;
@@ -59,8 +64,18 @@
         height: 100%;
         width: 80%;
         border: none;
-        background-color: #9697978f;
+        background-color: #fff;
+        color: #000;
+        border-radius: 5px;
+        cursor: pointer;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .maisFiliais:hover{
+        background-color: rgb(76, 5, 117);
+        transition: all 0,5 ease-in;
+        transform: scale(1.05);
+        transition: all 0.2s;
+        color: #fff;
     }
     .add{
         height: 50%;
@@ -103,17 +118,26 @@
         background-color: #d3d1d1;;
     }
     .filial{
-        background-color: #cecece;
+        background-color: #fff;
         padding-left: 5%;
+        color: black;
         display: flex;
         height: 10%;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         width: 100%;
+        border-radius: 5px;
         align-items: center;
         margin-top: 2%;
         justify-content: space-between;
         padding-right: 5%;
 
+    }
+    .filial:hover{
+        background-color: rgb(76, 5, 117);
+        transition: all 0,1 ease-in;
+        transform: scale(1.05);
+        transition: all 0.2s;
+        color: #fff;
     }
 
     .x{

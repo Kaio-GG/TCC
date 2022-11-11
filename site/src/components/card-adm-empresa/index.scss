@@ -8,6 +8,7 @@
     justify-content: space-around;
     font-size: 16PX;
     margin-top: 20px;
+    border-radius: 5px;
     .imagens{
         display: flex;
         width: 8%;
@@ -24,6 +25,19 @@
         justify-content: center;
         width: 10%;
         cursor: pointer;
+    }
+    
+    .info{
+        height: 100%;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 15%;
+        margin-right: -1.4%;
+        cursor: pointer;
+        background-color: #263238;
+        border-radius: 5px;
     }
     .nome-nome{
         display: flex;

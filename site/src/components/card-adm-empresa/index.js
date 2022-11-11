@@ -33,7 +33,7 @@ export default function Cardadm (props){
             <div className='nome3'> {props.item.local} </div>
            
             <div className='nome1'> {props.item.situacao} </div>    
-            <div className='nome' onClick={() => info(props.item.id)}> INFORMAÇÕES</div>
+            <div className='info' onClick={() => info(props.item.id)}> INFORMAÇÕES</div>
         </div>
     )
 }

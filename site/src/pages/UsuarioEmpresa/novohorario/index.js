@@ -154,15 +154,19 @@ export default function Novohorario (){
 
             {rendernovohorario === false &&
             <div >    
-            <div className='alinhado'>
-                    <h2>Horarios</h2>
-                    <div className='linha'></div>
-                </div>
             <div className='certo'>    
             <div className='opts'>
-
-                <div className='esq'>
+            <div className='alinhado'>
+                    <h2>Filtrar Horarios</h2>
+                    <div className='linha'></div>
+            </div>
+            
+            <div className='esq'>
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
+            </div>
+
+            <div className='esq'>
+            
                 
                 <select className='opt' value={localCarregar} onChange={e => setlocalCarregar(e.target.value)} >    
                         <option disabled hidden selected>Selecione o Local</option>
@@ -184,6 +188,12 @@ export default function Novohorario (){
             </div>
             </div> 
             <div className='horarios'>
+                <div className='alinhado1'>
+                    <h2 className='horarios'>Horarios</h2>
+                    <div className='linha1'></div>
+                </div>
+                
+                
                 {render === false
                     ?<div  className='nela' >
                     {horario.map (item  =>
@@ -216,15 +226,21 @@ export default function Novohorario (){
 
             {rendernovohorario === true &&
                <div className='desfoque' > 
-               <div className='alinhado'>
-                    <h2>Horarios</h2>
-                    <div className='linha'></div>
-                </div>
+                    <div>
+            <div >    
             <div className='certo'>    
             <div className='opts'>
-
-                <div className='esq'>
+            <div className='alinhado'>
+                    <h2>Filtrar Horarios</h2>
+                    <div className='linha'></div>
+            </div>
+            
+            <div className='esq'>
                 <input type="date" value={dataCarregarHorario} onChange={ e => setdataCarregarHorario (e.target.value)}/>
+            </div>
+
+            <div className='esq'>
+            
                 
                 <select className='opt' value={localCarregar} onChange={e => setlocalCarregar(e.target.value)} >    
                         <option disabled hidden selected>Selecione o Local</option>
@@ -240,12 +256,18 @@ export default function Novohorario (){
                 </div>
                 <div className='org-direita'>
                     <div className='card-novo' onClick={rendernovo}>
-                        ADICIONAR HORARIO              
+                        Adicionar Horário              
                     </div>
                 </div>    
             </div>
             </div> 
             <div className='horarios'>
+                <div className='alinhado1'>
+                    <h2 className='horarios'>Horarios</h2>
+                    <div className='linha1'></div>
+                </div>
+                
+                
                 {render === false
                     ?<div  className='nela' >
                     {horario.map (item  =>
@@ -259,10 +281,10 @@ export default function Novohorario (){
                             <div  className='card1' >
                                 <p>{item.hora}</p>
                                 <div className='btneditarcard'>
-                                    <img src='/assets/images/seta esquerda-branco.svg' onClick={() => diminuirHorarios(item.id_horario, item.qtd)} alt='' />
-                                    <div>{item.qtd}</div>
-                                    <img src='/assets/images/seta direita-branco.svg' onClick={() => aumentarHorarios(item.id_horario, item.qtd)} alt='' /> &nbsp;
-                                    <img src='/assets/images/lixeira-branco.svg' onClick={() => deletar(item.id_horario)} alt=''/> &nbsp;                                              
+                                    <img src='/assets/images/seta esquerda.svg' onClick={() => diminuirHorarios(item.id_horario, item.qtd)} alt='' />
+                                    <div className='qtd'>{item.qtd}</div>
+                                    <img src='/assets/images/seta direita.svg' onClick={() => aumentarHorarios(item.id_horario, item.qtd)} alt='' /> &nbsp;
+                                    <img src='/assets/images/lixeira.svg' onClick={() => deletar(item.id_horario)} alt=''/> &nbsp;                                              
                                 </div>
                             </div>
                     )}
@@ -270,14 +292,13 @@ export default function Novohorario (){
             </div>
 
                 </div>
-                }
+
 
             </div>
             
-
-
-
-
+            
+            </div>
+            }
             {rendernovohorario === true &&
                     <div className='centralizar'>
                         <div className='opts-2'>
@@ -292,8 +313,6 @@ export default function Novohorario (){
                         </div>
                     </div> 
             }
-            
-            
+            </div>
         </div>
-    )
-}
+    )}
