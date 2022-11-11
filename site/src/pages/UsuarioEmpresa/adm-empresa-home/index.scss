@@ -36,6 +36,7 @@
         height: 100%;
         font-size: 16px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
     }
     .btn2{
         display: flex;
@@ -48,6 +49,9 @@
         font-size: 16px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
         margin-left: 5%;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: crosshair;
     }
 
     .seta{

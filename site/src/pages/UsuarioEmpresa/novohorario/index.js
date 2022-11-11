@@ -198,7 +198,7 @@ export default function Novohorario (){
                                 <p>{item.hora}</p>
                                 <div className='btneditarcard'>
                                     <img src='/assets/images/seta esquerda.svg' onClick={() => diminuirHorarios(item.id_horario, item.qtd)} alt='' />
-                                    <div>{item.qtd}</div>
+                                    <div className='qtd'>{item.qtd}</div>
                                     <img src='/assets/images/seta direita.svg' onClick={() => aumentarHorarios(item.id_horario, item.qtd)} alt='' /> &nbsp;
                                     <img src='/assets/images/lixeira.svg' onClick={() => deletar(item.id_horario)} alt=''/> &nbsp;                                              
                                 </div>

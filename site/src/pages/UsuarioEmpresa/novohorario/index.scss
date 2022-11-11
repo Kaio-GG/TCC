@@ -3,7 +3,7 @@
 
 
 .pg-novohorario{
-    background-color: #F4F4F4F4;
+    background-color: #fffffff4;
     font-family: 'KumbhSans-SemiBold';
     flex-direction: column;
     height:100%;
@@ -100,6 +100,9 @@
         justify-content: center;
         flex-direction: column;
     }
+    .qtd{
+        font-size: 1px;
+    }
 
 
     .card1{
@@ -117,7 +120,7 @@
         }
         justify-content: space-between;
         align-items: center;
-        background-color: #263238;
+        background-color: #112129;
         box-shadow:2px 2px 2px 2px rgba(0, 0, 0, 0.25);
         border-radius: 15px;
     }
@@ -128,7 +131,7 @@
         justify-content: space-evenly;
         height: 20vh;
         width: 90%;
-        background-color: #263238;
+        background-color: #112129;
         box-shadow:2px 2px 2px 2px rgba(0, 0, 0, 0.25);
         border-radius: 15px;
     }
