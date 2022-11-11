@@ -129,8 +129,11 @@ export default function UsuarioEmpresaPaginaAgendar() {
                     <div className='cards'>
                         
                         {horario.map ( (item, pos) =>  
-
+                        
                         <div className='cardmarcado'>
+                        {horario.qtd !== 0 && 
+                            
+                        <div className='ccardmarcado'>
 
                             {(marcado[0] === false || pos !== marcado[1]) &&                              
                                 <div className='a' onClick={() => marcarRender(true , pos , item.id_horario)} > 
@@ -166,6 +169,8 @@ export default function UsuarioEmpresaPaginaAgendar() {
                                             </p>  
                                     </div>
                                 </div>
+                            }
+                            </div>
                             }
                             </div>
                         )}    
