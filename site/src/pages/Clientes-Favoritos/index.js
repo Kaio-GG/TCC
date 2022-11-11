@@ -26,9 +26,10 @@ export default function Index(){
 
     function Buttons4(){
         setButton(4)
+        
         setTimeout(() => {
             setButton(1)
-        }, 500);
+        }, 5000);
     }
 
 
@@ -62,7 +63,6 @@ export default function Index(){
                     
                     {buttons === 2 &&
                         <div className='Div-2'>
-                                
                                 <h1> Minhas Consultas</h1>
                                 <hr/>
 
@@ -71,7 +71,6 @@ export default function Index(){
                 
                     {buttons === 3 &&
                         <div className='Div-2'>
-                                
                                 <h1> Histórico de Consultas</h1>
                                 <hr/>
 
@@ -80,7 +79,6 @@ export default function Index(){
 
                     {buttons === 4 &&
                         <div className='Div-2'>
-                                
                                 <h1> Recentes</h1>
                                 <hr/>
 

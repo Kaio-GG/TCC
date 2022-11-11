@@ -113,3 +113,8 @@ export async function horariosPorData (id , data){
     const resp = await api.get (`/empresa/carregarhorario/${id}/${data}`)
     return resp.data   
 } 
+
+export async function mostrarNome(id){
+    const resp = await api.get(`/usuario/mostrarEmpresa?id=${id}`)
+    return resp.data
+}
