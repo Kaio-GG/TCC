@@ -57,6 +57,7 @@ export async function AdicionarPublicacao (idEmpresa, nome, conteudo){
         nome:nome, 
         conteudo:conteudo
     });
+    console.log(resposta)
     return resposta.data;
 }
 
@@ -78,20 +79,20 @@ export async function listarPublicacao(id) {
     return resposta.data;
 }
 
-export async function salvarImagemPublic(id, imagem1, imagem2, imagem3, imagem4){
-    let form = FormData();
-    form.append('imagem', imagem1);
-    form.append('imagem', imagem2);
-    form.append('imagem', imagem3);
-    form.append('imagem', imagem4);
 
-    const resposta = await api.put('/empresa/publicacao/imagem' + id, form, {
+export async function CarregarImagempublic (id, imagem) {
+    const formData = new FormData();
+    formData.append("imagem", imagem);
+
+    const resposta = await api.put(`/empresa/imagem/publicacao/${id}`, formData, {
         headers: {
-            'content-Type': 'multipart/form-data'
-        }
-    } );
-    return resposta.data
+            "content-type": "multipart/form-data"
+        },
+    });
+
+    return resposta.status;
 }
+
 
 //TAGS ============================================================================================
 

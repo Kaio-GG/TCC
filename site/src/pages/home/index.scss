@@ -3,6 +3,11 @@
     flex-direction: column;
     height: 100vh;
 
+    a:link, a:visited {
+        text-decoration: none;
+        color: inherit;
+    }
+
     .home-f1{
         height: 100vh;
         display: flex;

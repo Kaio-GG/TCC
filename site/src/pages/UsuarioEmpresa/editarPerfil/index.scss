@@ -96,10 +96,11 @@
         animation-duration: 1s;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         width: 50%;
-        height: 32%;
+        height: 25%;
         font-size: 20px;
+        margin-top: -20%;
         font-family: 'KumbhSans-Regular';
-        background-color: #7c7c7c;;
+        background-color: #d3d1d1;;
     }
     .filial{
         background-color: #cecece;
@@ -145,12 +146,18 @@
 
     .inputnormal{
         width: 30%;
-        height: 45%;
+        height: 35%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid  rgb(105, 105, 105);
     }
 
     .inputnormalbaixo{
         width: 90%;
-        height: 35%;
+        height: 25%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid  rgb(105, 105, 105);
     }
 
     .btns{
@@ -159,14 +166,14 @@
         display: flex;
         margin-left: 50%;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
     }
     button{
         height: 120%;
         width: 30%;
         background-color: #263238;
         margin-top: 5%;
-        border-radius: 10px;
+        border-radius: 5px;
         border: none;
         color: white;
     }

@@ -55,15 +55,6 @@ export default function Index() {
         setAvaliacao(resposta)
     }
 
-    function mostrarImagem(imagem){
-        if(imagem == undefined){
-            return ""
-        }
-        else{
-            return URL.createObjectURL(imagem)
-        }
-    }
-
 
     useEffect(() => {
         listar()

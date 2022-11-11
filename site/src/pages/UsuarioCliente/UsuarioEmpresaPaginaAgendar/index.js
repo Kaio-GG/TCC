@@ -1,10 +1,11 @@
 import './index.scss'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import HeaderUsuario from "../../../components/header-usuario";
-import { agendarHorario ,horarios ,horariosPorData} from '../../../api/agendamentos.js';
+import { agendarHorario ,horarios ,horariosPorData, mostrarNome} from '../../../api/agendamentos.js';
 import storage from 'local-storage'
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify'
+import { buscarImagem } from '../../../api/paginaEmpresa.js';
 
 export default function UsuarioEmpresaPaginaAgendar() {
     const [nome , setnome ] =useState('')
@@ -19,6 +20,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
     const [idhorario , setidhorario] = useState(0)
     const [data ,setdata] = useState('')
     const [marcado , setmarcado] =useState([false , 0])
+    const [info, setInfo] = useState([])
     
     
     const {id} = useParams();
@@ -40,6 +42,11 @@ export default function UsuarioEmpresaPaginaAgendar() {
         sethorario(a)
     }
 
+    async function mostrar(){
+        const r = await mostrarNome(id)
+        setInfo(r)
+    }
+
     async function agendar (idhora , idusu ,nome , email ,cpf , tel ,sexo ,nasc ,desc){
         try {
             await agendarHorario(idhora ,idusu , nome ,email , cpf ,tel ,sexo ,nasc ,desc)
@@ -53,6 +60,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
         let a = hr.toISOString().substr(0,10)
         setdata(a)
     }
+
     function marcarRender (mar , pos ,id){
         setmarcado([mar , pos])
         setidhorario(id)
@@ -60,6 +68,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
 
     useEffect(() => {
         novahora()
+        mostrar(id)
     },[])
 
     useEffect (() => {
@@ -76,10 +85,12 @@ export default function UsuarioEmpresaPaginaAgendar() {
                 <div className='padding'>
 
                     <div className='inputs-card'>
+                        {info.map(item =>
                         <div className='ima'>
-                            <img alt='' />
-                            <p> NUTRIFIT </p>
+                            <img alt='' src={buscarImagem(item.logo)}/>
+                            <p> {item.nome} </p>
                         </div>
+                        )}
                         <div className='inputs1'>
                             <h3>Agendamento</h3>
                             <input placeholder='Nome completo' value={nome} onChange={e => setnome(e.target.value)}/>

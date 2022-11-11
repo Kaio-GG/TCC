@@ -6,7 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
@@ -17,6 +17,8 @@ export default function PaginaEmpresa() {
     const [publicacao, setPublicacao] = useState([]);
     const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo');
     const [corpoPublicacao, setCorpoPublicacao] = useState('Digite algo');
+    const [imgpublic, setImgPublic] = useState('');
+    const [publi, setPubli] = useState(1);
 
     const [vlpublic, setVlPublic] = useState(100);
 
@@ -25,11 +27,6 @@ export default function PaginaEmpresa() {
 
     const [altTituloPublicacao, setAltTitutoPublicao] = useState('');
     const [altcorpoPublicacao, setAltCorpoPublicacao] = useState('');
-
-    const [publicimg1,setPublicimg1] = useState('')
-    const [publicimg2,setPublicimg2] = useState('')
-    const [publicimg3,setPublicimg3] = useState('')
-    const [publicimg4,setPublicimg4] = useState('')
 
     const [idTag, setIdTag] = useState();
     const [Tags, setTags] = useState([]);
@@ -102,12 +99,18 @@ export default function PaginaEmpresa() {
 
     //Publições ==================================================================
 
+    function gerarIdEmpresaPublicacao(){
+        const a = publicacao.length;
+        setPubli(a)
+    }
+
     async function novaPublicacao() {
         try{
-            const r = await AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
-            await salvarImagemPublic(r.idPublicacao, publicimg1, publicimg2, publicimg3, publicimg4);
+            const a = await AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
+            console.log(a)
             setAltTitutoPublicao(tituloPublicacao);
             setAltCorpoPublicacao(corpoPublicacao);
+
             carregarPublicaoes();
 
             alert('Publicado')
@@ -138,12 +141,10 @@ export default function PaginaEmpresa() {
                 onClick: async() => {
                     await DeletarPublicacao(Empresa, Publicacao);
                     carregarPublicaoes();
-                    alert( "Publicação removida com sucesso!")
                 }
               },
               {
                 label: 'Não',
-                onClick: () => alert('Publicação não removida')
               }
             ]
           });
@@ -189,12 +190,10 @@ export default function PaginaEmpresa() {
                     onClick: async() => {
                         MudarPublic(altTituloPublicacao, altcorpoPublicacao, idEmpresa, idPublicacao);
                         carregarPublicaoes();
-                        alert( "Publicação Alterada com sucesso!")
                     }
                     },
                     {
-                    label: 'Não',
-                    onClick: () => alert('Publicação não Alterada')
+                    label: 'Não'
                     }
                 ]
                 });
@@ -224,7 +223,7 @@ export default function PaginaEmpresa() {
         }
     }
 
-    //Imagens da empresa  =====================================================
+    //Imagens da empresa  ========================================================
 
 
     function receberImagem() {
@@ -241,16 +240,19 @@ export default function PaginaEmpresa() {
         
     }
 
-    function escolherImagem(idImagem) {
-        document.getElementById(idImagem).click();
+   //Imagens da empresa  ==========================================================
+
+
+    function escolherImagem() {
+        document.getElementById('imagem1').click();
     }
 
-    function exibirImagem(imagem) {
-        if (typeof(imagem) == 'object'){
-            return URL.createObjectURL(imagem)
+    function exibirImagem(imgpublic) {
+        if (typeof(imgpublic) == 'object'){
+            return URL.createObjectURL(imgpublic)
         }
         else {
-            return buscarImagem(imagem)
+            return buscarImagem(imgpublic)
         }
     }
 
@@ -383,16 +385,15 @@ export default function PaginaEmpresa() {
                                 <div>
                                     <img src='/assets/images/Salvar.svg' alt='add' onClick={ConfirNovapubli}/>
                                 </div>
-                                <div className='addimg'>
-                                    <img src={exibirImagem(publicimg1)} alt='add' onClick={() => escolherImagem('imagem1')}/>
-                                    <img src={exibirImagem(publicimg2)} alt='add' onClick={() => escolherImagem('imagem2')}/>
-                                    <img src={exibirImagem(publicimg3)} alt='add' onClick={() => escolherImagem('imagem3')}/>
-                                    <img src={exibirImagem(publicimg4)} alt='add' onClick={() => escolherImagem('imagem4')}/>
+                                <div className='addimg' onClick={escolherImagem}>
+                                    {!imgpublic &&
+                                        <img src='/assets/images/addimg.png' alt='Sem imagem' />
+                                    }
+                                    {imgpublic &&
+                                        <img src={exibirImagem(imgpublic)} alt='' className='imgpublic' />
+                                    }
 
-                                    <input type="file" id="imagem1" onChange={e => setPublicimg1(e.target.files[0])} />
-                                    <input type="file" id="imagem2" onChange={e => setPublicimg2(e.target.files[0])} />
-                                    <input type="file" id="imagem3" onChange={e => setPublicimg3(e.target.files[0])} />
-                                    <input type="file" id="imagem4" onChange={e => setPublicimg4(e.target.files[0])} />
+                                    <input type="file" id="imagem1" onChange={e => setImgPublic(e.target.files[0])} />
                                 </div>
                             </div>
                             <div className='agrupamento-inputs'>

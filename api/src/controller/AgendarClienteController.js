@@ -1,4 +1,4 @@
-import AgendarHorario from "../repository/AgendarHorarioRepository.js";
+import  {AgendarHorario, carregarNome } from "../repository/AgendarHorarioRepository.js";
 import { Router } from "express";
 const server = Router();
 
@@ -11,6 +11,22 @@ server.post ('/usuario/agendarhorario' , async (req , resp ) => {
     } catch (err) {
         resp.status(401).send({
            erro : err.message
+        })
+    }
+})
+
+server.get('/usuario/mostrarEmpresa', async (req, resp) => {
+    try{
+        const { id } = req.query;
+
+        const r = await carregarNome(id)
+
+        console.log(r)
+
+        resp.send(r)
+    }catch(err){
+        resp.status(404).send({
+            erro:err.message
         })
     }
 })

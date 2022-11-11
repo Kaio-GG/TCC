@@ -1,4 +1,4 @@
-import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, CarregarImagensPublic } from "../repository/PaginaEmpresaRepository.js";
+import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, ImagemPublicacao} from "../repository/PaginaEmpresaRepository.js";
 
 import multer from 'multer';
 import { Router } from "express";
@@ -148,22 +148,22 @@ server.get('/empresa/publicacao/:id', async(req, resp) => {
     }
 })
 
-server.put('/empresa/publicacao/imagem/:id', uploadpubli.array('imagens'), async(req, resp) => {
+server.put('/empresa/imagem/publicacao/:id' ,uploadpubli.single('imagem'), async(req, resp) => {
     try{
-        const id = req.params.id;
-        const imagens = req.files;
+        if(!req.file)
+            throw new Error('A imagem não pode ser salva.');
 
-        for (const imagem of imagens){
-            await CarregarImagensPublic(id, imagem.path);
-        }
+        const { id } = req.params;
+        const imagem = req.file.path;
 
-        resp.send({
-            id : idPublicacao
-        })
+        const resposta = await ImagemPublicacao(imagem, id);
+        if(resposta === 0)
+            throw new Error('A imagem não pode ser salva.');
 
-    } catch(err){
-        resp.status(401).send({
-            erro: err.message
+        resp.status(204).send();
+    }  catch (err) {
+        resp.status(400).send({
+            erro:err.message
         })
     }
 })
