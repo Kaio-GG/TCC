@@ -116,23 +116,13 @@ export async function buscarTagPorId(idTag){
     return linhas[0];
 }
 
-export async function CarregarImagensPublic(idpublicacao, imagemPath) {
-    const comando = 
-    `insert into TB_PAGINA_EMPRESA_PUBLICACAO_IMG(ID_PAGINA_EMPRESA_PUBLICACAO,IMG_IMAGEM_PUBLICACAO)
-          values (?,?)`;
-
-    const [linhas] = await con.query(comando, [idpublicacao, imagemPath])
-}
-
-export async function ImagemPublicacao(imagem, idEmpresa) {
+export async function ImagemPublicacao(imagem, id) {
     const comando =
-    `update TB_PAGINA_EMPRESA_PUBLICACAO
-        set IMG_PUBLICACAO               = ?
-      where ID_PAGINA_EMPRESA_PUBLICACAO = ?`
+    `update tb_pagina_empresa_publicacao
+        set img_publicacao = ?
+      where id_pagina_empresa_publicacao = ?`;
 
-    const [linhas] = await con.query(comando, [imagem, idEmpresa]);
-
-
+    const [linhas] = await con.query(comando, [imagem, id]);
     return linhas.affectedRows;
 }
 

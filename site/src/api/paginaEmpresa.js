@@ -79,29 +79,12 @@ export async function listarPublicacao(id) {
     return resposta.data;
 }
 
-export async function salvarImagemPublic(id, imagem1, imagem2, imagem3, imagem4){
-    let form = FormData();
-    form.append('imagens', imagem1);
-    form.append('imagens', imagem2);
-    form.append('imagens', imagem3);
-    form.append('imagens', imagem4);
-
-    console.log(form)
-
-    const resposta = await api.put('/publicacao/imagem' + id, form, {
-        headers: {
-            'content-Type': 'multipart/form-data'
-        }
-    } );
-    return resposta.data
-}
-
 
 export async function CarregarImagempublic (id, imagem) {
     const formData = new FormData();
     formData.append("imagem", imagem);
 
-    const resposta = await api.put(`/empresa/publicacao/imagem/${id}`, formData, {
+    const resposta = await api.put(`/empresa/imagem/publicacao/${id}`, formData, {
         headers: {
             "content-type": "multipart/form-data"
         },
@@ -109,6 +92,7 @@ export async function CarregarImagempublic (id, imagem) {
 
     return resposta.status;
 }
+
 
 //TAGS ============================================================================================
 
