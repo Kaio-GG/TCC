@@ -103,7 +103,6 @@ server.delete ('/empresa/deletarhorario/:id' , async (req , resp ) => {
         const info = req.params
         
         const dh = await ApagarHorario (info)       
-        console.log(dh)
         if(dh != 1) throw new Error ('agendamento nao excluido')
         resp.status(202).send('agendamento excluido') 
 

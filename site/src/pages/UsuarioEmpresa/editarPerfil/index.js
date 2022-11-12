@@ -3,6 +3,7 @@ import HederEmpresa from '../../../components/header-adm-empresa';
 import {  deletarFilial ,editarEmail ,editarNomeRepresentante ,editarNome , editarSed, editarTipo , CarregarInfoEmpresa, novaFilial ,buscarFilial } from '../../../api/empresa.js';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 export default function EdiatrPerfilEmpresa (){
@@ -63,11 +64,13 @@ export default function EdiatrPerfilEmpresa (){
 
     async function filiais (){
         try {
+            if(!pais || !estado || !cidade || !endereco || !cep)
+                throw new Error('Todos os campos são obrigatorios')
             await novaFilial(id, pais ,estado , cidade ,endereco ,cep)
             carregarFilial()
             rendervolta()
         } catch (err) {
-            
+            toast.error(err.message)
         }
     }
 
@@ -107,7 +110,7 @@ export default function EdiatrPerfilEmpresa (){
 
                 {render === true
                 ?
-                <div className='desfoque'>
+                <div className='desfoque' onClick={() => rendervolta()}>
                 <div className='card'>
                     <h2>EDITAR INFORMAÇÕES</h2>                    
                         <div className='endireitar'>
@@ -231,7 +234,7 @@ export default function EdiatrPerfilEmpresa (){
                                     <input placeholder='CEP' className='inputnormalbaixo' value={cep} onChange={e => setcep(e.target.value)}/>
                                     <input placeholder='endereco' className='inputnormalbaixo' value={endereco} onChange={e => setendereco(e.target.value)}/>
                                 <div className='btns'>
-                                    <button onClick={filiais} >PRONTO</button>
+                                    <button className='btn-pronto' onClick={filiais} >PRONTO</button>
                                 </div>
                             </div>
 

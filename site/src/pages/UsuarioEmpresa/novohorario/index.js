@@ -193,7 +193,9 @@ export default function Novohorario (){
                     <div className='linha1'></div>
                 </div>
                 
-                
+                {horario.length === 0  &&
+                    <img className='not' src='/assets/images/notFound.svg' alt=''/>
+                }       
                 {render === false
                     ?<div  className='nela' >
                     {horario.map (item  =>

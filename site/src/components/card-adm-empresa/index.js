@@ -34,6 +34,7 @@ export default function Cardadm (props){
            
             <div className='nome1'> {props.item.situacao} </div>    
             <div className='info' onClick={() => info(props.item.id)}> INFORMAÇÕES</div>
+            
         </div>
     )
 }

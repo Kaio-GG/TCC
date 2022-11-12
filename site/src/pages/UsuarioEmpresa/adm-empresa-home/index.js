@@ -104,7 +104,12 @@ export default function Homeempresa() {
                             <img onClick={ ()=> porSituacao(id , situacao) }  className='lupa' src='/assets/images/lupa-branco.svg' alt='' /> 
                 </div>
  
-            </div>              
+            </div>
+            
+                {agendamento.length === 0  &&
+                    <img className='not' src='/assets/images/notFound.svg' alt=''/>
+                }
+                            
                 {agendamento.map(item => 
                     <Cardadm item={item} onClick={() => listar(id)} />    
                 )}

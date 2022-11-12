@@ -39,6 +39,14 @@
         background-color: #263238;
         border-radius: 5px;
     }
+    .info:hover{
+        background-color: rgb(76, 5, 117);
+        transition: all 0,1 ease-in;
+        transform: scale(1.05);
+        transition: all 0.2s;
+        color: #fff;
+    }
+
     .nome-nome{
         display: flex;
         align-items: center;

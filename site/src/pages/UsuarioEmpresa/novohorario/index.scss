@@ -155,6 +155,18 @@
         font-weight: 600;
         border-radius: 5px;
     }
+    .not{
+        width: 100%;
+
+        height: 30em;
+    }
+    .card-novo:hover{
+        background-color: rgb(76, 5, 117);
+        transition: all 0,1 ease-in;
+        transition: all 0.2s;
+        color: #fff;
+        transform: scale(1.05);
+    }
     .org-direita{
         display: flex;
         align-items: center;
@@ -173,7 +185,7 @@
         flex-direction: column;
         margin-left: 3%;
         margin-top: 1%;
-        width: 12%;
+        width: 18%;
     }
     .alinhado1{
         display: flex;

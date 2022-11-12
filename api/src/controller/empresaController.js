@@ -148,7 +148,6 @@ server.delete ('/empresa/deletarfilial/:id' , async (req , resp ) => {
         const info = req.params
         
         const dh = await apagarFilial (info)       
-        console.log(dh)
         if(dh != 1) throw new Error (' nao excluido')
         resp.status(202).send(' excluido') 
 
