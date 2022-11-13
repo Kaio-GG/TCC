@@ -1,6 +1,6 @@
 .Main-Footer{    
-height: 22vh;
-width: 100vw;
+height: 15%;
+width: 100%;
 background-color: #263238;
 display: flex;
 flex-direction: row;
@@ -11,7 +11,7 @@ justify-content: space-around;
         display: flex;
         flex-direction: column;
         height: 15vh;
-        width:18vw ;
+        width:18% ;
         justify-content: space-evenly;
     }
 
@@ -40,7 +40,7 @@ justify-content: space-around;
 
         .Img-User{
             background-image: url('../../../public/assets/images/User-Footer.svg');
-            height: 10px;
+            height: 20px;
             width:30.12px ;
             background-repeat: no-repeat;
         }
@@ -94,8 +94,9 @@ justify-content: space-around;
     .Group-Images{
         display: flex;
         flex-direction: row;
-        width: 12em;
+        width: 13em;
         justify-content: space-around;
+        height: 3em;
     }
    
     .IMG-Instagram{

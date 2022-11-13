@@ -85,7 +85,8 @@ export async function ListarPublicacao(id) {
         `SELECT	NM_TITULO 	 			        Titulo, 
                 DS_CAIXA_TEXTO    		        CaixaTexto,
                 ID_PAGINA_EMPRESA               Empresa,
-                ID_PAGINA_EMPRESA_PUBLICACAO    Publicacao
+                ID_PAGINA_EMPRESA_PUBLICACAO    Publicacao,
+                IMG_PUBLICACAO                  imagem
           from TB_PAGINA_EMPRESA_PUBLICACAO 
          where ID_PAGINA_EMPRESA = ?`;
     
@@ -126,4 +127,44 @@ export async function ImagemPublicacao(imagem, id) {
     return linhas.affectedRows;
 }
 
+export async function gerararIdPublicacao(idEmpresa){
+    const comando = 
+    `Select Max( id_pagina_empresa_publicacao + 1 )  id
+       From TB_pagina_empresa_publicacao
+      where id_pagina_empresa = ?`
+
+      const [linhas] = await con.query(comando, [idEmpresa]);
+      return linhas[0]
+}
+
+export async function verificaçâo (verificaçâo){
+    const comando = 
+    `insert into TB_VERIFICACOES(ID_VERIFICACOES, ID_PAGINA_EMPRESA, DS_VERIFICACOES)
+          values (?, ?, ?);`;
+
+    const linhas = await con.query(comando, [verificaçâo.idVerificacao, verificaçâo.Pagina, verificaçâo.Link]);
+    return linhas;
+}
+
+export async function listarVerificacoes(idPagina){
+    const comando = 
+    `select ID_VERIFICACOES     id,
+            DS_VERIFICACOES     nomeVerificacao
+       from TB_VERIFICACOES
+      where ID_PAGINA_EMPRESA   = ?`;
+
+      const  linhas = await con.query(comando, [idPagina]);
+      return linhas[0];
+}
+
+export async function alterarValidacao(link, idPagina, idVerificacao){
+    const comando = 
+    `update tb_verificacoes
+        set ds_verificacoes   = ?
+      where id_pagina_empresa = ?
+        and id_verificacoes   = ?`
+
+    const linhas = await con.query(comando, [link, idPagina, idVerificacao ]);
+    return linhas.affectedRows;
+}
 

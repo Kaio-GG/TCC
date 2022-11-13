@@ -77,6 +77,10 @@ update TB_PAGINA_EMPRESA
 insert into TB_PAGINA_EMPRESA_PUBLICACAO(ID_PAGINA_EMPRESA,NM_TITULO,DS_CAIXA_TEXTO)
 	 values (2,'Estamos fechados','Vamos falir');
      
+Select Max( id_pagina_empresa_publicacao + 1 )  id
+  From TB_pagina_empresa_publicacao
+ where id_pagina_empresa = 1;
+     
 insert into TB_PAGINA_EMPRESA_PUBLICACAO_IMG(ID_PAGINA_EMPRESA_PUBLICACAO,IMG_IMAGEM_PUBLICACAO)
      values (2,'linkdaimg3.com');
      

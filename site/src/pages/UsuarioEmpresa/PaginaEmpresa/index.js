@@ -6,7 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic, gerarIdPublicacaoEmpresa, Verificacoes } from '../../../api/paginaEmpresa';
 
 
 export default function PaginaEmpresa() {
@@ -27,6 +27,13 @@ export default function PaginaEmpresa() {
 
     const [altTituloPublicacao, setAltTitutoPublicao] = useState('');
     const [altcorpoPublicacao, setAltCorpoPublicacao] = useState('');
+
+    const [face, setFace] = useState('Facebook/');
+    const [isnta, setInsta] = useState('Instagram/');
+    const [youtube, setYoutube] = useState('Youtube.com/');
+    const [email, setEmail] = useState('mail.google.com//');
+    const [whatsapp , setWhatsApp] = useState('web.whatsapp.com/');
+
 
     const [idTag, setIdTag] = useState();
     const [Tags, setTags] = useState([]);
@@ -99,17 +106,27 @@ export default function PaginaEmpresa() {
 
     //Publições ==================================================================
 
-    function gerarIdEmpresaPublicacao(){
-        const a = publicacao.length;
-        setPubli(a)
-    }
-
     async function novaPublicacao() {
         try{
-            const a = await AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
-            console.log(a)
+            if(imgpublic === ''){
+                await AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);  
+            }
+            else{
+                const a = await gerarIdPublicacaoEmpresa(idEmpresa);
+                await AdicionarPublicacao(idEmpresa, tituloPublicacao, corpoPublicacao);
+
+                if(a.id === null){
+                    alert('funcionou')
+                    await CarregarImagempublic(1, imgpublic);
+                }
+                else{
+                    await CarregarImagempublic(a.id, imgpublic); 
+                }
+            }
+
             setAltTitutoPublicao(tituloPublicacao);
             setAltCorpoPublicacao(corpoPublicacao);
+            setImgPublic('')
 
             carregarPublicaoes();
 
@@ -207,6 +224,54 @@ export default function PaginaEmpresa() {
         await AlterarPublicacao(nome, conteudo, idEmpresa, idPublicacao)
     }
 
+    //Validações  =====================================================================
+
+    async function AdicionarValidações(id, Link){
+        await Verificacoes(idEmpresa, id, Link)
+    }
+
+    useEffect(face => {
+        if(face !== 'Facebook/')
+            AdicionarValidações(1, face);
+        else{
+
+        }
+            
+    }, )
+
+    useEffect(isnta => {
+        if(isnta !== 'Instagram/')
+            AdicionarValidações(2, isnta);
+        else{
+            
+        }
+    }, )
+
+    useEffect(youtube => {
+        if(youtube !== 'Youtube.com/')
+            AdicionarValidações(3, youtube);
+        else{
+            
+        }
+    }, )
+
+    useEffect(email => {
+        if(email !== 'mail.google.com//')
+            AdicionarValidações(4, email);
+        else{
+            
+        }
+    }, )
+
+    useEffect(whatsapp => {
+        if(whatsapp !== 'web.whatsapp.com/')
+            AdicionarValidações(5, whatsapp);
+        else{
+            
+        }
+    }, )
+    
+
     //TAG'S =====================================================================
 
     async function listarTags(){
@@ -240,20 +305,28 @@ export default function PaginaEmpresa() {
         
     }
 
-   //Imagens da empresa  ==========================================================
+   //Imagens da Publicação  ==========================================================
 
 
     function escolherImagem() {
         document.getElementById('imagem1').click();
     }
 
-    function exibirImagem(imgpublic) {
+    function exibirImagem() {
         if (typeof(imgpublic) == 'object'){
+
             return URL.createObjectURL(imgpublic)
+
         }
         else {
             return buscarImagem(imgpublic)
         }
+    }
+
+    function exibirImagem1(pos) {
+        console.log(buscarImagem(publicacao[pos].imagem))
+        return buscarImagem(publicacao[pos].imagem)
+
     }
 
 
@@ -340,6 +413,7 @@ export default function PaginaEmpresa() {
                                 {vlpublic===index && <div className='agrupamento-inputs'>
                                     <input value={altTituloPublicacao} type='text' onChange={e => setAltTitutoPublicao(e.target.value, index)}/>
                                     <input value={altcorpoPublicacao} type='text' onChange={e => setAltCorpoPublicacao(e.target.value, index)}/>
+                                    {item.imagem !== null && <img src={buscarImagem(publicacao[index].imagem)} alt='' className='imgpublicc' />}
                                     <div>
                                     <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
                                     <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={() =>SalvarAlterarPublic(item.Empresa, item.Publicacao, index)}/>
@@ -348,8 +422,9 @@ export default function PaginaEmpresa() {
                                 </div>}
 
                                 {vlpublic!==index && vlpublic!==100  && <div className='agrupamento-inputs'>
-                                <h1>{item.Titulo}</h1>
+                                    <h1>{item.Titulo}</h1>
                                     <p>{item.CaixaTexto}</p>
+                                    {item.imagem !== null && <img src={exibirImagem1(index)} alt='' className='imgpublicc' />}
                                     <div>
                                     <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
                                     <img src='/assets/images/editar.svg' alt='editarperfil' onClick={() => AlterarPublic(index)}/>
@@ -359,6 +434,7 @@ export default function PaginaEmpresa() {
                                 {vlpublic===100 && <div className='agrupamento-inputs'>
                                     <h1>{item.Titulo}</h1>
                                     <p>{item.CaixaTexto}</p>
+                                    {item.imagem !== null && <img src={exibirImagem1(index)} alt='' className='imgpublicc' />}
                                     <div>
                                     <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
                                     <img src='/assets/images/editar.svg' alt='editarperfil' onClick={() => AlterarPublic(index)}/>
@@ -408,9 +484,11 @@ export default function PaginaEmpresa() {
 
                         <div className="CardCanto">
                             <h3> verificaçâo</h3>
-                            <p> facebook </p>
-                            <p> email </p>
-                            <p> Youtube </p>
+                            <p> facebook </p><input type='text'  value={face} onChange={e => setFace(e.target.value)}/>
+                            <p> instagram </p><input type='text' value={isnta} onChange={e => setInsta(e.target.value)}/>
+                            <p> email </p><input type='text'     value={email} onChange={e => setEmail(e.target.value)}/>
+                            <p> Youtube </p><input type='text'   value={youtube} onChange={e => setYoutube(e.target.value)}/>
+                            <p> whatsApp </p><input type='text'  value={whatsapp} onChange={e => setWhatsApp(e.target.value)}/>
                         </div>
 
                         <div className="CardCanto">

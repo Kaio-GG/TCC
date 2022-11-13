@@ -1,4 +1,4 @@
-import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, ImagemPublicacao} from "../repository/PaginaEmpresaRepository.js";
+import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, ImagemPublicacao, gerararIdPublicacao, verificaçâo, listarVerificacoes, alterarValidacao} from "../repository/PaginaEmpresaRepository.js";
 
 import multer from 'multer';
 import { Router } from "express";
@@ -133,6 +133,22 @@ server.delete('/empresa/publicacao/:idEmpresa/:idPublicacao', async(req, resp) =
     }
 })
 
+server.get('/gerarIdPublicacao/:idEmpresa', async(req,resp) => {
+    try{
+        const idEmpresa = Number(req.params.idEmpresa);
+
+        const gerarid = await gerararIdPublicacao(idEmpresa);
+
+        resp.send(gerarid) 
+
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
+
 server.get('/empresa/publicacao/:id', async(req, resp) => {
     try{
         const id = Number(req.params.id);
@@ -197,3 +213,46 @@ server.get('/tag/:id', async(req, resp) => {
 
 export default server;
 
+server.post('/empresa/verificacao', async (req, resp) => {
+    try{
+        const conteudo = req.body;
+
+        const adicionarLink = await verificaçâo(conteudo);
+
+        resp.send(adicionarLink)
+    } catch (err) {
+        resp.status(401).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/empresa/listar-verificacao/:idPagina', async(req, resp) => {
+    try{
+        const idPagina = Number(req.params.idPagina);
+
+        const lista = await listarVerificacoes(idPagina);
+
+        resp.send(lista);
+    } catch (err) {
+        resp.status(401).send({
+            erro: err.message
+        })
+    }
+})
+
+server.put('/empresa/verificacao/:idPagina/:idValidacoes', async(req, resp) =>  {
+    try{
+        const idPagina = Number(req.params.idPagina);
+        const idValidacoes = Number(req.params.idValidacoes);
+        const link = req.body;
+
+        const alterar =  await alterarValidacao(idPagina, idValidacoes, link);
+
+        resp.send(alterar);
+    } catch (err){
+        resp.status(401).send({
+            erro: err.message
+        })
+    }
+})

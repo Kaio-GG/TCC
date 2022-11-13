@@ -57,7 +57,7 @@ export async function AdicionarPublicacao (idEmpresa, nome, conteudo){
         nome:nome, 
         conteudo:conteudo
     });
-    console.log(resposta)
+
     return resposta.data;
 }
 
@@ -74,11 +74,15 @@ export async function DeletarPublicacao (idEmpresa, idPublicacao){
     return resposta.data;
 }
 
+export async function gerarIdPublicacaoEmpresa (idEmpresa){
+    const resposta = await api.get(`/gerarIdPublicacao/${idEmpresa}`);
+    return resposta.data
+}
+
 export async function listarPublicacao(id) {
     const resposta = await api.get(`/empresa/publicacao/${id}`);
     return resposta.data;
 }
-
 
 export async function CarregarImagempublic (id, imagem) {
     const formData = new FormData();
@@ -107,5 +111,22 @@ export async function ListarTags () {
 export async function listarReview(id){
     const r = await api.get(`/empresa/review/${id}`)
     return r.data
+}
+
+//Verifcações  ============================================================================================
+
+export async function  Verificacoes(idVerificacoes, idPagina, link){
+    const resposta = await api.post('http://localhost:5000/empresa/verificacao', {
+        idVerificacoes:idVerificacoes,
+        idPagina:idPagina,
+        link:link
+    });
+
+    return resposta.data;
+}
+
+export async function listarVerificações(idPagina){
+    const resposta = await api.get(`http://localhost:5000/empresa/listar-verificacao/${idPagina}`)
+    return resposta.data;
 }
 
