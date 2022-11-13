@@ -22,6 +22,13 @@ export async function CarregarHorariosPorSituscao (idEmpresa , situ ) {
     return resp.data;
 } 
 
+export async function CarregarConsultasCliente (id ) {
+    const resp = await api.get (`/usuario/carregarconsultas/${id}`);
+    return resp.data;
+} 
+
+
+
 export async function CarregarInfo (id) {
     const resp = await api.get (`/empresa/carregarinfo/${id}`);
     return resp.data;
@@ -49,6 +56,12 @@ export async function buscarLocal (id) {
 
 export async function agendamentosData (id , data ){
     const resp = await api.get (`/empresa/carregarhorariopordata/${id}/${data}`)
+    return resp.data
+} 
+
+
+export async function agendamentosLocal (id , local){
+    const resp = await api.get (`/empresa/carregarhorarioporlocal/${id}/${local}`)
     return resp.data
 } 
 

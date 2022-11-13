@@ -91,6 +91,8 @@ export default function UsuarioEmpresaPaginaAgendar() {
                             <p> {item.nome} </p>
                         </div>
                         )}
+ 
+ 
                         <div className='inputs1'>
                             <h3>Agendamento</h3>
                             <input placeholder='Nome completo' value={nome} onChange={e => setnome(e.target.value)}/>
@@ -131,12 +133,23 @@ export default function UsuarioEmpresaPaginaAgendar() {
                 <HeaderUsuario />
                 <div className='pa'>
 
-                    <h3> Horarios </h3>
+                    <div className='pesq'>
+                        <h3>Filtrar Horarios </h3>
 
-                    <div className='selects'>
+                        <div className='selects'>
                            <input className='um'  type='date' value={data} onChange={e => setdata(e.target.value)} /> 
+                        </div>
+
+                    <div className='botao'>
+                            <button onClick={() => agendar(idhorario , idcliente ,nome ,email ,cpf ,telefone ,sexo ,dtnasc ,desc)}> solicitar </button>  
+                            <button > voltar </button>  
+                    
                     </div>
 
+                    </div>
+
+                    <div className='tudo'>
+                        <h2>Escolha um Horario</h2>
                     <div className='cards'>
                         
                         {horario.map ( (item, pos) =>  
@@ -186,10 +199,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
                             </div>
                         )}    
                     </div>
-                    <div className='botao'>
-                        <button onClick={() => agendar(idhorario , idcliente ,nome ,email ,cpf ,telefone ,sexo ,dtnasc ,desc)}> solicitar </button>  
-                    </div>
-                
+                    </div>                
                 </div>
             </div>
         </div>}

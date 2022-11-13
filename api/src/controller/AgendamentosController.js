@@ -1,4 +1,4 @@
-import { CarregarHorarioEmpresaPorData ,NovoHorario , EditarHorario , CarregarHorariosEmpresa , ApagarHorario,buscarAgendamentosPorSituacao , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento, buscarinformacoes } from "../repository/agendamentosRepository.js";
+import { CarregarHorarioEmpresaPorData ,NovoHorario , EditarHorario , CarregarHorariosEmpresa , ApagarHorario,buscarAgendamentosPorSituacao , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento, buscarinformacoes, buscarAgendamentosPorLocal, buscarAgendamentosCliente } from "../repository/agendamentosRepository.js";
 import { AgendarHorario } from "../repository/AgendarHorarioRepository.js";
 import { Router } from "express";
 const server = Router();
@@ -159,10 +159,27 @@ server.get ('/empresa/carregarhorarios/:id', async (req ,resp) => {
     }
 }  )
 
+
+
+
 server.get ('/empresa/carregarhorario/situacao/:id/:situ', async (req ,resp) => {
     try {
         const info = req.params
         const horarios = await buscarAgendamentosPorSituacao(info)
+        resp.send(horarios)
+    } catch (err) {
+        resp.status(401).send({
+            erro:err.message
+        })
+    }
+}  )
+
+
+server.get ('/usuario/carregarconsultas/:id', async (req ,resp) => {
+    try {
+        const info = req.params
+        const horarios = await buscarAgendamentosCliente(info)
+        
         resp.send(horarios)
     } catch (err) {
         resp.status(401).send({
@@ -209,7 +226,25 @@ server.get ('/empresa/carregarhorariopordata/:id/:data' , async (req , resp) =>{
             erro:err.message
         })
     }
-    })
+})
+
+server.get ('/empresa/carregarhorarioporlocal/:id/:local' , async (req , resp) =>{
+    try {
+        const info = req.params
+        const agendamentos = await buscarAgendamentosPorLocal (info)
+        resp.send(agendamentos)
+    
+    
+    } catch (err) {
+        resp.status(401).send({
+            erro:err.message
+        })
+    }
+})
+
+
+
+
 
 server.get ('/empresa/carregarinfo/:id' ,async (req ,resp) =>{
     try {

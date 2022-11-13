@@ -92,6 +92,9 @@ export async function CarregarHorarioEmpresa (info){
 }
 
 
+
+
+
 export async function CarregarHorarioEmpresaPorData (info){
     const comando = `
     select  id_horario,
@@ -153,6 +156,32 @@ export async function buscarAgendamentos (info){
 
 }
 
+
+
+export async function buscarAgendamentosCliente (info){
+    const comando = `
+    select  
+            TB_AGENDAMENTO.ID_AGENDAMENTO   'id',
+
+	        TB_AGENDAMENTO.NM_PESSOA        'nome' ,
+	        TB_HORARIO.DS_LOCAL   	        'local',							
+	        TB_HORARIO.DS_HORA    	        'hora' ,
+            TB_HORARIO.DT_AGENDAMENTO       'data' ,
+            TB_AGENDAMENTO.DS_SITUACAO      'situacao'
+    FROM 
+	        TB_HORARIO
+    INNER JOIN
+	        TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+    WHERE
+            TB_AGENDAMENTO.ID_USUARIO_CLIENTE = ? 
+    order by TB_HORARIO.DT_AGENDAMENTO
+    `
+    const [linhas] = await con.query (comando, [info.id])
+    return linhas
+
+}
+
+
 export async function buscarAgendamentosPorData (info){
     const comando = `
     select 	TB_HORARIO.ID_HORARIO        ,
@@ -173,6 +202,31 @@ export async function buscarAgendamentosPorData (info){
     const [linhas] = await con.query (comando, [info.id , info.data])
     return linhas        
 }
+
+
+export async function buscarAgendamentosPorLocal (info){
+    const comando = `
+    select 	TB_HORARIO.ID_HORARIO        ,
+            TB_AGENDAMENTO.ID_AGENDAMENTO,
+            TB_HORARIO.ID_USUARIO_EMPRESA   'id'   ,	
+            TB_AGENDAMENTO.NM_PESSOA  	     'nome' ,
+            TB_HORARIO.DS_LOCAL   	         'local',							
+            TB_HORARIO.DS_HORA    	        'hora' ,
+            TB_HORARIO.DT_AGENDAMENTO       'data' ,
+            TB_AGENDAMENTO.DS_SITUACAO      'situacao'
+      FROM 
+            TB_HORARIO
+    INNER JOIN
+            TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+         WHERE
+            TB_HORARIO.ID_USUARIO_EMPRESA = ? AND
+            TB_HORARIO.DS_LOCAL  =  ? `
+    const [linhas] = await con.query (comando, [info.id , info.local])
+    return linhas        
+}
+
+
+
 
 export async function buscarAgendamentosPorSituacao (info){
     const comando = `

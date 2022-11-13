@@ -87,6 +87,10 @@
     font-size: 100%;
     font-family: 'KumbhSans-Regular';
     font-weight: 500;
+    padding-left: 10px;
+}
+img{
+    cursor: pointer;
 }
 
 select option{
@@ -103,6 +107,11 @@ button{
     color: #fff;
 }
 .lupa{
+    width: 20%;
+    height: 90%;
+    color: #fff;
+}
+.lupa2{
     width: 20%;
     height: 50%;
     color: #fff;

@@ -168,28 +168,37 @@
         font-family: "Kumbh Sans";
 
         h3{
-            border-bottom: black 3px solid;
-            margin-bottom: 1.5em;
-            width: 20%;
-
+            border-bottom: #fff 3px solid;
+            margin-bottom: 2.5em;
+            width: 40%;
             font-size: 20px;
         }
         .pa{
             max-width: 1920px;
             display: flex;
+            flex-direction: row;
+        }
+        .pesq{
+            display: flex;
             flex-direction: column;
-            padding: 2em;
-            padding-left: 5%;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: #112129;
+            width: 30vw;
+            height: 100vh;
+            padding-left: 50px;
+            color: #fff;
         }
 
         .selects{
             display: flex;
             flex-direction: column;
             margin-bottom: 3em;
-
+            width: 90%;
+            height: 3em;
             .um{
-                width: 30%;
-                height: 3em;
+                width: 100%;
+                height: 100%;
                 margin-bottom: 1em;
                 box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
                 border: none;
@@ -198,19 +207,34 @@
                 padding-left: 2%;
                 padding-right: 2%;
                 font-size: 16px;
+                border-radius: 5px;
             }
         }
-
-        .cards{
+        .tudo{
             display: flex;
             flex-direction: column;
+            max-width: 70vw;
             align-items: flex-start;
-            width: 100%;
-            height: 40em;
-            flex-wrap: wrap;
-            margin-bottom: 15em;
+            justify-content: center;
+            padding-top: 20px;
+            h2{
+                margin-left: 10%;
+                color: #000;
+                border-bottom: #000 3px solid ;
+                width: 30%;
 
-            
+            }
+        }
+        .cards{
+            margin-top: 5%;
+            display: flex;
+            flex-direction: row;
+            width: 60vw;
+            flex-wrap: wrap;
+            overflow-y: scroll;
+            height: 80vh;
+            margin-left: 15%;
+
             .a{
                 flex-direction: column;
                 font-family: 'Kumbh Sans';
@@ -219,7 +243,7 @@
                 align-items: center;
                 justify-content: space-between;
                 background-color: #fff;
-                width: 100%;
+                width: 15vw;
                 height: 20vh;
                 margin-bottom: 25px;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -234,7 +258,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                width: 100%;
+                width: 15vw;
                 height: 20vh;
                 box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
                 border-radius: 5px;
@@ -260,7 +284,7 @@
                 
             }
             .cardmarcado{
-                width: 20%;
+                width: 30%;
                 cursor: pointer;
             }
         }
@@ -314,8 +338,10 @@
         }
 
         .botao{
+            margin-top: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            width: 90%;
 
             button{
                 color: #fff;
