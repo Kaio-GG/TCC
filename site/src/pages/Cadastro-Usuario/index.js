@@ -1,5 +1,5 @@
 import './index.scss'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { useState} from 'react'
 import { cadastroCliente } from '../../api/cadastroCliente'
 import { cadastroLogin } from '../../api/cadastroEmpresa'
@@ -23,6 +23,8 @@ export default function Index(){
     const [cpf, setCpf] = useState('');
 
     const [erro, setErro] = useState('');
+
+    const navigate = useNavigate();
 
     function passarPagina(){
         const c = continuar + 1;
@@ -48,7 +50,9 @@ export default function Index(){
 
             const b = cadastroLogin(idEmpresa, idusuario, email, senha, empresa)
 
-            toast.dark('cadastrado com sucesso!😍😎');
+            toast.dark('Cadastrado com sucesso!😍😎');
+
+            navigate('/login')
         } catch(err){
             if (err.response.status === 401){
                 toast.error(err.response.data.erro);    
