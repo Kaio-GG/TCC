@@ -37,6 +37,10 @@ export default function UsuarioEmpresaPaginaAgendar() {
         }
     }
 
+    function voltar (){
+        setrender(true)
+    }
+
     async function filtraData (){
         let a = await horariosPorData(id , data) 
         sethorario(a)
@@ -140,9 +144,11 @@ export default function UsuarioEmpresaPaginaAgendar() {
                            <input className='um'  type='date' value={data} onChange={e => setdata(e.target.value)} /> 
                         </div>
 
+                        <img src='/assets/images/escolhendo.svg' alt=''/>
+
                     <div className='botao'>
                             <button onClick={() => agendar(idhorario , idcliente ,nome ,email ,cpf ,telefone ,sexo ,dtnasc ,desc)}> solicitar </button>  
-                            <button > voltar </button>  
+                            <button onClick={voltar} > voltar </button>  
                     
                     </div>
 

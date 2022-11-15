@@ -5,7 +5,7 @@ import HeaderUsuario from '../../components/header-usuario'
 import Footer from '../../components/footer'
 import { useState } from 'react';
 import storage from 'local-storage'
-
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Index(){
@@ -15,6 +15,7 @@ export default function Index(){
     const clientelogado = storage('Cliente-Logado')
     const idcliente = (clientelogado.ID_USUARIO_CLIENTE)
 
+    const navigate = useNavigate()
     async function consultasBuscar (){
         try {
 
@@ -36,6 +37,11 @@ export default function Index(){
        setButton(2)
     }
 
+    function buscar (){
+
+        navigate('/home/usuario')
+    }
+
 
 
 
@@ -52,7 +58,7 @@ export default function Index(){
                             <div className='Caixa-de-Botoes'>
                                 <button className='Buttons' onClick={Buttons1}> Favoritos </button>
                                 <button className='Buttons' onClick={consultasBuscar} > Minhas Consultas </button>
-                                <button className='Buttons' onClick={consultasBuscar}> Historico de Consultas </button>
+                                <button className='Buttons' onClick={buscar} > Buscar Empresas</button>
                             </div>
                     </div>
                     
@@ -71,9 +77,9 @@ export default function Index(){
                                 <h1> Minhas Consultas</h1>
                                 <hr/>
 
-                                <div className='card'>
+                                <div >
                                         {consultas.map( item =>
-                                        <div>
+                                        <div className='card'>
                                             <div> 
                                             {item.hora}  
                                             {item.local}
@@ -91,16 +97,6 @@ export default function Index(){
                         </div>
                     }
                 
-
-
-
-                    {buttons === 3 &&
-                        <div className='Div-2'>
-                                <h1> Histórico de Consultas</h1>
-                                <hr/>
-
-                        </div>
-                    }
 
             </section>
 

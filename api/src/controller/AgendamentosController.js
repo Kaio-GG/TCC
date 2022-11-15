@@ -173,13 +173,13 @@ server.get ('/empresa/carregarhorario/situacao/:id/:situ', async (req ,resp) => 
         })
     }
 }  )
-
+ 
 
 server.get ('/usuario/carregarconsultas/:id', async (req ,resp) => {
     try {
+
         const info = req.params
         const horarios = await buscarAgendamentosCliente(info)
-        
         resp.send(horarios)
     } catch (err) {
         resp.status(401).send({

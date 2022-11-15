@@ -121,9 +121,10 @@ export default function Homeempresa() {
                 </div>
  
             </div>
-            
+                                
                 {agendamento.length === 0  &&
-                    <img className='not' src='/assets/images/notFound.svg' alt=''/>
+                
+                    <img className='not1' src='/assets/images/notFound.svg' alt=''/>
                 }
                             
                 {agendamento.map(item => 
