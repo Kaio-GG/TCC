@@ -1,6 +1,6 @@
 import './index.scss'
 import Logo from '../home/assets/logo.png'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Cafe from '../home/assets/cafe.svg'
 import Time from '../home/assets/time.svg'
 import Massagem from '../home/assets/mass.svg'
@@ -13,9 +13,7 @@ import Boom from 'react-reveal/Slide'
 import { avaliacaoSite, buscarPorNomeHome, listarEmpresasAvaliacao } from '../../api/homeController'
 import { buscarImagem } from '../../api/paginaEmpresa'
 import { useEffect, useState } from 'react'
-
-
-
+import { toast } from 'react-toastify'
 
 export default function Index() {
     const [avaliacao, setAvaliacao] = useState([]);
@@ -25,17 +23,27 @@ export default function Index() {
 
     const [filtro, setFiltro] = useState('');
     const [empresa, setEmpresa] = useState([]);
+    const navigate = useNavigate()
+
+    function registroUsuario(){
+        navigate('cadastro/usuario')
+    }
 
     function registroEmpresa(){
-        Navigate('/cadastro')
-
+        navigate('cadastro/empresa')
     }
 
 
     async function enviarAvaliacao(){
-        const r = await avaliacaoSite(nomeUsuario, avaliacaoUsuario)
+        try{
+            const r = await avaliacaoSite(nomeUsuario, avaliacaoUsuario)
 
-        return r;
+            toast.success('Avaliação enviada com sucesso!!😃');
+
+        }catch(err){
+            toast.error("Erro ao enviar comentario🤨")
+        }
+
     }
 
     async function busca(){
@@ -54,6 +62,7 @@ export default function Index() {
         const resposta = await listarEmpresasAvaliacao();
         setAvaliacao(resposta)
     }
+
 
 
     useEffect(() => {
@@ -119,7 +128,7 @@ export default function Index() {
 
                     <img className='img-time' src={Time} alt=''></img>
 
-                    <button className='f2-button'>Se registre como empresa agora!</button>
+                    <button className='f2-button' onClick={registroEmpresa}>Se registre como empresa agora!</button>
                 </div>
 
                 <div className='f2-right'>
@@ -127,7 +136,7 @@ export default function Index() {
 
                     <img className='img-mass' src={Massagem} alt='' ></img>
 
-                    <button onClick={registroEmpresa} className='f2-button'>Se registre como cliente no site!</button>
+                    <button onClick={registroUsuario} className='f2-button'>Se registre como cliente no site!</button>
 
                 </div>
 
@@ -155,7 +164,7 @@ export default function Index() {
 
                         <div className='alinharCard'>
                             <p className='f3-p2'>{item.nome} <span className='f3-p5'>{item.empresa}</span></p>   
-                            <p className='f3-p3'>{item.avaliacao} Pontos</p> 
+                            <p className='f3-p3'>{item.avaliacao} {item.avaliacao === 1 ? "Ponto" : "Pontos"}</p> 
                             <p className='f3-p4'>"{item.descavaliacao}"</p>
                         </div>   
                      </div>    

@@ -20,6 +20,17 @@ export async function sendReview(id, idu, avaliacao, descricao, dia){
     return r.data
 }
 
+export async function loadCertficacoes(id){
+    const t = await api.get(`/home/usuario/certificacoes?id=${id}`)
+    return t.data
+}
+
+export async function loadVerificacoes(id){
+    const t = await api.get(`/home/usuario/verificacoes?id=${id}`)
+    return t.data
+}
+
+
 export async function listarComentarios(id){
     const t = await api.get(`/home/usuario/coments?id=${id}`)
     return t.data;

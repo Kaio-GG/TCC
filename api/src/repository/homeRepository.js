@@ -36,7 +36,7 @@ export async function pesquisaPorNomeHome(nome) {
      DS_DESCRICAO descricao
      from tb_pagina_empresa 
      where nm_empresa like ?
-     LIMIT 2;
+     LIMIT 1;
     `;
     const [linhas]= await con.query(comando, [`%${nome}%`]);
     return linhas;

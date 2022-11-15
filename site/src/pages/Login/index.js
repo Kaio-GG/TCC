@@ -16,23 +16,11 @@ export default function Index(){
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    const bolinha = document.querySelector('bolinha1')
-
-    const img = () => {
-        bolinha.classList.add('animationBolinha1')
-
-        setTimeout(() => {
-            bolinha.classList.remove('animationBolinha1')
-            
-        }, 500);
-
-    }
-
-    document.addEventListener('keydown', img)
 
     const [erro, setErro] = useState('');
 
     const Navigate = useNavigate();
+    
     const ref = useRef();
 
     async function Login() {
@@ -62,7 +50,7 @@ return(
         <main className='login'>
             <section className='tela'>
                 <div className='faixa-cinza'>
-                    <h1 className='MW'>MyWorkShip</h1>
+                    <h1 className='MW'><Link to="/">MyWorkShip </Link></h1>
 
                     <div className='alinhar-imgs'>
                         <Des>
@@ -70,19 +58,11 @@ return(
                         </Des>
                     </div>
 
-                    <div className='bolinhas'>
-                        <div className='bolinha1'></div>
-                        <div className='bolinha2'></div>
-                        <div className='bolinha3'></div>
-                    </div>
-
-                    <h1 className='bv'>Seja bem-vindo</h1>
-
 
                 </div>
 
                 <div className='boxright'>
-                    <h1 className='h1-boxright'>Não possui conta? <Link>Crie sua conta agora!</Link></h1>
+                    <h1 className='h1-boxright'>Não possui conta? <Link to="/cadastro" className='register'><span className='color'>Crie sua conta agora!</span></Link></h1>
 
                     <div className='inputs'>
                         <input className='input1' placeholder='Usuario' value={email} onChange={e => setEmail(e.target.value) } />

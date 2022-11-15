@@ -73,7 +73,7 @@ export default function Novohorario (){
             await CarregarHorario()
             toast.warn(' 🚀 Horario deletado')    
         } catch (err) {
-            console.log('horario nao deletado', err.message)
+            console.log('Horario não deletado', err.message)
         }
         
     }
@@ -84,7 +84,7 @@ export default function Novohorario (){
             await CarregarHorario()
             toast.dark('🚀 Horario aumentado')
         } catch (err) {
-            console.log('nao foi editado', err.message)
+            console.log('Não foi editado', err.message)
         }
     }
 
@@ -97,7 +97,7 @@ export default function Novohorario (){
             await CarregarHorario()
             toast.dark('🚀 Horario diminuido')
         } catch (err) {
-            toast.error( err.message)
+            toast.error(err.message)
         }
     }
 

@@ -7,13 +7,12 @@ import { useEffect, useState } from 'react'
 import Pular from 'react-reveal/Fade'
 import { toast } from 'react-toastify'
 
-import { carregarAvaliacao, laodPubs, listarComentarios, loadPage, sendReview } from '../../../api/Intermediario'
+import { carregarAvaliacao, laodPubs, listarComentarios, loadCertficacoes, loadPage, loadVerificacoes, sendReview } from '../../../api/Intermediario'
 import { buscarImagem } from '../../../api/paginaEmpresa'
 import { useParams, useNavigate  } from 'react-router-dom'
 
 export default function Index(){
     const [input, setInput] = useState(false);
-
     const [nome, setNome] = useState('')
     const [logo, setLogo] = useState()
     const [descricao, setDescricao] = useState('')
@@ -25,14 +24,14 @@ export default function Index(){
     const [nota, setNota] = useState([]);
     const [erro, setErro] = useState('')
     const [mostrar, setMostrar] = useState(false);
-
-    const data = new Date().toJSON().slice(0, 19).replace('T', ' ')
-
+    const [verificacoes, setVerficacoes] = useState([])
+    const [certificacoes, setCertificacoes] = useState([])
     const [comentarios, setComentarios] = useState([]);
     const [publicacao, setPublicacao] = useState([]);
-
     const [review, setReview] = useState('');
     const [avaliacaoReview, setAvaliacaoReview] = useState(0);
+
+    const data = new Date().toJSON().slice(0, 19).replace('T', ' ')
 
     const { id } = useParams();
 
@@ -49,12 +48,30 @@ export default function Index(){
             setInput(false)
             toast.dark("Comentário enviado com sucesso❗❗🎇")
         }catch (err) {
-            if (err.response.status === 400){
-                toast.error("Erro ao enviar comentário!💀💀👹");  
+             toast.error(err.message);  
                   
-            }
+            
         }
     }
+
+    async function Lverificacoes(){
+        try{
+            const r = await loadVerificacoes(id)
+            setVerficacoes(r)
+        }catch(err){
+            toast.error(err.message)
+        }
+    }
+
+    async function Lcertificacoes(){
+        try{
+            const r = await loadCertficacoes(id)
+            setCertificacoes(r)
+        }catch(err){
+            toast.error(err.message)
+        }
+    }
+
 
     async function loadPageZ(){
         try{
@@ -69,7 +86,8 @@ export default function Index(){
     useEffect(() => {
         if(id)
         loadPageZ(id);
-
+            Lverificacoes(id)
+            Lcertificacoes(id)
             listarComents(id);
             carregarPubs(id)
             carregarNota(id)
@@ -158,7 +176,7 @@ export default function Index(){
                                 </div>
                                 )}
                                 {nota.map(item =>
-                                <p>{item.avaliacoes} Avaliações</p>
+                                <p>{item.avaliacoes} {item.avaliacoes === 1 ? "Avaliação" : "Avaliações"}</p>
                                 )}
                                 
                             </div>
@@ -239,21 +257,33 @@ export default function Index(){
                     </div>
 
                     <div>
+                       
+                            
                         <div className='b4-right'>
                             <h1>Verificação</h1>
                             <hr className='linha-b3'></hr>
-                            <p>5523-5475</p>
-                            <p>facebook.com.br/empresa</p>
-                            <p>eusougay@gmail.com</p>
+                            {verificacoes.map(item =>
+                            <p>{item.descri}</p>
+                            )}
+                            
                         </div>
+                       
 
+                       
                         <div className='b5-right'>
                             <h1>Certificações</h1>
                             <hr className='linha-b3'></hr>
+                            <br></br>
+                            {certificacoes.map(item => 
+                            <p>{item.descricao}</p>
+                            )}
                         </div>
+                       
+                        
                     </div>
-
+                            
                 </div>
+
 
 
 

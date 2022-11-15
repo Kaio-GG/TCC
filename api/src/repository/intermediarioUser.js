@@ -70,3 +70,26 @@ export async function avaliacoes(id){
     const [linhas] = await con.query(comando, [id])
     return linhas
 }
+
+export async function carregarVerificacoes(id){
+    const comando = `
+    select  ds_verificacoes descri
+    from    tb_verificacoes
+    inner   join tb_pagina_empresa on tb_pagina_empresa.id_pagina_empresa = tb_verificacoes.id_verificacoes
+    where   id_usuario_empresa = ?
+    `
+    const [linhas] = await con.query(comando, [id])
+    return linhas;
+}
+
+export async function carregarCertificacoes(id){
+    const comando = `
+    select  ds_certificacoes descricao
+    from    tb_certificacoes
+    inner   join tb_pagina_empresa on tb_pagina_empresa.id_pagina_empresa = tb_certificacoes.id_verificacoes
+    where   id_usuario_empresa = ?
+    `
+    const [linhas] = await con.query(comando, [id])
+    return linhas;
+}
+

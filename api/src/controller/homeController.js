@@ -38,13 +38,20 @@ server.post('/site', async(req, resp) =>{
     try{
         const a = req.body
 
+        if(a.nome === "")
+            throw new Error('Seu nome não pode ser vazio😅')
+
+        if(a.avaliacao === "")
+            throw new Error('A sua avaliação não pode ser vazia😅')
+
         const resposta = avaliacaoSite(a)
+
         resp.send(resposta)
 
     }catch(err){
-        resp.status(404).send({
-            erro:err.message
-        })
+        resp.status(400).send(
+            "Erro ao enviar comentário😪"
+        )
     }
 })
 

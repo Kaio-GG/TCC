@@ -53,7 +53,7 @@
         text-align: center;
         margin-top: 50px;
         animation-name: img;
-        animation-duration: 3s;
+        animation-duration: 1.5s;
     }
     
     .f1-h1{
@@ -310,7 +310,6 @@
     }
 
     .f4-button{
-        display: flex;
         width: 50px;
         background-color: #37474F;
         border: none;
@@ -319,6 +318,7 @@
         font-family: 'Kumbh Sans';
         font-size: 12px;
         font-weight: 400;
+        padding: 3px;
     }
 
     
@@ -461,8 +461,12 @@
     }
 
     @keyframes img {
-        from {margin-left: -600px;}
-        to {margin-left: 0px;}
+        from {
+            margin-left: -600px;
+        }
+        to {
+            margin-left: 0px;
+        }
       }
 
 

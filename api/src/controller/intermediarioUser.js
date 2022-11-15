@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { avaliacoes, carregarPaginaZ, enviarComentario, puxarPubs, selecionarComentarios } from "../repository/intermediarioUser.js";
+import { avaliacoes, carregarCertificacoes, carregarPaginaZ, carregarVerificacoes, enviarComentario, puxarPubs, selecionarComentarios } from "../repository/intermediarioUser.js";
 
 const server = Router();
 
@@ -18,6 +18,34 @@ server.get('/home/usuario/int/:id', async(req, resp) => {
 
     }
 
+})
+
+server.get('/home/usuario/verificacoes', async(req, resp) => {
+    try{
+        const { id } = req.query;
+
+        const a = await carregarVerificacoes(id)
+
+        resp.send(a)
+    }catch(err){
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/home/usuario/certificacoes', async(req, resp) =>{
+    try{
+        const { id } = req.query;
+
+        const r = await carregarCertificacoes(id);
+
+        resp.send(r)
+    }catch(err){
+        resp.status(404).send({
+            erro:err.message
+        })
+    }
 })
 
 server.get('/home/usuario/pubs', async(req, resp) =>{
@@ -39,7 +67,11 @@ server.post('/home/usuario/comentario', async(req, resp) => {
     try{
         const a = req.body;
 
-        console.log(a)
+        if(a.avaliacao > 5)
+            throw new Error('Avaliação não pode ser maior que 5')
+
+        if(a.descricao === "")
+            throw new Error('')
 
         const r = await enviarComentario(a);
 

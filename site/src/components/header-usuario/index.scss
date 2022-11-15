@@ -16,7 +16,11 @@
         font-family:'KumbhSans-Regular';
         padding-left: 1em;
     }
-       
+        a:link, a:visited {
+            text-decoration: none;
+            color: inherit;
+        }
+        
         .pagina{
             display: flex;
             align-items: center;

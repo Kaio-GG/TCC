@@ -483,7 +483,7 @@ export default function PaginaEmpresa() {
                     <div className="agrup-direita">
 
                         <div className="CardCanto">
-                            <h3> verificaçâo</h3>
+                            <h3> Verificaçâo</h3>
                             <p> facebook </p><input type='text'  value={face} onChange={e => setFace(e.target.value)}/>
                             <p> instagram </p><input type='text' value={isnta} onChange={e => setInsta(e.target.value)}/>
                             <p> email </p><input type='text'     value={email} onChange={e => setEmail(e.target.value)}/>
@@ -492,7 +492,7 @@ export default function PaginaEmpresa() {
                         </div>
 
                         <div className="CardCanto">
-                            <h3> certificação</h3>
+                            <h3> Certificação</h3>
                             <p> CNPJ </p>
                             <p> Certificados </p>
                         </div>
