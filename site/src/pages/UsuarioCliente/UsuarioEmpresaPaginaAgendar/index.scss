@@ -338,7 +338,7 @@
         }
 
         .botao{
-            margin-top: 100%;
+            margin-top: 40%;
             display: flex;
             justify-content: space-between;
             width: 90%;
@@ -348,13 +348,20 @@
                 background-color: #263238;
 
                 width: 10em;
-                height: 2.8em;
-                border-radius: 1em;
+                height: 2.3em;
+                border-radius: 8px;
 
                 font-family: "Kumbh Sans";
                 font-size: 1em;
 
     
+            }
+            button:hover{
+                background-color: rgb(76, 5, 117);
+                transition: all 0,1 ease-in;
+                transition: all 0.2s;
+                color: #fff;
+                transform: scale(1.05);
             }
         }
     }
