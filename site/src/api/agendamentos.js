@@ -27,6 +27,16 @@ export async function CarregarConsultasCliente (id ) {
     return resp.data;
 } 
 
+export async function CarregarConsultasClientePorData (id , data){
+    const resp = await api.get(`/usuario/carregarconsultas/data/${id}/${data}`)
+    return resp.data
+}
+
+export async function CarregarConsultasClientePorSitu (id , situ){
+    const resp = await api.get(`/usuario/carregarconsultas/situ/${id}/${situ}`)
+    return resp.data
+}
+
 
 
 export async function CarregarInfo (id) {

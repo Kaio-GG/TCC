@@ -1,4 +1,4 @@
-import { CarregarHorarioEmpresaPorData ,NovoHorario , EditarHorario , CarregarHorariosEmpresa , ApagarHorario,buscarAgendamentosPorSituacao , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento, buscarinformacoes, buscarAgendamentosPorLocal, buscarAgendamentosCliente } from "../repository/agendamentosRepository.js";
+import { CarregarHorarioEmpresaPorData ,NovoHorario , EditarHorario , CarregarHorariosEmpresa , ApagarHorario,buscarAgendamentosPorSituacao , CarregarHorarioEmpresa ,buscarLocal ,buscarAgendamentos, buscarAgendamentosPorData ,confirmarAgendamento ,recusarAgendamento, buscarinformacoes, buscarAgendamentosPorLocal, buscarAgendamentosCliente, buscarAgendamentosClientePorData, buscarAgendamentosClientePorsitu } from "../repository/agendamentosRepository.js";
 import { AgendarHorario } from "../repository/AgendarHorarioRepository.js";
 import { Router } from "express";
 const server = Router();
@@ -180,6 +180,33 @@ server.get ('/usuario/carregarconsultas/:id', async (req ,resp) => {
 
         const info = req.params
         const horarios = await buscarAgendamentosCliente(info)
+        resp.send(horarios)
+    } catch (err) {
+        resp.status(401).send({
+            erro:err.message
+        })
+    }
+}  )
+
+server.get ('/usuario/carregarconsultas/data/:id/:data', async (req ,resp) => {
+    try {
+
+        const info = req.params
+        const horarios = await buscarAgendamentosClientePorData(info)
+        resp.send(horarios)
+    } catch (err) {
+        resp.status(401).send({
+            erro:err.message
+        })
+    }
+}  )
+
+
+server.get ('/usuario/carregarconsultas/situ/:id/:situ', async (req ,resp) => {
+    try {
+
+        const info = req.params
+        const horarios = await buscarAgendamentosClientePorsitu(info)
         resp.send(horarios)
     } catch (err) {
         resp.status(401).send({

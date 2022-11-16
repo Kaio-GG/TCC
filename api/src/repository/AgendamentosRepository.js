@@ -160,23 +160,85 @@ export async function buscarAgendamentos (info){
 
 export async function buscarAgendamentosCliente (info){
     const comando = `
+ 
     select  
-            TB_AGENDAMENTO.ID_AGENDAMENTO   'id',
-
-	        TB_AGENDAMENTO.NM_PESSOA        'nome' ,
-	        TB_HORARIO.DS_LOCAL   	        'local',							
-	        TB_HORARIO.DS_HORA    	        'hora' ,
-            TB_HORARIO.DT_AGENDAMENTO       'data' ,
-            TB_AGENDAMENTO.DS_SITUACAO      'situacao'
+            TB_AGENDAMENTO.ID_AGENDAMENTO           'id'        ,
+	        TB_AGENDAMENTO.NM_PESSOA                'nome'      ,
+	        TB_HORARIO.DS_LOCAL   	                'local'     ,							
+	        TB_HORARIO.DS_HORA    	                'hora'      ,
+            TB_HORARIO.DT_AGENDAMENTO               'data'      ,
+            TB_AGENDAMENTO.DS_SITUACAO              'situacao'  ,
+            TB_USUARIO_EMPRESA.NM_NOME_DA_EMPRESA   'nome'
     FROM 
 	        TB_HORARIO
     INNER JOIN
 	        TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
-    WHERE
-            TB_AGENDAMENTO.ID_USUARIO_CLIENTE = ? 
-    order by TB_HORARIO.DT_AGENDAMENTO
-    `
+	INNER JOIN
+	        TB_USUARIO_EMPRESA ON TB_HORARIO.ID_USUARIO_EMPRESA  = TB_USUARIO_EMPRESA.ID_USUARIO_EMPRESA
+     WHERE
+            TB_AGENDAMENTO.ID_USUARIO_CLIENTE = ? and TB_HORARIO.DT_AGENDAMENTO 
+	order by TB_HORARIO.DT_AGENDAMENTO;
+       `
     const [linhas] = await con.query (comando, [info.id])
+    return linhas
+
+}
+
+export async function buscarAgendamentosClientePorData (info){
+    const comando = `
+ 
+    select  
+            TB_AGENDAMENTO.ID_AGENDAMENTO           'id'        ,
+	        TB_AGENDAMENTO.NM_PESSOA                'nome'      ,
+	        TB_HORARIO.DS_LOCAL   	                'local'     ,							
+	        TB_HORARIO.DS_HORA    	                'hora'      ,
+            TB_HORARIO.DT_AGENDAMENTO               'data'      ,
+            TB_AGENDAMENTO.DS_SITUACAO              'situacao'  ,
+            TB_USUARIO_EMPRESA.NM_NOME_DA_EMPRESA   'nome'
+    FROM 
+	        TB_HORARIO
+    INNER JOIN
+	        TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+	INNER JOIN
+	        TB_USUARIO_EMPRESA ON TB_HORARIO.ID_USUARIO_EMPRESA  = TB_USUARIO_EMPRESA.ID_USUARIO_EMPRESA
+     WHERE
+            TB_AGENDAMENTO.ID_USUARIO_CLIENTE = ? and TB_HORARIO.DT_AGENDAMENTO
+            and 
+            TB_HORARIO.DT_AGENDAMENTO =? 
+	order by TB_HORARIO.DT_AGENDAMENTO;
+       `
+    const [linhas] = await con.query (comando, [info.id , info.data])
+    return linhas
+
+}
+
+
+export async function buscarAgendamentosClientePorsitu (info){
+    const comando = `
+ 
+
+    select  
+            TB_AGENDAMENTO.ID_AGENDAMENTO   'id',
+	        TB_AGENDAMENTO.NM_PESSOA        'nome' ,
+	        TB_HORARIO.DS_LOCAL   	        'local',							
+	        TB_HORARIO.DS_HORA    	        'hora' ,
+            TB_HORARIO.DT_AGENDAMENTO       'data' ,
+            TB_AGENDAMENTO.DS_SITUACAO      'situacao',
+            TB_USUARIO_EMPRESA.NM_NOME_DA_EMPRESA 'nome'
+    FROM 
+	        TB_HORARIO
+    INNER JOIN
+	        TB_AGENDAMENTO ON TB_HORARIO.ID_HORARIO = TB_AGENDAMENTO.ID_HORARIO
+	INNER JOIN
+	        TB_USUARIO_EMPRESA ON TB_HORARIO.ID_USUARIO_EMPRESA  = TB_USUARIO_EMPRESA.ID_USUARIO_EMPRESA
+     WHERE
+            TB_AGENDAMENTO.ID_USUARIO_CLIENTE = ? and TB_HORARIO.DT_AGENDAMENTO 
+        and 
+            TB_AGENDAMENTO.DS_SITUACAO =?      
+	order by 
+            TB_HORARIO.DT_AGENDAMENTO;
+           `
+    const [linhas] = await con.query (comando, [info.id , info.situ])
     return linhas
 
 }
