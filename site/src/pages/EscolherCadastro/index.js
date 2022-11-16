@@ -25,7 +25,6 @@ export default function Index() {
 
                 <header className='cabecalho'>
                     <Link to="/" className='f1-h1'>MyWorkShip</Link>
-                    <p onClick={changeLanguage} className='f1-p1'>Linguagem</p>
                 </header>
 
                 <div className='titles'>

@@ -49,7 +49,7 @@
     }
     
     .opt{
-       border: none;
+        border: none;
         margin-top: 2%;
         width: 20vw;
         padding: 10px ;
@@ -71,6 +71,7 @@
         font-size: 20px;
         font-family: 'KumbhSans-Regular';
         background-color: #112129;
+        min-height: fit-content;
     }
     .centralizar{
         width: 100%;
@@ -265,7 +266,7 @@
 
 
     .btns{
-        margin-top: 15px;
+        margin-top: 5px;
         height: 20px;
         width: 100%;
         display: flex;

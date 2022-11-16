@@ -47,13 +47,12 @@ export async function selecionarComentarios(id){
 
 export async function puxarPubs(id){
     const comando = `
-    select  tb_pagina_empresa_publicacao.id_pagina_empresa_publicacao id1,
-            id_pagina_empresa ID, 
-            nm_titulo		  titulo,
-            ds_caixa_texto	  texto,
-            img_imagem_publicacao imagem
+    select  	id_pagina_empresa_publicacao 	id1,
+            id_pagina_empresa 	ID, 
+            nm_titulo		  	titulo,
+            ds_caixa_texto	  	texto,
+            img_publicacao 		pub
     from 	tb_pagina_empresa_publicacao
-    inner join tb_pagina_empresa_publicacao_img on tb_pagina_empresa_publicacao_img.id_pagina_empresa_publicacao_img = tb_pagina_empresa_publicacao.id_pagina_empresa
     where id_pagina_empresa = ? order by id1 desc
     `
     const [linhas] = await con.query(comando, [id])

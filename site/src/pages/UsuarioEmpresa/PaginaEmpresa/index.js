@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 
 import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic, gerarIdPublicacaoEmpresa, Verificacoes } from '../../../api/paginaEmpresa';
+import { toast } from 'react-toastify';
 
 
 export default function PaginaEmpresa() {
@@ -62,7 +63,7 @@ export default function PaginaEmpresa() {
             setLogo(resp.Logo)
             setPagina(resp)
         } catch (err) {
-            alert(err.message)
+            toast.error(err.message)
         }
         
     }
@@ -80,7 +81,7 @@ export default function PaginaEmpresa() {
 
             }
             else{
-               alert('Pagina Alterada') 
+               toast.dark('Pagina Alterada😃😃') 
             }
             
         } catch(err){
@@ -130,9 +131,9 @@ export default function PaginaEmpresa() {
 
             carregarPublicaoes();
 
-            alert('Publicado')
+            toast.dark('Publicado')
         } catch(err) {
-            alert('Não foi possivel Adicionar Uma publicação')
+            toast.error('Não foi possivel Adicionar Uma publicação')
         }
     }
 
@@ -142,8 +143,8 @@ export default function PaginaEmpresa() {
 
             setPublicacao(resp)
         } catch (err) {
-            alert('erro em listar as publicações')
-            alert(err.message)
+            toast.error('erro em listar as publicações')
+            toast.error(err.message)
         }
     }
 
@@ -354,13 +355,6 @@ export default function PaginaEmpresa() {
                                     </div>
                                 </div>
                                 <div className="ava-locais">
-                                    <div className='estrelas'>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                    </div>
                                     <p> Brasil, São Paulo, Sp </p>
                                     <p> Rua seila, 32 </p>
                                     <div className='image'>
@@ -391,13 +385,6 @@ export default function PaginaEmpresa() {
                                     </div>
                                 </div>
                                 <div className="ava-locais">
-                                    <div className='estrelas'>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                    </div>
                                     <p> Brasil, São Paulo, Sp </p>
                                     <p> Rua seila, 32 </p>
                                     <div className='image'>
