@@ -241,13 +241,12 @@ server.get('/empresa/listar-verificacao/:idPagina', async(req, resp) => {
     }
 })
 
-server.put('/empresa/verificacao/:idPagina/:idValidacoes', async(req, resp) =>  {
-    try{
-        const idPagina = Number(req.params.idPagina);
-        const idValidacoes = Number(req.params.idValidacoes);
-        const link = req.body;
+server.put('/empresa/verificacao', async(req, resp) =>  {
+    try{ 
+        const conteudo = req.body;
 
-        const alterar =  await alterarValidacao(idPagina, idValidacoes, link);
+        const alterar =  await alterarValidacao(conteudo);
+
 
         resp.send(alterar);
     } catch (err){

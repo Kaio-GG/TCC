@@ -142,7 +142,7 @@ export async function verificaçâo (verificaçâo){
     `insert into TB_VERIFICACOES(ID_VERIFICACOES, ID_PAGINA_EMPRESA, DS_VERIFICACOES)
           values (?, ?, ?);`;
 
-    const linhas = await con.query(comando, [verificaçâo.idVerificacao, verificaçâo.Pagina, verificaçâo.Link]);
+    const linhas = await con.query(comando, [verificaçâo.idVerificacao, verificaçâo.Pagina, verificaçâo.link]);
     return linhas;
 }
 
@@ -157,14 +157,14 @@ export async function listarVerificacoes(idPagina){
       return linhas[0];
 }
 
-export async function alterarValidacao(link, idPagina, idVerificacao){
+export async function alterarValidacao(valida){
     const comando = 
     `update tb_verificacoes
         set ds_verificacoes   = ?
       where id_pagina_empresa = ?
         and id_verificacoes   = ?`
 
-    const linhas = await con.query(comando, [link, idPagina, idVerificacao ]);
+    const linhas = await con.query(comando, [valida.link, valida.idPagina, valida.idVerificacao ]);
     return linhas.affectedRows;
 }
 
