@@ -72,10 +72,9 @@ export async function avaliacoes(id){
 
 export async function carregarVerificacoes(id){
     const comando = `
-    select  ds_verificacoes descri
+    select  ds_verificacoes 
     from    tb_verificacoes
-    inner   join tb_pagina_empresa on tb_pagina_empresa.id_pagina_empresa = tb_verificacoes.id_verificacoes
-    where   id_usuario_empresa = ?
+    where   ID_PAGINA_EMPRESA = ?
     `
     const [linhas] = await con.query(comando, [id])
     return linhas;

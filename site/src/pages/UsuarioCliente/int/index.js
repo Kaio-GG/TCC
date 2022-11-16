@@ -58,7 +58,15 @@ export default function Index(){
     async function Lverificacoes(){
         try{
             const r = await loadVerificacoes(id)
-            setVerficacoes(r)
+            let a = [];
+            let i = 0
+
+            for(i; i < 8; i++){
+                a = [...a, r[i]];
+                i++
+            }           
+            console.log(a)
+            setVerficacoes(a)
         }catch(err){
             toast.error(err.message)
         }
@@ -277,7 +285,7 @@ export default function Index(){
                             <h1>Verificação</h1>
                             <hr className='linha-b3'></hr>
                             {verificacoes.map(item =>
-                            <p>{item.descri}</p>
+                            <p>{item.ds_verificacoes}</p>
                             )}
                             
                         </div>
