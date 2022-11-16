@@ -6,7 +6,8 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic, gerarIdPublicacaoEmpresa, Verificacoes } from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic, gerarIdPublicacaoEmpresa, Verificacoes, EditarVerificacoes, listarVerificações} from '../../../api/paginaEmpresa';
+import { toast } from 'react-toastify';
 
 
 export default function PaginaEmpresa() {
@@ -28,11 +29,12 @@ export default function PaginaEmpresa() {
     const [altTituloPublicacao, setAltTitutoPublicao] = useState('');
     const [altcorpoPublicacao, setAltCorpoPublicacao] = useState('');
 
-    const [face, setFace] = useState('Facebook/');
-    const [isnta, setInsta] = useState('Instagram/');
-    const [youtube, setYoutube] = useState('Youtube.com/');
-    const [email, setEmail] = useState('mail.google.com//');
-    const [whatsapp , setWhatsApp] = useState('web.whatsapp.com/');
+    const [face, setFace] = useState('');
+    const [isnta, setInsta] = useState('');
+    const [youtube, setYoutube] = useState('');
+    const [email, setEmail] = useState('');
+    const [whatsapp , setWhatsApp] = useState('');
+    const [val, setVal] = useState([])
 
 
     const [idTag, setIdTag] = useState();
@@ -49,6 +51,7 @@ export default function PaginaEmpresa() {
             PaginaEmpresa();
             carregarPublicaoes();
             listarTags();
+            ConsultarValidaçoes();
         }
     }, [])
 
@@ -62,7 +65,7 @@ export default function PaginaEmpresa() {
             setLogo(resp.Logo)
             setPagina(resp)
         } catch (err) {
-            alert(err.message)
+            toast.error(err.message)
         }
         
     }
@@ -80,7 +83,7 @@ export default function PaginaEmpresa() {
 
             }
             else{
-               alert('Pagina Alterada') 
+               toast.dark('Pagina Alterada😃😃') 
             }
             
         } catch(err){
@@ -130,9 +133,9 @@ export default function PaginaEmpresa() {
 
             carregarPublicaoes();
 
-            alert('Publicado')
+            toast.dark('Publicado')
         } catch(err) {
-            alert('Não foi possivel Adicionar Uma publicação')
+            toast.error('Não foi possivel Adicionar Uma publicação')
         }
     }
 
@@ -142,8 +145,8 @@ export default function PaginaEmpresa() {
 
             setPublicacao(resp)
         } catch (err) {
-            alert('erro em listar as publicações')
-            alert(err.message)
+            toast.error('erro em listar as publicações')
+            toast.error(err.message)
         }
     }
 
@@ -226,50 +229,62 @@ export default function PaginaEmpresa() {
 
     //Validações  =====================================================================
 
-    async function AdicionarValidações(id, Link){
-        await Verificacoes(idEmpresa, id, Link)
+    async function ConsultarValidaçoes(){
+
+        
+        const a = await listarVerificações(idEmpresa)
+        setVal([a])
+
+        
+        if(a.length === 0){
+            await Verificacoes(1, idEmpresa, 'Facebook/')
+            await Verificacoes(2, idEmpresa, 'Instagram/')
+            await Verificacoes(3, idEmpresa, 'Youtube.com/')
+            await Verificacoes(4, idEmpresa, 'mail.google.com//')
+            await Verificacoes(5, idEmpresa, 'web.whatsapp.com/')
+    
+            const b = await listarVerificações(idEmpresa)
+
+            setFace    (b[0].nomeVerificacao)
+            setInsta   (b[2].nomeVerificacao)
+            setYoutube (b[4].nomeVerificacao)
+            setEmail   (b[6].nomeVerificacao)
+            setWhatsApp(b[8].nomeVerificacao)
+            setVal([b])
+        }
+        else{
+            setFace    (a[0].nomeVerificacao)
+            setInsta   (a[2].nomeVerificacao)
+            setYoutube (a[4].nomeVerificacao)
+            setEmail   (a[6].nomeVerificacao)
+            setWhatsApp(a[8].nomeVerificacao)       
+        }
+
     }
 
-    useEffect(face => {
-        if(face !== 'Facebook/')
-            AdicionarValidações(1, face);
-        else{
+    useEffect(() => {  
+        mudarValidacoes(face, 1)    
+    }, [face]) 
+    useEffect(() => {
+        mudarValidacoes(isnta, 2)       
+    }, [isnta]) 
+    useEffect(() => {
+        mudarValidacoes(youtube, 3)       
+    }, [youtube]) 
+    useEffect(() => {
+        mudarValidacoes(email, 4)        
+    }, [email]) 
+    useEffect(() => {
+        mudarValidacoes(whatsapp, 5)      
+    }, [whatsapp]) 
 
+    async function mudarValidacoes(b, c){
+        if(b !== ""){
+            const a = await EditarVerificacoes(b, idEmpresa, c)
         }
-            
-    }, )
 
-    useEffect(isnta => {
-        if(isnta !== 'Instagram/')
-            AdicionarValidações(2, isnta);
-        else{
-            
-        }
-    }, )
+    } 
 
-    useEffect(youtube => {
-        if(youtube !== 'Youtube.com/')
-            AdicionarValidações(3, youtube);
-        else{
-            
-        }
-    }, )
-
-    useEffect(email => {
-        if(email !== 'mail.google.com//')
-            AdicionarValidações(4, email);
-        else{
-            
-        }
-    }, )
-
-    useEffect(whatsapp => {
-        if(whatsapp !== 'web.whatsapp.com/')
-            AdicionarValidações(5, whatsapp);
-        else{
-            
-        }
-    }, )
     
 
     //TAG'S =====================================================================
@@ -324,7 +339,6 @@ export default function PaginaEmpresa() {
     }
 
     function exibirImagem1(pos) {
-        console.log(buscarImagem(publicacao[pos].imagem))
         return buscarImagem(publicacao[pos].imagem)
 
     }
@@ -354,13 +368,6 @@ export default function PaginaEmpresa() {
                                     </div>
                                 </div>
                                 <div className="ava-locais">
-                                    <div className='estrelas'>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                    </div>
                                     <p> Brasil, São Paulo, Sp </p>
                                     <p> Rua seila, 32 </p>
                                     <div className='image'>
@@ -391,13 +398,6 @@ export default function PaginaEmpresa() {
                                     </div>
                                 </div>
                                 <div className="ava-locais">
-                                    <div className='estrelas'>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                        <div className='estrela'></div>
-                                    </div>
                                     <p> Brasil, São Paulo, Sp </p>
                                     <p> Rua seila, 32 </p>
                                     <div className='image'>

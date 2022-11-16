@@ -4,6 +4,8 @@ import Storage from 'local-storage'
 import { useEffect, useState } from 'react'
 import { listarReview } from '../../../api/paginaEmpresa'
 
+import User from './assets/Vector.png'
+
 export default function Index(){
     const [review, setReviews] = useState([]);
     
@@ -37,7 +39,7 @@ export default function Index(){
                 {review.map(item => 
                     <div className='box-review'>
                         <div className='juntar'>
-                            <img className='img-usuario'></img>
+                            <img src={User} className='img-usuario'></img>
                                 <div className='b3-letters'>
                                     <h1>{item.nome}</h1>
                                     <h4>{item.ava}</h4>

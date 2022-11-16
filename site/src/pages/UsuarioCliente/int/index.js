@@ -1,6 +1,7 @@
 import './index.scss'
 import Storage, { set } from 'local-storage'
-
+import Star from './assets/star.svg'
+import User from './assets/Vector.png'
 import HeaderUsuario from '../../../components/header-usuario'
 import { useEffect, useState } from 'react'
 
@@ -57,7 +58,15 @@ export default function Index(){
     async function Lverificacoes(){
         try{
             const r = await loadVerificacoes(id)
-            setVerficacoes(r)
+            let a = [];
+            let i = 0
+
+            for(i; i < 8; i++){
+                a = [...a, r[i]];
+                i++
+            }           
+            console.log(a)
+            setVerficacoes(a)
         }catch(err){
             toast.error(err.message)
         }
@@ -164,9 +173,22 @@ export default function Index(){
                         )}
 
                             <div className='b1-letters2'>
-                                {nota.map(item =>
-                                
-                                <p className='b1-ava'><span className='limit'>{(item.avaliacao)}</span>ESTRELAS</p>
+                                {nota.map(item =>      
+                                <span>                          
+                                <p className='b1-ava'>
+                                    <span className='limit'>{item.avaliacao}
+                                    
+                                    <span>{item.avaliacao >= 1 || item.avaliacao < 2 ? <img className='star' src={Star}></img> : ""}</span> 
+
+                                    <span>{item.avaliacao >= 2 ? <img className='star' src={Star}></img> : ""}</span> 
+                                    
+                                    <span>{item.avaliacao >= 3 ? <img className='star' src={Star}></img> : ""}</span> 
+
+                                    <span>{item.avaliacao >= 4 ? <img className='star' src={Star}></img> : ""}</span> 
+
+                                    <span>{item.avaliacao >= 5 ? <img className='star' src={Star}></img> : ""}</span></span></p>
+
+                                </span>
                                 )}
                                 
                                 {pagina.map(item =>
@@ -193,7 +215,7 @@ export default function Index(){
                             {publicacao.map(item =>
                             <div className='pub'>
                                 <h2>{item.titulo}</h2>
-                                <img className='img-desc' src={buscarImagem(item.imagem)}></img>
+                                <img className='img-desc' src={buscarImagem(item.pub)}></img>
                                 <p>{item.texto}</p>
                             </div>
                             )}
@@ -226,7 +248,7 @@ export default function Index(){
 
                             {input === false &&
 
-                                <p className='p2-b3' onClick={showInput}>Adicionar comentário</p>
+                                <p className='p2-b3'><span className='add' onClick={showInput}>Adicionar comentário</span></p>
 
                             }
 
@@ -235,7 +257,7 @@ export default function Index(){
                         {comentarios.map(item =>
                             <div className='box-review'>
                                 <div className='juntar'>
-                                    <img className='img-usuario'></img>
+                                    <img src={User} className='img-usuario'></img>
                                     <div className='b3-letters'>
                                         <h1>{item.nome}</h1>
                                         <h4>{item.ava}</h4>
@@ -263,7 +285,7 @@ export default function Index(){
                             <h1>Verificação</h1>
                             <hr className='linha-b3'></hr>
                             {verificacoes.map(item =>
-                            <p>{item.descri}</p>
+                            <p>{item.ds_verificacoes}</p>
                             )}
                             
                         </div>

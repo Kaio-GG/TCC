@@ -12,8 +12,7 @@ export default function HeaderUsuario (props){
         <div className='cabecalho1'>
             <div className='logo'>
                 <Link to="/">MyWorkship</Link>
-
-                <div className='foto-usuario'></div>
+                
             </div>
 
 

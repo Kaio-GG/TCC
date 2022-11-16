@@ -115,15 +115,26 @@ export async function listarReview(id){
 
 //Verifcações  ============================================================================================
 
-export async function  Verificacoes(idVerificacoes, idPagina, link){
+export async function  Verificacoes(idVerificacao, Pagina, link){
     const resposta = await api.post('http://localhost:5000/empresa/verificacao', {
-        idVerificacoes:idVerificacoes,
-        idPagina:idPagina,
+        idVerificacao:idVerificacao,
+        Pagina:Pagina,
         link:link
     });
 
     return resposta.data;
 }
+
+export async function  EditarVerificacoes(link, idPagina, idVerificacao){
+    const resposta = await api.put('http://localhost:5000/empresa/verificacao', {
+        link:link,
+        idPagina:idPagina,
+        idVerificacao:idVerificacao
+    });
+
+    return resposta.data;
+}
+
 
 export async function listarVerificações(idPagina){
     const resposta = await api.get(`http://localhost:5000/empresa/listar-verificacao/${idPagina}`)

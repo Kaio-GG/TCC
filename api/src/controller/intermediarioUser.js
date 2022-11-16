@@ -70,6 +70,9 @@ server.post('/home/usuario/comentario', async(req, resp) => {
         if(a.avaliacao > 5)
             throw new Error('Avaliação não pode ser maior que 5')
 
+        if(a.avaliacao < 0)
+            throw new Error('Avaliação não pode ser menor que 0')
+
         if(a.descricao === "")
             throw new Error('')
 
