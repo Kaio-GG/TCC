@@ -1,6 +1,6 @@
 import './index.scss'
 
-import { avaliacaoEmpresas, buscaDeEmpresas, listarEmpresas, maisProximo } from '../../../api/usuarioHome'
+import { avaliacaoEmpresas, buscaDeEmpresas, listarEmpresas, loadTags, maisProximo } from '../../../api/usuarioHome'
 import { buscarImagem } from '../../../api/paginaEmpresa'
 
 import Star from './assets/star.svg'
@@ -17,6 +17,8 @@ export default function ClienteHome() {
     const [filtragem, setFiltragem] = useState('')
 
     const [empresa, setEmpresa] = useState([]);
+    const [tags, setTags] = useState([]);
+    const [valorTag, setValorTag] = useState("");
 
     const [render, setRender] = useState(false);
     const navigate = useNavigate()
@@ -28,6 +30,11 @@ export default function ClienteHome() {
         const resp1 = await avaliacaoEmpresas();
         setRender(1)
         setEmpresa(resp1);
+    }
+    
+    async function tagsLoad(){
+        const r = await loadTags()
+        setTags(r)
     }
 
 
@@ -66,6 +73,10 @@ export default function ClienteHome() {
         setFiltragem('')
          
     }
+
+    useEffect(() => {
+        tagsLoad()
+    },[])
 
 
     return(
@@ -137,7 +148,9 @@ export default function ClienteHome() {
                         <h1 className=''>TAG's</h1>
                         <hr></hr>
 
-                        <p>Todos(0)</p>
+                        {tags.map(item => 
+                        <p>{item.tag}</p>
+                        )}
                     </div>
 
                 </div>

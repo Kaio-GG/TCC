@@ -128,7 +128,7 @@ export default function Index() {
 
                     <img className='img-time' src={Time} alt=''></img>
 
-                    <button className='f2-button' onClick={registroEmpresa}>Se registre como empresa agora!</button>
+                    <button className='f2-button' onClick={registroEmpresa}>Registre-se como empresa agora!</button>
                 </div>
 
                 <div className='f2-right'>
@@ -136,7 +136,7 @@ export default function Index() {
 
                     <img className='img-mass' src={Massagem} alt='' ></img>
 
-                    <button onClick={registroUsuario} className='f2-button'>Se registre como cliente no site!</button>
+                    <button onClick={registroUsuario} className='f2-button'>Registre-se como cliente no site!</button>
 
                 </div>
 
@@ -184,10 +184,10 @@ export default function Index() {
 
                     <div className='f4-box'>
                         <h1 className='f4-h2'>Nome:</h1>
-                        <input value={nomeUsuario} onChange={e => setNomeUsuario(e.target.value)} className='f4-input1'></input>
+                        <input value={nomeUsuario} placeholder="Digite seu nome..." onChange={e => setNomeUsuario(e.target.value)} className='f4-input1'></input>
 
                         <h1 className='f4-h2'>Avaliação:</h1>
-                        <textarea value={avaliacaoUsuario} onChange={e => setAvaliacaoUsuario(e.target.value)} className='f4-input2'></textarea>
+                        <textarea value={avaliacaoUsuario} placeholder="Digite sua avaliação..." onChange={e => setAvaliacaoUsuario(e.target.value)} className='f4-input2'></textarea>
 
                         <button onClick={enviarAvaliacao} className='f4-button'>Enviar</button>
 
