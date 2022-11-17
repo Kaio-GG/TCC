@@ -1,4 +1,4 @@
-import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, ImagemPublicacao, gerararIdPublicacao, verificacao, listarVerificacoes, alterarValidacao, salvarTag, ListarTagsPag} from "../repository/PaginaEmpresaRepository.js";
+import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, ImagemPublicacao, gerararIdPublicacao, verificacao, listarVerificacoes, alterarValidacao, salvarTag, ListarTagsPag, carregarLocal} from "../repository/PaginaEmpresaRepository.js";
 
 import multer from 'multer';
 import { Router } from "express";
@@ -285,5 +285,20 @@ server.get('/empresa/tag/:Pagina', async(req, resp) => {
         resp.status(400).send({
             erro: err.message
         })
+    }
+})
+
+server.get('/empresa/local', async(req,resp) => {
+    try{    
+        const { id } = req.query;
+
+        const r = await carregarLocal(id)
+
+        resp.send(r)
+    }catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+
     }
 })

@@ -192,8 +192,8 @@ export default function Index(){
                                 
                                 {pagina.map(item =>
                                 <div>
-                                    <p>{item.pais}, {item.cidade}</p>
-                                    <p>{item.endereco}</p>
+                                   <p>{item.pais}, {item.cidade}</p>
+                                    <p>{item.endereco}</p >
                                 </div>
                                 )}
                                 {nota.map(item =>

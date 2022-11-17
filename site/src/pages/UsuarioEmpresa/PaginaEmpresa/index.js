@@ -6,7 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic, gerarIdPublicacaoEmpresa, Verificacoes, EditarVerificacoes, listarVerificações, adiciTag, ListarTagsPag} from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic, gerarIdPublicacaoEmpresa, Verificacoes, EditarVerificacoes, listarVerificações, adiciTag, ListarTagsPag, loadLocal} from '../../../api/paginaEmpresa';
 import { loadPage } from '../../../api/Intermediario';
 import { toast } from 'react-toastify';
 
@@ -29,6 +29,8 @@ export default function PaginaEmpresa() {
 
     const [cont, setCont] = useState(0);
     const [contpubli, setContpubli] = useState(0);
+
+    const [local, setLocal] = useState([]);
 
     const [altTituloPublicacao, setAltTitutoPublicao] = useState('');
     const [altcorpoPublicacao, setAltCorpoPublicacao] = useState('');
@@ -55,6 +57,7 @@ export default function PaginaEmpresa() {
             carregarPublicaoes();
             listarTags();
             listarTagPagg();
+            carregarLocal(id)
         }
     }, [])
     useEffect(() => {
@@ -79,16 +82,15 @@ export default function PaginaEmpresa() {
         
     }
 
+    async function carregarLocal(){
+        const r = await loadLocal(id)
+        setLocal(r)
+    }
+
     async function carregarinf(){
         try{
             const resp = await loadPage(id);
-            setA(resp[0])
-            setB(resp[0])
-            setC(resp[0])
             setUsuario(resp)
-            console.log(a)
-            console.log(b)
-            console.log(c)
             console.log(usuario)
         }catch (err) {
             toast.error(err.message)
@@ -426,13 +428,18 @@ export default function PaginaEmpresa() {
                                         <p className="desc">{pagina.descricao}</p>
                                     </div>
                                 </div>
+                                
+                            
+                                {local.map(item => 
                                 <div className="ava-locais">
-                                    <p> , São Paulo, Sp </p>
-                                    <p> Rua seila, 32 </p>
+                                   <p>{item.pais}, {item.cidade}</p>
+                                    <p>{item.endereco}</p >
                                     <div className='image'>
-                                        <img src='/assets/images/editar.svg' alt='editarperfil' onClick={Alterar}/>
+                                        <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={Salvar}/>
                                     </div>
                                 </div>
+                                )}
+                                
                             </div>
                         }
 
@@ -456,13 +463,15 @@ export default function PaginaEmpresa() {
                                         <textarea className="desc" value={descricao} onChange={e => setDescricao(e.target.value)} />
                                     </div>
                                 </div>
+                                {local.map(item => 
                                 <div className="ava-locais">
-                                    <p> Brasil, São Paulo, Sp </p>
-                                    <p> Rua seila, 32 </p>
+                                   <p>{item.pais}, {item.cidade}</p>
+                                    <p>{item.endereco}</p >
                                     <div className='image'>
                                         <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={Salvar}/>
                                     </div>
                                 </div>
+                                )}
                             </div>
                         }
 
