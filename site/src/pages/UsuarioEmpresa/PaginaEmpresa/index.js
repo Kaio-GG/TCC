@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 
 import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic, gerarIdPublicacaoEmpresa, Verificacoes, EditarVerificacoes, listarVerificações, adiciTag, ListarTagsPag} from '../../../api/paginaEmpresa';
+import { loadPage } from '../../../api/Intermediario';
 import { toast } from 'react-toastify';
 
 
@@ -14,6 +15,10 @@ export default function PaginaEmpresa() {
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
     const [logo, setLogo] = useState();
+    const [usuario, setUsuario] = useState([])
+    const [a, setA] = useState('')
+    const [b, setB] = useState('')
+    const [c, setC] = useState('')
 
     const [publicacao, setPublicacao] = useState([]);
     const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo');
@@ -33,7 +38,6 @@ export default function PaginaEmpresa() {
     const [youtube, setYoutube] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp , setWhatsApp] = useState('');
-    const [val, setVal] = useState()
 
 
     const [idTag, setIdTag] = useState();
@@ -55,7 +59,8 @@ export default function PaginaEmpresa() {
     }, [])
     useEffect(() => {
         if (id){
-            mostrarVerificacoes()
+            mostrarVerificacoes();
+            carregarinf();
         }
     }, [])
 
@@ -72,6 +77,22 @@ export default function PaginaEmpresa() {
             toast.error(err.message)
         }
         
+    }
+
+    async function carregarinf(){
+        try{
+            const resp = await loadPage(id);
+            setA(resp[0])
+            setB(resp[0])
+            setC(resp[0])
+            setUsuario(resp)
+            console.log(a)
+            console.log(b)
+            console.log(c)
+            console.log(usuario)
+        }catch (err) {
+            toast.error(err.message)
+        }
     }
 
     async function Alterarinf(){
@@ -235,9 +256,6 @@ export default function PaginaEmpresa() {
     //Validações  =====================================================================
     async function mostrarVerificacoes(){
         const a = await listarVerificações(idEmpresa)
-        setVal(a)
-        
-        console.log(a)
 
         if(a.length === 0){
             ConsultarValidaçoes()
@@ -253,7 +271,6 @@ export default function PaginaEmpresa() {
 
     async function ConsultarValidaçoes(){
 
-        alert('a')
         await Verificacoes(1, idEmpresa, 'Facebook/')
         await Verificacoes(2, idEmpresa, 'Instagram/')
         await Verificacoes(3, idEmpresa, 'Youtube.com/')
@@ -410,7 +427,7 @@ export default function PaginaEmpresa() {
                                     </div>
                                 </div>
                                 <div className="ava-locais">
-                                    <p> Brasil, São Paulo, Sp </p>
+                                    <p> , São Paulo, Sp </p>
                                     <p> Rua seila, 32 </p>
                                     <div className='image'>
                                         <img src='/assets/images/editar.svg' alt='editarperfil' onClick={Alterar}/>
