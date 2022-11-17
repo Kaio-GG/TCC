@@ -6,7 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useEffect, useState } from 'react';
 
 
-import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic, gerarIdPublicacaoEmpresa, Verificacoes, EditarVerificacoes, listarVerificações} from '../../../api/paginaEmpresa';
+import { CarregarPagina, AlterarPagina, CarregarImagem, buscarImagem, AdicionarPublicacao, listarPublicacao, DeletarPublicacao, AlterarPublicacao, ListarTags, salvarImagemPublic, CarregarImagempublic, gerarIdPublicacaoEmpresa, Verificacoes, EditarVerificacoes, listarVerificações, adiciTag, ListarTagsPag} from '../../../api/paginaEmpresa';
 import { toast } from 'react-toastify';
 
 
@@ -19,7 +19,6 @@ export default function PaginaEmpresa() {
     const [tituloPublicacao, setTitutloPublicacao] = useState('Adicionar Titulo');
     const [corpoPublicacao, setCorpoPublicacao] = useState('Digite algo');
     const [imgpublic, setImgPublic] = useState('');
-    const [publi, setPubli] = useState(1);
 
     const [vlpublic, setVlPublic] = useState(100);
 
@@ -52,6 +51,7 @@ export default function PaginaEmpresa() {
             carregarPublicaoes();
             listarTags();
             ConsultarValidaçoes();
+            listarTagPagg();
         }
     }, [])
 
@@ -293,15 +293,49 @@ export default function PaginaEmpresa() {
         const a = await ListarTags();
         setTags(a)
     }
+    async function listarTagPagg() {
+        const a = await ListarTagsPag(idEmpresa)
+        let b = []
+        let i = 0;
+
+        for(i; i < a.length ; i++){
+            b[i] = a[i].idTag
+            console.log(b)
+        }
+
+
+        setTagsSelecionadas(b)
+
+        console.log(a)
+    }
+
+    function buscarNomeTag(id) {
+        const cat = Tags.find(item => item.idTag == id);
+        return cat.tag
+        
+    }
+
+    function removerTag(id) {
+        const x = tagsSelecionas.filter(item => item != id);
+        setTagsSelecionadas(x);
+    }
+
 
     function adicionarTag() {
         if (!idTag) return;
 
         if(!tagsSelecionas.find(item => item === idTag)) {
             const tagg = [...tagsSelecionas, idTag];
+            addTag(idTag);
             setTagsSelecionadas(tagg);
         }
     }
+
+    async function addTag(idTag) {
+        if(tagsSelecionas.find(item => item !== idTag))
+            await adiciTag(idTag, idEmpresa)
+    }
+
 
     //Imagens da empresa  ========================================================
 
@@ -491,36 +525,31 @@ export default function PaginaEmpresa() {
                             <p> whatsApp </p><input type='text'  value={whatsapp} onChange={e => setWhatsApp(e.target.value)}/>
                         </div>
 
-                        <div className="CardCanto">
-                            <h3> Certificação</h3>
-                            <p> CNPJ </p>
-                            <p> Certificados </p>
-                        </div>
-
-                        <div className="CardCanto">
-                            <h3> Compartilhar</h3>
-                        </div>
 
                         <div className="CardCanto">
                             <div>
-                                <h3>TAG's</h3>
+                                <label>TAG:</label>
                                 <select value={idTag} onChange={e => setIdTag(e.target.value)}>
                                     <option selected disabled hidden> Selecione uma Tag</option>
-                                {Tags.map((item, index) =>
-                                        <option value={item.idTag} onClick={adicionarTag}> 
+                                {Tags.map(item =>
+                                        <option value={item.idTag}> 
                                             {item.tag}
                                         </option> 
                                     )}
                                 </select>
+                                <img className='mais' src='/assets/images/add.svg' alt='Adicionar Tag' onClick={adicionarTag}/>  
                             </div>
-                            <div>
-                                {tagsSelecionas.map(item =>
-                                        <div>
 
+                            <label></label>
+                            <div>
+                                {tagsSelecionas.map(id =>
+                                        <div>
+                                            {buscarNomeTag(id)}
                                         </div>
                                     )}
                             </div>
-                            <img className='mais' src='/assets/images/add.svg' alt='Adicionar Tag' onClick={adicionarTag}/>  
+
+                            
                         </div>
                     </div>
                 </div>
@@ -528,3 +557,5 @@ export default function PaginaEmpresa() {
         </main>
     )
 }
+
+

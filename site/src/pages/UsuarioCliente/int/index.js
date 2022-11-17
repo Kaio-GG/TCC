@@ -65,7 +65,6 @@ export default function Index(){
                 a = [...a, r[i]];
                 i++
             }           
-            console.log(a)
             setVerficacoes(a)
         }catch(err){
             toast.error(err.message)

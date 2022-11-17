@@ -105,6 +105,19 @@ export async function ListarTags () {
     return resposta.data;
 }
 
+export async function adiciTag (Tag, Pagina) {
+    const resp = await api.post('/empresa/tag', {
+        Tag:Tag, 
+        Pagina:Pagina
+    });
+    return resp.data
+}
+
+export async function ListarTagsPag (Pagina) {
+    const resposta = await api.get(`/empresa/tag/${Pagina}`);
+    return resposta.data;
+}
+
 
 //Review ============================================================================================
 

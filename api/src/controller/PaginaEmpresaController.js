@@ -1,4 +1,4 @@
-import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, ImagemPublicacao, gerararIdPublicacao, verificaçâo, listarVerificacoes, alterarValidacao} from "../repository/PaginaEmpresaRepository.js";
+import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, ImagemPublicacao, gerararIdPublicacao, verificaçâo, listarVerificacoes, alterarValidacao, salvarTag, ListarTagsPag} from "../repository/PaginaEmpresaRepository.js";
 
 import multer from 'multer';
 import { Router } from "express";
@@ -251,6 +251,36 @@ server.put('/empresa/verificacao', async(req, resp) =>  {
         resp.send(alterar);
     } catch (err){
         resp.status(401).send({
+            erro: err.message
+        })
+    }
+})
+
+server.post('/empresa/tag', async(req, resp) => {
+    try{
+        const s = req.body
+
+        const a = await salvarTag(s)
+
+        console.log(a)
+
+        resp.send(a)
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/empresa/tag/:Pagina', async(req, resp) => {
+    try{
+        const Pagina = Number(req.params.Pagina)
+
+        const a = await ListarTagsPag(Pagina)
+
+        resp.send(a)
+    } catch (err) {
+        resp.status(400).send({
             erro: err.message
         })
     }

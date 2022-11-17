@@ -135,8 +135,6 @@ export async function carregarReviews(id){
     `
     const [linhas] = await con.query(comando, [id])
 
-    console.log(linhas)
-
     return linhas;
 }
 

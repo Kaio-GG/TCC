@@ -106,6 +106,33 @@ export async function ListarTags() {
     return linhas; 
 }
 
+export async function ListarTagsPag(Pagina) {
+    const comando = 
+    `select  TB_TAG.ID_TAG   idTag, 
+             NM_TAG          tag
+       from  TB_TAG
+      inner 
+       join TB_TAG_EMPRESA on TB_TAG.ID_TAG = TB_TAG_EMPRESA.ID_TAG
+      where ID_PAGINA_EMPRESA = ?
+      order
+         by nm_tag`;
+
+    const [linhas] = await con.query(comando, [Pagina]);
+    return linhas; 
+}
+
+export async function salvarTag(a) {
+    const comando = `
+    insert into TB_TAG_EMPRESA (ID_TAG, ID_PAGINA_EMPRESA)
+    values (?, ?)
+    `
+
+    const [resp] = await con.query(comando, [a.Tag, a.Pagina])
+    a.id = resp.insertId;
+    return a;
+}
+
+
 export async function buscarTagPorId(idTag){
     const comando = 
     `select  id_tag	  idTag,
