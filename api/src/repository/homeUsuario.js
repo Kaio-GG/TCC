@@ -25,7 +25,6 @@ export async function listarEmpresas() {
     inner join tb_empresa_avaliacao 
     on tb_empresa_avaliacao.id_empresa_avaliacao = tb_pagina_empresa.id_pagina_empresa
     `
-
     const [linhas] = await con.query(comando)
     return linhas;
 }
@@ -72,4 +71,36 @@ export async function filtrarMaisProximo(id) {
 
     const [linhas] = await con.query(comando,  [`${id}`])
     return linhas;
+}
+
+
+export async function listarTags(){
+    const comando = `
+        select nm_tag tag
+        from tb_tag;
+    `
+    const [linhas] = await con.query(comando)
+    return linhas;
+}
+
+export async function selecionarTags(tag){
+    const comando = `
+    SELECT
+        id_usuario_empresa  id, 
+        IMG_LOGO logo,
+        DS_DESCRICAO descricao, 
+        NM_EMPRESA nome,
+        nm_tag tag
+    from 
+        tb_pagina_empresa
+    inner join 
+        tb_tag on tb_tag.id_tag = id_usuario_empresa
+    inner join 
+        tb_tag_empresa on tb_tag_empresa.id_tag_empresa = id_usuario_empresa
+    where 
+        nm_tag = ?
+    `
+
+    const [linhas] = await con.query(comando, [`${tag}`])
+    return linhas
 }

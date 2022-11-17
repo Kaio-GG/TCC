@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { filtrarMaisProximo, listarEmpresas, melhoresAvaliacaoEmpresas, pesquisaPorNome } from '../repository/homeUsuario.js';
+import { filtrarMaisProximo, listarEmpresas, listarTags, melhoresAvaliacaoEmpresas, pesquisaPorNome, selecionarTags } from '../repository/homeUsuario.js';
 
 const server = Router();
 
@@ -17,6 +17,35 @@ server.get('/home/usuario/busca', async(req, resp) => {
             erro:err.message
         })
     }
+})
+
+server.get('/home/usuario/tag', async(req, resp) =>{
+    try{
+        const { tag } = req.query;
+
+        const r = await selecionarTags(tag)
+
+        resp.send(r)
+    }catch(err){
+        resp.status(400).send({
+            error:err.message
+        })
+    }
+})
+
+server.get('/home/usuario/listarTags', async(req, resp) => {
+    try{
+        const t = await listarTags()
+
+        resp.send(t)
+    }catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+
+    }
+
+
 })
 
 server.get('/home/usuario/melhores', async (req, resp) => {

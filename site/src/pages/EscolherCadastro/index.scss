@@ -6,6 +6,10 @@
     display: flex;
     flex-direction: column;
 
+    a:link, a:visited {
+        text-decoration: none;
+    }
+
     .cabecalho{
         display: flex;
         flex-direction: row;

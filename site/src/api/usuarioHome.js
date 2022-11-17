@@ -24,3 +24,13 @@ export async function maisProximo(id) {
     const t = await api.get(`/home/usuario/maisProximo?id=${id}`)
     return t.data;
 }
+
+export async function loadTags(){
+    const t = await api.get('/home/usuario/listarTags')
+    return t.data
+}
+
+export async function perTag(tag){
+    const t = await api.get(`/home/usuario/tag?tag=${tag}`)
+    return t.data
+}
