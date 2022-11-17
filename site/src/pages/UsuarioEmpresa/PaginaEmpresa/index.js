@@ -50,8 +50,12 @@ export default function PaginaEmpresa() {
             PaginaEmpresa();
             carregarPublicaoes();
             listarTags();
-            ConsultarValidaçoes();
             listarTagPagg();
+        }
+    }, [])
+    useEffect(() => {
+        if (id){
+            ConsultarValidaçoes();
         }
     }, [])
 
@@ -233,16 +237,16 @@ export default function PaginaEmpresa() {
 
         
         const a = await listarVerificações(idEmpresa)
-        setVal([a])
 
         
         if(a.length === 0){
+            alert('a')
             await Verificacoes(1, idEmpresa, 'Facebook/')
             await Verificacoes(2, idEmpresa, 'Instagram/')
             await Verificacoes(3, idEmpresa, 'Youtube.com/')
             await Verificacoes(4, idEmpresa, 'mail.google.com//')
             await Verificacoes(5, idEmpresa, 'web.whatsapp.com/')
-    
+
             const b = await listarVerificações(idEmpresa)
 
             setFace    (b[0].nomeVerificacao)
@@ -253,6 +257,7 @@ export default function PaginaEmpresa() {
             setVal([b])
         }
         else{
+            alert('b')
             setFace    (a[0].nomeVerificacao)
             setInsta   (a[2].nomeVerificacao)
             setYoutube (a[4].nomeVerificacao)

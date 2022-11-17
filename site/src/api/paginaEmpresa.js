@@ -135,6 +135,7 @@ export async function  Verificacoes(idVerificacao, Pagina, link){
         link:link
     });
 
+
     return resposta.data;
 }
 

@@ -164,13 +164,14 @@ export async function gerararIdPublicacao(idEmpresa){
       return linhas[0]
 }
 
-export async function verificaçâo (verificaçâo){
+export async function verificacao (verificacao){
     const comando = 
     `insert into TB_VERIFICACOES(ID_VERIFICACOES, ID_PAGINA_EMPRESA, DS_VERIFICACOES)
           values (?, ?, ?);`;
 
-    const linhas = await con.query(comando, [verificaçâo.idVerificacao, verificaçâo.Pagina, verificaçâo.link]);
-    return linhas;
+    const linhas = await con.query(comando, [verificacao.idVerificacao, verificacao.Pagina, verificacao.link]);
+    verificacao.id = linhas.insertId
+    return verificacao;
 }
 
 export async function listarVerificacoes(idPagina){

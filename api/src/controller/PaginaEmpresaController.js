@@ -1,4 +1,4 @@
-import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, ImagemPublicacao, gerararIdPublicacao, verificaçâo, listarVerificacoes, alterarValidacao, salvarTag, ListarTagsPag} from "../repository/PaginaEmpresaRepository.js";
+import { PagEmpre, RendPagEmpreId, AlterarPagEmpreId, ImagemPagina, Publicacao, AlterarPublicacao, DeletarPublicacao, ListarPublicacao, ListarTags, buscarTagPorId, ImagemPublicacao, gerararIdPublicacao, verificacao, listarVerificacoes, alterarValidacao, salvarTag, ListarTagsPag} from "../repository/PaginaEmpresaRepository.js";
 
 import multer from 'multer';
 import { Router } from "express";
@@ -217,7 +217,9 @@ server.post('/empresa/verificacao', async (req, resp) => {
     try{
         const conteudo = req.body;
 
-        const adicionarLink = await verificaçâo(conteudo);
+        console.log(conteudo)
+
+        const adicionarLink = await verificacao(conteudo);
 
         resp.send(adicionarLink)
     } catch (err) {
