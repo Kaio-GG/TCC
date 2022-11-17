@@ -79,9 +79,10 @@ export default function ClienteHome() {
                 
 
                 <div className='box1-left'>
+                    
                     <input value={filtragem} onChange={e => setFiltragem(e.target.value)} className='input-1' placeholder='Buscar em MyWorkShip.com'/>
-                    <button onClick={buscarEmpresas} className='lupa'>.</button><br/>
-                    <button className='button-limpar' onClick={limparPesquisas}>Limpar pesquisas</button>
+                    <button onClick={buscarEmpresas} className='lupa'>.</button>
+                    
 
                     
                     {render === false &&
@@ -115,8 +116,9 @@ export default function ClienteHome() {
                     )}
                    
 
-
+                   <img src='/assets/images/lixeira.svg' className='button-limpar' onClick={limparPesquisas}/>
                 </div>
+                
 
 
 

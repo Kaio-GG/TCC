@@ -72,7 +72,7 @@ export async function avaliacoes(id){
 
 export async function carregarVerificacoes(id){
     const comando = `
-    select  ds_verificacoes 
+    select  ds_verificacoes verificacao
     from    tb_verificacoes
     where   ID_PAGINA_EMPRESA = ?
     `

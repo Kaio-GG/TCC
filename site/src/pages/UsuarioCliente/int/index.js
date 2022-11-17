@@ -101,7 +101,7 @@ export default function Index(){
             carregarNota(id)
             console.log(id)
 
-    },[])
+    },[enviarComentario])
 
 
     async function listarComents(){
@@ -283,9 +283,6 @@ export default function Index(){
                         <div className='b4-right'>
                             <h1>Verificação</h1>
                             <hr className='linha-b3'></hr>
-                            {verificacoes.map(item =>
-                            <p>{item.ds_verificacoes}</p>
-                            )}
                             
                         </div>
                        

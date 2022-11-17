@@ -40,8 +40,7 @@ export default function Index(){
     async function cadastrarCliente() {
         try{
             const a = await cadastroCliente(usuario, cpf, pais, estado, cidade);
-
-            alert(a)
+            
             console.log(a)
 
             const empresa = false;

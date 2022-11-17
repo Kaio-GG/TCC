@@ -26,10 +26,6 @@ export default function HeaderUsuario (props){
                 ? <div className='pagina'>  </div> 
                 : <div> <Link className='Link' to='/favoritos'>Listas</Link> </div>}
 
-                {props.class === 'favoritos' 
-                ? <div className='pagina'>  </div> 
-                : <div> <Link className='Link' to='/favoritos/painel'> Perfil </Link> </div>}
-
             </div>
             </div>
         </div>
