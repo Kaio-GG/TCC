@@ -9,7 +9,7 @@ import Pular from 'react-reveal/Fade'
 import { toast } from 'react-toastify'
 
 import { carregarAvaliacao, laodPubs, listarComentarios, loadCertficacoes, loadPage, loadVerificacoes, sendReview } from '../../../api/Intermediario'
-import { buscarImagem } from '../../../api/paginaEmpresa'
+import { buscarImagem, ListarTags, ListarTagsPag } from '../../../api/paginaEmpresa'
 import { useParams, useNavigate  } from 'react-router-dom'
 
 export default function Index(){
@@ -31,6 +31,8 @@ export default function Index(){
     const [publicacao, setPublicacao] = useState([]);
     const [review, setReview] = useState('');
     const [avaliacaoReview, setAvaliacaoReview] = useState(0);
+    const [Tags, setTags] = useState([]);
+    const [tagsSelecionas, setTagsSelecionadas] = useState([]);
 
     const data = new Date().toJSON().slice(0, 19).replace('T', ' ')
 
@@ -99,9 +101,16 @@ export default function Index(){
             listarComents(id);
             carregarPubs(id)
             carregarNota(id)
-            console.log(id)
+            listarTags()
 
     },[enviarComentario])
+
+    useEffect(() => {
+        if(id)
+        listarTags()
+        listarTagPagg()
+
+    },[])
 
 
     async function listarComents(){
@@ -148,6 +157,29 @@ export default function Index(){
     }
     function showInput(){
         setInput(!input)
+    }
+
+    function buscarNomeTag(id) {
+        const cat = Tags.find(item => item.idTag == id);
+        return cat.tag
+        
+    }
+
+    async function listarTags(){
+        const a = await ListarTags();
+        setTags(a)
+    }
+
+    async function listarTagPagg() {
+        const a = await ListarTagsPag(id)
+        let b = []
+        let i = 0;
+
+        for(i; i < a.length ; i++){
+            b[i] = a[i].idTag
+        }
+
+        setTagsSelecionadas(b)
     }
 
 
@@ -283,18 +315,25 @@ export default function Index(){
                         <div className='b4-right'>
                             <h1>Verificação</h1>
                             <hr className='linha-b3'></hr>
+                            <br></br>
+                            {certificacoes.map(item => 
+                            <p>{item.descricao}</p>
+                            )}
                             
                         </div>
                        
 
                        
                         <div className='b5-right'>
-                            <h1>Certificações</h1>
+                            <h1>TAG'S</h1>
                             <hr className='linha-b3'></hr>
                             <br></br>
-                            {certificacoes.map(item => 
-                            <p>{item.descricao}</p>
-                            )}
+                            <div className='tagg'>
+                            {tagsSelecionas.map(id =>
+                                <div className='tag'>
+                                    {buscarNomeTag(id)}
+                                </div>)}
+                            </div>
                         </div>
                        
                         

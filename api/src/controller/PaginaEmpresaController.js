@@ -164,7 +164,7 @@ server.get('/empresa/publicacao/:id', async(req, resp) => {
     }
 })
 
-server.put('/empresa/imagem/publicacao/:id' ,uploadpubli.single('imagem'), async(req, resp) => {
+server.put('/empresa/imagem/publicacao/:id' ,upload.single('capa'), async(req, resp) => {
     try{
         if(!req.file)
             throw new Error('A imagem não pode ser salva.');

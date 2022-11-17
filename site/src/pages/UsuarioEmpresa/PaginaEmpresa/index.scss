@@ -17,7 +17,8 @@
         padding: 2px 6px;
         border-radius: 5px;
         border: 0.5px solid;
-        background-color: #f8f8f8;
+        background-color: #ffffff;
+        border: 1px solid #6e6e6e;
     }
     .tag{
         display: flex;
@@ -32,6 +33,9 @@
         padding: 2px 6px ;
     }
 
+    .editarperfil{
+        fill:red
+    }
 
     .PaginaEmpresa-Centro{
         display: flex;
@@ -145,6 +149,21 @@
             .ava-locais{
                 width: 30%;
                 margin-left: 20px;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-end;
+
+                .AA{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    width: 100%;
+                    height: 40%;
+                }
             }
 
             #imagem{
@@ -161,12 +180,28 @@
             }
         }
 
-        
+        .card-Publicacao1{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            padding: 2em;
+            margin-bottom: 20px;
+
+            background-color: #fff;
+            box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+
+            p{
+                font-size: 2em;
+                font-weight: 650;
+            }
+            img{
+                width: 35px;
+            }
+        }
 
         .card-Publicacao{
             display: flex;
-            justify-content: space-between;
-            align-items: center;
 
             padding: 2em;
             margin-bottom: 20px;
@@ -174,31 +209,221 @@
             background-color: #fff;
             box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
             
-            p{
-                font-family: "Kumbh Sans";
-                font-weight: 650;
-                font-size: 30px;
+            .agrupamento-inputs3{
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1em;
+
+                justify-content: space-between;
+                width: 100%;
+
+                .a{
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 1em;
+
+                    img{
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                input{
+                    display: flex;
+                    font-size: 1.5em;
+                    font-family: "Kumbh Sans";
+                    font-weight: 700;
+
+                    border: none;
+                    border-radius: 0;
+                    background: #fff;
+                    border-bottom: black 2px solid;
+                }
+
+                textarea{
+                    display: flex;
+                    font-size: 1em;
+                    font-family: "Kumbh Sans";
+                    font-weight: 450;
+                    padding: 10px;
+
+                    border-radius: 0;
+                    border: rgb(129, 129, 129) solid 2px;
+                    color: rgb(100, 100, 100);
+                    background: #fff;
+                    width: 100%;
+                    min-height: 5em;
+                    margin-bottom: 1em;
+                }
+
+                .imgpublicc{
+                    width: 140px;
+                    height: 110px;
+
+                    border: rgb(129, 129, 129) solid 2px;
+                }
             }
 
-            img{
+            .agrupamento-inputs4{
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1em;
 
-                width: 30px;
+                justify-content: space-between;
+                width: 100%;
+                max-height: 30em;
+
+                .a{
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 1em;
+
+                    img{
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                h1{
+                    display: flex;
+                    font-size: 1.5em;
+                    font-family: "Kumbh Sans";
+                    font-weight: 700;
+
+                    border: none;
+                    border-radius: 0;
+                    background: #fff;
+                    width: max-content;
+                }
+
+                p{
+                    display: flex;
+                    font-size: 1em;
+                    font-family: "Kumbh Sans";
+                    font-weight: 450;
+                    padding: 10px;
+
+                    border-radius: 0;
+                    color: rgb(100, 100, 100);
+                    background: #fff;
+                    width: 100%;
+                    margin-bottom: 1em;
+                }
+
+                .imgpublicc{
+                    max-width: 60%;
+                    max-height: 60%;
+                    object-fit: contain;
+                    border: rgb(129, 129, 129) solid 2px;
+
+                    margin-bottom: 1em;
+                }
+            }
+
+            .agrupamento-inputs{
+                display: flex;
+                flex-direction: row;
+
+                width: 100%;
+                margin-bottom: 1em;
+
+                textarea{
+                    display: flex;
+                    font-size: 1em;
+                    font-family: "Kumbh Sans";
+                    font-weight: 450;
+                    padding: 10px;
+
+                    border-radius: 0;
+                    border: rgb(129, 129, 129) solid 2px;
+                    color: rgb(100, 100, 100);
+                    background: #fff;
+                    width: 100%;
+                    min-height: 5em;
+                }
             }
         }
 
         .card-Publicacao-click{
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+            flex-direction: column;
 
             padding: 2em;
 
             background-color: #fff;
             box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
 
+            .publicar{
+                display: flex;
+                align-items: center;
+                border: #000000 solid 2px;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: #ffffff;
+                color: rgb(0, 0, 0);
+
+                p{
+                    font-size: 15px;
+                    margin-right: 2px;
+                }
+                img{
+                    width: 20px;
+                }
+            }
+
+            .publicar:hover{
+                background-color: #263238;
+                border: rgb(255, 255, 255) solid 3px;
+                transition: all 0,1 ;
+                transition: all 0.2s;
+                color: rgb(255, 255, 255);
+                transform: scale(1.05);
+            }
+
+            .agrupamento-inputs1{
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 1em;
+
+                justify-content: space-between;
+                width: 100%;
+
+                input{
+                    display: flex;
+                    font-size: 1.5em;
+                    font-family: "Kumbh Sans";
+                    font-weight: 700;
+
+                    border: none;
+                    border-radius: 0;
+                    background: #fff;
+                    border-bottom: black 2px solid;
+                }
+            }
+
             .agrupamento-inputs{
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
+
+                width: 100%;
+                margin-bottom: 1em;
+
+                textarea{
+                    display: flex;
+                    font-size: 1em;
+                    font-family: "Kumbh Sans";
+                    font-weight: 450;
+                    padding: 10px;
+
+                    border-radius: 0;
+                    border: rgb(129, 129, 129) solid 2px;
+                    color: rgb(100, 100, 100);
+                    background: #fff;
+                    width: 100%;
+                    min-height: 5em;
+                }
             }
 
             .agrupamento-img-icon{
@@ -207,13 +432,9 @@
 
                 align-items: flex-end;
 
-                img{
-                    width: 30px;
-                }
-
                 .addimg{
-                    width: 110px;
-                    height: 100px;
+                    width: 140px;
+                    height: 110px;
 
                     border: #263238 solid 1px;
 
@@ -223,7 +444,6 @@
 
                     img{
                         width: 60px;
-
                     }
     
                 }
@@ -251,7 +471,7 @@
                     align-items: flex-end;
     
                     img{
-                        width: 30px;
+                        width: 40px;
                     }
     
                     .addimg{
@@ -285,6 +505,7 @@
             background-color: #fff;
             box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
             padding: 1em;
+            
 
 
             margin-bottom: 10%;
@@ -296,6 +517,11 @@
 
             img{
                 width: 15px;
+            }
+
+            .tagg{
+                display: flex;
+                justify-content: space-between;
             }
         }
 
@@ -323,6 +549,11 @@
             font-weight: 700;
             font-size: 20px;
             color: #fff;
+        }
+
+        #imagem1{
+            visibility: hidden;
+            position: absolute;
         }
     }
 

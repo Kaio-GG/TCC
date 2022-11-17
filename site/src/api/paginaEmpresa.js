@@ -86,7 +86,7 @@ export async function listarPublicacao(id) {
 
 export async function CarregarImagempublic (id, imagem) {
     const formData = new FormData();
-    formData.append("imagem", imagem);
+    formData.append("capa", imagem);
 
     const resposta = await api.put(`/empresa/imagem/publicacao/${id}`, formData, {
         headers: {
@@ -157,7 +157,6 @@ export async function listarVerificações(idPagina){
 
 export async function loadLocal(id){
     const t = await api.get(`/empresa/local?id=${id}`)
-    console.log(t)
     return t.data;
 }
 

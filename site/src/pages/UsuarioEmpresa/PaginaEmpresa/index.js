@@ -91,7 +91,6 @@ export default function PaginaEmpresa() {
         try{
             const resp = await loadPage(id);
             setUsuario(resp)
-            console.log(usuario)
         }catch (err) {
             toast.error(err.message)
         }
@@ -327,13 +326,9 @@ export default function PaginaEmpresa() {
 
         for(i; i < a.length ; i++){
             b[i] = a[i].idTag
-            console.log(b)
         }
 
-
         setTagsSelecionadas(b)
-
-        console.log(a)
     }
 
     function buscarNomeTag(id) {
@@ -428,18 +423,17 @@ export default function PaginaEmpresa() {
                                         <p className="desc">{pagina.descricao}</p>
                                     </div>
                                 </div>
-                                
-                            
-                                {local.map(item => 
+
                                 <div className="ava-locais">
-                                   <p>{item.pais}, {item.cidade}</p>
-                                    <p>{item.endereco}</p >
+                                    {local.map(item => 
+                                    <div className='AA'>
+                                        <p>{item.pais}, {item.cidade}</p>
+                                        <p>{item.endereco}</p >
+                                    </div>)}
                                     <div className='image'>
-                                        <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={Salvar}/>
+                                        <img src='/assets/images/editar.svg' alt='editarperfil' onClick={Alterar}/>
                                     </div>
                                 </div>
-                                )}
-                                
                             </div>
                         }
 
@@ -463,57 +457,65 @@ export default function PaginaEmpresa() {
                                         <textarea className="desc" value={descricao} onChange={e => setDescricao(e.target.value)} />
                                     </div>
                                 </div>
-                                {local.map(item => 
                                 <div className="ava-locais">
-                                   <p>{item.pais}, {item.cidade}</p>
-                                    <p>{item.endereco}</p >
+                                    {local.map(item => 
+                                    <div className='AA'>
+                                    <p>{item.pais}, {item.cidade}</p>
+                                        <p>{item.endereco}</p >
+                                    </div>)}
                                     <div className='image'>
                                         <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={Salvar}/>
                                     </div>
                                 </div>
-                                )}
                             </div>
                         }
 
 
                         {publicacao.map((item, index) => 
                             <div className="card-Publicacao">
-                                {vlpublic===index && <div className='agrupamento-inputs'>
-                                    <input value={altTituloPublicacao} type='text' onChange={e => setAltTitutoPublicao(e.target.value, index)}/>
-                                    <input value={altcorpoPublicacao} type='text' onChange={e => setAltCorpoPublicacao(e.target.value, index)}/>
-                                    {item.imagem !== null && <img src={buscarImagem(publicacao[index].imagem)} alt='' className='imgpublicc' />}
-                                    <div>
-                                    <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
-                                    <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={() =>SalvarAlterarPublic(item.Empresa, item.Publicacao, index)}/>
+                                {vlpublic===index && <div className='agrupamento-inputs3'>
+                                    <div className='a'>
+                                        <input value={altTituloPublicacao} type='text' onChange={e => setAltTitutoPublicao(e.target.value, index)}/>
+                                        <div>
+                                            <img src='/assets/images/lixeira2.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
+                                            <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={() =>SalvarAlterarPublic(item.Empresa, item.Publicacao, index)}/>
+                                        </div>
                                     </div>
-
-                                </div>}
-
-                                {vlpublic!==index && vlpublic!==100  && <div className='agrupamento-inputs'>
-                                    <h1>{item.Titulo}</h1>
-                                    <p>{item.CaixaTexto}</p>
-                                    {item.imagem !== null && <img src={exibirImagem1(index)} alt='' className='imgpublicc' />}
-                                    <div>
-                                    <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
-                                    <img src='/assets/images/editar.svg' alt='editarperfil' onClick={() => AlterarPublic(index)}/>
+                                    <div className='b'>
+                                        <textarea value={altcorpoPublicacao} type='text' onChange={e => setAltCorpoPublicacao(e.target.value, index)}/>
+                                        {item.imagem !== null && <img src={exibirImagem1(index)} alt='' className='imgpublicc' />}
                                     </div>
                                 </div>}
 
-                                {vlpublic===100 && <div className='agrupamento-inputs'>
-                                    <h1>{item.Titulo}</h1>
-                                    <p>{item.CaixaTexto}</p>
-                                    {item.imagem !== null && <img src={exibirImagem1(index)} alt='' className='imgpublicc' />}
-                                    <div>
-                                    <img src='/assets/images/lixeira.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
-                                    <img src='/assets/images/editar.svg' alt='editarperfil' onClick={() => AlterarPublic(index)}/>
+                                {vlpublic!==index && vlpublic!==100  && <div className='agrupamento-inputs4'>
+                                    <div className='a'>
+                                        <h1>{item.Titulo}</h1>
+                                        <div>
+                                            <img src='/assets/images/lixeira2.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
+                                            <img src='/assets/images/editar.svg' alt='editarperfil' onClick={() => AlterarPublic(index)}/>
+                                        </div>
                                     </div>
+                                    {item.imagem !== null && <img src={exibirImagem1(index)} alt='' className='imgpublicc' />}
+                                    <p>{item.CaixaTexto}</p>
+                                </div>}
+
+                                {vlpublic===100 && <div className='agrupamento-inputs4'>
+                                    <div className='a'>
+                                        <h1>{item.Titulo}</h1>
+                                        <div>
+                                            <img src='/assets/images/lixeira2.svg' alt='remover' onClick={() => removerPublicacao(item.Empresa, item.Publicacao)}/> 
+                                            <img src='/assets/images/editar.svg' alt='editarperfil' onClick={() => AlterarPublic(index)}/>
+                                        </div>
+                                    </div>
+                                    {item.imagem !== null && <img src={exibirImagem1(index)} alt='' className='imgpublicc' />}
+                                    <p>{item.CaixaTexto}</p>
                                 </div>}
                                 
                             </div>
                         )}
                         
 
-                        {contpubli === 0 &&<div className="card-Publicacao">
+                        {contpubli === 0 &&<div className="card-Publicacao1">
                             <p>Adicionar Card</p>
                             <img src='/assets/images/add.svg' alt='add' onClick={Novapubli}/>
                             </div> }
@@ -521,14 +523,19 @@ export default function PaginaEmpresa() {
 
 
                         {contpubli === 1 &&<div className="card-Publicacao-click">
-                            <div className='agrupamento-inputs'>
+                            <div className='agrupamento-inputs1'>
                                 <input type='text' value={tituloPublicacao} onChange={e => setTitutloPublicacao(e.target.value)}/>
+
+                                <div className='publicar' onClick={ConfirNovapubli}>
+                                    <p> Publicar </p>
+                                </div>
+                            </div>
+
+                            <div className='agrupamento-inputs'>
+                                <textarea type='text' value={corpoPublicacao} onChange={e => setCorpoPublicacao(e.target.value)}/>
                             </div>
 
                             <div className='agrupamento-img-icon'>
-                                <div>
-                                    <img src='/assets/images/Salvar.svg' alt='add' onClick={ConfirNovapubli}/>
-                                </div>
                                 <div className='addimg' onClick={escolherImagem}>
                                     {!imgpublic &&
                                         <img src='/assets/images/addimg.png' alt='Sem imagem' />
@@ -539,9 +546,6 @@ export default function PaginaEmpresa() {
 
                                     <input type="file" id="imagem1" onChange={e => setImgPublic(e.target.files[0])} />
                                 </div>
-                            </div>
-                            <div className='agrupamento-inputs'>
-                                <input type='text' value={corpoPublicacao} onChange={e => setCorpoPublicacao(e.target.value)}/>
                             </div>
                         </div>}
 
@@ -561,8 +565,8 @@ export default function PaginaEmpresa() {
 
 
                         <div className="CardCanto">
-                            <div>
-                                <label>TAG:</label>
+                            <h3>TAG:</h3>
+                            <div className='tagg'>
                                 <select value={idTag} onChange={e => setIdTag(e.target.value)}>
                                     <option selected disabled hidden> Selecione uma Tag</option>
                                 {Tags.map(item =>
