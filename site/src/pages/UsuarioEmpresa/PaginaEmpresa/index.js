@@ -566,9 +566,9 @@ export default function PaginaEmpresa() {
                             </div>
 
                             <label></label>
-                            <div>
+                            <div className="CardCanto2">
                                 {tagsSelecionas.map(id =>
-                                        <div>
+                                        <div className='tag'>
                                             {buscarNomeTag(id)}
                                         </div>
                                     )}

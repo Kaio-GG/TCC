@@ -19,6 +19,18 @@
         border: 0.5px solid;
         background-color: #f8f8f8;
     }
+    .tag{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: max-content;
+        background-color: #263238;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.2);
+        color: #fff;
+        margin-right: 5px;
+        margin-top: 10px;
+        padding: 2px 6px ;
+    }
 
 
     .PaginaEmpresa-Centro{
@@ -285,6 +297,13 @@
             img{
                 width: 15px;
             }
+        }
+
+        .CardCanto2{
+            display: flex;
+            max-width: 100%;
+            flex-wrap: wrap;
+            
         }
 
 
