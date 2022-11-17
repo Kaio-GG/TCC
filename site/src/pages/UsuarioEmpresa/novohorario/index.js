@@ -307,7 +307,19 @@ export default function Novohorario (){
                                 <input className='info-novo' type='time' placeholder='digite o horario' value={hora} onChange={e => sethora(e.target.value)} />
                                 <input className='info-novo' type='date' value={data} onChange={e => setdata(e.target.value)} />
                                 <input className='info-novo' type='number' min='1' value={qtd} onChange={e => setqtd(e.target.value)}/>
-                                                                
+
+
+                                <select className='info-novo2' value={localCarregar} onChange={e => setlocalCarregar(e.target.value)} >    
+                                    <option disabled hidden selected>Selecione o Local</option>
+
+                                    {local.map (item =>
+                                        <option value={item.local}>{item.local}</option>
+                                    )}
+                                    {filial.map (item =>
+                                        <option value={item.DS_ENDERECO}>{item.DS_ENDERECO}</option>
+                                    )}
+                    
+                                </select>                               
                             <div className='btns'>  
                                 <button onClick={() => criarHorario(hora , data , qtd ,localCarregar)} >SALVAR</button>
                                 <button className='btn-pronto' onClick={renderhorario} >PRONTO</button>

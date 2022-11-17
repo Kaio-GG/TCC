@@ -71,12 +71,12 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
     .maisFiliais:hover{
-        background-color: rgb(76, 5, 117);
-        transition: all 0,5 ease-in;
-        transform: scale(1.05);
+        background-color: #112129;
+        border: #fff solid 3px;
+        transition: all 0,1 ease-in;
         transition: all 0.2s;
         color: #fff;
-        
+        transform: scale(1.05);
     }
     .add{
         height: 50%;
@@ -133,23 +133,24 @@
 
     }
     .filial:hover{
-        background-color: rgb(76, 5, 117);
+        background-color: #112129;
+        border: #fff solid 3px;
         transition: all 0,1 ease-in;
         transition: all 0.2s;
         color: #fff;
+        transform: scale(1.05);
     }
     .btn-pronto{
         cursor: pointer;
     }
     .btn-pronto:hover{
-        background-color: rgb(76, 5, 117);
+        background-color: #112129;
+        border: #fff solid 3px;
         transition: all 0,1 ease-in;
-        transform: scale(1.05);
         transition: all 0.2s;
         color: #fff;
-        
+        transform: scale(1.05);
     }
-
     .x{
         cursor: pointer;
         font-size: 30px;

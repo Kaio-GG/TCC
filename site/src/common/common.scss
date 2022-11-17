@@ -44,7 +44,14 @@
 button{
     border: none;
 }
-
+button:hover{
+    background-color: #112129;
+    border: #fff solid 3px;
+    transition: all 0,1 ease-in;
+    transition: all 0.2s;
+    color: #fff;
+    transform: scale(1.05);
+}
 .Link:hover, .Link:visited, .Link:focus, .Link:active
 {   text-decoration: none;
     color: inherit;

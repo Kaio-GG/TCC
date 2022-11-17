@@ -52,17 +52,24 @@
             font-family: 'KumbhSans-Regular';
             cursor: pointer;
             :hover{
-                background-color: rebeccapurple;
+                background-color: #112129;
+                border: #fff solid 3px;
+                transition: all 0,1 ease-in;
+                transition: all 0.2s;
+                color: #fff;
+                transform: scale(1.05);
             }
             
         }
         
         button:hover{
-                background-color: rebeccapurple;
-                transition: all 0,7 ease-in;
-                transform: scale(1.1);
-                transition: all 0.5s;
-            }
+            background-color: #112129;
+            border: #fff solid 3px;
+            transition: all 0,1 ease-in;
+            transition: all 0.2s;
+            color: #fff;
+            transform: scale(1.05);
+        }
         .esc{
             font-style: normal;
         }
