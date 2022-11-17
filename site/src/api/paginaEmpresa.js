@@ -155,3 +155,9 @@ export async function listarVerificações(idPagina){
     return resposta.data;
 }
 
+export async function loadLocal(id){
+    const t = await api.get(`/empresa/local?id=${id}`)
+    console.log(t)
+    return t.data;
+}
+

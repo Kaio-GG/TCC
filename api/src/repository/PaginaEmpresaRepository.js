@@ -196,3 +196,17 @@ export async function alterarValidacao(valida){
     return linhas.affectedRows;
 }
 
+export async function carregarLocal(id){
+    const comando = `
+    select	ds_pais pais,
+            ds_estado estado,
+            ds_cidade cidade,
+            ds_endereco endereco 
+    from 	tb_usuario_empresa
+    where id_usuario_empresa = ?    
+    `
+
+    const [linhas] = await con.query(comando, [id])
+    return linhas;
+}
+
