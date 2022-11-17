@@ -33,7 +33,7 @@ export default function PaginaEmpresa() {
     const [youtube, setYoutube] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp , setWhatsApp] = useState('');
-    const [val, setVal] = useState([])
+    const [val, setVal] = useState()
 
 
     const [idTag, setIdTag] = useState();
@@ -55,7 +55,7 @@ export default function PaginaEmpresa() {
     }, [])
     useEffect(() => {
         if (id){
-            ConsultarValidaçoes();
+            mostrarVerificacoes()
         }
     }, [])
 
@@ -229,42 +229,45 @@ export default function PaginaEmpresa() {
 
     async function MudarPublic(nome, conteudo, idEmpresa, idPublicacao) {
         await AlterarPublicacao(nome, conteudo, idEmpresa, idPublicacao)
+        
     }
 
     //Validações  =====================================================================
-
-    async function ConsultarValidaçoes(){
-
-        
+    async function mostrarVerificacoes(){
         const a = await listarVerificações(idEmpresa)
-
+        setVal(a)
         
+        console.log(a)
+
         if(a.length === 0){
-            alert('a')
-            await Verificacoes(1, idEmpresa, 'Facebook/')
-            await Verificacoes(2, idEmpresa, 'Instagram/')
-            await Verificacoes(3, idEmpresa, 'Youtube.com/')
-            await Verificacoes(4, idEmpresa, 'mail.google.com//')
-            await Verificacoes(5, idEmpresa, 'web.whatsapp.com/')
-
-            const b = await listarVerificações(idEmpresa)
-
-            setFace    (b[0].nomeVerificacao)
-            setInsta   (b[2].nomeVerificacao)
-            setYoutube (b[4].nomeVerificacao)
-            setEmail   (b[6].nomeVerificacao)
-            setWhatsApp(b[8].nomeVerificacao)
-            setVal([b])
+            ConsultarValidaçoes()
         }
         else{
-            alert('b')
             setFace    (a[0].nomeVerificacao)
             setInsta   (a[2].nomeVerificacao)
             setYoutube (a[4].nomeVerificacao)
             setEmail   (a[6].nomeVerificacao)
-            setWhatsApp(a[8].nomeVerificacao)       
+            setWhatsApp(a[8].nomeVerificacao)         
         }
+    }
 
+    async function ConsultarValidaçoes(){
+
+        alert('a')
+        await Verificacoes(1, idEmpresa, 'Facebook/')
+        await Verificacoes(2, idEmpresa, 'Instagram/')
+        await Verificacoes(3, idEmpresa, 'Youtube.com/')
+        await Verificacoes(4, idEmpresa, 'mail.google.com//')
+        await Verificacoes(5, idEmpresa, 'web.whatsapp.com/')
+
+        const a = await listarVerificações(idEmpresa)
+        
+        
+        setFace    (a[0].nomeVerificacao)
+        setInsta   (a[2].nomeVerificacao)
+        setYoutube (a[4].nomeVerificacao)
+        setEmail   (a[6].nomeVerificacao)
+        setWhatsApp(a[8].nomeVerificacao)   
     }
 
     useEffect(() => {  
