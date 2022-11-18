@@ -30,6 +30,11 @@ export async function loadVerificacoes(id){
     return t.data
 }
 
+export async function Brahma(id){
+    const t = await api.get(`/home/usuario/buscarTags?id=${id}`)
+    return t.data;
+}
+
 
 export async function listarComentarios(id){
     const t = await api.get(`/home/usuario/coments?id=${id}`)

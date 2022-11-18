@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { avaliacoes, carregarCertificacoes, carregarPaginaZ, carregarVerificacoes, enviarComentario, puxarPubs, selecionarComentarios } from "../repository/intermediarioUser.js";
+import { avaliacoes, carregarCertificacoes, carregarPaginaZ, carregarVerificacoes, enviarComentario, Jurupinga, puxarPubs, selecionarComentarios } from "../repository/intermediarioUser.js";
 
 const server = Router();
 
@@ -32,6 +32,23 @@ server.get('/home/usuario/verificacoes', async(req, resp) => {
             erro: err.message
         })
     }
+})
+
+server.get('/home/usuario/buscarTags', async(req, resp) => {
+    try{
+        const { id } = req.query;
+
+        const  a = await Jurupinga(id)
+
+        resp.send(a)
+    }catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+
+
+
 })
 
 server.get('/home/usuario/certificacoes', async(req, resp) =>{

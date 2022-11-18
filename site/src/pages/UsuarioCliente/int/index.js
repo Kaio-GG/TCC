@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import Pular from 'react-reveal/Fade'
 import { toast } from 'react-toastify'
 
-import { carregarAvaliacao, laodPubs, listarComentarios, loadCertficacoes, loadPage, loadVerificacoes, sendReview } from '../../../api/Intermediario'
+import { Brahma, carregarAvaliacao, laodPubs, listarComentarios, loadCertficacoes, loadPage, loadVerificacoes, sendReview } from '../../../api/Intermediario'
 import { buscarImagem, ListarTags, ListarTagsPag } from '../../../api/paginaEmpresa'
 import { useParams, useNavigate  } from 'react-router-dom'
 
@@ -60,14 +60,7 @@ export default function Index(){
     async function Lverificacoes(){
         try{
             const r = await loadVerificacoes(id)
-            let a = [];
-            let i = 0
-
-            for(i; i < 8; i++){
-                a = [...a, r[i]];
-                i++
-            }           
-            setVerficacoes(a)
+            setVerficacoes(r)
         }catch(err){
             toast.error(err.message)
         }
@@ -94,23 +87,30 @@ export default function Index(){
     }
 
     useEffect(() => {
-        if(id)
-        loadPageZ(id);
-            Lverificacoes(id)
+       
+            loadPageZ(id);
             Lcertificacoes(id)
             listarComents(id);
             carregarPubs(id)
             carregarNota(id)
             listarTags()
+            
+           
 
     },[enviarComentario])
 
     useEffect(() => {
         if(id)
         listarTags()
-        listarTagPagg()
+        Lverificacoes(id)
+        kaiser()
 
     },[])
+
+    async function kaiser(){
+        const a = await Brahma(id);
+        setTags(a)
+    }
 
 
     async function listarComents(){
@@ -170,17 +170,6 @@ export default function Index(){
         setTags(a)
     }
 
-    async function listarTagPagg() {
-        const a = await ListarTagsPag(id)
-        let b = []
-        let i = 0;
-
-        for(i; i < a.length ; i++){
-            b[i] = a[i].idTag
-        }
-
-        setTagsSelecionadas(b)
-    }
 
 
     return(
@@ -209,7 +198,7 @@ export default function Index(){
                                 <p className='b1-ava'>
                                     <span className='limit'>{item.avaliacao}
                                     
-                                    <span>{item.avaliacao >= 1 || item.avaliacao < 2 ? <img className='star' src={Star}></img> : ""}</span> 
+                                    <span>{item.avaliacao >= 1 ? <img className='star' src={Star}></img> : ""}</span> 
 
                                     <span>{item.avaliacao >= 2 ? <img className='star' src={Star}></img> : ""}</span> 
                                     
@@ -316,30 +305,21 @@ export default function Index(){
                             <h1>Verificação</h1>
                             <hr className='linha-b3'></hr>
                             <br></br>
-                            {certificacoes.map(item => 
-                            <p>{item.descricao}</p>
+                            {verificacoes.map(item => 
+                            <p>{item.verificacao}</p>
                             )}
                             
                         </div>
                        
 
                        
-                        <div className='b5-right'>
-                            <h1>TAG'S</h1>
-                            <hr className='linha-b3'></hr>
-                            <br></br>
-                            <div className='tagg'>
-                            {tagsSelecionas.map(id =>
-                                <div className='tag'>
-                                    {buscarNomeTag(id)}
-                                </div>)}
-                            </div>
+                     
                         </div>
                        
                         
                     </div>
                             
-                </div>
+                
 
 
 

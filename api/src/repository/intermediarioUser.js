@@ -74,7 +74,8 @@ export async function carregarVerificacoes(id){
     const comando = `
     select  ds_verificacoes verificacao
     from    tb_verificacoes
-    where   ID_PAGINA_EMPRESA = ?
+    where   ID_PAGINA_EMPRESA = ? 
+    group by 1;
     `
     const [linhas] = await con.query(comando, [id])
     return linhas;
@@ -91,3 +92,15 @@ export async function carregarCertificacoes(id){
     return linhas;
 }
 
+
+export async function Jurupinga(id){
+    const comando = `
+    select nm_tag tag
+    from tb_tag 
+    inner join tb_usuario_empresa on tb_usuario_empresa.id_usuario_empresa = tb_tag.id_tag
+    where id_usuario_empresa = ?;
+    `
+
+    const [linhas] = await con.query(comando, [id])
+    return linhas;
+}

@@ -144,14 +144,7 @@ export default function ClienteHome() {
                         <h1>Mais Proximas</h1>
                     </div>
 
-                    <div className='tag-box'>
-                        <h1 className=''>TAG's</h1>
-                        <hr></hr>
-
-                        {tags.map(item => 
-                        <p>{item.tag}</p>
-                        )}
-                    </div>
+                    
 
                 </div>
             </div>
