@@ -87,17 +87,13 @@ export default function Index(){
     }
 
     useEffect(() => {
-       
             loadPageZ(id);
             Lcertificacoes(id)
             listarComents(id);
             carregarPubs(id)
             carregarNota(id)
             listarTags()
-            
-           
-
-    },[enviarComentario])
+    },[avaliacaoReview])
 
     useEffect(() => {
         if(id)
@@ -255,7 +251,7 @@ export default function Index(){
                                     <div className='comentario'>
                                         <textarea value={review} onChange={e => setReview(e.target.value)} className='comentar'/>
                                         <div className='alinhar-coment'>
-                                            <p>Insira o número de sua avaliação</p>
+                                            <p>Insira o número de sua avaliação de 1 a 5:</p>
                                             <input value={avaliacaoReview} onChange={e => setAvaliacaoReview(e.target.value)} type="number" maxLength="1"/>
                                         </div>
                                         <button onClick={enviarComentario} className='button-enviar'>Enviar</button>
@@ -274,7 +270,7 @@ export default function Index(){
 
 
                             
-                        {comentarios.map(item =>
+                        {comentarios.map(item => 
                             <div className='box-review'>
                                 <div className='juntar'>
                                     <img src={User} className='img-usuario'></img>
@@ -285,7 +281,7 @@ export default function Index(){
                                     </div>
                                 </div>
                                 <p>{item.dia.substr(7,3).replace("-","")}/{item.dia.substring(4,7).replace("-","")}/{item.dia.substring(0,5).replace("-","")}<br/>
-                                ás {item.dia.substring(11,16)}
+                                ás {new Date(item.dia).toLocaleTimeString('pt-br').substring(0,5)}
                                 </p>
                                 
                             </div>
