@@ -137,7 +137,7 @@ create table `TB_AGENDAMENTO`  (
 	NM_PESSOA           		VARCHAR(100) not null,
 	DS_EMAIL            		VARCHAR(200) not null,
 	DS_CPF              		VARCHAR(15) not null,
-	DS_TELEFONE         		VARCHAR(10) not null,
+	DS_TELEFONE         		VARCHAR(14) not null,
 	DS_SEXO             		VARCHAR(25) not null,
 	DT_NASCIMENTO       		DATETIME not null,
 	DS_SITUACAO         		VARCHAR(100),

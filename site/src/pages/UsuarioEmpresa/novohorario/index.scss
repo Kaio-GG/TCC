@@ -161,6 +161,22 @@
 
         height: 30em;
     }
+    .dica{
+        height: 8em;
+        width: 12em;
+        background-color:#fff;
+        position: absolute;
+        border-radius: 5px;
+        font-family: 'KumbhSans-Regular';
+        padding: 10px;
+        margin-bottom: 13%;
+        margin-left: 20%;
+        box-shadow: 4px 4px 4px #000 ;
+        font-weight: 700;
+        h3{
+            color: rgb(58, 1, 85);
+        }
+    }
     .card-novo:hover{
         background-color: #112129;
         border: #fff solid 3px;

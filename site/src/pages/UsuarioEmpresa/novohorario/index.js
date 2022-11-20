@@ -19,6 +19,8 @@ export default function Novohorario (){
     const [dataCarregarHorario , setdataCarregarHorario]= useState('');
     const [filial , setfilial ]= useState([]);
     const [ localCarregar , setlocalCarregar] = useState ('');
+    const [ dicamouse ,setdicamouse]=useState(false)
+
     const empresaLogada = storage('Empresa-Logada');
     const id = (empresaLogada.ID_USUARIO_EMPRESA);
 
@@ -131,7 +133,6 @@ export default function Novohorario (){
     function renderhorario(){
         setrendernovohorario(false)
     }
-   
 
     useEffect(() => {
             novahora()
@@ -147,13 +148,13 @@ export default function Novohorario (){
 
 
     return(
-        <div className='pg-novohorario'>
+        <div className='pg-novohorario' >
             <HederEmpresa  class='hora'/>
             <div>
 
 
             {rendernovohorario === false &&
-            <div >    
+            <div  >    
             <div className='certo'>    
             <div className='opts'>
             <div className='alinhado'>
@@ -181,10 +182,21 @@ export default function Novohorario (){
                 </select>
                 </div>
                 <div className='org-direita'>
-                    <div className='card-novo' onClick={rendernovo}>
+                    {dicamouse === true &&
+
+                        <div className='dica'>
+                            
+                                <h3>Dica:</h3>
+                            
+                            <p> Aqui você pode criar horarios para que seus clientes marcarem consultas 😁</p>
+                        </div>
+                    }
+
+                    <div className='card-novo' onClick={rendernovo} onMouseOver={() => setdicamouse(true)} onMouseOut={() => setdicamouse(false)}>
                         Adicionar Horário              
                     </div>
-                </div>    
+                </div>
+                  
             </div>
             </div> 
             <div className='horarios'>
@@ -257,7 +269,8 @@ export default function Novohorario (){
                 </select>
                 </div>
                 <div className='org-direita'>
-                    <div className='card-novo' onClick={rendernovo}>
+
+                    <div className='card-novo' onClick={rendernovo} onMouseOver={() => setdicamouse(true)}>
                         Adicionar Horário              
                     </div>
                 </div>    

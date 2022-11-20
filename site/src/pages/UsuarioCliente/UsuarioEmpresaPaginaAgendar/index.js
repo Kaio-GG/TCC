@@ -22,18 +22,38 @@ export default function UsuarioEmpresaPaginaAgendar() {
     const [marcado , setmarcado] =useState([false , 0])
     const [info, setInfo] = useState([])
     
-    
     const {id} = useParams();
     const clientelogado = storage('Cliente-Logado')
     const idcliente = (clientelogado.ID_USUARIO_CLIENTE)
 
     async function caregar (id){
         try {
-            let r = await horarios(id)
+            if(!nome)
+            throw new Error('Coloque um nome valido')
+            
+            if(!email)
+                throw new Error('Coloque um email valido')
+                
+            if(!cpf)
+                throw new Error('Coloque um cpf valido')
+
+            
+            if(!dtnasc)
+                throw new Error('Coloque um data de nacimento valida')
+
+            if(!sexo)
+                throw new Error('Coloque um sexo valido')
+
+            if(!telefone)
+                throw new Error('Coloque um telefone valido')
+
+            if(!desc)
+                throw new Error('Coloque um descrição valida')
+                let r = await horarios(id)
             sethorario(r)
-            setrender(false)             
+            setrender(false)
         } catch (err) {
-            console.log(err.message)
+            toast.error(err.message)
         }
     }
 
@@ -53,6 +73,32 @@ export default function UsuarioEmpresaPaginaAgendar() {
 
     async function agendar (idhora , idusu ,nome , email ,cpf , tel ,sexo ,nasc ,desc){
         try {
+
+            if(!idhora)
+                throw new Error('Escolha um horario')
+                
+            if(!nome)
+            throw new Error('Coloque um nome valido')
+            
+            if(!email)
+                throw new Error('Coloque um email valido')
+                
+            if(!cpf)
+                throw new Error('Coloque um cpf valido')
+
+            
+            if(!nasc)
+                throw new Error('Coloque um data de nacimento valida')
+
+            if(!sexo)
+                throw new Error('Coloque um sexo valido')
+
+            if(!tel)
+                throw new Error('Coloque um telefone valido')
+
+            if(!desc)
+                throw new Error('Coloque um descrição valida')
+
             await agendarHorario(idhora ,idusu , nome ,email , cpf ,tel ,sexo ,nasc ,desc)
             toast.dark('🚀 Consulta Solicitada')
         } catch (err) {
@@ -79,6 +125,20 @@ export default function UsuarioEmpresaPaginaAgendar() {
         filtraData()
     }, [data])
 
+    useEffect(()=> {
+        document.addEventListener('keydown' , detctar , true)
+        
+    },[])
+
+
+    const detctar = (e) => {
+        let a = e.key
+        console.log(a)
+        if (a === 'Enter') {
+            caregar(id)
+        }
+    }
+
     return(
         <div className='pg-toda'>
           <main className="UsuarioEmpresaAgendar">
@@ -96,23 +156,22 @@ export default function UsuarioEmpresaPaginaAgendar() {
                         </div>
                         )}
  
- 
                         <div className='inputs1'>
                             <h3>Agendamento</h3>
-                            <input placeholder='Nome completo' value={nome} onChange={e => setnome(e.target.value)}/>
-                            <input placeholder='Email' value={email} onChange={e => setemail(e.target.value)} />
-                            <input placeholder='CPF' value={cpf} onChange={e => setcpf(e.target.value)} />
+                            <input placeholder='Nome completo' value={nome} onChange={e => setnome(e.target.value)} required/>
+                            <input placeholder='Email' value={email} onChange={e => setemail(e.target.value)} required/>
+                            <input placeholder='CPF' value={cpf} onChange={e => setcpf(e.target.value)} required/>
                         </div>
                         <div className='inputs'>
                             <div className='e'></div>
-                            <input placeholder='Data de nascimento' type='date' value={dtnasc} onChange={e => setdtnasc(e.target.value)} />
-                            <input placeholder='Sexo' value={sexo} onChange={e => setsexo(e.target.value)} />
-                            <input placeholder='Telefone' value={telefone} onChange={e => settelefone(e.target.value)} />
+                            <input placeholder='Data de nascimento' type='date' value={dtnasc} onChange={e => setdtnasc(e.target.value)} required/>
+                            <input placeholder='Sexo' value={sexo} onChange={e => setsexo(e.target.value)} required/>
+                            <input placeholder='Telefone' value={telefone} onChange={e => settelefone(e.target.value)} required/>
                         </div>
                     </div>
 
                     <div className='campotexto'>
-                        <h3> Agendamento </h3>
+                        <h3> Observação </h3>
                         <textarea value={desc} onChange={e => setdesc(e.target.value)} />
                     </div>
 
@@ -132,7 +191,7 @@ export default function UsuarioEmpresaPaginaAgendar() {
 
 
             {render === false &&   
-            <div className="UsuarioEmpresaAgendarHorario">
+            <div className="UsuarioEmpresaAgendarHorario" >
             <div className='centro'>
                 <HeaderUsuario />
                 <div className='pa'>
