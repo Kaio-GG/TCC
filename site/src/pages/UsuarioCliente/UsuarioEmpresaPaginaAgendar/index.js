@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify'
 import { buscarImagem } from '../../../api/paginaEmpresa.js';
 
+
 export default function UsuarioEmpresaPaginaAgendar() {
+
     const [nome , setnome ] =useState('')
     const [email ,setemail] =useState('')
     const [cpf ,setcpf] =useState('')
@@ -26,18 +28,17 @@ export default function UsuarioEmpresaPaginaAgendar() {
     const clientelogado = storage('Cliente-Logado')
     const idcliente = (clientelogado.ID_USUARIO_CLIENTE)
 
+    const navigate = useNavigate();
+
     async function caregar (id){
         try {
-            if(!nome)
-            throw new Error('Coloque um nome valido')
             
-            if(!email)
+            if(email === null)
                 throw new Error('Coloque um email valido')
                 
             if(!cpf)
                 throw new Error('Coloque um cpf valido')
-
-            
+         
             if(!dtnasc)
                 throw new Error('Coloque um data de nacimento valida')
 
@@ -74,33 +75,11 @@ export default function UsuarioEmpresaPaginaAgendar() {
     async function agendar (idhora , idusu ,nome , email ,cpf , tel ,sexo ,nasc ,desc){
         try {
 
-            if(!idhora)
-                throw new Error('Escolha um horario')
-                
-            if(!nome)
-            throw new Error('Coloque um nome valido')
-            
-            if(!email)
-                throw new Error('Coloque um email valido')
-                
-            if(!cpf)
-                throw new Error('Coloque um cpf valido')
-
-            
-            if(!nasc)
-                throw new Error('Coloque um data de nacimento valida')
-
-            if(!sexo)
-                throw new Error('Coloque um sexo valido')
-
-            if(!tel)
-                throw new Error('Coloque um telefone valido')
-
-            if(!desc)
-                throw new Error('Coloque um descrição valida')
 
             await agendarHorario(idhora ,idusu , nome ,email , cpf ,tel ,sexo ,nasc ,desc)
             toast.dark('🚀 Consulta Solicitada')
+
+            navigate('/home/usuario')
         } catch (err) {
             console.log(err.message)
         }
@@ -133,9 +112,9 @@ export default function UsuarioEmpresaPaginaAgendar() {
 
     const detctar = (e) => {
         let a = e.key
-        console.log(a)
         if (a === 'Enter') {
             caregar(id)
+            console.log(email)
         }
     }
 
