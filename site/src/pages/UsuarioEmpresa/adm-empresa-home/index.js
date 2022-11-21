@@ -15,6 +15,9 @@ export default function Homeempresa() {
     const [situacao , setsituacao]= useState('')
     const [filial , setfilial] = useState([])
     const [localcarregar , setlocalcarregar] = useState('')
+    const [tutorial , settutorial] = useState(true)
+    const [dica , setdica] = useState(false)
+    
     const empresaLogada = storage('Empresa-Logada')
     const id = (empresaLogada.ID_USUARIO_EMPRESA)
     
@@ -71,11 +74,19 @@ export default function Homeempresa() {
         }
     }
 
+    function mostrarTutorial (){
+        setTimeout(() => {
+            settutorial(false)    
+        }, 3000)
+        
+}
+
 
     useEffect(() => {
         listar(id)
         buscar(id)
         novaData()
+        mostrarTutorial()
     },[]) 
     
 
@@ -83,12 +94,45 @@ export default function Homeempresa() {
     
     return (
         <div className='page-adm-home'>
+
             <HeaderEmp class='home' />
             <div className='filtro-adm-empresa'>
+                {tutorial === true  &&
+                    <div onClick={() => setdica(true)} className='tutorial'>
+                        <p>Click aqui para ver um tutorial</p>
+                    </div>
+                }
+
+                {dica === true  &&
+                    <div className='tutorial-1'>
+                        <h2> Seje bem vindo a <i>MyWorkship.</i></h2><br/>
+                        Aqui é em nosso site você pode facilitar o sistema de consultas de sua empresa 
+                        <br/>
+                        <br/>
+                        <h3>-Home:</h3> Você ve os clientes que desejam fazer consultas na sua empresa.
+                        <br/>
+                        <br/>
+                        <h3>-Perfil:</h3> Você faz com que os clientes que pesquisem a sua empresa veje como ela é , também é possivel fazer publicações lá 
+                        <br/>
+                        <br/>
+                        <h3>-Novo Horário:</h3> Você disponibiliza horários e datas para os clientes fazerem consultas. 
+                        <br/>
+                        <br/>
+                        <h3>-Informações:</h3> você pode editar Informações da empresa e cadastras as suas filiais.
+                        <br/>
+                        <br/>
+                        <h3>-Reviews:</h3> la você pode ver os comentarios que fizeram sobre sua empresa em sua pagina.
+                        <br/>
+                        <br/>
+                        <button className='ok' onClick={() => setdica(false)}>OK</button>
+                    </div>
+                }
+                
+                
                 <div className='btn'>
                     <select className='opt' value={localcarregar} onChange={e => setlocalcarregar(e.target.value)} >
                         
-                        <option disabled hidden selected>Selecione o Local</option>
+            
 
                         <option value='TODOS'>Todos</option>
                         
