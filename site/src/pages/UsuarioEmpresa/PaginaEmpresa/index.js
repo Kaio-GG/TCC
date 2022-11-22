@@ -409,7 +409,7 @@ export default function PaginaEmpresa() {
                 <div className='agrups'>
                     <div className="agrup-esquerda">
 
-                        {cont === 0 &&
+                    {cont === 0 &&
                             <div className="card-empresa">
                                 <div className='a'>
                                     <div className="img">
@@ -432,11 +432,44 @@ export default function PaginaEmpresa() {
                                    <p>{item.pais}, {item.cidade}</p>
                                     <p>{item.endereco}</p >
                                     <div className='image'>
-                                        <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={Salvar}/>
+                                        <img src='/assets/images/editar.svg' alt='editarperfil' onClick={Alterar}/>
                                     </div>
                                 </div>
                                 )}
                                 
+                                
+                            </div>
+                        }
+
+
+
+                        {cont === 1 &&
+                            <div className="card-empresa">
+                                <div className='a'>
+                                    <div className="img" onClick={receberImagem}>
+
+                                        {!logo &&
+                                            <img src='/assets/images/addimg.png' alt='Sem imagem' />
+                                        }
+                                        {logo &&
+                                            <img src={mostrarImagem()} alt='' className='logo' />
+                                        }
+                                         <input type="file" id="imagem" onChange={e => setLogo(e.target.files[0])} />
+                                    </div>
+                                    <div className="nome-desc">
+                                        <input className="nome" value={nome} type='text' onChange={e => setNome(e.target.value)} />
+                                        <textarea className="desc" value={descricao} onChange={e => setDescricao(e.target.value)} />
+                                    </div>
+                                </div>
+                                {local.map(item => 
+                                <div className="ava-locais">
+                                   <p>{item.pais}, {item.cidade}</p>
+                                    <p>{item.endereco}</p >
+                                    <div className='image'>
+                                        <img src='/assets/images/Salvar.svg' alt='editarperfil' onClick={Salvar}/>
+                                    </div>
+                                </div>
+                                )}
                             </div>
                         }
 
